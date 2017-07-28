@@ -1,0 +1,1 @@
+export const UPDATE_ARCHETYPE = 'UPDATE_ARCHETYPE';

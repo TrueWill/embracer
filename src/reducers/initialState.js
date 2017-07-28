@@ -1,3 +1,5 @@
 export default {
-  characterCreation: {}
+  character: {
+    archetype: ''
+  }
 };
