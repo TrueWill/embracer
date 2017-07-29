@@ -2,7 +2,7 @@ import { combineReducers } from 'redux';
 import characterCreation from './characterCreationReducer';
 
 const rootReducer = combineReducers({
-  characterCreation
+  character: characterCreation
 });
 
 export default rootReducer;
