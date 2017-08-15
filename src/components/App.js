@@ -14,8 +14,11 @@ class App extends Component {
   render() {
     const character = this.props.character;
 
-    // TODO: Bug if create new item
-    const options = this.defaultArchetypes.map(a => ({value: a, label: a}));
+    let options = this.defaultArchetypes.map(a => ({value: a, label: a}));
+
+    if (character.archetype && this.defaultArchetypes.indexOf(character.archetype) === -1) {
+      options.push({value: character.archetype, label: character.archetype});
+    }
 
     return (
       <div>
