@@ -1,5 +1,6 @@
 export default {
   character: {
-    archetype: ''
+    archetype: '',
+    clan: ''
   }
 };

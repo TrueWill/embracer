@@ -6,3 +6,10 @@ export function updateArchetype(value) {
     archetype: value
   };
 }
+
+export function updateClan(value) {
+  return {
+    type: types.UPDATE_CLAN,
+    clan: value
+  };
+}
