@@ -21,6 +21,6 @@
   },
   "devDependencies": {
     "enzyme": "^3.1.0",
-    "jest-enzyme": "^4.0.0"
+    "jest-enzyme": "^4.0.1"
   }
 }
