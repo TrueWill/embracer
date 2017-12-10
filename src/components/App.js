@@ -4,7 +4,8 @@ import { connect } from 'react-redux';
 import Select from 'react-select';
 import * as actions from '../actions/characterCreationActions';
 
-class App extends Component {
+// Use named export (unconnected) for testing
+export class App extends Component {
   defaultArchetypes = ['Architect', 'Bravo'];  // TODO
   clans = ['Brujah', 'Toreador', 'Ventrue'];  // TODO
 
