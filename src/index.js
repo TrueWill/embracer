@@ -17,11 +17,12 @@ ReactDOM.render(
     <Router>
       <div>
         <App />
-        <Route exact path="/" component={Attributes}/>
-        <Route path="/skills" component={Skills}/>
+        <Route exact path="/" component={Attributes} />
+        <Route path="/skills" component={Skills} />
       </div>
     </Router>
   </Provider>,
-  document.getElementById('root'));
+  document.getElementById('root')
+);
 
 registerServiceWorker();
