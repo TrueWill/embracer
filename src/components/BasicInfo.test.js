@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { App } from './App';
+import BasicInfo from './BasicInfo';
 
 it('renders without crashing', () => {
   const character = {
@@ -8,5 +8,5 @@ it('renders without crashing', () => {
     clan: ''
   };
 
-  shallow(<App character={character} />);
+  shallow(<BasicInfo character={character} />);
 });
