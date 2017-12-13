@@ -1,7 +1,13 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Select from 'react-select';
 
 export default class BasicInfo extends Component {
+  static propTypes = {
+    character: PropTypes.object.isRequired,
+    actions: PropTypes.objectOf(PropTypes.func).isRequired
+  };
+
   defaultArchetypes = ['Architect', 'Bravo']; // TODO
   clans = ['Brujah', 'Toreador', 'Ventrue']; // TODO
 
