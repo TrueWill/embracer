@@ -18,3 +18,9 @@ This tool is unofficial, and the author is not affiliated with the companies men
 * No ESLint warnings/errors
 * No console warnings/errors
 * Works in modern browsers
+
+## Acknowledgements
+
+Built with [React](https://reactjs.org/) and [Redux](https://redux.js.org/) - thanks so much to Facebook, Dan Abramov, and all contributors!
+
+Uses [Font Awesome](http://fontawesome.io) by Dave Gandy.
