@@ -4,8 +4,6 @@ import PropTypes from 'prop-types';
 const unfilledClass = 'far fa-circle';
 const filledClass = 'fas fa-circle';
 
-// TODO: Add tests
-
 const Dots = ({ level = 0, max = 5 }) => {
   const items = Array(max);
 
