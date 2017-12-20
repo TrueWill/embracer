@@ -14,10 +14,11 @@ This tool is unofficial, and the author is not affiliated with the companies men
 * [Prettier](https://prettier.io/) with single quotes
 * [EditorConfig](http://editorconfig.org/)
 * [Yarn](https://yarnpkg.com/en/)
+* [Flux Standard Actions](https://github.com/acdlite/flux-standard-action)
 * Jest/Enzyme tests
 * No ESLint warnings/errors
 * No console warnings/errors
-* Works in modern browsers
+* Works in modern browsers (and IE 11)
 
 ## Acknowledgements
 
