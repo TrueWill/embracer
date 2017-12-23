@@ -1,10 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Rank = ({ options, onChange }) => {
-  const optionElements = options.map(o => (
-    <option key={o.dots} value={o.dots}>
-      {o.description}
+const descriptions = ['Primary', 'Secondary', 'Tertiary', 'Quaternary'];
+
+const Rank = ({ dots, onChange }) => {
+  const optionElements = dots.map((value, index) => (
+    <option key={index} value={value}>
+      {descriptions[index]} ({value})
     </option>
   ));
 
@@ -12,12 +14,7 @@ const Rank = ({ options, onChange }) => {
 };
 
 Rank.propTypes = {
-  options: PropTypes.arrayOf(
-    PropTypes.shape({
-      dots: PropTypes.number.isRequired,
-      description: PropTypes.string.isRequired
-    })
-  ).isRequired,
+  dots: PropTypes.arrayOf(PropTypes.number).isRequired,
   onChange: PropTypes.func.isRequired
 };
 
