@@ -1,18 +1,14 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
 import BasicInfoContainer from '../containers/BasicInfoContainer';
-import Attributes from './Attributes';
+import AttributesContainer from '../containers/AttributesContainer';
 import Skills from './Skills';
-import Dots from './Dots';
-import Rank from './Rank';
 
 const App = () => (
   <div>
     <h2>Embracer</h2>
-    <Dots level={1} max={3} />
-    <Rank dots={[7, 5, 3]} onChange={e => console.log(e.target.value)} />
     <BasicInfoContainer />
-    <Route exact path="/" component={Attributes} />
+    <Route exact path="/" component={AttributesContainer} />
     <Route path="/skills" component={Skills} />
   </div>
 );
