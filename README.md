@@ -24,4 +24,4 @@ This tool is unofficial, and the author is not affiliated with the companies men
 
 Built with [React](https://reactjs.org/) and [Redux](https://redux.js.org/) - thanks so much to Facebook, Dan Abramov, and all contributors!
 
-Uses [Font Awesome](http://fontawesome.io) by Dave Gandy.
+Uses [Font Awesome](http://fontawesome.io) by Dave Gandy (v4, **not** v5).

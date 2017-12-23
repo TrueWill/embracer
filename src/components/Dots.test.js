@@ -2,8 +2,8 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import Dots from './Dots';
 
-const unfilledSelector = '.far';
-const filledSelector = '.fas';
+const unfilledSelector = '.fa-circle-thin';
+const filledSelector = '.fa-circle';
 
 it('should render without crashing', () => {
   shallow(<Dots />);

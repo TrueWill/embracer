@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const unfilledClass = 'far fa-circle';
-const filledClass = 'fas fa-circle';
+const unfilledClass = 'fa fa-circle-thin';
+const filledClass = 'fa fa-circle';
 
 const Dots = ({ level = 0, max = 5 }) => {
   const items = Array(max);
@@ -17,7 +17,9 @@ const Dots = ({ level = 0, max = 5 }) => {
 
   return (
     <div>
-      {items.map((value, index) => <i key={index} className={value} />)}
+      {items.map((value, index) => (
+        <i key={index} className={value} aria-hidden="true" />
+      ))}
     </div>
   );
 };
