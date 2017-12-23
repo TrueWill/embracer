@@ -1,26 +1,16 @@
+import deepFreeze from 'deep-freeze';
 import * as actions from '../actions/characterCreationActions';
 import initialState from './initialState';
 import characterCreation from './characterCreationReducer';
 
+deepFreeze(initialState.character);
+
 it('should initialize', () => {
   const action = { type: '@@INIT' };
 
-  const newState = characterCreation(undefined, action);
+  const nextState = characterCreation(undefined, action);
 
-  expect(newState).toBe(initialState.character);
-});
-
-it('should not mutate state', () => {
-  const state = {
-    archetype: 'old',
-    clan: 'aclan'
-  };
-
-  const action = actions.updateArchetype('new');
-
-  characterCreation(state, action);
-
-  expect(state.archetype).toBe('old');
+  expect(nextState).toBe(initialState.character);
 });
 
 it('should update archetype', () => {
@@ -29,11 +19,13 @@ it('should update archetype', () => {
     clan: 'aclan'
   };
 
+  deepFreeze(state);
+
   const action = actions.updateArchetype('new');
 
-  const newState = characterCreation(state, action);
+  const nextState = characterCreation(state, action);
 
-  expect(newState).toEqual({
+  expect(nextState).toEqual({
     archetype: 'new',
     clan: 'aclan'
   });
@@ -45,11 +37,13 @@ it('should update clan', () => {
     clan: 'old'
   };
 
+  deepFreeze(state);
+
   const action = actions.updateClan('new');
 
-  const newState = characterCreation(state, action);
+  const nextState = characterCreation(state, action);
 
-  expect(newState).toEqual({
+  expect(nextState).toEqual({
     archetype: 'arc',
     clan: 'new'
   });
