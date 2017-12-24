@@ -13,8 +13,6 @@ const buildHandleRankChange = (trait, setRank) => e => {
   setRank('attributes', trait, rank, dots);
 };
 
-// TODO: Set initial rank selection
-
 class Attributes extends Component {
   static propTypes = {
     attributes: PropTypes.object.isRequired,
@@ -36,15 +34,27 @@ class Attributes extends Component {
         <h3>Attributes</h3>
         <div>
           Physical <Dots level={attributes.physical.dots} max={maxDots} />
-          <Rank dots={rankDots} onChange={this.handlePhysicalRankChange} />
+          <Rank
+            dots={rankDots}
+            dotValue={attributes.physical.dots}
+            onChange={this.handlePhysicalRankChange}
+          />
         </div>
         <div>
           Social <Dots level={attributes.social.dots} max={maxDots} />
-          <Rank dots={rankDots} onChange={this.handleSocialRankChange} />
+          <Rank
+            dots={rankDots}
+            dotValue={attributes.social.dots}
+            onChange={this.handleSocialRankChange}
+          />
         </div>
         <div>
           Mental <Dots level={attributes.mental.dots} max={maxDots} />
-          <Rank dots={rankDots} onChange={this.handleMentalRankChange} />
+          <Rank
+            dots={rankDots}
+            dotValue={attributes.mental.dots}
+            onChange={this.handleMentalRankChange}
+          />
         </div>
         <Link to="/skills">Skills</Link>
       </div>
