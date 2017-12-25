@@ -5,7 +5,7 @@ import * as options from '../constants/characterOptions';
 
 export default class BasicInfo extends Component {
   static propTypes = {
-    character: PropTypes.object.isRequired,
+    basicInfo: PropTypes.object.isRequired,
     actions: PropTypes.objectOf(PropTypes.func).isRequired
   };
 
@@ -18,7 +18,7 @@ export default class BasicInfo extends Component {
   };
 
   render() {
-    const character = this.props.character;
+    const basicInfo = this.props.basicInfo;
 
     let archetypeOptions = options.archetypes.map(a => ({
       value: a,
@@ -26,12 +26,12 @@ export default class BasicInfo extends Component {
     }));
 
     if (
-      character.archetype &&
-      options.archetypes.indexOf(character.archetype) === -1
+      basicInfo.archetype &&
+      options.archetypes.indexOf(basicInfo.archetype) === -1
     ) {
       archetypeOptions.push({
-        value: character.archetype,
-        label: character.archetype
+        value: basicInfo.archetype,
+        label: basicInfo.archetype
       });
     }
 
@@ -44,7 +44,7 @@ export default class BasicInfo extends Component {
     return (
       <div>
         <Select.Creatable
-          value={character.archetype}
+          value={basicInfo.archetype}
           multi={false}
           options={archetypeOptions}
           onChange={this.handleArchetypeChange}

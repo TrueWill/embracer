@@ -1,7 +1,9 @@
 export default {
   character: {
-    archetype: '',
-    clan: '',
+    basicInfo: {
+      archetype: '',
+      clan: ''
+    },
     attributes: {
       physical: {
         dots: 0

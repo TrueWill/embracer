@@ -3,12 +3,12 @@ import { shallow } from 'enzyme';
 import BasicInfo from './BasicInfo';
 
 it('should render without crashing', () => {
-  const character = {
+  const basicInfo = {
     archetype: '',
     clan: ''
   };
 
   const actions = {};
 
-  shallow(<BasicInfo character={character} actions={actions} />);
+  shallow(<BasicInfo basicInfo={basicInfo} actions={actions} />);
 });

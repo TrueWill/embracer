@@ -4,7 +4,7 @@ import * as actions from '../actions/characterCreationActions';
 import BasicInfo from '../components/BasicInfo';
 
 const mapStateToProps = state => ({
-  character: state.character
+  basicInfo: state.character.basicInfo
 });
 
 const mapDispatchToProps = dispatch => ({

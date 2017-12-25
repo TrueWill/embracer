@@ -1,8 +1,12 @@
 import { combineReducers } from 'redux';
-import characterCreation from './characterCreationReducer';
+import basicInfo from './basicInfoReducer';
+import attributes from './attributesReducer';
 
 const rootReducer = combineReducers({
-  character: characterCreation
+  character: combineReducers({
+    basicInfo,
+    attributes
+  })
 });
 
 export default rootReducer;
