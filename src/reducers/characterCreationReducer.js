@@ -4,9 +4,9 @@ import * as types from '../constants/actionTypes';
 export default (state = initialState.character, action) => {
   switch (action.type) {
     case types.UPDATE_ARCHETYPE:
-      return { ...state, archetype: action.payload.archetype };
+      return { ...state, archetype: action.payload };
     case types.UPDATE_CLAN:
-      return { ...state, clan: action.payload.clan };
+      return { ...state, clan: action.payload };
     case types.SET_RANK:
       const { category, trait, rank, dots } = action.payload;
       // TODO: refactor or revise
