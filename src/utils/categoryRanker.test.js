@@ -1,7 +1,7 @@
 import deepFreeze from 'deep-freeze';
-import assignRank from './categoryRanker';
+import { setDotsFromRank } from './categoryRanker';
 
-it('should assign initial rank', () => {
+it('should set initial rank', () => {
   const skills = {
     brawl: {},
     computer: {},
@@ -11,9 +11,7 @@ it('should assign initial rank', () => {
 
   deepFreeze(skills);
 
-  const rankDots = [4, 3, 2, 1];
-
-  const result = assignRank(skills, { trait: 'computer', rankDots, index: 1 });
+  const result = setDotsFromRank(skills, 'computer', 3);
 
   expect(result).toEqual({
     brawl: {},
@@ -40,9 +38,7 @@ it('should update rank, preserving properties', () => {
 
   deepFreeze(skills);
 
-  const rankDots = [4, 3, 2, 1];
-
-  const result = assignRank(skills, { trait: 'computer', rankDots, index: 1 });
+  const result = setDotsFromRank(skills, 'computer', 3);
 
   expect(result).toEqual({
     brawl: {
@@ -72,9 +68,7 @@ it('should move rank, preserving properties', () => {
 
   deepFreeze(skills);
 
-  const rankDots = [4, 3, 2, 1];
-
-  const result = assignRank(skills, { trait: 'computer', rankDots, index: 1 });
+  const result = setDotsFromRank(skills, 'computer', 3);
 
   expect(result).toEqual({
     brawl: {},
@@ -105,9 +99,7 @@ it('should swap rank', () => {
 
   deepFreeze(skills);
 
-  const rankDots = [4, 3, 2, 1];
-
-  const result = assignRank(skills, { trait: 'dodge', rankDots, index: 0 });
+  const result = setDotsFromRank(skills, 'dodge', 4);
 
   expect(result).toEqual({
     brawl: {

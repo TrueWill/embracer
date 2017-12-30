@@ -3,9 +3,7 @@ const removeDotsFromRank = obj => {
   return result;
 };
 
-const assignRank = (categoryTraits, { trait, rankDots, index }) => {
-  const dotsFromRank = rankDots[index];
-
+export const setDotsFromRank = (categoryTraits, trait, dotsFromRank) => {
   const matchingTrait = categoryTraits[trait];
   const previousDotsFromRank = matchingTrait.dotsFromRank;
 
@@ -30,5 +28,3 @@ const assignRank = (categoryTraits, { trait, rankDots, index }) => {
     return { ...acc, [key]: updatedTrait };
   }, {});
 };
-
-export default assignRank;
