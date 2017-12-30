@@ -88,3 +88,37 @@ it('should move rank, preserving properties', () => {
     }
   });
 });
+
+it('should swap rank', () => {
+  const skills = {
+    brawl: {
+      dotsFromRank: 4
+    },
+    computer: {},
+    crafts: {
+      dotsFromRank: 2
+    },
+    dodge: {
+      dotsFromRank: 3
+    }
+  };
+
+  deepFreeze(skills);
+
+  const rankDots = [4, 3, 2, 1];
+
+  const result = assignRank(skills, { trait: 'dodge', rankDots, index: 0 });
+
+  expect(result).toEqual({
+    brawl: {
+      dotsFromRank: 3
+    },
+    computer: {},
+    crafts: {
+      dotsFromRank: 2
+    },
+    dodge: {
+      dotsFromRank: 4
+    }
+  });
+});

@@ -6,24 +6,29 @@ const removeDotsFromRank = obj => {
 const assignRank = (categoryTraits, { trait, rankDots, index }) => {
   const dotsFromRank = rankDots[index];
 
-  const result = {};
+  const matchingTrait = categoryTraits[trait];
+  const previousDotsFromRank = matchingTrait.dotsFromRank;
 
-  // TODO: working - possibly use reduce - also handle swapping ranks - update reducer etc.
-  Object.keys(categoryTraits).map(key => {
+  return Object.keys(categoryTraits).reduce((acc, key) => {
     const categoryTrait = categoryTraits[key];
 
+    let updatedTrait;
+
     if (key === trait) {
-      result[key] = { ...categoryTrait, dotsFromRank };
+      updatedTrait = { ...categoryTrait, dotsFromRank };
     } else if (categoryTrait.dotsFromRank === dotsFromRank) {
-      result[key] = removeDotsFromRank(categoryTrait);
+      if (previousDotsFromRank) {
+        // swap ranks
+        updatedTrait = { ...categoryTrait, dotsFromRank: previousDotsFromRank };
+      } else {
+        updatedTrait = removeDotsFromRank(categoryTrait);
+      }
     } else {
-      result[key] = categoryTrait;
+      updatedTrait = categoryTrait;
     }
 
-    return null;
-  });
-
-  return result;
+    return { ...acc, [key]: updatedTrait };
+  }, {});
 };
 
 export default assignRank;
