@@ -7,6 +7,10 @@ export const setDotsFromRank = (categoryTraits, trait, dotsFromRank) => {
   const matchingTrait = categoryTraits[trait];
   const previousDotsFromRank = matchingTrait.dotsFromRank;
 
+  if (previousDotsFromRank && !dotsFromRank) {
+    return { ...categoryTraits, [trait]: removeDotsFromRank(matchingTrait) };
+  }
+
   return Object.keys(categoryTraits).reduce((acc, key) => {
     const categoryTrait = categoryTraits[key];
 

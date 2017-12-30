@@ -114,3 +114,32 @@ it('should swap rank', () => {
     }
   });
 });
+
+it('should clear rank when setting to 0, preserving properties', () => {
+  const skills = {
+    brawl: {
+      dotsFromRank: 4,
+      other: 'etc.'
+    },
+    computer: {},
+    crafts: {
+      dotsFromRank: 2
+    },
+    dodge: {}
+  };
+
+  deepFreeze(skills);
+
+  const result = setDotsFromRank(skills, 'brawl', 0);
+
+  expect(result).toEqual({
+    brawl: {
+      other: 'etc.'
+    },
+    computer: {},
+    crafts: {
+      dotsFromRank: 2
+    },
+    dodge: {}
+  });
+});
