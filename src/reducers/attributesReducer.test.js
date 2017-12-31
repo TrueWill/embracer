@@ -15,33 +15,22 @@ it('should initialize', () => {
 
 it('should set initial rank', () => {
   const state = {
-    physical: {
-      dots: 0
-    },
-    social: {
-      dots: 0
-    },
-    mental: {
-      dots: 0
-    }
+    physical: {},
+    social: {},
+    mental: {}
   };
 
   deepFreeze(state);
 
-  const action = actions.setRank('attributes', 'mental', 1, 7);
+  const action = actions.setRank('attributes', 'mental', 7);
 
   const nextState = reducer(state, action);
 
   expect(nextState).toEqual({
-    physical: {
-      dots: 0
-    },
-    social: {
-      dots: 0
-    },
+    physical: {},
+    social: {},
     mental: {
-      dots: 7,
-      rank: 1
+      dotsFromRank: 7
     }
   });
 });
@@ -49,68 +38,51 @@ it('should set initial rank', () => {
 it('should update rank', () => {
   const state = {
     physical: {
-      dots: 7,
-      rank: 1
+      dotsFromRank: 7
     },
     social: {
-      dots: 3,
-      rank: 3
+      dotsFromRank: 3
     },
     mental: {
-      dots: 5,
-      rank: 2
+      dotsFromRank: 5
     }
   };
 
   deepFreeze(state);
 
-  const action = actions.setRank('attributes', 'mental', 1, 7);
+  const action = actions.setRank('attributes', 'mental', 7);
 
   const nextState = reducer(state, action);
 
   expect(nextState).toEqual({
     physical: {
-      dots: 0
+      dotsFromRank: 5
     },
     social: {
-      dots: 3,
-      rank: 3
+      dotsFromRank: 3
     },
     mental: {
-      dots: 7,
-      rank: 1
+      dotsFromRank: 7
     }
   });
 });
 
 it('should do nothing when category does not match', () => {
   const state = {
-    physical: {
-      dots: 0
-    },
-    social: {
-      dots: 0
-    },
-    mental: {
-      dots: 0
-    }
+    physical: {},
+    social: {},
+    mental: {}
   };
 
   deepFreeze(state);
 
-  const action = actions.setRank('skills', 'mental', 1, 7);
+  const action = actions.setRank('skills', 'mental', 7);
 
   const nextState = reducer(state, action);
 
   expect(nextState).toEqual({
-    physical: {
-      dots: 0
-    },
-    social: {
-      dots: 0
-    },
-    mental: {
-      dots: 0
-    }
+    physical: {},
+    social: {},
+    mental: {}
   });
 });

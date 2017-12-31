@@ -20,8 +20,12 @@ const Rank = ({ dots, dotValue, onChange }) => {
 
 Rank.propTypes = {
   dots: PropTypes.arrayOf(PropTypes.number).isRequired,
-  dotValue: PropTypes.number.isRequired,
+  dotValue: PropTypes.number,
   onChange: PropTypes.func.isRequired
+};
+
+Rank.defaultProps = {
+  dotValue: 0
 };
 
 export default Rank;
