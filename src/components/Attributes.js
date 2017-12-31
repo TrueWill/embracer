@@ -24,7 +24,6 @@ class Attributes extends Component {
         <h3>Attributes</h3>
         <Trait
           name="physical"
-          displayName="Physical"
           maxDots={maxDots}
           rankDots={rankDots}
           traitState={attributes.physical}
@@ -32,7 +31,6 @@ class Attributes extends Component {
         />
         <Trait
           name="social"
-          displayName="Social"
           maxDots={maxDots}
           rankDots={rankDots}
           traitState={attributes.social}
@@ -40,7 +38,6 @@ class Attributes extends Component {
         />
         <Trait
           name="mental"
-          displayName="Mental"
           maxDots={maxDots}
           rankDots={rankDots}
           traitState={attributes.mental}
