@@ -5,6 +5,7 @@ import Trait from './Trait';
 
 const maxDots = 10;
 const rankDots = [7, 5, 3];
+const traitNames = ['physical', 'social', 'mental'];
 
 class Attributes extends Component {
   static propTypes = {
@@ -17,32 +18,23 @@ class Attributes extends Component {
   };
 
   render() {
-    const attributes = this.props.attributes;
+    const { attributes } = this.props;
+
+    const traits = traitNames.map(name => (
+      <Trait
+        key={name}
+        name={name}
+        maxDots={maxDots}
+        rankDots={rankDots}
+        traitState={attributes[name]}
+        onRankChange={this.handleRankChange}
+      />
+    ));
 
     return (
       <div>
         <h3>Attributes</h3>
-        <Trait
-          name="physical"
-          maxDots={maxDots}
-          rankDots={rankDots}
-          traitState={attributes.physical}
-          onRankChange={this.handleRankChange}
-        />
-        <Trait
-          name="social"
-          maxDots={maxDots}
-          rankDots={rankDots}
-          traitState={attributes.social}
-          onRankChange={this.handleRankChange}
-        />
-        <Trait
-          name="mental"
-          maxDots={maxDots}
-          rankDots={rankDots}
-          traitState={attributes.mental}
-          onRankChange={this.handleRankChange}
-        />
+        {traits}
         <Link to="/skills">Skills</Link>
       </div>
     );
