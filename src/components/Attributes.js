@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import Dots from './Dots';
-import Rank from './Rank';
-import dotSelector from '../utils/dotSelector';
+import Trait from './Trait';
 
 const maxDots = 10;
 const rankDots = [7, 5, 3];
@@ -32,31 +30,27 @@ class Attributes extends Component {
     return (
       <div>
         <h3>Attributes</h3>
-        <div>
-          Physical{' '}
-          <Dots level={dotSelector(attributes.physical)} max={maxDots} />
-          <Rank
-            dots={rankDots}
-            dotValue={attributes.physical.dotsFromRank}
-            onChange={this.handlePhysicalRankChange}
-          />
-        </div>
-        <div>
-          Social <Dots level={dotSelector(attributes.social)} max={maxDots} />
-          <Rank
-            dots={rankDots}
-            dotValue={attributes.social.dotsFromRank}
-            onChange={this.handleSocialRankChange}
-          />
-        </div>
-        <div>
-          Mental <Dots level={dotSelector(attributes.mental)} max={maxDots} />
-          <Rank
-            dots={rankDots}
-            dotValue={attributes.mental.dotsFromRank}
-            onChange={this.handleMentalRankChange}
-          />
-        </div>
+        <Trait
+          name="Physical"
+          maxDots={maxDots}
+          rankDots={rankDots}
+          traitState={attributes.physical}
+          onChange={this.handlePhysicalRankChange}
+        />
+        <Trait
+          name="Social"
+          maxDots={maxDots}
+          rankDots={rankDots}
+          traitState={attributes.social}
+          onChange={this.handleSocialRankChange}
+        />
+        <Trait
+          name="Mental"
+          maxDots={maxDots}
+          rankDots={rankDots}
+          traitState={attributes.mental}
+          onChange={this.handleMentalRankChange}
+        />
         <Link to="/skills">Skills</Link>
       </div>
     );
