@@ -10,13 +10,11 @@ export const updateClan = value => ({
   payload: value
 });
 
-// rank is 1-based here
-export const setRank = (category, trait, rank, dots) => ({
+export const setRank = (category, trait, dotsFromRank) => ({
   type: types.SET_RANK,
   payload: {
     category,
     trait,
-    rank,
-    dots
+    dotsFromRank
   }
 });

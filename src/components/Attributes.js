@@ -3,14 +3,14 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import Dots from './Dots';
 import Rank from './Rank';
+import dotSelector from '../utils/dotSelector';
 
 const maxDots = 10;
 const rankDots = [7, 5, 3];
 
 const buildHandleRankChange = (trait, setRank) => e => {
-  const dots = parseInt(e.target.value, 10);
-  const rank = rankDots.indexOf(dots) + 1;
-  setRank('attributes', trait, rank, dots);
+  const dotsFromRank = parseInt(e.target.value, 10);
+  setRank('attributes', trait, dotsFromRank);
 };
 
 class Attributes extends Component {
@@ -33,26 +33,27 @@ class Attributes extends Component {
       <div>
         <h3>Attributes</h3>
         <div>
-          Physical <Dots level={attributes.physical.dots} max={maxDots} />
+          Physical{' '}
+          <Dots level={dotSelector(attributes.physical)} max={maxDots} />
           <Rank
             dots={rankDots}
-            dotValue={attributes.physical.dots}
+            dotValue={attributes.physical.dotsFromRank}
             onChange={this.handlePhysicalRankChange}
           />
         </div>
         <div>
-          Social <Dots level={attributes.social.dots} max={maxDots} />
+          Social <Dots level={dotSelector(attributes.social)} max={maxDots} />
           <Rank
             dots={rankDots}
-            dotValue={attributes.social.dots}
+            dotValue={attributes.social.dotsFromRank}
             onChange={this.handleSocialRankChange}
           />
         </div>
         <div>
-          Mental <Dots level={attributes.mental.dots} max={maxDots} />
+          Mental <Dots level={dotSelector(attributes.mental)} max={maxDots} />
           <Rank
             dots={rankDots}
-            dotValue={attributes.mental.dots}
+            dotValue={attributes.mental.dotsFromRank}
             onChange={this.handleMentalRankChange}
           />
         </div>

@@ -1,32 +1,17 @@
 import initialState from './initialState';
 import * as types from '../constants/actionTypes';
+import { setDotsFromRank } from '../utils/categoryRanker';
 
 export default (state = initialState.character.attributes, action) => {
   switch (action.type) {
     case types.SET_RANK:
-      const { category, trait, rank, dots } = action.payload;
+      const { category, trait, dotsFromRank } = action.payload;
 
       if (category !== 'attributes') {
         return state;
       }
 
-      const updatedTrait = { dots, rank };
-
-      for (let otherTrait in state) {
-        if (
-          state.hasOwnProperty(otherTrait) &&
-          otherTrait !== trait &&
-          state[otherTrait].rank === rank
-        ) {
-          return {
-            ...state,
-            [trait]: updatedTrait,
-            [otherTrait]: { dots: 0 }
-          };
-        }
-      }
-
-      return { ...state, [trait]: updatedTrait };
+      return setDotsFromRank(state, trait, dotsFromRank);
     default:
       return state;
   }
