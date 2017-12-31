@@ -54,7 +54,8 @@ export default class BasicInfo extends Component {
         Clan
         <select value={basicInfo.clan} onChange={this.handleClanChange}>
           <option value="">(not selected)</option>
-          {clanOptions}</select>
+          {clanOptions}
+        </select>
       </div>
     );
   }
