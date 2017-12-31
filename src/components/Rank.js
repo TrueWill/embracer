@@ -1,7 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const descriptions = ['Primary', 'Secondary', 'Tertiary', 'Quaternary'];
+const descriptions = [
+  'Primary',
+  'Secondary',
+  'Tertiary',
+  'Quaternary',
+  'Quinary',
+  'Senary',
+  'Septenary',
+  'Octonary',
+  'Nonary',
+  'Denary'
+];
 
 const Rank = ({ dots, dotValue, onChange }) => {
   const optionElements = dots.map((value, index) => (
