@@ -8,11 +8,7 @@ const Dots = ({ level = 0, max = 5 }) => {
   const items = Array(max);
 
   for (let i = 0; i < max; i++) {
-    if (i < level) {
-      items[i] = filledClass;
-    } else {
-      items[i] = unfilledClass;
-    }
+    items[i] = i < level ? filledClass : unfilledClass;
   }
 
   return (
