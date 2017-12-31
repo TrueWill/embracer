@@ -10,7 +10,8 @@ export default class BasicInfo extends Component {
   };
 
   handleArchetypeChange = val => {
-    this.props.actions.updateArchetype(val.value);
+    const value = val ? val.value : '';
+    this.props.actions.updateArchetype(value);
   };
 
   handleClanChange = e => {
@@ -43,13 +44,17 @@ export default class BasicInfo extends Component {
 
     return (
       <div>
+        Archetype
         <Select.Creatable
           value={basicInfo.archetype}
           multi={false}
           options={archetypeOptions}
           onChange={this.handleArchetypeChange}
         />
-        <select onChange={this.handleClanChange}>{clanOptions}</select>
+        Clan
+        <select value={basicInfo.clan} onChange={this.handleClanChange}>
+          <option value="">(not selected)</option>
+          {clanOptions}</select>
       </div>
     );
   }
