@@ -18,3 +18,12 @@ export const setRank = (category, trait, dotsFromRank) => ({
     dotsFromRank
   }
 });
+
+export const setStartingDots = (category, trait, startingDots) => ({
+  type: types.SET_STARTING_DOTS,
+  payload: {
+    category,
+    trait,
+    startingDots
+  }
+});

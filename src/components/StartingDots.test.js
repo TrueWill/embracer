@@ -81,3 +81,5 @@ it('should exclude available matching current value', () => {
   expect(getSelectedValue(wrapper)).toBe(2);
   expect(getOptionValues(wrapper)).toEqual([0, 2, 4, 3, 1]);
 });
+
+// TODO: Add test/behavior to skip if count 0
