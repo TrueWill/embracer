@@ -2,11 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const StartingDots = ({ available, value, onChange }) => {
-  const optionElements = available.filter(a => a.dots !== value).map(a => (
-    <option key={`${a.dots}:${a.count}`} value={a.dots}>
-      {a.dots} ({a.count} available)
-    </option>
-  ));
+  const optionElements = available
+    .filter(a => a.count > 0 && a.dots !== value)
+    .map(a => (
+      <option key={`${a.dots}:${a.count}`} value={a.dots}>
+        {a.dots} ({a.count} available)
+      </option>
+    ));
 
   return (
     <div>
