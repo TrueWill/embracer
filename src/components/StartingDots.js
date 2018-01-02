@@ -15,7 +15,7 @@ const StartingDots = ({ available, value, onChange }) => {
       Starting dots
       <select value={value} onChange={onChange}>
         <option value={0}>Clear</option>
-        {value !== 0 && <option value={value}>value</option>}
+        {value !== 0 && <option value={value}>{value}</option>}
         {optionElements}
       </select>
     </div>

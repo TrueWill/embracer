@@ -14,6 +14,8 @@ export default (state = initialState.character.skills, action) => {
 
       const previousStartingDots = matchingTrait && matchingTrait.startingDots;
 
+      // TODO: Refactor, clear if 0
+
       const availableStartingDots = state.availableStartingDots.map(
         a =>
           a.dots === startingDots
