@@ -53,7 +53,7 @@ class Skills extends Component {
         name={name}
         maxDots={maxDots}
         availableStartingDots={skills.availableStartingDots}
-        traitState={skills[name]}
+        traitState={skills[name] || {}}
         onStartingDotsChange={this.handleStartingDotsChange}
       />
     ));
