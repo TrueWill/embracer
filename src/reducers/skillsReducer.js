@@ -1,5 +1,6 @@
 import initialState from './initialState';
 import * as types from '../constants/actionTypes';
+import { setDotsFromStartingDots } from '../utils/categoryStarter';
 
 export default (state = initialState.character.skills, action) => {
   switch (action.type) {
@@ -10,24 +11,7 @@ export default (state = initialState.character.skills, action) => {
         return state;
       }
 
-      const matchingTrait = state[trait];
-
-      const previousStartingDots = matchingTrait && matchingTrait.startingDots;
-
-      // TODO: Refactor, clear if 0
-
-      const availableStartingDots = state.availableStartingDots.map(
-        a =>
-          a.dots === startingDots
-            ? { ...a, count: a.count - 1 }
-            : a.dots === previousStartingDots ? { ...a, count: a.count + 1 } : a
-      );
-
-      return {
-        ...state,
-        availableStartingDots,
-        [trait]: { ...matchingTrait, startingDots }
-      };
+      return setDotsFromStartingDots(state, trait, startingDots);
     default:
       return state;
   }
