@@ -1,7 +1,6 @@
-const removeStartingDots = obj => {
-  const { startingDots, ...result } = obj;
-  return result;
-};
+import { removeProperty } from './objectUtils';
+
+const removeStartingDots = obj => removeProperty(obj, 'startingDots');
 
 export const setDotsFromStartingDots = (
   categoryTraits,
@@ -31,9 +30,8 @@ export const setDotsFromStartingDots = (
       : { ...matchingTrait, startingDots };
 
   if (Object.keys(updatedTrait).length === 0) {
-    const { [trait]: omit, ...tempTraits } = categoryTraits;
     return {
-      ...tempTraits,
+      ...removeProperty(categoryTraits, trait),
       availableStartingDots
     };
   }
