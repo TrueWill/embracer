@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import Trait from './Trait';
+import UnrankedTrait from './UnrankedTrait';
 
 const maxDots = 5;
-const rankDots = [4, 3, 3, 2, 2, 2, 1, 1, 1, 1];
+
 const traitNames = [
   'academics',
   'animalKen',
@@ -37,24 +37,24 @@ const traitNames = [
 class Skills extends Component {
   static propTypes = {
     skills: PropTypes.object.isRequired,
-    setRank: PropTypes.func.isRequired
+    setStartingDots: PropTypes.func.isRequired
   };
 
-  handleRankChange = (trait, dotsFromRank) => {
-    this.props.setRank('skills', trait, dotsFromRank);
+  handleStartingDotsChange = (trait, startingDots) => {
+    this.props.setStartingDots('skills', trait, startingDots);
   };
 
   render() {
     const { skills } = this.props;
 
     const traits = traitNames.map(name => (
-      <Trait
+      <UnrankedTrait
         key={name}
         name={name}
         maxDots={maxDots}
-        rankDots={rankDots}
-        traitState={skills[name]}
-        onRankChange={this.handleRankChange}
+        availableStartingDots={skills.availableStartingDots}
+        traitState={skills[name] || {}}
+        onStartingDotsChange={this.handleStartingDotsChange}
       />
     ));
 

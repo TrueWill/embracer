@@ -1,7 +1,6 @@
-const removeDotsFromRank = obj => {
-  const { dotsFromRank, ...result } = obj;
-  return result;
-};
+import { removeProperty } from './objectUtils';
+
+const removeDotsFromRank = obj => removeProperty(obj, 'dotsFromRank');
 
 export const setDotsFromRank = (categoryTraits, trait, dotsFromRank) => {
   const matchingTrait = categoryTraits[trait];
