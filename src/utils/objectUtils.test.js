@@ -1,5 +1,5 @@
 import deepFreeze from 'deep-freeze';
-import { removeProperty } from './objectUtils';
+import { removeProperty, isEmpty } from './objectUtils';
 
 describe('removeProperty', () => {
   it('should return object without property, preserving other properties', () => {
@@ -51,5 +51,25 @@ describe('removeProperty', () => {
     const result = removeProperty(obj, 'a');
 
     expect(result).toEqual({});
+  });
+});
+
+describe('isEmpty', () => {
+  it('should return truthy for empty', () => {
+    const result = isEmpty({});
+
+    expect(result).toBeTruthy();
+  });
+
+  it('should return falsy for non-empty', () => {
+    const result = isEmpty({ a: undefined });
+
+    expect(result).toBeFalsy();
+  });
+
+  it('should return falsy for Date', () => {
+    const result = isEmpty(new Date());
+
+    expect(result).toBeFalsy();
   });
 });
