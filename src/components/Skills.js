@@ -34,6 +34,10 @@ const traitNames = [
   'survival'
 ];
 
+const traitDisplayNameOverride = {
+  animalKen: 'Animal Ken'
+};
+
 class Skills extends Component {
   static propTypes = {
     skills: PropTypes.object.isRequired,
@@ -51,6 +55,7 @@ class Skills extends Component {
       <UnrankedTrait
         key={name}
         name={name}
+        displayName={traitDisplayNameOverride[name]}
         maxDots={maxDots}
         availableStartingDots={skills.availableStartingDots}
         traitState={skills[name] || {}}
