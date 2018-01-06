@@ -61,3 +61,36 @@ export const foci = {
   social: ['Charisma', 'Manipulation', 'Appearance'],
   mental: ['Perception', 'Intelligence', 'Wits']
 };
+
+export const skillTraitNames = [
+  'academics',
+  'animalKen',
+  'athletics',
+  'awareness',
+  'brawl',
+  'computer',
+  'crafts',
+  'dodge',
+  'drive',
+  'empathy',
+  'firearms',
+  'intimidation',
+  'investigation',
+  'leadership',
+  'linguistics',
+  'lore',
+  'medicine',
+  'melee',
+  'occult',
+  'performance',
+  'science',
+  'security',
+  'stealth',
+  'streetwise',
+  'subterfuge',
+  'survival'
+];
+
+export const skillTraitDisplayNameOverride = {
+  animalKen: 'Animal Ken'
+};
