@@ -55,3 +55,9 @@ export const clans = [
   'Ventrue',
   'Caitiff'
 ];
+
+export const foci = {
+  physical: ['Strength', 'Dexterity', 'Stamina'],
+  social: ['Charisma', 'Manipulation', 'Appearance'],
+  mental: ['Perception', 'Intelligence', 'Wits']
+};

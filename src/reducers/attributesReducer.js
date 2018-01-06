@@ -12,6 +12,10 @@ export default (state = initialState.character.attributes, action) => {
       }
 
       return setDotsFromRank(state, trait, dotsFromRank);
+    case types.SET_FOCUS:
+      const { attribute, focus } = action.payload;
+
+      return { ...state, [attribute]: { ...state[attribute], focus: focus } };
     default:
       return state;
   }

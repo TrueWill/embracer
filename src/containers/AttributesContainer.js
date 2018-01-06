@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { setRank } from '../actions/characterCreationActions';
+import { setRank, setFocus } from '../actions/characterCreationActions';
 import Attributes from '../components/Attributes';
 
 const mapStateToProps = state => ({
@@ -7,7 +7,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-  setRank
+  setRank,
+  setFocus
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Attributes);

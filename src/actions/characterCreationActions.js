@@ -27,3 +27,11 @@ export const setStartingDots = (category, trait, startingDots) => ({
     startingDots
   }
 });
+
+export const setFocus = (attribute, focus) => ({
+  type: types.SET_FOCUS,
+  payload: {
+    attribute,
+    focus
+  }
+});

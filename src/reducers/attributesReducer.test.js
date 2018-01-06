@@ -86,3 +86,92 @@ it('should do nothing when category does not match', () => {
     mental: {}
   });
 });
+
+it('should set initial focus, preserving properties', () => {
+  const state = {
+    physical: {
+      other: 'etc.'
+    },
+    social: {
+      other: 'stuff'
+    },
+    mental: {}
+  };
+
+  deepFreeze(state);
+
+  const action = actions.setFocus('physical', 'Strength');
+
+  const nextState = reducer(state, action);
+
+  expect(nextState).toEqual({
+    physical: {
+      other: 'etc.',
+      focus: 'Strength'
+    },
+    social: {
+      other: 'stuff'
+    },
+    mental: {}
+  });
+});
+
+it('should update focus, preserving properties', () => {
+  const state = {
+    physical: {
+      other: 'etc.',
+      focus: 'Strength'
+    },
+    social: {
+      other: 'stuff',
+      focus: 'Charisma'
+    },
+    mental: {}
+  };
+
+  deepFreeze(state);
+
+  const action = actions.setFocus('social', 'Manipulation');
+
+  const nextState = reducer(state, action);
+
+  expect(nextState).toEqual({
+    physical: {
+      other: 'etc.',
+      focus: 'Strength'
+    },
+    social: {
+      other: 'stuff',
+      focus: 'Manipulation'
+    },
+    mental: {}
+  });
+});
+
+it('should set empty focus', () => {
+  // Focus is required, so no point in removing property.
+
+  const state = {
+    physical: {},
+    social: {
+      other: 'stuff',
+      focus: 'Charisma'
+    },
+    mental: {}
+  };
+
+  deepFreeze(state);
+
+  const action = actions.setFocus('social', '');
+
+  const nextState = reducer(state, action);
+
+  expect(nextState).toEqual({
+    physical: {},
+    social: {
+      other: 'stuff',
+      focus: ''
+    },
+    mental: {}
+  });
+});
