@@ -94,3 +94,23 @@ export const skillTraitNames = [
 export const skillTraitDisplayNameOverride = {
   animalKen: 'Animal Ken'
 };
+
+export const backgroundTraitNames = [
+  'allies',
+  'alternateIdentity',
+  'contacts',
+  'fame',
+  'generation',
+  'haven',
+  'herd',
+  'influence_elite',
+  'influence_underworld',
+  'resources',
+  'retainers'
+];
+
+export const backgroundTraitDisplayNameOverride = {
+  alternateIdentity: 'Alternate Identity',
+  influence_elite: 'Influence (Elite)',
+  influence_underworld: 'Influence (Underworld)'
+};
