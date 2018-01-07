@@ -1,7 +1,8 @@
 import {
   attributeTraitNames,
   skillsAvailableStartingDots,
-  backgroundsAvailableStartingDots
+  backgroundsAvailableStartingDots,
+  inClanDisciplinesAvailableStartingDots
 } from '../constants/characterOptions';
 
 export default {
@@ -19,6 +20,9 @@ export default {
     },
     backgrounds: {
       availableStartingDots: backgroundsAvailableStartingDots
-    }
+    },
+    disciplines: {
+      availableStartingDots: inClanDisciplinesAvailableStartingDots
+    } // TODO: Figure out in-clan storage
   }
 };

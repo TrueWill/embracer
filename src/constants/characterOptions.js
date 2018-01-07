@@ -56,6 +56,17 @@ export const clans = [
   'Caitiff'
 ];
 
+export const disciplineNamesByClan = {
+  Assamite: ['Celerity', 'Obfuscate', 'Quietus'],
+  Brujah: ['Celerity', 'Potence', 'Presence'],
+  'Followers of Set': ['Obfuscate', 'Presence', 'Serpentis']
+}; // TODO: working
+
+export const inClanDisciplinesAvailableStartingDots = [
+  { dots: 2, count: 1 },
+  { dots: 1, count: 2 }
+];
+
 export const attributeTraitNames = ['physical', 'social', 'mental'];
 
 export const attributeMaxDots = 10;
