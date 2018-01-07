@@ -1,4 +1,5 @@
 import {
+  attributeTraitNames,
   skillsAvailableStartingDots,
   backgroundsAvailableStartingDots
 } from '../constants/characterOptions';
@@ -9,11 +10,10 @@ export default {
       archetype: '',
       clan: ''
     },
-    attributes: {
-      physical: {},
-      social: {},
-      mental: {}
-    },
+    attributes: attributeTraitNames.reduce(
+      (acc, name) => ({ ...acc, [name]: {} }),
+      {}
+    ),
     skills: {
       availableStartingDots: skillsAvailableStartingDots
     },

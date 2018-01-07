@@ -56,11 +56,19 @@ export const clans = [
   'Caitiff'
 ];
 
+export const attributeTraitNames = ['physical', 'social', 'mental'];
+
+export const attributeMaxDots = 10;
+
+export const attributesRankDots = [7, 5, 3];
+
 export const foci = {
   physical: ['Strength', 'Dexterity', 'Stamina'],
   social: ['Charisma', 'Manipulation', 'Appearance'],
   mental: ['Perception', 'Intelligence', 'Wits']
 };
+
+export const standardTraitMaxDots = 5;
 
 export const skillTraitNames = [
   'academics',

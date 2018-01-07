@@ -2,9 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { capitalizeFirstLetter } from '../utils/stringUtils';
+import { standardTraitMaxDots } from '../constants/characterOptions';
 import UnrankedTrait from './UnrankedTrait';
-
-const maxDots = 5;
 
 class TraitCategory extends Component {
   static propTypes = {
@@ -32,7 +31,7 @@ class TraitCategory extends Component {
         key={name}
         name={name}
         displayName={traitDisplayNameOverride[name]}
-        maxDots={maxDots}
+        maxDots={standardTraitMaxDots}
         availableStartingDots={categoryTraits.availableStartingDots}
         traitState={categoryTraits[name] || {}}
         onStartingDotsChange={this.handleStartingDotsChange}
