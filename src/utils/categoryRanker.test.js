@@ -2,163 +2,152 @@ import deepFreeze from 'deep-freeze';
 import { setDotsFromRank } from './categoryRanker';
 
 it('should set initial rank', () => {
-  const skills = {
-    brawl: {},
-    computer: {},
-    crafts: {},
-    dodge: {}
+  const attributes = {
+    physical: {},
+    social: {},
+    mental: {}
   };
 
-  deepFreeze(skills);
+  deepFreeze(attributes);
 
-  const result = setDotsFromRank(skills, 'computer', 3);
+  const result = setDotsFromRank(attributes, 'social', 3);
 
   expect(result).toEqual({
-    brawl: {},
-    computer: {
+    physical: {},
+    social: {
       dotsFromRank: 3
     },
-    crafts: {},
-    dodge: {}
+    mental: {}
   });
 });
 
 it('should update rank, preserving properties', () => {
-  const skills = {
-    brawl: {
+  const attributes = {
+    physical: {
       other: 'stuff'
     },
-    computer: {
-      dotsFromRank: 4,
+    social: {
+      dotsFromRank: 7,
       other: 'etc.'
     },
-    crafts: {},
-    dodge: {}
+    mental: {}
   };
 
-  deepFreeze(skills);
+  deepFreeze(attributes);
 
-  const result = setDotsFromRank(skills, 'computer', 3);
+  const result = setDotsFromRank(attributes, 'social', 3);
 
   expect(result).toEqual({
-    brawl: {
+    physical: {
       other: 'stuff'
     },
-    computer: {
+    social: {
       dotsFromRank: 3,
       other: 'etc.'
     },
-    crafts: {},
-    dodge: {}
+    mental: {}
   });
 });
 
 it('should move rank, preserving properties', () => {
-  const skills = {
-    brawl: {},
-    computer: {
+  const attributes = {
+    physical: {
       other: 'stuff'
     },
-    crafts: {},
-    dodge: {
+    social: {},
+    mental: {
       dotsFromRank: 3,
       other: 'etc.'
     }
   };
 
-  deepFreeze(skills);
+  deepFreeze(attributes);
 
-  const result = setDotsFromRank(skills, 'computer', 3);
+  const result = setDotsFromRank(attributes, 'physical', 3);
 
   expect(result).toEqual({
-    brawl: {},
-    computer: {
+    physical: {
       dotsFromRank: 3,
       other: 'stuff'
     },
-    crafts: {},
-    dodge: {
+    social: {},
+    mental: {
       other: 'etc.'
     }
   });
 });
 
 it('should swap rank', () => {
-  const skills = {
-    brawl: {
-      dotsFromRank: 4
+  const attributes = {
+    physical: {
+      dotsFromRank: 7
     },
-    computer: {},
-    crafts: {
-      dotsFromRank: 2
-    },
-    dodge: {
+    social: {
       dotsFromRank: 3
+    },
+    mental: {
+      dotsFromRank: 5
     }
   };
 
-  deepFreeze(skills);
+  deepFreeze(attributes);
 
-  const result = setDotsFromRank(skills, 'dodge', 4);
+  const result = setDotsFromRank(attributes, 'mental', 7);
 
   expect(result).toEqual({
-    brawl: {
+    physical: {
+      dotsFromRank: 5
+    },
+    social: {
       dotsFromRank: 3
     },
-    computer: {},
-    crafts: {
-      dotsFromRank: 2
-    },
-    dodge: {
-      dotsFromRank: 4
+    mental: {
+      dotsFromRank: 7
     }
   });
 });
 
 it('should clear rank when setting to 0, preserving properties', () => {
-  const skills = {
-    brawl: {
-      dotsFromRank: 4,
+  const attributes = {
+    physical: {
+      dotsFromRank: 7,
       other: 'etc.'
     },
-    computer: {},
-    crafts: {
-      dotsFromRank: 2
+    social: {
+      dotsFromRank: 3
     },
-    dodge: {}
+    mental: {}
   };
 
-  deepFreeze(skills);
+  deepFreeze(attributes);
 
-  const result = setDotsFromRank(skills, 'brawl', 0);
+  const result = setDotsFromRank(attributes, 'physical', 0);
 
   expect(result).toEqual({
-    brawl: {
+    physical: {
       other: 'etc.'
     },
-    computer: {},
-    crafts: {
-      dotsFromRank: 2
+    social: {
+      dotsFromRank: 3
     },
-    dodge: {}
+    mental: {}
   });
 });
 
 it('should do nothing when setting to 0 if unset', () => {
-  const skills = {
-    brawl: {
+  const attributes = {
+    physical: {
       other: 'etc.'
     },
-    computer: {},
-    crafts: {
-      dotsFromRank: 2
+    social: {
+      dotsFromRank: 3
     },
-    dodge: {}
+    mental: {}
   };
 
-  deepFreeze(skills);
+  deepFreeze(attributes);
 
-  const result = setDotsFromRank(skills, 'brawl', 0);
+  const result = setDotsFromRank(attributes, 'physical', 0);
 
-  expect(result).toEqual(skills);
+  expect(result).toEqual(attributes);
 });
