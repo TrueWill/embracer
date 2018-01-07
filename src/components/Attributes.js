@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Trait from './Trait';
+import RankedTrait from './RankedTrait';
 import Focus from './Focus';
 import {
   attributeTraitNames,
@@ -29,7 +29,7 @@ class Attributes extends Component {
 
     const traits = attributeTraitNames.map(name => (
       <div key={name}>
-        <Trait
+        <RankedTrait
           name={name}
           maxDots={attributeMaxDots}
           rankDots={attributesRankDots}

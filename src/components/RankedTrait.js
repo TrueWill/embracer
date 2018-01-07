@@ -1,28 +1,23 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Dots from './Dots';
-import StartingDots from './StartingDots';
+import Rank from './Rank';
 import dotSelector from '../utils/dotSelector';
 import { capitalizeFirstLetter } from '../utils/stringUtils';
 
-class Trait extends Component {
+class RankedTrait extends Component {
   static propTypes = {
     name: PropTypes.string.isRequired,
     displayName: PropTypes.string,
     maxDots: PropTypes.number.isRequired,
-    availableStartingDots: PropTypes.arrayOf(
-      PropTypes.shape({
-        dots: PropTypes.number.isRequired,
-        count: PropTypes.number.isRequired
-      })
-    ).isRequired,
+    rankDots: PropTypes.arrayOf(PropTypes.number).isRequired,
     traitState: PropTypes.object.isRequired,
-    onStartingDotsChange: PropTypes.func.isRequired
+    onRankChange: PropTypes.func.isRequired
   };
 
-  handleStartingDotsChange = e => {
-    const startingDots = parseInt(e.target.value, 10);
-    this.props.onStartingDotsChange(this.props.name, startingDots);
+  handleRankChange = e => {
+    const dotsFromRank = parseInt(e.target.value, 10);
+    this.props.onRankChange(this.props.name, dotsFromRank);
   };
 
   render() {
@@ -30,21 +25,21 @@ class Trait extends Component {
       name,
       displayName = capitalizeFirstLetter(name),
       maxDots,
-      availableStartingDots,
+      rankDots,
       traitState
     } = this.props;
 
     return (
       <div>
         {displayName} <Dots level={dotSelector(traitState)} max={maxDots} />
-        <StartingDots
-          available={availableStartingDots}
-          value={traitState.startingDots}
-          onChange={this.handleStartingDotsChange}
+        <Rank
+          dots={rankDots}
+          dotValue={traitState.dotsFromRank}
+          onChange={this.handleRankChange}
         />
       </div>
     );
   }
 }
 
-export default Trait;
+export default RankedTrait;

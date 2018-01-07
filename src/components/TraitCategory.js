@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { capitalizeFirstLetter } from '../utils/stringUtils';
 import { standardTraitMaxDots } from '../constants/characterOptions';
-import UnrankedTrait from './UnrankedTrait';
+import Trait from './Trait';
 
 class TraitCategory extends Component {
   static propTypes = {
@@ -26,7 +26,7 @@ class TraitCategory extends Component {
     } = this.props;
 
     const traits = traitNames.map(name => (
-      <UnrankedTrait
+      <Trait
         key={name}
         name={name}
         displayName={traitDisplayNameOverride[name]}
