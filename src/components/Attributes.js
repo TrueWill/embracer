@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
 import Trait from './Trait';
 import Focus from './Focus';
 import {
@@ -50,7 +49,6 @@ class Attributes extends Component {
       <div>
         <h3>Attributes</h3>
         {traits}
-        <Link to="/skills">Skills</Link>
       </div>
     );
   }

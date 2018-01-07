@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
 import { capitalizeFirstLetter } from '../utils/stringUtils';
 import { standardTraitMaxDots } from '../constants/characterOptions';
 import UnrankedTrait from './UnrankedTrait';
@@ -42,7 +41,6 @@ class TraitCategory extends Component {
       <div>
         <h3>{capitalizeFirstLetter(categoryName)}</h3>
         {traits}
-        <Link to="/">Attributes</Link>
       </div>
     );
   }

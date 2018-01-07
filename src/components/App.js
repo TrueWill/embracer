@@ -30,10 +30,12 @@ const App = () => (
   <div>
     <h2>Embracer</h2>
     <BasicInfoContainer />
+    <Link to="/">Attributes</Link> |
+    <Link to="/skills">Skills</Link> |
+    <Link to="/backgrounds">Backgrounds</Link>
     <Route exact path="/" component={AttributesContainer} />
     <Route path="/skills" render={() => skills} />
     <Route path="/backgrounds" render={() => backgrounds} />
-    <Link to="/backgrounds">Backgrounds</Link>
   </div>
 );
 
