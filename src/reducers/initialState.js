@@ -22,7 +22,9 @@ export default {
       availableStartingDots: backgroundsAvailableStartingDots
     },
     disciplines: {
-      availableStartingDots: inClanDisciplinesAvailableStartingDots
-    } // TODO: Figure out in-clan storage
+      inClan: {
+        availableStartingDots: inClanDisciplinesAvailableStartingDots
+      }
+    }
   }
 };

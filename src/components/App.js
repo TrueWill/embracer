@@ -27,6 +27,8 @@ const backgrounds = (
   />
 );
 
+const disciplines = <DisciplinesContainer affinity="inClan" />;
+
 const App = () => (
   <div>
     <h2>Embracer</h2>
@@ -38,7 +40,7 @@ const App = () => (
     <Route exact path="/" component={AttributesContainer} />
     <Route path="/skills" render={() => skills} />
     <Route path="/backgrounds" render={() => backgrounds} />
-    <Route path="/disciplines" component={DisciplinesContainer} />
+    <Route path="/disciplines" render={() => disciplines} />
   </div>
 );
 

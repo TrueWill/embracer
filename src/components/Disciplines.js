@@ -1,30 +1,40 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import TraitCategoryContainer from '../containers/TraitCategoryContainer';
+import TraitCategory from './TraitCategory';
+
+const categoryNameByAffinity = {
+  inClan: 'In-clan Disciplines',
+  outOfClan: 'Out-of-clan Disciplines'
+};
 
 class Disciplines extends Component {
   static propTypes = {
-    inClanDisciplineNames: PropTypes.arrayOf(PropTypes.string).isRequired,
-    disciplineTraits: PropTypes.object.isRequired
+    affinity: PropTypes.oneOf(['inClan', 'outOfClan']).isRequired,
+    names: PropTypes.arrayOf(PropTypes.string).isRequired,
+    displayNameOverride: PropTypes.object.isRequired,
+    traits: PropTypes.object.isRequired,
+    setStartingDots: PropTypes.func.isRequired
+  };
+
+  handleSetStartingDots = (categoryName, trait, startingDots) => {
+    this.props.setStartingDots(
+      'disciplines.' + this.props.affinity,
+      trait,
+      startingDots
+    );
   };
 
   render() {
-    const { inClanDisciplineNames, disciplines } = this.props;
-
-    const inClanDisciplines = (
-      <TraitCategoryContainer
-        categoryName="disciplines"
-        traitNames={inClanDisciplineNames}
-        traitDisplayNameOverride={{}}
-      />
-    );
+    const { affinity, names, displayNameOverride, traits } = this.props;
 
     return (
-      <div>
-        <h2>Disciplines</h2>
-        <h3>In-Clan</h3>
-        {inClanDisciplines}
-      </div>
+      <TraitCategory
+        categoryName={categoryNameByAffinity[affinity]}
+        traitNames={names}
+        traitDisplayNameOverride={displayNameOverride}
+        categoryTraits={traits}
+        setStartingDots={this.handleSetStartingDots}
+      />
     );
   }
 }
