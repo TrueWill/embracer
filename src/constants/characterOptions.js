@@ -56,6 +56,17 @@ export const clans = [
   'Caitiff'
 ];
 
+export const commonDisciplineNames = [
+  'Animalism',
+  'Auspex',
+  'Celerity',
+  'Dominate',
+  'Fortitude',
+  'Obfuscate',
+  'Potence',
+  'Presence'
+];
+
 export const disciplineNamesByClan = {
   Assamite: ['Celerity', 'Obfuscate', 'Quietus'],
   Brujah: ['Celerity', 'Potence', 'Presence'],
@@ -67,8 +78,10 @@ export const disciplineNamesByClan = {
   Nosferatu: ['Animalism', 'Obfuscate', 'Potence'],
   Toreador: ['Auspex', 'Celerity', 'Presence'],
   Tremere: ['Auspex', 'Dominate', 'Thaumaturgy: Path of Blood'],
-  Tzimisce: ['Animalism', 'Auspex', 'Vicissitude']
-}; // TODO: working
+  Tzimisce: ['Animalism', 'Auspex', 'Vicissitude'],
+  Ventrue: ['Dominate', 'Fortitude', 'Presence'],
+  Caitiff: commonDisciplineNames
+};
 
 export const inClanDisciplinesAvailableStartingDots = [
   { dots: 2, count: 1 },
