@@ -59,7 +59,15 @@ export const clans = [
 export const disciplineNamesByClan = {
   Assamite: ['Celerity', 'Obfuscate', 'Quietus'],
   Brujah: ['Celerity', 'Potence', 'Presence'],
-  'Followers of Set': ['Obfuscate', 'Presence', 'Serpentis']
+  'Followers of Set': ['Obfuscate', 'Presence', 'Serpentis'],
+  Gangrel: ['Animalism', 'Fortitude', 'Protean'],
+  Giovanni: ['Dominate', 'Potence', 'Necromancy: Sepulchre Path'],
+  Lasombra: ['Dominate', 'Potence', 'Obtenebration'],
+  Malkavian: ['Auspex', 'Dementation', 'Obfuscate'],
+  Nosferatu: ['Animalism', 'Obfuscate', 'Potence'],
+  Toreador: ['Auspex', 'Celerity', 'Presence'],
+  Tremere: ['Auspex', 'Dominate', 'Thaumaturgy: Path of Blood'],
+  Tzimisce: ['Animalism', 'Auspex', 'Vicissitude']
 }; // TODO: working
 
 export const inClanDisciplinesAvailableStartingDots = [
