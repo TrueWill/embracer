@@ -4,7 +4,6 @@ import { setDotsFromStartingDots } from '../utils/categoryStarter';
 
 export default (state = initialState.character.disciplines, action) => {
   switch (action.type) {
-    // TODO: If change clan, reset disciplines
     case types.SET_STARTING_DOTS:
       const { category, trait, startingDots } = action.payload;
 
@@ -22,7 +21,9 @@ export default (state = initialState.character.disciplines, action) => {
           startingDots
         )
       };
-
+    case types.UPDATE_CLAN:
+      // reset
+      return initialState.character.disciplines;
     default:
       return state;
   }
