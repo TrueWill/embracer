@@ -56,6 +56,8 @@ export const clans = [
   'Caitiff'
 ];
 
+export const caitiffInClanDisciplineCount = 3;
+
 export const commonDisciplineNames = [
   'Animalism',
   'Auspex',
