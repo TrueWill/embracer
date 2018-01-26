@@ -17,6 +17,9 @@ it('should set starting dots', () => {
   const state = {
     inClan: {
       availableStartingDots: [{ dots: 2, count: 1 }, { dots: 1, count: 2 }]
+    },
+    outOfClan: {
+      availableStartingDots: []
     }
   };
 
@@ -32,6 +35,9 @@ it('should set starting dots', () => {
       Celerity: {
         startingDots: 2
       }
+    },
+    outOfClan: {
+      availableStartingDots: []
     }
   });
 });
@@ -42,6 +48,10 @@ it('should clear if change clan', () => {
       availableStartingDots: [{ dots: 2, count: 0 }, { dots: 1, count: 2 }],
       Celerity: {
         startingDots: 2
+      },
+      outOfClan: {
+        availableStartingDots: [],
+        Potence: {}
       }
     }
   };
@@ -55,6 +65,9 @@ it('should clear if change clan', () => {
   expect(nextState).toEqual({
     inClan: {
       availableStartingDots: [{ dots: 2, count: 1 }, { dots: 1, count: 2 }]
+    },
+    outOfClan: {
+      availableStartingDots: []
     }
   });
 });

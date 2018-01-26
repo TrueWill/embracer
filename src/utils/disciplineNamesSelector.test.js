@@ -8,7 +8,8 @@ it('should return empty for both affinities if no clan selected', () => {
         clan: ''
       },
       disciplines: {
-        inClan: {}
+        inClan: {},
+        outOfClan: {}
       }
     }
   };
@@ -30,7 +31,8 @@ it('should return correct values for Brujah', () => {
         clan: 'Brujah'
       },
       disciplines: {
-        inClan: {}
+        inClan: {},
+        outOfClan: {}
       }
     }
   };
@@ -52,7 +54,8 @@ it('should return correct initial values for Caitiff', () => {
         clan: 'Caitiff'
       },
       disciplines: {
-        inClan: {}
+        inClan: {},
+        outOfClan: {}
       }
     }
   };
@@ -87,7 +90,8 @@ it('should return correct values for Caitiff after some in-clan selected', () =>
           Celerity: {
             startingDots: 2
           }
-        }
+        },
+        outOfClan: {}
       }
     }
   };
@@ -128,7 +132,8 @@ it('should return correct values for Caitiff after all in-clan selected', () => 
           Potence: {
             startingDots: 1
           }
-        }
+        },
+        outOfClan: {}
       }
     }
   };
