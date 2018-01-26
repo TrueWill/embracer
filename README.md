@@ -7,6 +7,12 @@ Based on 2015 edition from By Night Studios
 Some terms are copyrighted by or registered trademarks of CCP hf.
 This tool is unofficial, and the author is not affiliated with the companies mentioned above.
 
+## Live
+
+Deployed to http://truewill-embracer.s3-website.us-east-2.amazonaws.com/
+
+Currently deployment is manual, so the site may not reflect the latest changes.
+
 ## Contributing
 
 ### Standards

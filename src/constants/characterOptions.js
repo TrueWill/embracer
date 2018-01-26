@@ -56,6 +56,42 @@ export const clans = [
   'Caitiff'
 ];
 
+export const caitiffInClanDisciplineCount = 3;
+
+export const commonDisciplineNames = [
+  'Animalism',
+  'Auspex',
+  'Celerity',
+  'Dominate',
+  'Fortitude',
+  'Obfuscate',
+  'Potence',
+  'Presence'
+];
+
+export const disciplineNamesByClan = {
+  Assamite: ['Celerity', 'Obfuscate', 'Quietus'],
+  Brujah: ['Celerity', 'Potence', 'Presence'],
+  'Followers of Set': ['Obfuscate', 'Presence', 'Serpentis'],
+  Gangrel: ['Animalism', 'Fortitude', 'Protean'],
+  Giovanni: ['Dominate', 'Potence', 'Necromancy: Sepulchre Path'],
+  Lasombra: ['Dominate', 'Potence', 'Obtenebration'],
+  Malkavian: ['Auspex', 'Dementation', 'Obfuscate'],
+  Nosferatu: ['Animalism', 'Obfuscate', 'Potence'],
+  Toreador: ['Auspex', 'Celerity', 'Presence'],
+  Tremere: ['Auspex', 'Dominate', 'Thaumaturgy: Path of Blood'],
+  Tzimisce: ['Animalism', 'Auspex', 'Vicissitude'],
+  Ventrue: ['Dominate', 'Fortitude', 'Presence'],
+  Caitiff: commonDisciplineNames
+};
+
+export const inClanDisciplinesAvailableStartingDots = [
+  { dots: 2, count: 1 },
+  { dots: 1, count: 2 }
+];
+
+export const outOfClanDisciplinesAvailableStartingDots = [];
+
 export const attributeTraitNames = ['physical', 'social', 'mental'];
 
 export const attributeMaxDots = 10;

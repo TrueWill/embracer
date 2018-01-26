@@ -9,6 +9,7 @@ import {
 import BasicInfoContainer from '../containers/BasicInfoContainer';
 import AttributesContainer from '../containers/AttributesContainer';
 import TraitCategoryContainer from '../containers/TraitCategoryContainer';
+import DisciplinesContainer from '../containers/DisciplinesContainer';
 
 const skills = (
   <TraitCategoryContainer
@@ -26,16 +27,26 @@ const backgrounds = (
   />
 );
 
+const disciplines = (
+  <div>
+    <DisciplinesContainer affinity="inClan" />
+    <hr />
+    <DisciplinesContainer affinity="outOfClan" />
+  </div>
+);
+
 const App = () => (
   <div>
     <h2>Embracer</h2>
     <BasicInfoContainer />
     <Link to="/">Attributes</Link> |
     <Link to="/skills">Skills</Link> |
-    <Link to="/backgrounds">Backgrounds</Link>
+    <Link to="/backgrounds">Backgrounds</Link> |
+    <Link to="/disciplines">Disciplines</Link>
     <Route exact path="/" component={AttributesContainer} />
     <Route path="/skills" render={() => skills} />
     <Route path="/backgrounds" render={() => backgrounds} />
+    <Route path="/disciplines" render={() => disciplines} />
   </div>
 );
 
