@@ -27,7 +27,13 @@ const backgrounds = (
   />
 );
 
-const disciplines = <DisciplinesContainer affinity="inClan" />;
+const disciplines = (
+  <div>
+    <DisciplinesContainer affinity="inClan" />
+    <hr />
+    <DisciplinesContainer affinity="outOfClan" />
+  </div>
+);
 
 const App = () => (
   <div>

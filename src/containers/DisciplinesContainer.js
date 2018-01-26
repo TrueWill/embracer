@@ -1,15 +1,13 @@
 import { connect } from 'react-redux';
 import { setStartingDots } from '../actions/characterCreationActions';
+import disciplineNamesSelector from '../utils/disciplineNamesSelector';
 import Disciplines from '../components/Disciplines';
-import { disciplineNamesByClan } from '../constants/characterOptions';
 
 const mapStateToProps = (state, ownProps) => {
   const { affinity } = ownProps;
 
-  if (affinity === 'outOfClan') throw new Error('TODO');
-
   return {
-    names: disciplineNamesByClan[state.character.basicInfo.clan] || [],
+    names: disciplineNamesSelector(state)[affinity],
     displayNameOverride: {},
     traits: state.character.disciplines[affinity]
   };

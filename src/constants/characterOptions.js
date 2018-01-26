@@ -90,6 +90,8 @@ export const inClanDisciplinesAvailableStartingDots = [
   { dots: 1, count: 2 }
 ];
 
+export const outOfClanDisciplinesAvailableStartingDots = [];
+
 export const attributeTraitNames = ['physical', 'social', 'mental'];
 
 export const attributeMaxDots = 10;

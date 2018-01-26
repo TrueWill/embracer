@@ -2,7 +2,8 @@ import {
   attributeTraitNames,
   skillsAvailableStartingDots,
   backgroundsAvailableStartingDots,
-  inClanDisciplinesAvailableStartingDots
+  inClanDisciplinesAvailableStartingDots,
+  outOfClanDisciplinesAvailableStartingDots
 } from '../constants/characterOptions';
 
 export default {
@@ -24,6 +25,9 @@ export default {
     disciplines: {
       inClan: {
         availableStartingDots: inClanDisciplinesAvailableStartingDots
+      },
+      outOfClan: {
+        availableStartingDots: outOfClanDisciplinesAvailableStartingDots
       }
     }
   }
