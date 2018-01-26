@@ -37,11 +37,13 @@ class Trait extends Component {
     return (
       <div>
         {displayName} <Dots level={dotSelector(traitState)} max={maxDots} />
-        <StartingDots
-          available={availableStartingDots}
-          value={traitState.startingDots}
-          onChange={this.handleStartingDotsChange}
-        />
+        {availableStartingDots.length > 0 && (
+          <StartingDots
+            available={availableStartingDots}
+            value={traitState.startingDots}
+            onChange={this.handleStartingDotsChange}
+          />
+        )}
       </div>
     );
   }
