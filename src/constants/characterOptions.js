@@ -171,3 +171,5 @@ export const backgroundsAvailableStartingDots = [
   { dots: 2, count: 1 },
   { dots: 1, count: 1 }
 ];
+
+export const initialXP = 30;

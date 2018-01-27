@@ -10,6 +10,7 @@ import BasicInfoContainer from '../containers/BasicInfoContainer';
 import AttributesContainer from '../containers/AttributesContainer';
 import TraitCategoryContainer from '../containers/TraitCategoryContainer';
 import DisciplinesContainer from '../containers/DisciplinesContainer';
+import MeritsFlaws from '../components/MeritsFlaws';
 
 const skills = (
   <TraitCategoryContainer
@@ -35,6 +36,18 @@ const disciplines = (
   </div>
 );
 
+// TODO: working
+const meritsFlaws = (
+  <MeritsFlaws
+    options={[{ name: 'Plus', points: 3 }, { name: 'Minus', points: -1 }]}
+    selected={[
+      { name: 'One', points: 1 },
+      { name: 'Two', points: 2 },
+      { name: 'Minus Three', points: -3 }
+    ]}
+  />
+);
+
 const App = () => (
   <div>
     <h2>Embracer</h2>
@@ -42,11 +55,13 @@ const App = () => (
     <Link to="/">Attributes</Link> |
     <Link to="/skills">Skills</Link> |
     <Link to="/backgrounds">Backgrounds</Link> |
-    <Link to="/disciplines">Disciplines</Link>
+    <Link to="/disciplines">Disciplines</Link> |
+    <Link to="/merits_flaws">Merits / Flaws</Link>
     <Route exact path="/" component={AttributesContainer} />
     <Route path="/skills" render={() => skills} />
     <Route path="/backgrounds" render={() => backgrounds} />
     <Route path="/disciplines" render={() => disciplines} />
+    <Route path="/merits_flaws" render={() => meritsFlaws} />
   </div>
 );
 
