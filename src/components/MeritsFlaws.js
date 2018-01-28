@@ -39,6 +39,7 @@ class MeritsFlaws extends Component {
     // TODO: Polyfill find or implement differently
     const points = this.props.options.find(x => x.name === name).points;
     this.props.addMeritFlaw(name, points);
+    this.setState({ selectedValue: '' });
   };
 
   render() {
@@ -49,26 +50,32 @@ class MeritsFlaws extends Component {
       <li key={x.name}>{getDescription(x)}</li>
     ));
 
-    const optionsList = options.map(x => (
-      <option value={x.name} key={x.name}>
-        {getDescription(x)}
-      </option>
-    ));
+    // TODO: Inefficient and hacky
+    const optionsList = options
+      .filter(x => !selected.some(y => y.name === x.name))
+      .map(x => (
+        <option value={x.name} key={x.name}>
+          {getDescription(x)}
+        </option>
+      ));
 
     return (
       <div>
         <h3>Merits / Flaws</h3>
         <ul>{selectedList}</ul>
         <select value={selectedValue} onChange={this.handleSelectChange}>
+          <option value="">(not selected)</option>
           {optionsList}
         </select>
-        <button
-          type="button"
-          className="btn btn-primary"
-          onClick={this.handleAdd}
-        >
-          Add
-        </button>
+        {selectedValue && (
+          <button
+            type="button"
+            className="btn btn-primary"
+            onClick={this.handleAdd}
+          >
+            Add
+          </button>
+        )}
       </div>
     );
   }
