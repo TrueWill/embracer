@@ -4,9 +4,9 @@ import {
   skillTraitNames,
   skillTraitDisplayNameOverride,
   backgroundTraitNames,
-  backgroundTraitDisplayNameOverride,
-  merits
+  backgroundTraitDisplayNameOverride
 } from '../constants/characterOptions';
+import { merits } from '../constants/meritsFlaws';
 import BasicInfoContainer from '../containers/BasicInfoContainer';
 import AttributesContainer from '../containers/AttributesContainer';
 import TraitCategoryContainer from '../containers/TraitCategoryContainer';
@@ -38,11 +38,7 @@ const disciplines = (
 );
 
 // TODO: working
-const meritsFlaws = (
-  <MeritsFlawsContainer
-    options={merits}
-  />
-);
+const meritsFlaws = <MeritsFlawsContainer options={merits} />;
 
 const App = () => (
   <div>
