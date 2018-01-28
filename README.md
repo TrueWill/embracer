@@ -13,6 +13,21 @@ Deployed to http://truewill-embracer.s3-website.us-east-2.amazonaws.com/
 
 Currently deployment is manual, so the site may not reflect the latest changes.
 
+## TODO
+
+* Flaws (probably split Merits and Flaws)
+* Spend initial XP
+* Calculate Finishing Touches
+* Morality Merits
+* STYLE
+* Print / export
+* Improve test coverage
+* Bloodlines - enable when select clan - list and charge Merit costs (clear on change)
+* Add Lesser/Rare Clans - how to handle Rarity Merit costs?
+* Automate deployment
+* Use reselect library?
+* Ask By Night Studios to add to their list of generators
+
 ## Contributing
 
 ### Standards
