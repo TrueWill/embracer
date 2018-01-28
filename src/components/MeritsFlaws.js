@@ -1,17 +1,23 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+const typeDescription = {
+  merits: 'Merits',
+  flaws: 'Flaws'
+};
+
 const getDescription = meritFlaw =>
-  `${meritFlaw.name} (${Math.abs(meritFlaw.points)} point ${
-    meritFlaw.points < 0 ? 'flaw' : 'merit'
+  `${meritFlaw.name} (${meritFlaw.points} point${
+    meritFlaw.points > 1 ? 's' : ''
   })`;
 
 class MeritsFlaws extends Component {
   static propTypes = {
+    type: PropTypes.oneOf(['merits', 'flaws']).isRequired,
     options: PropTypes.arrayOf(
       PropTypes.shape({
         name: PropTypes.string,
-        points: PropTypes.number // negative for flaws
+        points: PropTypes.number
       })
     ).isRequired,
     selected: PropTypes.arrayOf(
@@ -20,8 +26,8 @@ class MeritsFlaws extends Component {
         points: PropTypes.number
       })
     ).isRequired,
-    addMeritFlaw: PropTypes.func.isRequired,
-    removeMeritFlaw: PropTypes.func.isRequired
+    add: PropTypes.func.isRequired,
+    remove: PropTypes.func.isRequired
   };
 
   state = {
@@ -38,12 +44,12 @@ class MeritsFlaws extends Component {
     const name = this.state.selectedValue;
     // TODO: Polyfill find or implement differently
     const points = this.props.options.find(x => x.name === name).points;
-    this.props.addMeritFlaw(name, points);
+    this.props.add(name, points);
     this.setState({ selectedValue: '' });
   };
 
   render() {
-    const { options, selected } = this.props;
+    const { type, options, selected } = this.props;
     const { selectedValue } = this.state;
 
     const selectedList = selected.map(x => (
@@ -61,7 +67,7 @@ class MeritsFlaws extends Component {
 
     return (
       <div>
-        <h3>Merits / Flaws</h3>
+        <h3>{typeDescription[type]}</h3>
         <ul>{selectedList}</ul>
         <select value={selectedValue} onChange={this.handleSelectChange}>
           <option value="">(not selected)</option>

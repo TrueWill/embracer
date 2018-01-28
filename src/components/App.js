@@ -38,7 +38,21 @@ const disciplines = (
 );
 
 // TODO: working
-const meritsFlaws = <MeritsFlawsContainer options={merits} />;
+const meritsFlaws = (
+  <div>
+    <MeritsFlawsContainer type="merits" options={merits} />
+    <hr />
+    <MeritsFlawsContainer
+      type="flaws"
+      options={[
+        {
+          name: 'Boneheaded',
+          points: 2
+        }
+      ]}
+    />
+  </div>
+);
 
 const App = () => (
   <div>

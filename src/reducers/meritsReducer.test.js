@@ -1,16 +1,16 @@
 import deepFreeze from 'deep-freeze';
 import * as actions from '../actions/characterCreationActions';
 import initialState from './initialState';
-import reducer from './meritsFlawsReducer';
+import reducer from './meritsReducer';
 
-deepFreeze(initialState.character.meritsFlaws);
+deepFreeze(initialState.character.merits);
 
 it('should initialize', () => {
   const action = { type: '@@INIT' };
 
   const nextState = reducer(undefined, action);
 
-  expect(nextState).toBe(initialState.character.meritsFlaws);
+  expect(nextState).toBe(initialState.character.merits);
 });
 
 it('should add merit, preserving existing', () => {
@@ -23,7 +23,7 @@ it('should add merit, preserving existing', () => {
 
   deepFreeze(state);
 
-  const action = actions.addMeritFlaw('Clear Sighted', 3);
+  const action = actions.addMerit('Clear Sighted', 3);
 
   const nextState = reducer(state, action);
 
@@ -53,7 +53,7 @@ it('should remove merit', () => {
 
   deepFreeze(state);
 
-  const action = actions.removeMeritFlaw('Calm Heart');
+  const action = actions.removeMerit('Calm Heart');
 
   const nextState = reducer(state, action);
 

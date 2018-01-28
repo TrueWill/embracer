@@ -1,22 +1,36 @@
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import {
-  addMeritFlaw,
-  removeMeritFlaw
+  addMerit,
+  removeMerit,
+  addFlaw,
+  removeFlaw
 } from '../actions/characterCreationActions';
 import MeritsFlaws from '../components/MeritsFlaws';
 
 const mapStateToProps = (state, ownProps) => {
-  const { options } = ownProps;
+  const { type } = ownProps;
 
   return {
-    options,
-    selected: state.character.meritsFlaws
+    selected: type === 'merits' ? state.character.merits : state.character.flaws
   };
 };
 
-const mapDispatchToProps = {
-  addMeritFlaw,
-  removeMeritFlaw
+const mapDispatchToProps = (dispatch, ownProps) => {
+  const { type } = ownProps;
+
+  return bindActionCreators(
+    type === 'merits'
+      ? {
+          add: addMerit,
+          remove: removeMerit
+        }
+      : {
+          add: addFlaw,
+          remove: removeFlaw
+        },
+    dispatch
+  );
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(MeritsFlaws);
