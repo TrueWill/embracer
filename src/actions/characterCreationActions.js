@@ -35,3 +35,18 @@ export const setFocus = (attribute, focus) => ({
     focus
   }
 });
+
+export const addMeritFlaw = (name, points) => ({
+  type: types.ADD_MERIT_FLAW,
+  payload: {
+    name,
+    points
+  }
+});
+
+export const removeMeritFlaw = name => ({
+  type: types.REMOVE_MERIT_FLAW,
+  payload: {
+    name
+  }
+});

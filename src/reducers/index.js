@@ -4,6 +4,7 @@ import attributes from './attributesReducer';
 import skills from './skillsReducer';
 import backgrounds from './backgroundsReducer';
 import disciplines from './disciplinesReducer';
+import meritsFlaws from './meritsFlawsReducer';
 
 const rootReducer = combineReducers({
   character: combineReducers({
@@ -11,7 +12,8 @@ const rootReducer = combineReducers({
     attributes,
     skills,
     backgrounds,
-    disciplines
+    disciplines,
+    meritsFlaws
   })
 });
 

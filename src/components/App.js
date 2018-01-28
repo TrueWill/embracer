@@ -10,7 +10,7 @@ import BasicInfoContainer from '../containers/BasicInfoContainer';
 import AttributesContainer from '../containers/AttributesContainer';
 import TraitCategoryContainer from '../containers/TraitCategoryContainer';
 import DisciplinesContainer from '../containers/DisciplinesContainer';
-import MeritsFlaws from '../components/MeritsFlaws';
+import MeritsFlawsContainer from '../containers/MeritsFlawsContainer';
 
 const skills = (
   <TraitCategoryContainer
@@ -38,13 +38,8 @@ const disciplines = (
 
 // TODO: working
 const meritsFlaws = (
-  <MeritsFlaws
+  <MeritsFlawsContainer
     options={[{ name: 'Plus', points: 3 }, { name: 'Minus', points: -1 }]}
-    selected={[
-      { name: 'One', points: 1 },
-      { name: 'Two', points: 2 },
-      { name: 'Minus Three', points: -3 }
-    ]}
   />
 );
 

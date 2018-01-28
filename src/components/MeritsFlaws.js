@@ -19,11 +19,31 @@ class MeritsFlaws extends Component {
         name: PropTypes.string,
         points: PropTypes.number
       })
-    ).isRequired
+    ).isRequired,
+    addMeritFlaw: PropTypes.func.isRequired,
+    removeMeritFlaw: PropTypes.func.isRequired
+  };
+
+  state = {
+    selectedValue: ''
+  };
+
+  // TODO: Implement remove
+
+  handleSelectChange = e => {
+    this.setState({ selectedValue: e.target.value });
+  };
+
+  handleAdd = () => {
+    const name = this.state.selectedValue;
+    // TODO: Polyfill find or implement differently
+    const points = this.props.options.find(x => x.name === name).points;
+    this.props.addMeritFlaw(name, points);
   };
 
   render() {
     const { options, selected } = this.props;
+    const { selectedValue } = this.state;
 
     const selectedList = selected.map(x => (
       <li key={x.name}>{getDescription(x)}</li>
@@ -39,7 +59,16 @@ class MeritsFlaws extends Component {
       <div>
         <h3>Merits / Flaws</h3>
         <ul>{selectedList}</ul>
-        <select>{optionsList}</select><button type="button" className="btn btn-primary">Add</button>
+        <select value={selectedValue} onChange={this.handleSelectChange}>
+          {optionsList}
+        </select>
+        <button
+          type="button"
+          className="btn btn-primary"
+          onClick={this.handleAdd}
+        >
+          Add
+        </button>
       </div>
     );
   }

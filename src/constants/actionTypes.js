@@ -3,3 +3,5 @@ export const UPDATE_CLAN = 'UPDATE_CLAN';
 export const SET_RANK = 'SET_RANK';
 export const SET_STARTING_DOTS = 'SET_STARTING_DOTS';
 export const SET_FOCUS = 'SET_FOCUS';
+export const ADD_MERIT_FLAW = 'ADD_MERIT_FLAW';
+export const REMOVE_MERIT_FLAW = 'REMOVE_MERIT_FLAW';

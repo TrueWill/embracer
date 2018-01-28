@@ -29,6 +29,7 @@ export default {
       outOfClan: {
         availableStartingDots: outOfClanDisciplinesAvailableStartingDots
       }
-    }
+    },
+    meritsFlaws: []
   }
 };
