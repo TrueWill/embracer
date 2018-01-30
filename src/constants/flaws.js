@@ -1,3 +1,5 @@
+export const maxFlawPoints = 7;
+
 export const flaws = [
   {
     name: 'Addiction',

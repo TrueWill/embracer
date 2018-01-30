@@ -26,6 +26,7 @@ class MeritsFlaws extends Component {
         points: PropTypes.number
       })
     ).isRequired,
+    availablePoints: PropTypes.number.isRequired,
     add: PropTypes.func.isRequired,
     remove: PropTypes.func.isRequired
   };
@@ -49,7 +50,7 @@ class MeritsFlaws extends Component {
   };
 
   render() {
-    const { type, options, selected } = this.props;
+    const { type, options, selected, availablePoints } = this.props;
     const { selectedValue } = this.state;
 
     const selectedList = selected.map(x => (
@@ -65,6 +66,10 @@ class MeritsFlaws extends Component {
         </option>
       ));
 
+    // TODO: Hack, would need polyfill
+    const selectedPoints =
+      selectedValue && options.find(x => x.name === selectedValue).points;
+
     return (
       <div>
         <h3>{typeDescription[type]}</h3>
@@ -73,15 +78,16 @@ class MeritsFlaws extends Component {
           <option value="">(not selected)</option>
           {optionsList}
         </select>
-        {selectedValue && (
-          <button
-            type="button"
-            className="btn btn-primary"
-            onClick={this.handleAdd}
-          >
-            Add
-          </button>
-        )}
+        {selectedValue &&
+          selectedPoints <= availablePoints && (
+            <button
+              type="button"
+              className="btn btn-primary"
+              onClick={this.handleAdd}
+            >
+              Add
+            </button>
+          )}
       </div>
     );
   }

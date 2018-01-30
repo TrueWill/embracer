@@ -1,3 +1,5 @@
+export const maxMeritPoints = 7;
+
 // Excludes Clan-Specific and Morality Merits
 export const merits = [
   {

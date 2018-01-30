@@ -6,13 +6,30 @@ import {
   addFlaw,
   removeFlaw
 } from '../actions/characterCreationActions';
+import { maxMeritPoints } from '../constants/merits';
+import { maxFlawPoints } from '../constants/flaws';
 import MeritsFlaws from '../components/MeritsFlaws';
 
 const mapStateToProps = (state, ownProps) => {
   const { type } = ownProps;
 
+  let selected, maxPoints;
+
+  if (type === 'merits') {
+    selected = state.character.merits;
+    maxPoints = maxMeritPoints;
+  } else {
+    selected = state.character.flaws;
+    maxPoints = maxFlawPoints;
+  }
+
+  const currentPoints = selected
+    .map(x => x.points)
+    .reduce((acc, cur) => acc + cur, 0);
+
   return {
-    selected: type === 'merits' ? state.character.merits : state.character.flaws
+    selected,
+    availablePoints: maxPoints - currentPoints
   };
 };
 
