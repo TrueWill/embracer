@@ -1,3 +1,5 @@
+import { merits, clanSpecificMerits } from '../constants/merits';
+import { flaws } from '../constants/flaws';
 import { maxMeritPoints } from '../constants/merits';
 import { maxFlawPoints } from '../constants/flaws';
 
@@ -24,6 +26,27 @@ const meritsFlawsSelector = (state, type) => {
     currentPoints,
     availablePoints: maxPoints - currentPoints
   };
+};
+
+export const meritsFlawsOptionsSelector = (state, type) => {
+  const isMerits = type === 'merits';
+
+  const selected = isMerits ? state.character.merits : state.character.flaws;
+
+  const selectedSet = selected.reduce((acc, cur) => {
+    acc.add(cur.name);
+    return acc;
+  }, new Set());
+
+  // TODO: working - need test of when clan not set, need test of flaws, probably sort
+  const options = isMerits
+    ? [...merits, ...clanSpecificMerits[state.character.basicInfo.clan]]
+    : flaws;
+
+  return options.filter(x => !selectedSet.has(x.name)).reduce((acc, cur) => {
+    acc.set(cur.name, { points: cur.points });
+    return acc;
+  }, new Map());
 };
 
 export default meritsFlawsSelector;
