@@ -64,3 +64,24 @@ it('should remove merit', () => {
     }
   ]);
 });
+
+it('should clear if change clan', () => {
+  const state = [
+    {
+      name: 'Calm Heart',
+      points: 1
+    },
+    {
+      name: 'Clear Sighted',
+      points: 3
+    }
+  ];
+
+  deepFreeze(state);
+
+  const action = actions.updateClan('Tremere');
+
+  const nextState = reducer(state, action);
+
+  expect(nextState).toEqual([]);
+});
