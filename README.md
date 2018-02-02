@@ -15,7 +15,6 @@ Currently deployment is manual, so the site may not reflect the latest changes.
 
 ## TODO
 
-* Flaws (probably split Merits and Flaws)
 * Spend initial XP
 * Calculate Finishing Touches
 * Morality Merits
