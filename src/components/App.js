@@ -10,6 +10,7 @@ import BasicInfoContainer from '../containers/BasicInfoContainer';
 import AttributesContainer from '../containers/AttributesContainer';
 import TraitCategoryContainer from '../containers/TraitCategoryContainer';
 import DisciplinesContainer from '../containers/DisciplinesContainer';
+import MeritsFlawsContainer from '../containers/MeritsFlawsContainer';
 
 const skills = (
   <TraitCategoryContainer
@@ -35,6 +36,14 @@ const disciplines = (
   </div>
 );
 
+const meritsFlaws = (
+  <div>
+    <MeritsFlawsContainer type="merits" />
+    <hr />
+    <MeritsFlawsContainer type="flaws" />
+  </div>
+);
+
 const App = () => (
   <div>
     <h2>Embracer</h2>
@@ -42,11 +51,13 @@ const App = () => (
     <Link to="/">Attributes</Link> |
     <Link to="/skills">Skills</Link> |
     <Link to="/backgrounds">Backgrounds</Link> |
-    <Link to="/disciplines">Disciplines</Link>
+    <Link to="/disciplines">Disciplines</Link> |
+    <Link to="/merits_flaws">Merits / Flaws</Link>
     <Route exact path="/" component={AttributesContainer} />
     <Route path="/skills" render={() => skills} />
     <Route path="/backgrounds" render={() => backgrounds} />
     <Route path="/disciplines" render={() => disciplines} />
+    <Route path="/merits_flaws" render={() => meritsFlaws} />
   </div>
 );
 
