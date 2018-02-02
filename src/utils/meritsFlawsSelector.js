@@ -29,19 +29,27 @@ const meritsFlawsSelector = (state, type) => {
 };
 
 export const meritsFlawsOptionsSelector = (state, type) => {
-  const isMerits = type === 'merits';
+  let selected;
+  let options;
 
-  const selected = isMerits ? state.character.merits : state.character.flaws;
+  if (type === 'merits') {
+    selected = state.character.merits;
+    const clan = state.character.basicInfo.clan;
+
+    if (clan) {
+      options = [...clanSpecificMerits[clan], ...merits];
+    } else {
+      options = merits;
+    }
+  } else {
+    selected = state.character.flaws;
+    options = flaws;
+  }
 
   const selectedSet = selected.reduce((acc, cur) => {
     acc.add(cur.name);
     return acc;
   }, new Set());
-
-  // TODO: working - need test of when clan not set, need test of flaws, probably sort
-  const options = isMerits
-    ? [...merits, ...clanSpecificMerits[state.character.basicInfo.clan]]
-    : flaws;
 
   return options.filter(x => !selectedSet.has(x.name)).reduce((acc, cur) => {
     acc.set(cur.name, { points: cur.points });
