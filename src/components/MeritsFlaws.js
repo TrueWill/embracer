@@ -11,6 +11,21 @@ const getDescription = meritFlaw =>
     meritFlaw.points > 1 ? 's' : ''
   })`;
 
+class DeleteButton extends Component {
+  static propTypes = {
+    id: PropTypes.string.isRequired,
+    onClick: PropTypes.func.isRequired
+  };
+
+  handleClick = () => {
+    this.props.onClick(this.props.id);
+  };
+
+  render() {
+    return <i className="fa fa-trash pointer" onClick={this.handleClick} />;
+  }
+}
+
 class MeritsFlaws extends Component {
   static propTypes = {
     type: PropTypes.oneOf(['merits', 'flaws']).isRequired,
@@ -30,8 +45,6 @@ class MeritsFlaws extends Component {
     selectedValue: ''
   };
 
-  // TODO: Implement remove
-
   handleSelectChange = e => {
     this.setState({ selectedValue: e.target.value });
   };
@@ -43,12 +56,19 @@ class MeritsFlaws extends Component {
     this.setState({ selectedValue: '' });
   };
 
+  handleRemove = name => {
+    this.props.remove(name);
+  };
+
   render() {
     const { type, optionsMap, selected, availablePoints } = this.props;
     const { selectedValue } = this.state;
 
     const selectedList = selected.map(x => (
-      <li key={x.name}>{getDescription(x)}</li>
+      <li key={x.name}>
+        {getDescription(x)}{' '}
+        <DeleteButton id={x.name} onClick={this.handleRemove} />
+      </li>
     ));
 
     const optionsList = [];
