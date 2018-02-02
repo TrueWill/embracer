@@ -6,15 +6,17 @@ import {
   addFlaw,
   removeFlaw
 } from '../actions/characterCreationActions';
-import meritsFlawsSelector from '../utils/meritsFlawsSelector';
+import meritsFlawsSelector, { meritsFlawsOptionsSelector } from '../utils/meritsFlawsSelector';
 import MeritsFlaws from '../components/MeritsFlaws';
 
 const mapStateToProps = (state, ownProps) => {
   const { type } = ownProps;
 
+  const optionsMap = meritsFlawsOptionsSelector(state, type);
   const { selected, availablePoints } = meritsFlawsSelector(state, type);
 
   return {
+    optionsMap,
     selected,
     availablePoints
   };

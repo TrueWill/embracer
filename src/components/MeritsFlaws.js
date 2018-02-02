@@ -14,12 +14,7 @@ const getDescription = meritFlaw =>
 class MeritsFlaws extends Component {
   static propTypes = {
     type: PropTypes.oneOf(['merits', 'flaws']).isRequired,
-    options: PropTypes.arrayOf(
-      PropTypes.shape({
-        name: PropTypes.string,
-        points: PropTypes.number
-      })
-    ).isRequired,
+    optionsMap: PropTypes.instanceOf(Map).isRequired,
     selected: PropTypes.arrayOf(
       PropTypes.shape({
         name: PropTypes.string,
@@ -43,32 +38,36 @@ class MeritsFlaws extends Component {
 
   handleAdd = () => {
     const name = this.state.selectedValue;
-    // TODO: Polyfill find or implement differently
-    const points = this.props.options.find(x => x.name === name).points;
+    const points = this.props.optionsMap.get(name).points;
     this.props.add(name, points);
     this.setState({ selectedValue: '' });
   };
 
   render() {
-    const { type, options, selected, availablePoints } = this.props;
+    const { type, optionsMap, selected, availablePoints } = this.props;
     const { selectedValue } = this.state;
 
     const selectedList = selected.map(x => (
       <li key={x.name}>{getDescription(x)}</li>
     ));
 
-    // TODO: Inefficient and hacky
-    const optionsList = options
-      .filter(x => !selected.some(y => y.name === x.name))
-      .map(x => (
-        <option value={x.name} key={x.name}>
-          {getDescription(x)}
-        </option>
-      ));
+    const optionsList = [];
 
-    // TODO: Hack, would need polyfill
+    optionsMap.forEach((value, key) => {
+      const meritFlaw = {
+        name: key,
+        points: value.points
+      };
+
+      optionsList.push(
+        <option value={meritFlaw.name} key={meritFlaw.name}>
+          {getDescription(meritFlaw)}
+        </option>
+      );
+    });
+
     const selectedPoints =
-      selectedValue && options.find(x => x.name === selectedValue).points;
+      selectedValue && optionsMap.get(selectedValue).points;
 
     return (
       <div>

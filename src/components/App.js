@@ -6,8 +6,6 @@ import {
   backgroundTraitNames,
   backgroundTraitDisplayNameOverride
 } from '../constants/characterOptions';
-import { merits } from '../constants/merits';
-import { flaws } from '../constants/flaws';
 import BasicInfoContainer from '../containers/BasicInfoContainer';
 import AttributesContainer from '../containers/AttributesContainer';
 import TraitCategoryContainer from '../containers/TraitCategoryContainer';
@@ -40,9 +38,9 @@ const disciplines = (
 
 const meritsFlaws = (
   <div>
-    <MeritsFlawsContainer type="merits" options={merits} />
+    <MeritsFlawsContainer type="merits" />
     <hr />
-    <MeritsFlawsContainer type="flaws" options={flaws} />
+    <MeritsFlawsContainer type="flaws" />
   </div>
 );
 
