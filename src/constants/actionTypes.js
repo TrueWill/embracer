@@ -7,3 +7,4 @@ export const ADD_MERIT = 'ADD_MERIT';
 export const REMOVE_MERIT = 'REMOVE_MERIT';
 export const ADD_FLAW = 'ADD_FLAW';
 export const REMOVE_FLAW = 'REMOVE_FLAW';
+export const PURCHASE_DOT = 'PURCHASE_DOT';
