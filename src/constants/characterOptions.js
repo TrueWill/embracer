@@ -173,3 +173,119 @@ export const backgroundsAvailableStartingDots = [
 ];
 
 export const initialXP = 30;
+export const bankedXPLimit = 5;
+export const outOfClanDisciplineLevelLimit = 3;
+
+export const generationChart = {
+  1: {
+    title: 'Neonate',
+    bloodPool: 10,
+    bloodPerTurn: 1,
+    attributeBonus: 1,
+    dotCost: {
+      background: {
+        xp: 1,
+        per: 'newLevel'
+      },
+      skill: {
+        xp: 1,
+        per: 'newLevel'
+      },
+      outOfClanDiscipline: {
+        xp: 4,
+        per: 'newLevel'
+      }
+    }
+  },
+  2: {
+    title: 'Ancilla',
+    bloodPool: 12,
+    bloodPerTurn: 2,
+    attributeBonus: 2,
+    dotCost: {
+      background: {
+        xp: 2,
+        per: 'newLevel'
+      },
+      skill: {
+        xp: 2,
+        per: 'newLevel'
+      },
+      outOfClanDiscipline: {
+        xp: 4,
+        per: 'newLevel'
+      }
+    }
+  },
+  3: {
+    title: 'Pretender Elder',
+    bloodPool: 15,
+    bloodPerTurn: 3,
+    attributeBonus: 3,
+    dotCost: {
+      background: {
+        xp: 2,
+        per: 'newLevel'
+      },
+      skill: {
+        xp: 2,
+        per: 'newLevel'
+      },
+      outOfClanDiscipline: {
+        xp: 4,
+        per: 'newLevel'
+      }
+    }
+  },
+  4: {
+    title: 'Master Elder',
+    bloodPool: 20,
+    bloodPerTurn: 4,
+    attributeBonus: 4,
+    dotCost: {
+      background: {
+        xp: 2,
+        per: 'newLevel'
+      },
+      skill: {
+        xp: 2,
+        per: 'newLevel'
+      },
+      outOfClanDiscipline: {
+        xp: 4,
+        per: 'newLevel'
+      }
+    }
+  },
+  5: {
+    title: 'Luminary Elder',
+    bloodPool: 30,
+    bloodPerTurn: 5,
+    attributeBonus: 5,
+    dotCost: {
+      background: {
+        xp: 2,
+        per: 'newLevel'
+      },
+      skill: {
+        xp: 2,
+        per: 'newLevel'
+      },
+      outOfClanDiscipline: {
+        xp: 5,
+        per: 'newLevel'
+      }
+    }
+  }
+};
+
+export const dotCost = {
+  attribute: {
+    xp: 3,
+    per: 'each'
+  },
+  inClanDiscipline: {
+    xp: 3,
+    per: 'newLevel'
+  }
+};

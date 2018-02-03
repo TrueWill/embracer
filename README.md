@@ -15,7 +15,11 @@ Currently deployment is manual, so the site may not reflect the latest changes.
 
 ## TODO
 
-* Spend initial XP
+* Spend initial XP (adjusted by merits/flaws)
+* Calculate XP costs based on current generation (Generation dots are special)
+* Handle changing XP if change merits/flaws
+* Probably have to have running total of spent/available XP and display if negative
+* Reset all if change clan? Add warning text?
 * Calculate Finishing Touches
 * Morality Merits
 * STYLE
@@ -25,6 +29,9 @@ Currently deployment is manual, so the site may not reflect the latest changes.
 * Add Lesser/Rare Clans - how to handle Rarity Merit costs?
 * Automate deployment
 * Use reselect library?
+* Rituals
+* Techniques
+* Elder Powers
 * Ask By Night Studios to add to their list of generators
 
 ## Contributing
