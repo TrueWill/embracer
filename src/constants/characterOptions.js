@@ -176,6 +176,31 @@ export const initialXP = 30;
 export const bankedXPLimit = 5;
 export const outOfClanDisciplineLevelLimit = 3;
 
+const standardDotCost = {
+  attributes: {
+    xp: 3,
+    per: 'each'
+  },
+  backgrounds: {
+    xp: 2,
+    per: 'newLevel'
+  },
+  skills: {
+    xp: 2,
+    per: 'newLevel'
+  },
+  disciplines: {
+    inClan: {
+      xp: 3,
+      per: 'newLevel'
+    },
+    outOfClan: {
+      xp: 4,
+      per: 'newLevel'
+    }
+  }
+};
+
 export const generationChart = {
   1: {
     title: 'Neonate',
@@ -183,18 +208,16 @@ export const generationChart = {
     bloodPerTurn: 1,
     attributeBonus: 1,
     dotCost: {
-      background: {
+      attributes: standardDotCost.attributes,
+      backgrounds: {
         xp: 1,
         per: 'newLevel'
       },
-      skill: {
+      skills: {
         xp: 1,
         per: 'newLevel'
       },
-      outOfClanDiscipline: {
-        xp: 4,
-        per: 'newLevel'
-      }
+      disciplines: standardDotCost.disciplines
     }
   },
   2: {
@@ -203,18 +226,10 @@ export const generationChart = {
     bloodPerTurn: 2,
     attributeBonus: 2,
     dotCost: {
-      background: {
-        xp: 2,
-        per: 'newLevel'
-      },
-      skill: {
-        xp: 2,
-        per: 'newLevel'
-      },
-      outOfClanDiscipline: {
-        xp: 4,
-        per: 'newLevel'
-      }
+      attributes: standardDotCost.attributes,
+      backgrounds: standardDotCost.backgrounds,
+      skills: standardDotCost.backgrounds,
+      disciplines: standardDotCost.disciplines
     }
   },
   3: {
@@ -223,18 +238,10 @@ export const generationChart = {
     bloodPerTurn: 3,
     attributeBonus: 3,
     dotCost: {
-      background: {
-        xp: 2,
-        per: 'newLevel'
-      },
-      skill: {
-        xp: 2,
-        per: 'newLevel'
-      },
-      outOfClanDiscipline: {
-        xp: 4,
-        per: 'newLevel'
-      }
+      attributes: standardDotCost.attributes,
+      backgrounds: standardDotCost.backgrounds,
+      skills: standardDotCost.backgrounds,
+      disciplines: standardDotCost.disciplines
     }
   },
   4: {
@@ -243,18 +250,10 @@ export const generationChart = {
     bloodPerTurn: 4,
     attributeBonus: 4,
     dotCost: {
-      background: {
-        xp: 2,
-        per: 'newLevel'
-      },
-      skill: {
-        xp: 2,
-        per: 'newLevel'
-      },
-      outOfClanDiscipline: {
-        xp: 4,
-        per: 'newLevel'
-      }
+      attributes: standardDotCost.attributes,
+      backgrounds: standardDotCost.backgrounds,
+      skills: standardDotCost.backgrounds,
+      disciplines: standardDotCost.disciplines
     }
   },
   5: {
@@ -263,29 +262,16 @@ export const generationChart = {
     bloodPerTurn: 5,
     attributeBonus: 5,
     dotCost: {
-      background: {
-        xp: 2,
-        per: 'newLevel'
-      },
-      skill: {
-        xp: 2,
-        per: 'newLevel'
-      },
-      outOfClanDiscipline: {
-        xp: 5,
-        per: 'newLevel'
+      attributes: standardDotCost.attributes,
+      backgrounds: standardDotCost.backgrounds,
+      skills: standardDotCost.backgrounds,
+      disciplines: {
+        inClan: standardDotCost.disciplines.inClan,
+        outOfClan: {
+          xp: 5,
+          per: 'newLevel'
+        }
       }
     }
-  }
-};
-
-export const dotCost = {
-  attribute: {
-    xp: 3,
-    per: 'each'
-  },
-  inClanDiscipline: {
-    xp: 3,
-    per: 'newLevel'
   }
 };
