@@ -1,4 +1,6 @@
 const dotSelector = traitState =>
-  traitState.dotsFromRank || traitState.startingDots || 0;
+  (traitState.dotsFromRank || 0) +
+  (traitState.startingDots || 0) +
+  (traitState.dotsPurchased || 0);
 
 export default dotSelector;
