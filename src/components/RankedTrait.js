@@ -12,12 +12,17 @@ class RankedTrait extends Component {
     maxDots: PropTypes.number.isRequired,
     rankDots: PropTypes.arrayOf(PropTypes.number).isRequired,
     traitState: PropTypes.object.isRequired,
-    onRankChange: PropTypes.func.isRequired
+    onRankChange: PropTypes.func.isRequired,
+    onClick: PropTypes.func.isRequired
   };
 
   handleRankChange = e => {
     const dotsFromRank = parseInt(e.target.value, 10);
     this.props.onRankChange(this.props.name, dotsFromRank);
+  };
+
+  handleOnClick = () => {
+    this.props.onClick(this.props.name);
   };
 
   render() {
@@ -31,7 +36,12 @@ class RankedTrait extends Component {
 
     return (
       <div>
-        {displayName} <Dots level={dotSelector(traitState)} max={maxDots} />
+        {displayName}{' '}
+        <Dots
+          level={dotSelector(traitState)}
+          max={maxDots}
+          onClick={this.handleOnClick}
+        />
         <Rank
           dots={rankDots}
           dotValue={traitState.dotsFromRank}
