@@ -1,6 +1,7 @@
 import initialState from './initialState';
 import * as types from '../constants/actionTypes';
 import { setDotsFromStartingDots } from '../utils/categoryStarter';
+import { addPurchasedDot } from '../utils/categoryPurchaser';
 
 export default (state = initialState.character.skills, action) => {
   let category, trait, startingDots;
@@ -21,18 +22,7 @@ export default (state = initialState.character.skills, action) => {
         return state;
       }
 
-      const matchingTrait = state[trait];
-
-      const previousDotsPurchased = matchingTrait
-        ? matchingTrait.dotsPurchased || 0
-        : 0;
-
-      // It is legal to spread undefined.
-      return {
-        ...state,
-        [trait]: { ...matchingTrait, dotsPurchased: previousDotsPurchased + 1 }
-      };
-
+      return addPurchasedDot(state, trait);
     default:
       return state;
   }

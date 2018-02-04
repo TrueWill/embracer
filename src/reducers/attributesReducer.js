@@ -1,6 +1,7 @@
 import initialState from './initialState';
 import * as types from '../constants/actionTypes';
 import { setDotsFromRank } from '../utils/categoryRanker';
+import { addPurchasedDot } from '../utils/categoryPurchaser';
 
 export default (state = initialState.character.attributes, action) => {
   let category, trait, dotsFromRank;
@@ -25,12 +26,7 @@ export default (state = initialState.character.attributes, action) => {
         return state;
       }
 
-      const previousDotsPurchased = state[trait].dotsPurchased || 0;
-
-      return {
-        ...state,
-        [trait]: { ...state[trait], dotsPurchased: previousDotsPurchased + 1 }
-      };
+      return addPurchasedDot(state, trait);
     default:
       return state;
   }
