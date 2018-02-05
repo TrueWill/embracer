@@ -5,7 +5,7 @@ import { maxFlawPoints } from '../constants/flaws';
 
 // state is entire state
 // type is 'merits' or 'flaws'
-const meritsFlawsSelector = (state, type) => {
+export const meritsFlawsSelector = (state, type) => {
   let selected;
   let maxPoints;
 
