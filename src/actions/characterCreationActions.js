@@ -65,3 +65,11 @@ export const removeFlaw = name => ({
     name
   }
 });
+
+export const purchaseDot = (category, trait) => ({
+  type: types.PURCHASE_DOT,
+  payload: {
+    category,
+    trait
+  }
+});

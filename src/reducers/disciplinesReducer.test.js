@@ -42,16 +42,55 @@ it('should set starting dots', () => {
   });
 });
 
+it('should add subsequent purchased dot', () => {
+  const state = {
+    inClan: {
+      availableStartingDots: [{ dots: 2, count: 0 }, { dots: 1, count: 2 }],
+      Celerity: {
+        startingDots: 2,
+        dotsPurchased: 2
+      },
+      outOfClan: {
+        availableStartingDots: [],
+        Potence: {}
+      }
+    }
+  };
+
+  deepFreeze(state);
+
+  const action = actions.purchaseDot('disciplines.inClan', 'Celerity');
+
+  const nextState = reducer(state, action);
+
+  expect(nextState).toEqual({
+    inClan: {
+      availableStartingDots: [{ dots: 2, count: 0 }, { dots: 1, count: 2 }],
+      Celerity: {
+        startingDots: 2,
+        dotsPurchased: 3
+      },
+      outOfClan: {
+        availableStartingDots: [],
+        Potence: {}
+      }
+    }
+  });
+});
+
 it('should clear if change clan', () => {
   const state = {
     inClan: {
       availableStartingDots: [{ dots: 2, count: 0 }, { dots: 1, count: 2 }],
       Celerity: {
-        startingDots: 2
+        startingDots: 2,
+        dotsPurchased: 2
       },
       outOfClan: {
         availableStartingDots: [],
-        Potence: {}
+        Potence: {
+          dotsPurchased: 1
+        }
       }
     }
   };

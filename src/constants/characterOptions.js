@@ -173,3 +173,105 @@ export const backgroundsAvailableStartingDots = [
 ];
 
 export const initialXP = 30;
+export const bankedXPLimit = 5;
+export const outOfClanDisciplineLevelLimit = 3;
+
+const standardDotCost = {
+  attributes: {
+    xp: 3,
+    per: 'each'
+  },
+  backgrounds: {
+    xp: 2,
+    per: 'newLevel'
+  },
+  skills: {
+    xp: 2,
+    per: 'newLevel'
+  },
+  disciplines: {
+    inClan: {
+      xp: 3,
+      per: 'newLevel'
+    },
+    outOfClan: {
+      xp: 4,
+      per: 'newLevel'
+    }
+  }
+};
+
+export const generationChart = {
+  1: {
+    title: 'Neonate',
+    bloodPool: 10,
+    bloodPerTurn: 1,
+    attributeBonus: 1,
+    dotCost: {
+      attributes: standardDotCost.attributes,
+      backgrounds: {
+        xp: 1,
+        per: 'newLevel'
+      },
+      skills: {
+        xp: 1,
+        per: 'newLevel'
+      },
+      disciplines: standardDotCost.disciplines
+    }
+  },
+  2: {
+    title: 'Ancilla',
+    bloodPool: 12,
+    bloodPerTurn: 2,
+    attributeBonus: 2,
+    dotCost: {
+      attributes: standardDotCost.attributes,
+      backgrounds: standardDotCost.backgrounds,
+      skills: standardDotCost.backgrounds,
+      disciplines: standardDotCost.disciplines
+    }
+  },
+  3: {
+    title: 'Pretender Elder',
+    bloodPool: 15,
+    bloodPerTurn: 3,
+    attributeBonus: 3,
+    dotCost: {
+      attributes: standardDotCost.attributes,
+      backgrounds: standardDotCost.backgrounds,
+      skills: standardDotCost.backgrounds,
+      disciplines: standardDotCost.disciplines
+    }
+  },
+  4: {
+    title: 'Master Elder',
+    bloodPool: 20,
+    bloodPerTurn: 4,
+    attributeBonus: 4,
+    dotCost: {
+      attributes: standardDotCost.attributes,
+      backgrounds: standardDotCost.backgrounds,
+      skills: standardDotCost.backgrounds,
+      disciplines: standardDotCost.disciplines
+    }
+  },
+  5: {
+    title: 'Luminary Elder',
+    bloodPool: 30,
+    bloodPerTurn: 5,
+    attributeBonus: 5,
+    dotCost: {
+      attributes: standardDotCost.attributes,
+      backgrounds: standardDotCost.backgrounds,
+      skills: standardDotCost.backgrounds,
+      disciplines: {
+        inClan: standardDotCost.disciplines.inClan,
+        outOfClan: {
+          xp: 5,
+          per: 'newLevel'
+        }
+      }
+    }
+  }
+};

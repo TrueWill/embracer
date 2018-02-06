@@ -27,3 +27,35 @@ it('should return starting dots if no other dots', () => {
 
   expect(result).toEqual(3);
 });
+
+it('should return dots purchased if no other dots', () => {
+  const traitState = {
+    dotsPurchased: 2
+  };
+
+  const result = dotSelector(traitState);
+
+  expect(result).toEqual(2);
+});
+
+it('should add dots from rank to dots purchased', () => {
+  const traitState = {
+    dotsFromRank: 7,
+    dotsPurchased: 1
+  };
+
+  const result = dotSelector(traitState);
+
+  expect(result).toEqual(8);
+});
+
+it('should add starting dots to dots purchased', () => {
+  const traitState = {
+    startingDots: 3,
+    dotsPurchased: 2
+  };
+
+  const result = dotSelector(traitState);
+
+  expect(result).toEqual(5);
+});

@@ -1,5 +1,8 @@
 import { connect } from 'react-redux';
-import { setStartingDots } from '../actions/characterCreationActions';
+import {
+  setStartingDots,
+  purchaseDot
+} from '../actions/characterCreationActions';
 import TraitCategory from '../components/TraitCategory';
 
 const mapStateToProps = (state, ownProps) => {
@@ -11,7 +14,8 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const mapDispatchToProps = {
-  setStartingDots
+  setStartingDots,
+  purchaseDot
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(TraitCategory);

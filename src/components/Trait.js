@@ -17,12 +17,17 @@ class Trait extends Component {
       })
     ).isRequired,
     traitState: PropTypes.object.isRequired,
-    onStartingDotsChange: PropTypes.func.isRequired
+    onStartingDotsChange: PropTypes.func.isRequired,
+    onClick: PropTypes.func.isRequired
   };
 
   handleStartingDotsChange = e => {
     const startingDots = parseInt(e.target.value, 10);
     this.props.onStartingDotsChange(this.props.name, startingDots);
+  };
+
+  handleOnClick = () => {
+    this.props.onClick(this.props.name);
   };
 
   render() {
@@ -36,7 +41,12 @@ class Trait extends Component {
 
     return (
       <div>
-        {displayName} <Dots level={dotSelector(traitState)} max={maxDots} />
+        {displayName}{' '}
+        <Dots
+          level={dotSelector(traitState)}
+          max={maxDots}
+          onClick={this.handleOnClick}
+        />
         {availableStartingDots.length > 0 && (
           <StartingDots
             available={availableStartingDots}

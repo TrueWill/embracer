@@ -13,7 +13,8 @@ class Attributes extends Component {
   static propTypes = {
     attributes: PropTypes.object.isRequired,
     setRank: PropTypes.func.isRequired,
-    setFocus: PropTypes.func.isRequired
+    setFocus: PropTypes.func.isRequired,
+    purchaseDot: PropTypes.func.isRequired
   };
 
   handleRankChange = (trait, dotsFromRank) => {
@@ -22,6 +23,10 @@ class Attributes extends Component {
 
   handleFocusChange = (attribute, focus) => {
     this.props.setFocus(attribute, focus);
+  };
+
+  handleOnClick = trait => {
+    this.props.purchaseDot('attributes', trait);
   };
 
   render() {
@@ -35,6 +40,7 @@ class Attributes extends Component {
           rankDots={attributesRankDots}
           traitState={attributes[name]}
           onRankChange={this.handleRankChange}
+          onClick={this.handleOnClick}
         />
         <Focus
           attribute={name}

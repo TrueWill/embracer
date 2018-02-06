@@ -175,3 +175,72 @@ it('should set empty focus', () => {
     mental: {}
   });
 });
+
+it('should add initial purchased dot', () => {
+  const state = {
+    physical: {
+      dotsFromRank: 7
+    },
+    social: {
+      dotsFromRank: 3
+    },
+    mental: {
+      dotsFromRank: 5
+    }
+  };
+
+  deepFreeze(state);
+
+  const action = actions.purchaseDot('attributes', 'mental');
+
+  const nextState = reducer(state, action);
+
+  expect(nextState).toEqual({
+    physical: {
+      dotsFromRank: 7
+    },
+    social: {
+      dotsFromRank: 3
+    },
+    mental: {
+      dotsFromRank: 5,
+      dotsPurchased: 1
+    }
+  });
+});
+
+it('should add subsequent purchased dot', () => {
+  const state = {
+    physical: {
+      dotsFromRank: 7,
+      dotsPurchased: 1
+    },
+    social: {
+      dotsFromRank: 3
+    },
+    mental: {
+      dotsFromRank: 5,
+      dotsPurchased: 2
+    }
+  };
+
+  deepFreeze(state);
+
+  const action = actions.purchaseDot('attributes', 'mental');
+
+  const nextState = reducer(state, action);
+
+  expect(nextState).toEqual({
+    physical: {
+      dotsFromRank: 7,
+      dotsPurchased: 1
+    },
+    social: {
+      dotsFromRank: 3
+    },
+    mental: {
+      dotsFromRank: 5,
+      dotsPurchased: 3
+    }
+  });
+});
