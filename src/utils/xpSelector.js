@@ -75,8 +75,14 @@ const xpSelector = state => {
       'startingDots'
     );
 
+  const meritsXPCost = meritsFlawsSelector(state, 'merits').currentPoints;
+
   const spent =
-    attributesXPCost + skillsXPCost + backgroundsXPCost + disciplinesXPCost;
+    attributesXPCost +
+    skillsXPCost +
+    backgroundsXPCost +
+    disciplinesXPCost +
+    meritsXPCost;
 
   const gainedFromFlaws = meritsFlawsSelector(state, 'flaws').currentPoints;
 

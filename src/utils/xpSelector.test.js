@@ -156,8 +156,8 @@ it('should calculate values', () => {
   const result = xpSelector(state);
 
   expect(result).toEqual({
-    spent: 109, // 6+3 + 10+8+10+6+2 + 8+10+4+2+4 + 9+6+9 + 4+8
+    spent: 112, // 6+3 + 10+8+10+6+2 + 8+10+4+2+4 + 9+6+9 + 4+8 + 2+1
     gainedFromFlaws: 7,
-    available: -72
+    available: -75
   });
 });
