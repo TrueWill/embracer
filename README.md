@@ -15,10 +15,7 @@ Currently deployment is manual, so the site may not reflect the latest changes.
 
 ## TODO
 
-* Spend initial XP (adjusted by merits/flaws)
-* Calculate XP costs based on current generation (Generation dots are special)
-* Handle changing XP if change merits/flaws
-* Probably have to have running total of spent/available XP and display if negative
+* Adjust XP calculations when buying Generation (p. 106)
 * Reset all if change clan? Add warning text?
 * Calculate Finishing Touches
 * Morality Merits
