@@ -1,5 +1,11 @@
-export const addPurchasedDot = (categoryTraits, trait) => {
+import dotSelector from './dotSelector';
+
+export const addPurchasedDot = (categoryTraits, trait, maxDots) => {
   const matchingTrait = categoryTraits[trait];
+
+  if (matchingTrait && dotSelector(matchingTrait) === maxDots) {
+    return categoryTraits;
+  }
 
   const previousDotsPurchased = matchingTrait
     ? matchingTrait.dotsPurchased || 0

@@ -1,5 +1,9 @@
 import initialState from './initialState';
 import * as types from '../constants/actionTypes';
+import {
+  outOfClanDisciplineLevelLimit,
+  standardTraitMaxDots
+} from '../constants/characterOptions';
 import { setDotsFromStartingDots } from '../utils/categoryStarter';
 import { addPurchasedDot } from '../utils/categoryPurchaser';
 
@@ -34,9 +38,15 @@ export default (state = initialState.character.disciplines, action) => {
 
       affinity = category.slice('disciplines.'.length);
 
+      // TODO: Add tests
+      const maxDots =
+        affinity === 'outOfClan'
+          ? outOfClanDisciplineLevelLimit
+          : standardTraitMaxDots;
+
       return {
         ...state,
-        [affinity]: addPurchasedDot(state[affinity], trait)
+        [affinity]: addPurchasedDot(state[affinity], trait, maxDots)
       };
     case types.UPDATE_CLAN:
       // reset

@@ -1,5 +1,6 @@
 import initialState from './initialState';
 import * as types from '../constants/actionTypes';
+import { standardTraitMaxDots } from '../constants/characterOptions';
 import { setDotsFromStartingDots } from '../utils/categoryStarter';
 import { addPurchasedDot } from '../utils/categoryPurchaser';
 
@@ -15,7 +16,6 @@ export default (state = initialState.character.backgrounds, action) => {
       }
 
       return setDotsFromStartingDots(state, trait, startingDots);
-
     case types.PURCHASE_DOT:
       ({ category, trait } = action.payload);
 
@@ -23,7 +23,7 @@ export default (state = initialState.character.backgrounds, action) => {
         return state;
       }
 
-      return addPurchasedDot(state, trait);
+      return addPurchasedDot(state, trait, standardTraitMaxDots);
     default:
       return state;
   }

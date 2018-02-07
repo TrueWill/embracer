@@ -1,6 +1,8 @@
 import deepFreeze from 'deep-freeze';
 import { addPurchasedDot } from './categoryPurchaser';
 
+const maxDots = 5;
+
 it('should add initial purchased dot', () => {
   const skills = {
     availableStartingDots: [
@@ -13,7 +15,7 @@ it('should add initial purchased dot', () => {
 
   deepFreeze(skills);
 
-  const result = addPurchasedDot(skills, 'computer');
+  const result = addPurchasedDot(skills, 'computer', maxDots);
 
   expect(result).toEqual({
     availableStartingDots: [
@@ -47,7 +49,7 @@ it('should add subsequent purchased dot', () => {
 
   deepFreeze(skills);
 
-  const result = addPurchasedDot(skills, 'computer');
+  const result = addPurchasedDot(skills, 'computer', maxDots);
 
   expect(result).toEqual({
     availableStartingDots: [
@@ -64,4 +66,28 @@ it('should add subsequent purchased dot', () => {
       dotsPurchased: 3
     }
   });
+});
+
+it('should do nothing if purchased dot would exceed max', () => {
+  const skills = {
+    availableStartingDots: [
+      { dots: 4, count: 1 },
+      { dots: 3, count: 1 },
+      { dots: 2, count: 3 },
+      { dots: 1, count: 4 }
+    ],
+    computer: {
+      startingDots: 3,
+      dotsPurchased: 2
+    },
+    dodge: {
+      dotsPurchased: 3
+    }
+  };
+
+  deepFreeze(skills);
+
+  const result = addPurchasedDot(skills, 'computer', maxDots);
+
+  expect(result).toEqual(skills);
 });

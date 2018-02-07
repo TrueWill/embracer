@@ -3,7 +3,6 @@ import * as types from '../constants/actionTypes';
 import { attributeMaxDots } from '../constants/characterOptions';
 import { setDotsFromRank } from '../utils/categoryRanker';
 import { addPurchasedDot } from '../utils/categoryPurchaser';
-import dotSelector from '../utils/dotSelector';
 
 export default (state = initialState.character.attributes, action) => {
   let category, trait, dotsFromRank;
@@ -24,14 +23,11 @@ export default (state = initialState.character.attributes, action) => {
     case types.PURCHASE_DOT:
       ({ category, trait } = action.payload);
 
-      if (
-        category !== 'attributes' ||
-        dotSelector(state[trait]) === attributeMaxDots
-      ) {
+      if (category !== 'attributes') {
         return state;
       }
 
-      return addPurchasedDot(state, trait);
+      return addPurchasedDot(state, trait, attributeMaxDots);
     default:
       return state;
   }
