@@ -1,7 +1,9 @@
 import initialState from './initialState';
 import * as types from '../constants/actionTypes';
+import { attributeMaxDots } from '../constants/characterOptions';
 import { setDotsFromRank } from '../utils/categoryRanker';
 import { addPurchasedDot } from '../utils/categoryPurchaser';
+import dotSelector from '../utils/dotSelector';
 
 export default (state = initialState.character.attributes, action) => {
   let category, trait, dotsFromRank;
@@ -14,7 +16,7 @@ export default (state = initialState.character.attributes, action) => {
         return state;
       }
 
-      return setDotsFromRank(state, trait, dotsFromRank);
+      return setDotsFromRank(state, trait, dotsFromRank, attributeMaxDots);
     case types.SET_FOCUS:
       const { attribute, focus } = action.payload;
 
@@ -22,7 +24,10 @@ export default (state = initialState.character.attributes, action) => {
     case types.PURCHASE_DOT:
       ({ category, trait } = action.payload);
 
-      if (category !== 'attributes') {
+      if (
+        category !== 'attributes' ||
+        dotSelector(state[trait]) === attributeMaxDots
+      ) {
         return state;
       }
 

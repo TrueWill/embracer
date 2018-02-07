@@ -1,8 +1,14 @@
 import { removeProperty } from './objectUtils';
+import dotSelector from './dotSelector';
 
 const removeDotsFromRank = obj => removeProperty(obj, 'dotsFromRank');
 
-export const setDotsFromRank = (categoryTraits, trait, dotsFromRank) => {
+export const setDotsFromRank = (
+  categoryTraits,
+  trait,
+  dotsFromRank,
+  maxDots
+) => {
   const matchingTrait = categoryTraits[trait];
 
   if (!dotsFromRank) {
@@ -27,6 +33,10 @@ export const setDotsFromRank = (categoryTraits, trait, dotsFromRank) => {
       }
     } else {
       updatedTrait = categoryTrait;
+    }
+
+    if (dotSelector(updatedTrait) > maxDots) {
+      updatedTrait.dotsPurchased = maxDots - updatedTrait.dotsFromRank;
     }
 
     return { ...acc, [key]: updatedTrait };

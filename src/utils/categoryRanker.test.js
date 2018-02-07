@@ -1,6 +1,8 @@
 import deepFreeze from 'deep-freeze';
 import { setDotsFromRank } from './categoryRanker';
 
+const maxDots = 10;
+
 it('should set initial rank', () => {
   const attributes = {
     physical: {},
@@ -10,7 +12,7 @@ it('should set initial rank', () => {
 
   deepFreeze(attributes);
 
-  const result = setDotsFromRank(attributes, 'social', 3);
+  const result = setDotsFromRank(attributes, 'social', 3, maxDots);
 
   expect(result).toEqual({
     physical: {},
@@ -35,7 +37,7 @@ it('should update rank, preserving properties', () => {
 
   deepFreeze(attributes);
 
-  const result = setDotsFromRank(attributes, 'social', 3);
+  const result = setDotsFromRank(attributes, 'social', 3, maxDots);
 
   expect(result).toEqual({
     physical: {
@@ -63,7 +65,7 @@ it('should move rank, preserving properties', () => {
 
   deepFreeze(attributes);
 
-  const result = setDotsFromRank(attributes, 'physical', 3);
+  const result = setDotsFromRank(attributes, 'physical', 3, maxDots);
 
   expect(result).toEqual({
     physical: {
@@ -92,7 +94,7 @@ it('should swap rank', () => {
 
   deepFreeze(attributes);
 
-  const result = setDotsFromRank(attributes, 'mental', 7);
+  const result = setDotsFromRank(attributes, 'mental', 7, maxDots);
 
   expect(result).toEqual({
     physical: {
@@ -121,7 +123,7 @@ it('should clear rank when setting to 0, preserving properties', () => {
 
   deepFreeze(attributes);
 
-  const result = setDotsFromRank(attributes, 'physical', 0);
+  const result = setDotsFromRank(attributes, 'physical', 0, maxDots);
 
   expect(result).toEqual({
     physical: {
@@ -147,7 +149,43 @@ it('should do nothing when setting to 0 if unset', () => {
 
   deepFreeze(attributes);
 
-  const result = setDotsFromRank(attributes, 'physical', 0);
+  const result = setDotsFromRank(attributes, 'physical', 0, maxDots);
 
   expect(result).toEqual(attributes);
+});
+
+it('should reduce purchased dots exceeding max if update rank', () => {
+  const attributes = {
+    physical: {
+      dotsFromRank: 7,
+      dotsPurchased: 3
+    },
+    social: {
+      dotsFromRank: 5,
+      dotsPurchased: 1
+    },
+    mental: {
+      dotsFromRank: 3,
+      dotsPurchased: 7
+    }
+  };
+
+  deepFreeze(attributes);
+
+  const result = setDotsFromRank(attributes, 'physical', 3, maxDots);
+
+  expect(result).toEqual({
+    physical: {
+      dotsFromRank: 3,
+      dotsPurchased: 3
+    },
+    social: {
+      dotsFromRank: 5,
+      dotsPurchased: 1
+    },
+    mental: {
+      dotsFromRank: 7,
+      dotsPurchased: 3
+    }
+  });
 });
