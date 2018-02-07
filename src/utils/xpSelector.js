@@ -57,6 +57,9 @@ const xpSelector = state => {
     'startingDots'
   );
 
+  // Generation costs XP cost of the new generation,
+  // but since the cost does not vary after Neonate,
+  // this works - if we assume at least 1 starting dot in Generation.
   const backgroundsXPCost = calculateCategoryXPCost(
     state.character.backgrounds,
     dotCost.backgrounds,

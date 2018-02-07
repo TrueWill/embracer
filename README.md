@@ -15,7 +15,6 @@ Currently deployment is manual, so the site may not reflect the latest changes.
 
 ## TODO
 
-* Adjust XP calculations when buying Generation (p. 106)
 * Reset all if change clan? Add warning text?
 * Calculate Finishing Touches
 * Morality Merits

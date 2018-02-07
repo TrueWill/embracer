@@ -161,3 +161,54 @@ it('should calculate values', () => {
     available: -75
   });
 });
+
+it('should calculate generation costs', () => {
+  const state = {
+    character: {
+      basicInfo: {
+        archetype: '',
+        clan: ''
+      },
+      attributes: {
+        physical: {},
+        social: {},
+        mental: {}
+      },
+      skills: {},
+      backgrounds: {
+        availableStartingDots: [
+          {
+            dots: 3,
+            count: 1
+          },
+          {
+            dots: 2,
+            count: 1
+          },
+          {
+            dots: 1,
+            count: 0
+          }
+        ],
+        generation: {
+          startingDots: 1, // Neonate
+          dotsPurchased: 2 // to Pretender Elder
+        }
+      },
+      disciplines: {
+        inClan: {},
+        outOfClan: {}
+      },
+      merits: [],
+      flaws: []
+    }
+  };
+
+  const result = xpSelector(state);
+
+  expect(result).toEqual({
+    spent: 10,
+    gainedFromFlaws: 0,
+    available: 20
+  });
+});
