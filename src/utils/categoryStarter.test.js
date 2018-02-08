@@ -1,6 +1,8 @@
 import deepFreeze from 'deep-freeze';
 import { setDotsFromStartingDots } from './categoryStarter';
 
+const maxDots = 5;
+
 it('should set initial starting dots', () => {
   const skills = {
     availableStartingDots: [
@@ -13,7 +15,7 @@ it('should set initial starting dots', () => {
 
   deepFreeze(skills);
 
-  const result = setDotsFromStartingDots(skills, 'computer', 3);
+  const result = setDotsFromStartingDots(skills, 'computer', 3, maxDots);
 
   expect(result).toEqual({
     availableStartingDots: [
@@ -43,7 +45,7 @@ it('should set initial starting dots, preserving properties', () => {
 
   deepFreeze(skills);
 
-  const result = setDotsFromStartingDots(skills, 'computer', 3);
+  const result = setDotsFromStartingDots(skills, 'computer', 3, maxDots);
 
   expect(result).toEqual({
     availableStartingDots: [
@@ -78,7 +80,7 @@ it('should update starting dots, preserving properties', () => {
 
   deepFreeze(skills);
 
-  const result = setDotsFromStartingDots(skills, 'computer', 3);
+  const result = setDotsFromStartingDots(skills, 'computer', 3, maxDots);
 
   expect(result).toEqual({
     availableStartingDots: [
@@ -116,7 +118,7 @@ it('should clear starting dots when setting to 0, preserving properties', () => 
 
   deepFreeze(skills);
 
-  const result = setDotsFromStartingDots(skills, 'dodge', 0);
+  const result = setDotsFromStartingDots(skills, 'dodge', 0, maxDots);
 
   expect(result).toEqual({
     availableStartingDots: [
@@ -152,7 +154,7 @@ it('should remove trait when setting to 0 if no other properties', () => {
 
   deepFreeze(skills);
 
-  const result = setDotsFromStartingDots(skills, 'dodge', 0);
+  const result = setDotsFromStartingDots(skills, 'dodge', 0, maxDots);
 
   expect(result).toEqual({
     availableStartingDots: [
@@ -179,7 +181,38 @@ it('should do nothing when setting to 0 if unset', () => {
 
   deepFreeze(skills);
 
-  const result = setDotsFromStartingDots(skills, 'brawl', 0);
+  const result = setDotsFromStartingDots(skills, 'brawl', 0, maxDots);
 
   expect(result).toEqual(skills);
+});
+
+it('should reduce purchased dots exceeding max if set', () => {
+  const skills = {
+    availableStartingDots: [
+      { dots: 4, count: 1 },
+      { dots: 3, count: 2 },
+      { dots: 2, count: 3 },
+      { dots: 1, count: 4 }
+    ],
+    computer: {
+      dotsPurchased: 3
+    }
+  };
+
+  deepFreeze(skills);
+
+  const result = setDotsFromStartingDots(skills, 'computer', 3, maxDots);
+
+  expect(result).toEqual({
+    availableStartingDots: [
+      { dots: 4, count: 1 },
+      { dots: 3, count: 1 },
+      { dots: 2, count: 3 },
+      { dots: 1, count: 4 }
+    ],
+    computer: {
+      startingDots: 3,
+      dotsPurchased: 2
+    }
+  });
 });

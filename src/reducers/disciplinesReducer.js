@@ -8,7 +8,7 @@ import { setDotsFromStartingDots } from '../utils/categoryStarter';
 import { addPurchasedDot } from '../utils/categoryPurchaser';
 
 export default (state = initialState.character.disciplines, action) => {
-  let category, trait, startingDots, affinity;
+  let category, trait, startingDots, affinity, maxDots;
 
   switch (action.type) {
     case types.SET_STARTING_DOTS:
@@ -20,12 +20,19 @@ export default (state = initialState.character.disciplines, action) => {
 
       affinity = category.slice('disciplines.'.length);
 
+      // TODO: Add tests
+      maxDots =
+        affinity === 'outOfClan'
+          ? outOfClanDisciplineLevelLimit
+          : standardTraitMaxDots;
+
       return {
         ...state,
         [affinity]: setDotsFromStartingDots(
           state[affinity],
           trait,
-          startingDots
+          startingDots,
+          maxDots
         )
       };
     case types.PURCHASE_DOT:
@@ -39,7 +46,7 @@ export default (state = initialState.character.disciplines, action) => {
       affinity = category.slice('disciplines.'.length);
 
       // TODO: Add tests
-      const maxDots =
+      maxDots =
         affinity === 'outOfClan'
           ? outOfClanDisciplineLevelLimit
           : standardTraitMaxDots;

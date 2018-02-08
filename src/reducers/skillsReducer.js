@@ -15,7 +15,12 @@ export default (state = initialState.character.skills, action) => {
         return state;
       }
 
-      return setDotsFromStartingDots(state, trait, startingDots);
+      return setDotsFromStartingDots(
+        state,
+        trait,
+        startingDots,
+        standardTraitMaxDots
+      );
     case types.PURCHASE_DOT:
       ({ category, trait } = action.payload);
 

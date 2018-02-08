@@ -1,11 +1,13 @@
 import { removeProperty, isEmpty } from './objectUtils';
+import dotSelector from './dotSelector';
 
 const removeStartingDots = obj => removeProperty(obj, 'startingDots');
 
 export const setDotsFromStartingDots = (
   categoryTraits,
   trait,
-  startingDots
+  startingDots,
+  maxDots
 ) => {
   const matchingTrait = categoryTraits[trait];
 
@@ -26,6 +28,10 @@ export const setDotsFromStartingDots = (
     startingDots === 0
       ? removeStartingDots(matchingTrait)
       : { ...matchingTrait, startingDots };
+
+  if (startingDots > 0 && dotSelector(updatedTrait) > maxDots) {
+    updatedTrait.dotsPurchased = maxDots - startingDots;
+  }
 
   return isEmpty(updatedTrait)
     ? {

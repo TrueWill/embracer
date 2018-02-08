@@ -150,3 +150,43 @@ it('should add subsequent purchased dot', () => {
     }
   });
 });
+
+it('should reduce purchased dots exceeding max if update starting dots', () => {
+  const state = {
+    availableStartingDots: [
+      { dots: 4, count: 1 },
+      { dots: 3, count: 1 },
+      { dots: 2, count: 3 },
+      { dots: 1, count: 4 }
+    ],
+    computer: {
+      startingDots: 3,
+      dotsPurchased: 2
+    },
+    dodge: {
+      dotsPurchased: 3
+    }
+  };
+
+  deepFreeze(state);
+
+  const action = actions.setStartingDots('skills', 'computer', 4);
+
+  const nextState = reducer(state, action);
+
+  expect(nextState).toEqual({
+    availableStartingDots: [
+      { dots: 4, count: 0 },
+      { dots: 3, count: 2 },
+      { dots: 2, count: 3 },
+      { dots: 1, count: 4 }
+    ],
+    computer: {
+      startingDots: 4,
+      dotsPurchased: 1
+    },
+    dodge: {
+      dotsPurchased: 3
+    }
+  });
+});
