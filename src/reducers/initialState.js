@@ -3,8 +3,21 @@ import {
   skillsAvailableStartingDots,
   backgroundsAvailableStartingDots,
   inClanDisciplinesAvailableStartingDots,
-  outOfClanDisciplinesAvailableStartingDots
+  outOfClanDisciplinesAvailableStartingDots,
+  standardTraitMaxDots
 } from '../constants/characterOptions';
+import { setDotsFromStartingDots } from '../utils/categoryStarter';
+
+let backgrounds = {
+  availableStartingDots: backgroundsAvailableStartingDots
+};
+
+backgrounds = setDotsFromStartingDots(
+  backgrounds,
+  'generation',
+  1,
+  standardTraitMaxDots
+);
 
 export default {
   character: {
@@ -19,9 +32,7 @@ export default {
     skills: {
       availableStartingDots: skillsAvailableStartingDots
     },
-    backgrounds: {
-      availableStartingDots: backgroundsAvailableStartingDots
-    },
+    backgrounds,
     disciplines: {
       inClan: {
         availableStartingDots: inClanDisciplinesAvailableStartingDots
