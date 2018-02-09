@@ -17,7 +17,9 @@ Currently deployment is manual, so the site may not reflect the latest changes.
 
 * Reset all if change clan? Add warning text?
 * Calculate Finishing Touches
+* Purchase Morality with XP (10?)
 * Morality Merits
+* Display bankable XP (have constant)
 * STYLE
 * Print / export
 * Improve test coverage
