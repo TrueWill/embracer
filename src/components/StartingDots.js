@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const StartingDots = ({ available, value, onChange }) => {
+const StartingDots = ({ available, value, disallowClear, onChange }) => {
   const optionElements = available
     .filter(a => a.count > 0 && a.dots !== value)
     .map(a => (
@@ -14,7 +14,7 @@ const StartingDots = ({ available, value, onChange }) => {
     <div>
       Starting dots
       <select value={value} onChange={onChange}>
-        <option value={0}>Clear</option>
+        {!disallowClear && <option value={0}>Clear</option>}
         {value !== 0 && <option value={value}>{value}</option>}
         {optionElements}
       </select>
@@ -30,11 +30,13 @@ StartingDots.propTypes = {
     })
   ).isRequired,
   value: PropTypes.number,
+  disallowClear: PropTypes.bool,
   onChange: PropTypes.func.isRequired
 };
 
 StartingDots.defaultProps = {
-  value: 0
+  value: 0,
+  disallowClear: false
 };
 
 export default StartingDots;

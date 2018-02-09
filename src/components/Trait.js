@@ -51,6 +51,7 @@ class Trait extends Component {
           <StartingDots
             available={availableStartingDots}
             value={traitState.startingDots}
+            disallowClear={name === 'generation'}
             onChange={this.handleStartingDotsChange}
           />
         )}

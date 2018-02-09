@@ -99,3 +99,21 @@ it('should exclude values with 0 counts unless current', () => {
   expect(getSelectedValue(wrapper)).toBe(2);
   expect(getOptionValues(wrapper)).toEqual([0, 2, 4, 1]);
 });
+
+it('should not include clear as an option if disallow clear', () => {
+  const wrapper = shallow(
+    <StartingDots
+      available={[
+        { dots: 4, count: 1 },
+        { dots: 3, count: 2 },
+        { dots: 1, count: 4 }
+      ]}
+      value={2}
+      disallowClear={true}
+      onChange={noop}
+    />
+  );
+
+  expect(getSelectedValue(wrapper)).toBe(2);
+  expect(getOptionValues(wrapper)).toEqual([2, 4, 3, 1]);
+});
