@@ -32,7 +32,6 @@ export default (state = initialState.character.backgrounds, action) => {
       }
 
       return addPurchasedDot(state, trait, standardTraitMaxDots);
-
     case types.UNPURCHASE_DOT:
       ({ category, trait } = action.payload);
 
@@ -41,7 +40,6 @@ export default (state = initialState.character.backgrounds, action) => {
       }
 
       return removePurchasedDot(state, trait);
-
     default:
       return state;
   }
