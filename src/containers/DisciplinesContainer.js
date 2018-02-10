@@ -1,7 +1,8 @@
 import { connect } from 'react-redux';
 import {
   setStartingDots,
-  purchaseDot
+  purchaseDot,
+  unpurchaseDot
 } from '../actions/characterCreationActions';
 import disciplineNamesSelector from '../utils/disciplineNamesSelector';
 import Disciplines from '../components/Disciplines';
@@ -12,13 +13,28 @@ const mapStateToProps = (state, ownProps) => {
   return {
     names: disciplineNamesSelector(state)[affinity],
     displayNameOverride: {},
-    traits: state.character.disciplines[affinity]
+    traits: state.character.disciplines[affinity],
+    isEraser: state.mode.isEraser
   };
 };
 
 const mapDispatchToProps = {
   setStartingDots,
-  purchaseDot
+  purchaseDot,
+  unpurchaseDot
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Disciplines);
+const mergeProps = (stateProps, dispatchProps, ownProps) => ({
+  ...ownProps,
+  names: stateProps.names,
+  displayNameOverride: stateProps.displayNameOverride,
+  traits: stateProps.traits,
+  setStartingDots: dispatchProps.setStartingDots,
+  purchaseOrUnpurchaseDot: stateProps.isEraser
+    ? dispatchProps.unpurchaseDot
+    : dispatchProps.purchaseDot
+});
+
+export default connect(mapStateToProps, mapDispatchToProps, mergeProps)(
+  Disciplines
+);
