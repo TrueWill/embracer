@@ -12,6 +12,7 @@ import TraitCategoryContainer from '../containers/TraitCategoryContainer';
 import DisciplinesContainer from '../containers/DisciplinesContainer';
 import MeritsFlawsContainer from '../containers/MeritsFlawsContainer';
 import XPContainer from '../containers/XPContainer';
+import PencilEraser from '../components/PencilEraser';
 
 const skills = (
   <TraitCategoryContainer
@@ -50,6 +51,8 @@ const App = () => (
     <h2>Embracer</h2>
     <BasicInfoContainer />
     <XPContainer />
+    <PencilEraser isEraser={false} />
+    <hr />
     <Link to="/">Attributes</Link> |
     <Link to="/skills">Skills</Link> |
     <Link to="/backgrounds">Backgrounds</Link> |
