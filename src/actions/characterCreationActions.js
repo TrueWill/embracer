@@ -74,8 +74,8 @@ export const purchaseDot = (category, trait) => ({
   }
 });
 
-export const removePurchasedDot = (category, trait) => ({
-  type: types.REMOVE_PURCHASED_DOT,
+export const unpurchaseDot = (category, trait) => ({
+  type: types.UNPURCHASE_DOT,
   payload: {
     category,
     trait

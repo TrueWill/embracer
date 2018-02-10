@@ -3,7 +3,7 @@ import {
   setRank,
   setFocus,
   purchaseDot,
-  removePurchasedDot
+  unpurchaseDot
 } from '../actions/characterCreationActions';
 import Attributes from '../components/Attributes';
 
@@ -16,15 +16,15 @@ const mapDispatchToProps = {
   setRank,
   setFocus,
   purchaseDot,
-  removePurchasedDot
+  unpurchaseDot
 };
 
 const mergeProps = (stateProps, dispatchProps) => ({
   attributes: stateProps.attributes,
   setRank: dispatchProps.setRank,
   setFocus: dispatchProps.setFocus,
-  purchaseOrRemovePurchasedDot: stateProps.isEraser
-    ? dispatchProps.removePurchasedDot
+  purchaseOrUnpurchaseDot: stateProps.isEraser
+    ? dispatchProps.unpurchaseDot
     : dispatchProps.purchaseDot
 });
 
