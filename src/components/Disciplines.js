@@ -14,7 +14,7 @@ class Disciplines extends Component {
     displayNameOverride: PropTypes.object.isRequired,
     traits: PropTypes.object.isRequired,
     setStartingDots: PropTypes.func.isRequired,
-    purchaseDot: PropTypes.func.isRequired
+    purchaseOrUnpurchaseDot: PropTypes.func.isRequired
   };
 
   handleSetStartingDots = (categoryName, trait, startingDots) => {
@@ -25,8 +25,11 @@ class Disciplines extends Component {
     );
   };
 
-  handlePurchaseDot = (categoryName, trait) => {
-    this.props.purchaseDot('disciplines.' + this.props.affinity, trait);
+  handlePurchaseOrUnpurchaseDot = (categoryName, trait) => {
+    this.props.purchaseOrUnpurchaseDot(
+      'disciplines.' + this.props.affinity,
+      trait
+    );
   };
 
   render() {
@@ -39,7 +42,7 @@ class Disciplines extends Component {
         traitDisplayNameOverride={displayNameOverride}
         categoryTraits={traits}
         setStartingDots={this.handleSetStartingDots}
-        purchaseDot={this.handlePurchaseDot}
+        purchaseOrUnpurchaseDot={this.handlePurchaseOrUnpurchaseDot}
       />
     );
   }

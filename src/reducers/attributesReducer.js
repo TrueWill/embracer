@@ -2,7 +2,10 @@ import initialState from './initialState';
 import * as types from '../constants/actionTypes';
 import { attributeMaxDots } from '../constants/characterOptions';
 import { setDotsFromRank } from '../utils/categoryRanker';
-import { addPurchasedDot } from '../utils/categoryPurchaser';
+import {
+  addPurchasedDot,
+  removePurchasedDot
+} from '../utils/categoryPurchaser';
 
 export default (state = initialState.character.attributes, action) => {
   let category, trait, dotsFromRank;
@@ -28,6 +31,14 @@ export default (state = initialState.character.attributes, action) => {
       }
 
       return addPurchasedDot(state, trait, attributeMaxDots);
+    case types.UNPURCHASE_DOT:
+      ({ category, trait } = action.payload);
+
+      if (category !== 'attributes') {
+        return state;
+      }
+
+      return removePurchasedDot(state, trait, true);
     default:
       return state;
   }

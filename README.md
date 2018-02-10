@@ -23,6 +23,7 @@ Currently deployment is manual, so the site may not reflect the latest changes.
 * STYLE
 * Print / export
 * Improve test coverage
+* Refactor
 * Bloodlines - enable when select clan - list and charge Merit costs (clear on change)
 * Add Lesser/Rare Clans - how to handle Rarity Merit costs?
 * Automate deployment
@@ -30,6 +31,7 @@ Currently deployment is manual, so the site may not reflect the latest changes.
 * Rituals
 * Techniques
 * Elder Powers
+* No focus selected - should empty object
 * Ask By Night Studios to add to their list of generators
 
 ## Contributing

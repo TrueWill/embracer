@@ -8,3 +8,5 @@ export const REMOVE_MERIT = 'REMOVE_MERIT';
 export const ADD_FLAW = 'ADD_FLAW';
 export const REMOVE_FLAW = 'REMOVE_FLAW';
 export const PURCHASE_DOT = 'PURCHASE_DOT';
+export const UNPURCHASE_DOT = 'UNPURCHASE_DOT';
+export const TOGGLE_PENCIL_ERASER_MODE = 'TOGGLE_PENCIL_ERASER_MODE';

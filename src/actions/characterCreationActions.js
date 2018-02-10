@@ -73,3 +73,11 @@ export const purchaseDot = (category, trait) => ({
     trait
   }
 });
+
+export const unpurchaseDot = (category, trait) => ({
+  type: types.UNPURCHASE_DOT,
+  payload: {
+    category,
+    trait
+  }
+});

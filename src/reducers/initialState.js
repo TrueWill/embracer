@@ -20,6 +20,9 @@ backgrounds = setDotsFromStartingDots(
 );
 
 export default {
+  mode: {
+    isEraser: false
+  },
   character: {
     basicInfo: {
       archetype: '',

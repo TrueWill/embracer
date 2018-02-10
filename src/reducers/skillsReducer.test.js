@@ -190,3 +190,38 @@ it('should reduce purchased dots exceeding max if update starting dots', () => {
     }
   });
 });
+
+it('should remove initial purchased dot and skill if no other properties', () => {
+  const state = {
+    availableStartingDots: [
+      { dots: 4, count: 1 },
+      { dots: 3, count: 2 },
+      { dots: 2, count: 3 },
+      { dots: 1, count: 4 }
+    ],
+    computer: {
+      dotsPurchased: 1
+    },
+    dodge: {
+      dotsPurchased: 3
+    }
+  };
+
+  deepFreeze(state);
+
+  const action = actions.unpurchaseDot('skills', 'computer');
+
+  const nextState = reducer(state, action);
+
+  expect(nextState).toEqual({
+    availableStartingDots: [
+      { dots: 4, count: 1 },
+      { dots: 3, count: 2 },
+      { dots: 2, count: 3 },
+      { dots: 1, count: 4 }
+    ],
+    dodge: {
+      dotsPurchased: 3
+    }
+  });
+});

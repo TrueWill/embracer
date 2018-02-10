@@ -5,7 +5,10 @@ import {
   standardTraitMaxDots
 } from '../constants/characterOptions';
 import { setDotsFromStartingDots } from '../utils/categoryStarter';
-import { addPurchasedDot } from '../utils/categoryPurchaser';
+import {
+  addPurchasedDot,
+  removePurchasedDot
+} from '../utils/categoryPurchaser';
 
 export default (state = initialState.character.disciplines, action) => {
   let category, trait, startingDots, affinity, maxDots;
@@ -54,6 +57,20 @@ export default (state = initialState.character.disciplines, action) => {
       return {
         ...state,
         [affinity]: addPurchasedDot(state[affinity], trait, maxDots)
+      };
+    case types.UNPURCHASE_DOT:
+      ({ category, trait } = action.payload);
+
+      // TODO: Refactor to remove duplication
+      if (category.lastIndexOf('disciplines.', 0) !== 0) {
+        return state;
+      }
+
+      affinity = category.slice('disciplines.'.length);
+
+      return {
+        ...state,
+        [affinity]: removePurchasedDot(state[affinity], trait)
       };
     case types.UPDATE_CLAN:
       // reset

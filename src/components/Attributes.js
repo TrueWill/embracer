@@ -14,7 +14,7 @@ class Attributes extends Component {
     attributes: PropTypes.object.isRequired,
     setRank: PropTypes.func.isRequired,
     setFocus: PropTypes.func.isRequired,
-    purchaseDot: PropTypes.func.isRequired
+    purchaseOrUnpurchaseDot: PropTypes.func.isRequired
   };
 
   handleRankChange = (trait, dotsFromRank) => {
@@ -26,7 +26,7 @@ class Attributes extends Component {
   };
 
   handleOnClick = trait => {
-    this.props.purchaseDot('attributes', trait);
+    this.props.purchaseOrUnpurchaseDot('attributes', trait);
   };
 
   render() {

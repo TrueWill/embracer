@@ -11,7 +11,7 @@ class TraitCategory extends Component {
     traitDisplayNameOverride: PropTypes.object.isRequired,
     categoryTraits: PropTypes.object.isRequired,
     setStartingDots: PropTypes.func.isRequired,
-    purchaseDot: PropTypes.func.isRequired
+    purchaseOrUnpurchaseDot: PropTypes.func.isRequired
   };
 
   handleStartingDotsChange = (trait, startingDots) => {
@@ -19,7 +19,7 @@ class TraitCategory extends Component {
   };
 
   handleOnClick = trait => {
-    this.props.purchaseDot(this.props.categoryName, trait);
+    this.props.purchaseOrUnpurchaseDot(this.props.categoryName, trait);
   };
 
   render() {

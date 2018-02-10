@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux';
+import mode from './modeReducer';
 import basicInfo from './basicInfoReducer';
 import attributes from './attributesReducer';
 import skills from './skillsReducer';
@@ -8,6 +9,7 @@ import merits from './meritsReducer';
 import flaws from './flawsReducer';
 
 const rootReducer = combineReducers({
+  mode,
   character: combineReducers({
     basicInfo,
     attributes,

@@ -49,11 +49,11 @@ it('should add subsequent purchased dot', () => {
       Celerity: {
         startingDots: 2,
         dotsPurchased: 2
-      },
-      outOfClan: {
-        availableStartingDots: [],
-        Potence: {}
       }
+    },
+    outOfClan: {
+      availableStartingDots: [],
+      Potence: {}
     }
   };
 
@@ -69,11 +69,11 @@ it('should add subsequent purchased dot', () => {
       Celerity: {
         startingDots: 2,
         dotsPurchased: 3
-      },
-      outOfClan: {
-        availableStartingDots: [],
-        Potence: {}
       }
+    },
+    outOfClan: {
+      availableStartingDots: [],
+      Potence: {}
     }
   });
 });
@@ -85,12 +85,12 @@ it('should clear if change clan', () => {
       Celerity: {
         startingDots: 2,
         dotsPurchased: 2
-      },
-      outOfClan: {
-        availableStartingDots: [],
-        Potence: {
-          dotsPurchased: 1
-        }
+      }
+    },
+    outOfClan: {
+      availableStartingDots: [],
+      Potence: {
+        dotsPurchased: 1
       }
     }
   };
@@ -98,6 +98,35 @@ it('should clear if change clan', () => {
   deepFreeze(state);
 
   const action = actions.updateClan('Tremere');
+
+  const nextState = reducer(state, action);
+
+  expect(nextState).toEqual({
+    inClan: {
+      availableStartingDots: [{ dots: 2, count: 1 }, { dots: 1, count: 2 }]
+    },
+    outOfClan: {
+      availableStartingDots: []
+    }
+  });
+});
+
+it('should remove initial purchased dot and discipline if no other properties', () => {
+  const state = {
+    inClan: {
+      availableStartingDots: [{ dots: 2, count: 1 }, { dots: 1, count: 2 }],
+      Celerity: {
+        dotsPurchased: 1
+      }
+    },
+    outOfClan: {
+      availableStartingDots: []
+    }
+  };
+
+  deepFreeze(state);
+
+  const action = actions.unpurchaseDot('disciplines.inClan', 'Celerity');
 
   const nextState = reducer(state, action);
 
