@@ -21,7 +21,11 @@ export const addPurchasedDot = (categoryTraits, trait, maxDots) => {
   };
 };
 
-export const removePurchasedDot = (categoryTraits, trait) => {
+export const removePurchasedDot = (
+  categoryTraits,
+  trait,
+  preserveEmptyTrait = false
+) => {
   const matchingTrait = categoryTraits[trait];
 
   if (!matchingTrait || !matchingTrait.dotsPurchased) {
@@ -35,7 +39,7 @@ export const removePurchasedDot = (categoryTraits, trait) => {
       ? removeDotsPurchased(matchingTrait)
       : { ...matchingTrait, dotsPurchased: newDotsPurchased };
 
-  return isEmpty(updatedTrait)
+  return !preserveEmptyTrait && isEmpty(updatedTrait)
     ? removeProperty(categoryTraits, trait)
     : {
         ...categoryTraits,

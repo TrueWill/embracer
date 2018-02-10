@@ -305,3 +305,61 @@ it('should reduce purchased dots exceeding max if update rank', () => {
     }
   });
 });
+
+it('should remove subsequent purchased dot', () => {
+  const state = {
+    physical: {
+      dotsFromRank: 7,
+      dotsPurchased: 1
+    },
+    social: {
+      dotsFromRank: 3
+    },
+    mental: {
+      dotsFromRank: 5,
+      dotsPurchased: 2
+    }
+  };
+
+  deepFreeze(state);
+
+  const action = actions.unpurchaseDot('attributes', 'mental');
+
+  const nextState = reducer(state, action);
+
+  expect(nextState).toEqual({
+    physical: {
+      dotsFromRank: 7,
+      dotsPurchased: 1
+    },
+    social: {
+      dotsFromRank: 3
+    },
+    mental: {
+      dotsFromRank: 5,
+      dotsPurchased: 1
+    }
+  });
+});
+
+it('should remove initial purchased dot without removing attribute', () => {
+  const state = {
+    physical: {},
+    social: {},
+    mental: {
+      dotsPurchased: 1
+    }
+  };
+
+  deepFreeze(state);
+
+  const action = actions.unpurchaseDot('attributes', 'mental');
+
+  const nextState = reducer(state, action);
+
+  expect(nextState).toEqual({
+    physical: {},
+    social: {},
+    mental: {}
+  });
+});

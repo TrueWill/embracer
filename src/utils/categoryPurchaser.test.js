@@ -194,6 +194,26 @@ it('should remove trait when removing initial purchased dot if no other properti
   });
 });
 
+it('should not remove trait when removing initial purchased dot if flag passed', () => {
+  const attributes = {
+    physical: {},
+    social: {},
+    mental: {
+      dotsPurchased: 1
+    }
+  };
+
+  deepFreeze(attributes);
+
+  const result = removePurchasedDot(attributes, 'mental', true);
+
+  expect(result).toEqual({
+    physical: {},
+    social: {},
+    mental: {}
+  });
+});
+
 it('should do nothing when remove if no purchased dots', () => {
   const skills = {
     availableStartingDots: [
