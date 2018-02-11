@@ -1,4 +1,4 @@
-import { initialXP } from '../constants/characterOptions';
+import { initialXP, bankedXPLimit } from '../constants/characterOptions';
 import generationSelector from './generationSelector';
 import { meritsFlawsSelector } from './meritsFlawsSelector';
 
@@ -86,10 +86,15 @@ const xpSelector = state => {
 
   const gainedFromFlaws = meritsFlawsSelector(state, 'flaws').currentPoints;
 
+  const available = initialXP + gainedFromFlaws - spent;
+
+  const bankable = Math.max(Math.min(available, bankedXPLimit), 0);
+
   return {
     spent,
     gainedFromFlaws,
-    available: initialXP + gainedFromFlaws - spent
+    available,
+    bankable
   };
 };
 

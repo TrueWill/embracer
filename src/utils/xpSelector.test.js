@@ -10,7 +10,8 @@ it('should return correct initial values', () => {
   expect(result).toEqual({
     spent: 0,
     gainedFromFlaws: 0,
-    available: 30
+    available: 30,
+    bankable: 5
   });
 });
 
@@ -153,12 +154,15 @@ it('should calculate values', () => {
     }
   };
 
+  deepFreeze(state);
+
   const result = xpSelector(state);
 
   expect(result).toEqual({
     spent: 112, // 6+3 + 10+8+10+6+2 + 8+10+4+2+4 + 9+6+9 + 4+8 + 2+1
     gainedFromFlaws: 7,
-    available: -75
+    available: -75,
+    bankable: 0
   });
 });
 
@@ -204,11 +208,104 @@ it('should calculate generation costs', () => {
     }
   };
 
+  deepFreeze(state);
+
   const result = xpSelector(state);
 
   expect(result).toEqual({
     spent: 10,
     gainedFromFlaws: 0,
-    available: 20
+    available: 20,
+    bankable: 5
+  });
+});
+
+it('should calculate bankable when available is less', () => {
+  const state = {
+    mode: {
+      isEraser: false
+    },
+    character: {
+      basicInfo: {
+        archetype: '',
+        clan: ''
+      },
+      attributes: {
+        physical: {
+          dotsPurchased: 9
+        },
+        social: {},
+        mental: {}
+      },
+      skills: {
+        availableStartingDots: [
+          {
+            dots: 4,
+            count: 1
+          },
+          {
+            dots: 3,
+            count: 2
+          },
+          {
+            dots: 2,
+            count: 3
+          },
+          {
+            dots: 1,
+            count: 4
+          }
+        ]
+      },
+      backgrounds: {
+        availableStartingDots: [
+          {
+            dots: 3,
+            count: 1
+          },
+          {
+            dots: 2,
+            count: 1
+          },
+          {
+            dots: 1,
+            count: 0
+          }
+        ],
+        generation: {
+          startingDots: 1
+        }
+      },
+      disciplines: {
+        inClan: {
+          availableStartingDots: [
+            {
+              dots: 2,
+              count: 1
+            },
+            {
+              dots: 1,
+              count: 2
+            }
+          ]
+        },
+        outOfClan: {
+          availableStartingDots: []
+        }
+      },
+      merits: [],
+      flaws: []
+    }
+  };
+
+  deepFreeze(state);
+
+  const result = xpSelector(state);
+
+  expect(result).toEqual({
+    spent: 27,
+    gainedFromFlaws: 0,
+    available: 3,
+    bankable: 3
   });
 });

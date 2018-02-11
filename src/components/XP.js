@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-const XP = ({ spent, gainedFromFlaws, available }) => {
+const XP = ({ spent, gainedFromFlaws, available, bankable }) => {
   const availableClass = classNames({ negativePoints: available < 0 });
 
   return (
@@ -13,6 +13,7 @@ const XP = ({ spent, gainedFromFlaws, available }) => {
       <div>
         Available: <span className={availableClass}>{available}</span>
       </div>
+      <div>Bankable: {bankable}</div>
     </div>
   );
 };
@@ -20,7 +21,8 @@ const XP = ({ spent, gainedFromFlaws, available }) => {
 XP.propTypes = {
   spent: PropTypes.number.isRequired,
   gainedFromFlaws: PropTypes.number.isRequired,
-  available: PropTypes.number.isRequired
+  available: PropTypes.number.isRequired,
+  bankable: PropTypes.number.isRequired
 };
 
 export default XP;
