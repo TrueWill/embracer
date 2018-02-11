@@ -1,5 +1,5 @@
-import { initialXP, generationChart } from '../constants/characterOptions';
-import dotSelector from './dotSelector';
+import { initialXP } from '../constants/characterOptions';
+import generationSelector from './generationSelector';
 import { meritsFlawsSelector } from './meritsFlawsSelector';
 
 const calculateTraitXPCost = (trait, dotCost, initialLevelProperty) => {
@@ -40,10 +40,7 @@ const calculateCategoryXPCost = (
   }, 0);
 
 const xpSelector = state => {
-  const generationState = state.character.backgrounds.generation;
-  const generation = (generationState ? dotSelector(generationState) : 0) || 1;
-
-  const dotCost = generationChart[generation].dotCost;
+  const dotCost = generationSelector(state).dotCost;
 
   const attributesXPCost = calculateCategoryXPCost(
     state.character.attributes,

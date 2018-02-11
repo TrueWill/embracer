@@ -1,12 +1,9 @@
 import { connect } from 'react-redux';
-import dotSelector from '../utils/dotSelector';
-import { generationChart } from '../constants/characterOptions';
+import generationSelector from '../utils/generationSelector';
 import Blood from '../components/Blood';
 
 const mapStateToProps = state => {
-  // TODO: Refactor to selector
-  const generation = dotSelector(state.character.backgrounds.generation);
-  const generationDetails = generationChart[generation];
+  const generationDetails = generationSelector(state);
 
   return {
     bloodPool: generationDetails.bloodPool,
