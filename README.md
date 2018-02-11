@@ -16,7 +16,6 @@ Currently deployment is manual, so the site may not reflect the latest changes.
 ## TODO
 
 * Display Generation title
-* Reset all if change clan? (Do you need to?) Add warning text?
 * Purchase Morality with XP (10?)
 * Morality Merits
 * Display bankable XP (have constant)

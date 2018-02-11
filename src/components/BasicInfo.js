@@ -56,6 +56,7 @@ export default class BasicInfo extends Component {
           <option value="">(not selected)</option>
           {clanOptions}
         </select>
+        (changing will reset Disciplines and Merits)
       </div>
     );
   }
