@@ -32,6 +32,7 @@ Currently deployment is manual, so the site may not reflect the latest changes.
 * Techniques
 * Elder Powers
 * No focus selected - should empty object
+* Copyright/TM notice on app?
 * Ask By Night Studios to add to their list of generators
 
 ## Contributing
