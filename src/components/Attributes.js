@@ -12,6 +12,7 @@ import {
 class Attributes extends Component {
   static propTypes = {
     attributes: PropTypes.object.isRequired,
+    attributeBonus: PropTypes.number.isRequired,
     setRank: PropTypes.func.isRequired,
     setFocus: PropTypes.func.isRequired,
     purchaseOrUnpurchaseDot: PropTypes.func.isRequired
@@ -30,7 +31,7 @@ class Attributes extends Component {
   };
 
   render() {
-    const { attributes } = this.props;
+    const { attributes, attributeBonus } = this.props;
 
     const traits = attributeTraitNames.map(name => (
       <div key={name}>
@@ -55,6 +56,7 @@ class Attributes extends Component {
       <div>
         <h3>Attributes</h3>
         {traits}
+        <div>Attribute Bonus: {attributeBonus}</div>
       </div>
     );
   }

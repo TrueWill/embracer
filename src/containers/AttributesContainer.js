@@ -1,4 +1,5 @@
 import { connect } from 'react-redux';
+import generationSelector from '../utils/generationSelector';
 import {
   setRank,
   setFocus,
@@ -7,10 +8,15 @@ import {
 } from '../actions/characterCreationActions';
 import Attributes from '../components/Attributes';
 
-const mapStateToProps = state => ({
-  attributes: state.character.attributes,
-  isEraser: state.mode.isEraser
-});
+const mapStateToProps = state => {
+  const attributeBonus = generationSelector(state).attributeBonus;
+
+  return {
+    attributes: state.character.attributes,
+    attributeBonus,
+    isEraser: state.mode.isEraser
+  };
+};
 
 const mapDispatchToProps = {
   setRank,
@@ -21,6 +27,7 @@ const mapDispatchToProps = {
 
 const mergeProps = (stateProps, dispatchProps) => ({
   attributes: stateProps.attributes,
+  attributeBonus: stateProps.attributeBonus,
   setRank: dispatchProps.setRank,
   setFocus: dispatchProps.setFocus,
   purchaseOrUnpurchaseDot: stateProps.isEraser
