@@ -15,11 +15,10 @@ Currently deployment is manual, so the site may not reflect the latest changes.
 
 ## TODO
 
-* Display Generation title
-* Purchase Morality with XP (10?)
-* Morality Merits
-* Display bankable XP (have constant)
 * STYLE
+* Display Generation title
+* Purchase Morality with XP (10) (one only) if Humanity
+* Morality Merits (costs based on Clan, so reset if change) (Morality goes to 4 and can't raise)
 * Print / export (include Willpower and health levels)
 * Improve test coverage
 * Refactor
