@@ -15,13 +15,13 @@ Currently deployment is manual, so the site may not reflect the latest changes.
 
 ## TODO
 
-* Reset all if change clan? Add warning text?
-* Calculate Finishing Touches
+* Display Generation title and Attribute Bonus
+* Reset all if change clan? (Do you need to?) Add warning text?
 * Purchase Morality with XP (10?)
 * Morality Merits
 * Display bankable XP (have constant)
 * STYLE
-* Print / export
+* Print / export (include Willpower and health levels)
 * Improve test coverage
 * Refactor
 * Bloodlines - enable when select clan - list and charge Merit costs (clear on change)
@@ -29,8 +29,8 @@ Currently deployment is manual, so the site may not reflect the latest changes.
 * Automate deployment
 * Use reselect library?
 * Rituals
-* Techniques
-* Elder Powers
+* Techniques (clear if change Generation)
+* Elder Powers (clear if change Generation)
 * No focus selected - should empty object
 * Copyright/TM notice on app?
 * Ask By Night Studios to add to their list of generators

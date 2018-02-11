@@ -12,6 +12,7 @@ import TraitCategoryContainer from '../containers/TraitCategoryContainer';
 import DisciplinesContainer from '../containers/DisciplinesContainer';
 import MeritsFlawsContainer from '../containers/MeritsFlawsContainer';
 import XPContainer from '../containers/XPContainer';
+import BloodContainer from '../containers/BloodContainer';
 import PencilEraserContainer from '../containers/PencilEraserContainer';
 
 const skills = (
@@ -51,6 +52,7 @@ const App = () => (
     <h2>Embracer</h2>
     <BasicInfoContainer />
     <XPContainer />
+    <BloodContainer />
     <PencilEraserContainer />
     <hr />
     <Link to="/">Attributes</Link> |
