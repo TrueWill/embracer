@@ -23,7 +23,6 @@ export default (state = initialState.character.disciplines, action) => {
 
       affinity = category.slice('disciplines.'.length);
 
-      // TODO: Add tests
       maxDots =
         affinity === 'outOfClan'
           ? outOfClanDisciplineLevelLimit
@@ -48,7 +47,6 @@ export default (state = initialState.character.disciplines, action) => {
 
       affinity = category.slice('disciplines.'.length);
 
-      // TODO: Add tests
       maxDots =
         affinity === 'outOfClan'
           ? outOfClanDisciplineLevelLimit
