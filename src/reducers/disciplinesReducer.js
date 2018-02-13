@@ -10,6 +10,15 @@ import {
   removePurchasedDot
 } from '../utils/categoryPurchaser';
 
+const isDisciplines = category => category.lastIndexOf('disciplines.', 0) === 0;
+
+const getAffinity = category => category.slice('disciplines.'.length);
+
+const getMaxDots = affinity =>
+  affinity === 'outOfClan'
+    ? outOfClanDisciplineLevelLimit
+    : standardTraitMaxDots;
+
 export default (state = initialState.character.disciplines, action) => {
   let category, trait, startingDots, affinity, maxDots;
 
@@ -17,16 +26,12 @@ export default (state = initialState.character.disciplines, action) => {
     case types.SET_STARTING_DOTS:
       ({ category, trait, startingDots } = action.payload);
 
-      if (category.lastIndexOf('disciplines.', 0) !== 0) {
+      if (!isDisciplines(category)) {
         return state;
       }
 
-      affinity = category.slice('disciplines.'.length);
-
-      maxDots =
-        affinity === 'outOfClan'
-          ? outOfClanDisciplineLevelLimit
-          : standardTraitMaxDots;
+      affinity = getAffinity(category);
+      maxDots = getMaxDots(affinity);
 
       return {
         ...state,
@@ -40,17 +45,12 @@ export default (state = initialState.character.disciplines, action) => {
     case types.PURCHASE_DOT:
       ({ category, trait } = action.payload);
 
-      // TODO: Refactor to remove duplication
-      if (category.lastIndexOf('disciplines.', 0) !== 0) {
+      if (!isDisciplines(category)) {
         return state;
       }
 
-      affinity = category.slice('disciplines.'.length);
-
-      maxDots =
-        affinity === 'outOfClan'
-          ? outOfClanDisciplineLevelLimit
-          : standardTraitMaxDots;
+      affinity = getAffinity(category);
+      maxDots = getMaxDots(affinity);
 
       return {
         ...state,
@@ -59,12 +59,11 @@ export default (state = initialState.character.disciplines, action) => {
     case types.UNPURCHASE_DOT:
       ({ category, trait } = action.payload);
 
-      // TODO: Refactor to remove duplication
-      if (category.lastIndexOf('disciplines.', 0) !== 0) {
+      if (!isDisciplines(category)) {
         return state;
       }
 
-      affinity = category.slice('disciplines.'.length);
+      affinity = getAffinity(category);
 
       return {
         ...state,
