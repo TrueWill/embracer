@@ -80,11 +80,7 @@ it('should do nothing when category does not match', () => {
 
   const nextState = reducer(state, action);
 
-  expect(nextState).toEqual({
-    physical: {},
-    social: {},
-    mental: {}
-  });
+  expect(nextState).toBe(state);
 });
 
 it('should set initial focus, preserving properties', () => {

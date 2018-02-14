@@ -225,3 +225,22 @@ it('should remove initial purchased dot and skill if no other properties', () =>
     }
   });
 });
+
+it('should do nothing when category does not match', () => {
+  const state = {
+    availableStartingDots: [
+      { dots: 4, count: 1 },
+      { dots: 3, count: 2 },
+      { dots: 2, count: 3 },
+      { dots: 1, count: 4 }
+    ]
+  };
+
+  deepFreeze(state);
+
+  const action = actions.purchaseDot('attributes', 'mental');
+
+  const nextState = reducer(state, action);
+
+  expect(nextState).toBe(state);
+});

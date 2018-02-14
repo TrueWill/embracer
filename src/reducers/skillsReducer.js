@@ -7,6 +7,8 @@ import {
   removePurchasedDot
 } from '../utils/categoryPurchaser';
 
+const isSkills = category => category === 'skills';
+
 export default (state = initialState.character.skills, action) => {
   let category, trait, startingDots;
 
@@ -14,7 +16,7 @@ export default (state = initialState.character.skills, action) => {
     case types.SET_STARTING_DOTS:
       ({ category, trait, startingDots } = action.payload);
 
-      if (category !== 'skills') {
+      if (!isSkills(category)) {
         return state;
       }
 
@@ -27,7 +29,7 @@ export default (state = initialState.character.skills, action) => {
     case types.PURCHASE_DOT:
       ({ category, trait } = action.payload);
 
-      if (category !== 'skills') {
+      if (!isSkills(category)) {
         return state;
       }
 
@@ -35,7 +37,7 @@ export default (state = initialState.character.skills, action) => {
     case types.UNPURCHASE_DOT:
       ({ category, trait } = action.payload);
 
-      if (category !== 'skills') {
+      if (!isSkills(category)) {
         return state;
       }
 

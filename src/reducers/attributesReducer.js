@@ -7,6 +7,8 @@ import {
   removePurchasedDot
 } from '../utils/categoryPurchaser';
 
+const isAttributes = category => category === 'attributes';
+
 export default (state = initialState.character.attributes, action) => {
   let category, trait, dotsFromRank;
 
@@ -14,7 +16,7 @@ export default (state = initialState.character.attributes, action) => {
     case types.SET_RANK:
       ({ category, trait, dotsFromRank } = action.payload);
 
-      if (category !== 'attributes') {
+      if (!isAttributes(category)) {
         return state;
       }
 
@@ -26,7 +28,7 @@ export default (state = initialState.character.attributes, action) => {
     case types.PURCHASE_DOT:
       ({ category, trait } = action.payload);
 
-      if (category !== 'attributes') {
+      if (!isAttributes(category)) {
         return state;
       }
 
@@ -34,7 +36,7 @@ export default (state = initialState.character.attributes, action) => {
     case types.UNPURCHASE_DOT:
       ({ category, trait } = action.payload);
 
-      if (category !== 'attributes') {
+      if (!isAttributes(category)) {
         return state;
       }
 

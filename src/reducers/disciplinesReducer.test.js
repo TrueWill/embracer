@@ -268,7 +268,7 @@ it('should do nothing if purchased dot would exceed max out-of-clan', () => {
   expect(nextState).toEqual(state);
 });
 
-it('should do nothing if purchased dot category is not disciplines', () => {
+it('should do nothing when purchased dot category does not match', () => {
   const state = {
     inClan: {
       availableStartingDots: [{ dots: 2, count: 1 }, { dots: 1, count: 2 }]
@@ -284,5 +284,5 @@ it('should do nothing if purchased dot category is not disciplines', () => {
 
   const nextState = reducer(state, action);
 
-  expect(nextState).toEqual(state);
+  expect(nextState).toBe(state);
 });
