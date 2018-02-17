@@ -172,6 +172,8 @@ export const backgroundsAvailableStartingDots = [
   { dots: 1, count: 1 }
 ];
 
+export const moralityStartingDotsHumanity = 5;
+
 export const initialXP = 30;
 export const bankedXPLimit = 5;
 export const outOfClanDisciplineLevelLimit = 3;
