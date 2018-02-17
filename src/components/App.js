@@ -14,7 +14,7 @@ import MeritsFlawsContainer from '../containers/MeritsFlawsContainer';
 import XPContainer from '../containers/XPContainer';
 import BloodContainer from '../containers/BloodContainer';
 import PencilEraserContainer from '../containers/PencilEraserContainer';
-import Morality from '../components/Morality';
+import MoralityContainer from '../containers/MoralityContainer';
 
 const skills = (
   <TraitCategoryContainer
@@ -48,15 +48,6 @@ const meritsFlaws = (
   </div>
 );
 
-const morality = (
-  <Morality
-    path="Humanity"
-    level={5}
-    maxDots={6}
-    purchaseOrUnpurchaseDot={() => console.log('click')}
-  />
-);
-
 const App = () => (
   <div>
     <h2>Embracer</h2>
@@ -76,7 +67,7 @@ const App = () => (
     <Route path="/backgrounds" render={() => backgrounds} />
     <Route path="/disciplines" render={() => disciplines} />
     <Route path="/merits_flaws" render={() => meritsFlaws} />
-    <Route path="/morality" render={() => morality} />
+    <Route path="/morality" component={MoralityContainer} />
   </div>
 );
 
