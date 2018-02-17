@@ -201,6 +201,10 @@ const standardDotCost = {
       xp: 4,
       per: 'newLevel'
     }
+  },
+  morality: {
+    xp: 10,
+    per: 'each'
   }
 };
 
@@ -220,7 +224,8 @@ export const generationChart = {
         xp: 1,
         per: 'newLevel'
       },
-      disciplines: standardDotCost.disciplines
+      disciplines: standardDotCost.disciplines,
+      morality: standardDotCost.morality
     }
   },
   2: {
@@ -232,7 +237,8 @@ export const generationChart = {
       attributes: standardDotCost.attributes,
       backgrounds: standardDotCost.backgrounds,
       skills: standardDotCost.backgrounds,
-      disciplines: standardDotCost.disciplines
+      disciplines: standardDotCost.disciplines,
+      morality: standardDotCost.morality
     }
   },
   3: {
@@ -244,7 +250,8 @@ export const generationChart = {
       attributes: standardDotCost.attributes,
       backgrounds: standardDotCost.backgrounds,
       skills: standardDotCost.backgrounds,
-      disciplines: standardDotCost.disciplines
+      disciplines: standardDotCost.disciplines,
+      morality: standardDotCost.morality
     }
   },
   4: {
@@ -256,7 +263,8 @@ export const generationChart = {
       attributes: standardDotCost.attributes,
       backgrounds: standardDotCost.backgrounds,
       skills: standardDotCost.backgrounds,
-      disciplines: standardDotCost.disciplines
+      disciplines: standardDotCost.disciplines,
+      morality: standardDotCost.morality
     }
   },
   5: {
@@ -274,7 +282,8 @@ export const generationChart = {
           xp: 5,
           per: 'newLevel'
         }
-      }
+      },
+      morality: standardDotCost.morality
     }
   }
 };
