@@ -215,7 +215,7 @@ export const generationChart = {
     bloodPerTurn: 1,
     attributeBonus: 1,
     dotCost: {
-      attributes: standardDotCost.attributes,
+      ...standardDotCost,
       backgrounds: {
         xp: 1,
         per: 'newLevel'
@@ -223,9 +223,7 @@ export const generationChart = {
       skills: {
         xp: 1,
         per: 'newLevel'
-      },
-      disciplines: standardDotCost.disciplines,
-      morality: standardDotCost.morality
+      }
     }
   },
   2: {
@@ -233,39 +231,21 @@ export const generationChart = {
     bloodPool: 12,
     bloodPerTurn: 2,
     attributeBonus: 2,
-    dotCost: {
-      attributes: standardDotCost.attributes,
-      backgrounds: standardDotCost.backgrounds,
-      skills: standardDotCost.backgrounds,
-      disciplines: standardDotCost.disciplines,
-      morality: standardDotCost.morality
-    }
+    dotCost: standardDotCost
   },
   3: {
     title: 'Pretender Elder',
     bloodPool: 15,
     bloodPerTurn: 3,
     attributeBonus: 3,
-    dotCost: {
-      attributes: standardDotCost.attributes,
-      backgrounds: standardDotCost.backgrounds,
-      skills: standardDotCost.backgrounds,
-      disciplines: standardDotCost.disciplines,
-      morality: standardDotCost.morality
-    }
+    dotCost: standardDotCost
   },
   4: {
     title: 'Master Elder',
     bloodPool: 20,
     bloodPerTurn: 4,
     attributeBonus: 4,
-    dotCost: {
-      attributes: standardDotCost.attributes,
-      backgrounds: standardDotCost.backgrounds,
-      skills: standardDotCost.backgrounds,
-      disciplines: standardDotCost.disciplines,
-      morality: standardDotCost.morality
-    }
+    dotCost: standardDotCost
   },
   5: {
     title: 'Luminary Elder',
@@ -273,17 +253,14 @@ export const generationChart = {
     bloodPerTurn: 5,
     attributeBonus: 5,
     dotCost: {
-      attributes: standardDotCost.attributes,
-      backgrounds: standardDotCost.backgrounds,
-      skills: standardDotCost.backgrounds,
+      ...standardDotCost,
       disciplines: {
         inClan: standardDotCost.disciplines.inClan,
         outOfClan: {
           xp: 5,
           per: 'newLevel'
         }
-      },
-      morality: standardDotCost.morality
+      }
     }
   }
 };
