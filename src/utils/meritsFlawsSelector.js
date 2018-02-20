@@ -1,4 +1,10 @@
-import { merits, clanSpecificMerits } from '../constants/merits';
+import {
+  merits,
+  clanSpecificMerits,
+  moralityMerits,
+  moralityMeritBasePoints,
+  moralityMeritClanAffinityDiscount
+} from '../constants/merits';
 import { flaws } from '../constants/flaws';
 import { maxMeritPoints } from '../constants/merits';
 import { maxFlawPoints } from '../constants/flaws';
@@ -53,6 +59,21 @@ export const meritsFlawsOptionsSelector = (state, type) => {
 
   return options.filter(x => !selectedSet.has(x.name)).reduce((acc, cur) => {
     acc.set(cur.name, { points: cur.points });
+    return acc;
+  }, new Map());
+};
+
+export const moralityMeritsOptionsSelector = state => {
+  const clan = state.character.basicInfo.clan;
+
+  return moralityMerits.reduce((acc, cur) => {
+    acc.set(cur.name, {
+      points:
+        moralityMeritBasePoints -
+        (cur.clanAffinity && cur.clanAffinity === clan
+          ? moralityMeritClanAffinityDiscount
+          : 0)
+    });
     return acc;
   }, new Map());
 };
