@@ -172,8 +172,11 @@ export const backgroundsAvailableStartingDots = [
   { dots: 1, count: 1 }
 ];
 
+export const humanity = 'Humanity';
 export const moralityStartingDotsHumanity = 5;
 export const moralityMaxDotsHumanity = 6;
+export const moralityStartingDotsPath = 4;
+export const moralityMaxDotsPath = 4;
 
 export const initialXP = 30;
 export const bankedXPLimit = 5;

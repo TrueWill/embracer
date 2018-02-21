@@ -67,7 +67,6 @@ it('should remove purchased dot', () => {
   });
 });
 
-
 it('should do nothing if attempt to remove dot and none purchased', () => {
   const state = {
     path: 'Humanity',
@@ -81,4 +80,59 @@ it('should do nothing if attempt to remove dot and none purchased', () => {
   const nextState = reducer(state, action);
 
   expect(nextState).toBe(state);
+});
+
+it('should set merit points and starting dots, clearing dots purchased, if update to path', () => {
+  const state = {
+    path: 'Humanity',
+    startingDots: 5,
+    dotsPurchased: 1
+  };
+
+  deepFreeze(state);
+
+  const action = actions.updateMorality('Path of Metamorphosis', 2);
+
+  const nextState = reducer(state, action);
+
+  expect(nextState).toEqual({
+    path: 'Path of Metamorphosis',
+    meritPoints: 2,
+    startingDots: 4
+  });
+});
+
+it('should clear merit points and set starting dots if update to Humanity', () => {
+  const state = {
+    path: 'Path of Metamorphosis',
+    meritPoints: 2,
+    startingDots: 4
+  };
+
+  deepFreeze(state);
+
+  const action = actions.updateMorality('Humanity');
+
+  const nextState = reducer(state, action);
+
+  expect(nextState).toEqual({
+    path: 'Humanity',
+    startingDots: 5
+  });
+});
+
+it('should not clear dots purchased if update to Humanity when on Humanity', () => {
+  const state = {
+    path: 'Humanity',
+    startingDots: 5,
+    dotsPurchased: 1
+  };
+
+  deepFreeze(state);
+
+  const action = actions.updateMorality('Humanity');
+
+  const nextState = reducer(state, action);
+
+  expect(nextState).toEqual(state);
 });

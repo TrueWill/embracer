@@ -5,6 +5,7 @@ import {
   inClanDisciplinesAvailableStartingDots,
   outOfClanDisciplinesAvailableStartingDots,
   standardTraitMaxDots,
+  humanity,
   moralityStartingDotsHumanity
 } from '../constants/characterOptions';
 import { setDotsFromStartingDots } from '../utils/categoryStarter';
@@ -48,7 +49,7 @@ export default {
     merits: [],
     flaws: [],
     morality: {
-      path: 'Humanity',
+      path: humanity,
       startingDots: moralityStartingDotsHumanity
     }
   }

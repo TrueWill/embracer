@@ -89,3 +89,11 @@ export const purchaseMoralityDot = () => ({
 export const unpurchaseMoralityDot = () => ({
   type: types.UNPURCHASE_MORALITY_DOT
 });
+
+export const updateMorality = (path, meritPoints) => ({
+  type: types.UPDATE_MORALITY,
+  payload: {
+    path,
+    meritPoints
+  }
+});
