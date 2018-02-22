@@ -13,19 +13,24 @@ import { maxFlawPoints } from '../constants/flaws';
 // type is 'merits' or 'flaws'
 export const meritsFlawsSelector = (state, type) => {
   let selected;
+  let additionalPoints;
   let maxPoints;
 
   if (type === 'merits') {
     selected = state.character.merits;
+    additionalPoints = state.character.morality.meritPoints || 0;
     maxPoints = maxMeritPoints;
   } else {
     selected = state.character.flaws;
+    additionalPoints = 0;
     maxPoints = maxFlawPoints;
   }
 
-  const currentPoints = selected
+  let currentPoints = selected
     .map(x => x.points)
     .reduce((acc, cur) => acc + cur, 0);
+
+  currentPoints += additionalPoints;
 
   return {
     selected,
