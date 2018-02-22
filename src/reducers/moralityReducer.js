@@ -10,7 +10,7 @@ import { removeProperty } from '../utils/objectUtils';
 export default (state = initialState.character.morality, action) => {
   switch (action.type) {
     case types.PURCHASE_MORALITY_DOT:
-      if (state.dotsPurchased) {
+      if (state.dotsPurchased || state.path !== humanity) {
         return state;
       }
 
