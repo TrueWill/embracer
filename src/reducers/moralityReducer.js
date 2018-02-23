@@ -34,6 +34,9 @@ export default (state = initialState.character.morality, action) => {
       return path === humanity
         ? { path: humanity, startingDots: moralityStartingDotsHumanity }
         : { path, meritPoints, startingDots: moralityStartingDotsPath };
+    case types.UPDATE_CLAN:
+      // reset due to clan affinities with paths
+      return initialState.character.morality;
     default:
       return state;
   }

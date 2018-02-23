@@ -152,3 +152,19 @@ it('should not clear dots purchased if update to Humanity when on Humanity', () 
 
   expect(nextState).toEqual(state);
 });
+
+it('should clear if change clan', () => {
+  const state = {
+    path: 'Path of Metamorphosis',
+    meritPoints: 2,
+    startingDots: 4
+  };
+
+  deepFreeze(state);
+
+  const action = actions.updateClan('Tremere');
+
+  const nextState = reducer(state, action);
+
+  expect(nextState).toBe(initialState.character.morality);
+});

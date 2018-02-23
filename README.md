@@ -17,7 +17,6 @@ Currently deployment is manual, so the site may not reflect the latest changes.
 
 * STYLE
 * Display Generation title
-* Morality Merits (costs based on Clan, so reset if change) (Morality goes to 4 and can't raise) (count against total Merits) (maybe have discount for clan and/or isMorality properties?) (selector for path?) (only 1 path merit)
 * Print / export (include Willpower and health levels)
 * Improve test coverage
 * Refactor
