@@ -81,3 +81,19 @@ export const unpurchaseDot = (category, trait) => ({
     trait
   }
 });
+
+export const purchaseMoralityDot = () => ({
+  type: types.PURCHASE_MORALITY_DOT
+});
+
+export const unpurchaseMoralityDot = () => ({
+  type: types.UNPURCHASE_MORALITY_DOT
+});
+
+export const updateMorality = (path, meritPoints) => ({
+  type: types.UPDATE_MORALITY,
+  payload: {
+    path,
+    meritPoints
+  }
+});

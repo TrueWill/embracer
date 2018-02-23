@@ -7,6 +7,7 @@ import backgrounds from './backgroundsReducer';
 import disciplines from './disciplinesReducer';
 import merits from './meritsReducer';
 import flaws from './flawsReducer';
+import morality from './moralityReducer';
 
 const rootReducer = combineReducers({
   mode,
@@ -17,7 +18,8 @@ const rootReducer = combineReducers({
     backgrounds,
     disciplines,
     merits,
-    flaws
+    flaws,
+    morality
   })
 });
 

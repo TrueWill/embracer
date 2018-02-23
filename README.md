@@ -17,13 +17,11 @@ Currently deployment is manual, so the site may not reflect the latest changes.
 
 * STYLE
 * Display Generation title
-* Purchase Morality with XP (10) (one only) if Humanity
-* Morality Merits (costs based on Clan, so reset if change) (Morality goes to 4 and can't raise)
 * Print / export (include Willpower and health levels)
 * Improve test coverage
 * Refactor
-* Bloodlines - enable when select clan - list and charge Merit costs (clear on change)
-* Add Lesser/Rare Clans - how to handle Rarity Merit costs?
+* Bloodlines - enable when select clan - list and charge Merit costs against total (clear on change)
+* Add Lesser/Rare Clans - how to handle Rarity Merit costs? Also count against total Merits
 * Automate deployment
 * Use reselect library?
 * Rituals

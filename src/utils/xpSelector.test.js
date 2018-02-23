@@ -150,7 +150,11 @@ it('should calculate values', () => {
           name: 'Addiction',
           points: 2
         }
-      ]
+      ],
+      morality: {
+        path: 'Humanity',
+        startingDots: 5
+      }
     }
   };
 
@@ -204,7 +208,69 @@ it('should calculate generation costs', () => {
         outOfClan: {}
       },
       merits: [],
-      flaws: []
+      flaws: [],
+      morality: {
+        path: 'Humanity',
+        startingDots: 5
+      }
+    }
+  };
+
+  deepFreeze(state);
+
+  const result = xpSelector(state);
+
+  expect(result).toEqual({
+    spent: 10,
+    gainedFromFlaws: 0,
+    available: 20,
+    bankable: 5
+  });
+});
+
+it('should calculate morality costs', () => {
+  const state = {
+    character: {
+      basicInfo: {
+        archetype: '',
+        clan: ''
+      },
+      attributes: {
+        physical: {},
+        social: {},
+        mental: {}
+      },
+      skills: {},
+      backgrounds: {
+        availableStartingDots: [
+          {
+            dots: 3,
+            count: 1
+          },
+          {
+            dots: 2,
+            count: 1
+          },
+          {
+            dots: 1,
+            count: 0
+          }
+        ],
+        generation: {
+          startingDots: 1
+        }
+      },
+      disciplines: {
+        inClan: {},
+        outOfClan: {}
+      },
+      merits: [],
+      flaws: [],
+      morality: {
+        path: 'Humanity',
+        startingDots: 5,
+        dotsPurchased: 1
+      }
     }
   };
 
@@ -294,7 +360,11 @@ it('should calculate bankable when available is less', () => {
         }
       },
       merits: [],
-      flaws: []
+      flaws: [],
+      morality: {
+        path: 'Humanity',
+        startingDots: 5
+      }
     }
   };
 

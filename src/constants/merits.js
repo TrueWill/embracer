@@ -317,3 +317,73 @@ export const clanSpecificMerits = {
     }
   ]
 };
+
+export const moralityMeritBasePoints = 3;
+export const moralityMeritClanAffinityDiscount = 1;
+
+export const moralityMerits = [
+  {
+    name: 'Path of Blood',
+    clanAffinity: 'Assamite'
+  },
+  {
+    name: 'Path of Caine'
+  },
+  {
+    name: 'Path of Cathari'
+  },
+  {
+    name: 'Path of Chivalry'
+  },
+  {
+    name: 'Path of Death & the Soul',
+    clanAffinity: 'Giovanni'
+  },
+  {
+    name: 'Path of Ecstasy',
+    clanAffinity: 'Followers of Set'
+  },
+  {
+    name: 'Path of Evil Revelations'
+  },
+  {
+    name: 'Path of Feral Heart'
+  },
+  {
+    name: 'Path of Heaven'
+  },
+  {
+    name: 'Path of Harmony'
+  },
+  {
+    name: 'Path of Honorable Accord'
+  },
+  {
+    name: 'Path of Lilith'
+  },
+  {
+    name: 'Path of Metamorphosis',
+    clanAffinity: 'Tzimisce'
+  },
+  {
+    name: 'Path of Night',
+    clanAffinity: 'Lasombra'
+  },
+  {
+    name: 'Path of Orion'
+  },
+  {
+    name: 'Path of Paradox',
+    clanAffinity: 'Ravnos'
+  },
+  {
+    name: 'Path of Power & the Inner Voice'
+  },
+  {
+    name: 'Path of Scorched Heart'
+  },
+  {
+    name: 'Path of Typhon-Set',
+    clanAffinity: 'Viper'
+  }
+];

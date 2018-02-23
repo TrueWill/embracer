@@ -172,6 +172,12 @@ export const backgroundsAvailableStartingDots = [
   { dots: 1, count: 1 }
 ];
 
+export const humanity = 'Humanity';
+export const moralityStartingDotsHumanity = 5;
+export const moralityMaxDotsHumanity = 6;
+export const moralityStartingDotsPath = 4;
+export const moralityMaxDotsPath = 4;
+
 export const initialXP = 30;
 export const bankedXPLimit = 5;
 export const outOfClanDisciplineLevelLimit = 3;
@@ -198,6 +204,10 @@ const standardDotCost = {
       xp: 4,
       per: 'newLevel'
     }
+  },
+  morality: {
+    xp: 10,
+    per: 'each'
   }
 };
 
@@ -208,7 +218,7 @@ export const generationChart = {
     bloodPerTurn: 1,
     attributeBonus: 1,
     dotCost: {
-      attributes: standardDotCost.attributes,
+      ...standardDotCost,
       backgrounds: {
         xp: 1,
         per: 'newLevel'
@@ -216,8 +226,7 @@ export const generationChart = {
       skills: {
         xp: 1,
         per: 'newLevel'
-      },
-      disciplines: standardDotCost.disciplines
+      }
     }
   },
   2: {
@@ -225,36 +234,21 @@ export const generationChart = {
     bloodPool: 12,
     bloodPerTurn: 2,
     attributeBonus: 2,
-    dotCost: {
-      attributes: standardDotCost.attributes,
-      backgrounds: standardDotCost.backgrounds,
-      skills: standardDotCost.backgrounds,
-      disciplines: standardDotCost.disciplines
-    }
+    dotCost: standardDotCost
   },
   3: {
     title: 'Pretender Elder',
     bloodPool: 15,
     bloodPerTurn: 3,
     attributeBonus: 3,
-    dotCost: {
-      attributes: standardDotCost.attributes,
-      backgrounds: standardDotCost.backgrounds,
-      skills: standardDotCost.backgrounds,
-      disciplines: standardDotCost.disciplines
-    }
+    dotCost: standardDotCost
   },
   4: {
     title: 'Master Elder',
     bloodPool: 20,
     bloodPerTurn: 4,
     attributeBonus: 4,
-    dotCost: {
-      attributes: standardDotCost.attributes,
-      backgrounds: standardDotCost.backgrounds,
-      skills: standardDotCost.backgrounds,
-      disciplines: standardDotCost.disciplines
-    }
+    dotCost: standardDotCost
   },
   5: {
     title: 'Luminary Elder',
@@ -262,9 +256,7 @@ export const generationChart = {
     bloodPerTurn: 5,
     attributeBonus: 5,
     dotCost: {
-      attributes: standardDotCost.attributes,
-      backgrounds: standardDotCost.backgrounds,
-      skills: standardDotCost.backgrounds,
+      ...standardDotCost,
       disciplines: {
         inClan: standardDotCost.disciplines.inClan,
         outOfClan: {

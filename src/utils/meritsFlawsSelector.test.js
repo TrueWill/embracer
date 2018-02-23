@@ -1,13 +1,17 @@
 import deepFreeze from 'deep-freeze';
 import meritsFlawsSelector, {
-  meritsFlawsOptionsSelector
+  meritsFlawsOptionsSelector,
+  moralityMeritsOptionsSelector
 } from './meritsFlawsSelector';
 
 it('should return correct initial values for merits', () => {
   const state = {
     character: {
       merits: [],
-      flaws: []
+      flaws: [],
+      morality: {
+        path: 'Humanity'
+      }
     }
   };
 
@@ -44,7 +48,48 @@ it('should return correct values for merits', () => {
           name: 'Bad Sight',
           points: 2
         }
-      ]
+      ],
+      morality: {
+        path: 'Humanity'
+      }
+    }
+  };
+
+  deepFreeze(state);
+
+  const result = meritsFlawsSelector(state, 'merits');
+
+  expect(result).toEqual({
+    selected: state.character.merits,
+    currentPoints: 6,
+    availablePoints: 1
+  });
+});
+
+it('should include morality merits', () => {
+  const state = {
+    character: {
+      merits: [
+        {
+          name: 'Calm Heart',
+          points: 1
+        },
+        {
+          name: 'Clear Sighted',
+          points: 3
+        }
+      ],
+      flaws: [
+        {
+          name: 'Bad Sight',
+          points: 2
+        }
+      ],
+      morality: {
+        path: 'Path of Metamorphosis',
+        meritPoints: 2,
+        startingDots: 4
+      }
     }
   };
 
@@ -183,4 +228,58 @@ it('should return correct map for flaw options', () => {
   expect(result.has('Amnesia')).toBeFalsy();
   expect(result.get('Addiction')).toEqual({ points: 2 });
   expect(result.get('Archaic')).toEqual({ points: 2 });
+});
+
+it('should return correct map for morality merits options when no clan selected', () => {
+  const state = {
+    character: {
+      basicInfo: {
+        clan: ''
+      }
+    }
+  };
+
+  deepFreeze(state);
+
+  const result = moralityMeritsOptionsSelector(state);
+
+  expect(result.get('Path of Blood')).toEqual({
+    points: 3
+  });
+});
+
+it('should return correct map for morality merits options when clan discount', () => {
+  const state = {
+    character: {
+      basicInfo: {
+        clan: 'Assamite'
+      }
+    }
+  };
+
+  deepFreeze(state);
+
+  const result = moralityMeritsOptionsSelector(state);
+
+  expect(result.get('Path of Blood')).toEqual({
+    points: 2
+  });
+});
+
+it('should return correct map for morality merits options when no clan discount', () => {
+  const state = {
+    character: {
+      basicInfo: {
+        clan: 'Giovanni'
+      }
+    }
+  };
+
+  deepFreeze(state);
+
+  const result = moralityMeritsOptionsSelector(state);
+
+  expect(result.get('Path of Blood')).toEqual({
+    points: 3
+  });
 });
