@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Clan from './Clan';
+import ClanContainer from '../containers/ClanContainer';
 import Archetype from './Archetype';
 
 export default class BasicInfo extends Component {
@@ -18,10 +18,7 @@ export default class BasicInfo extends Component {
           archetype={basicInfo.archetype}
           updateArchetype={this.props.actions.updateArchetype}
         />
-        <Clan
-          clan={basicInfo.clan}
-          updateClan={this.props.actions.updateClan}
-        />
+        <ClanContainer />
       </div>
     );
   }
