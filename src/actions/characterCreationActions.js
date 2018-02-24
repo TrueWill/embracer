@@ -1,4 +1,8 @@
 import * as types from '../constants/actionTypes';
+import { humanity } from '../constants/characterOptions';
+import meritsFlawsSelector, {
+  moralityMeritsOptionsSelector
+} from '../utils/meritsFlawsSelector';
 
 export const updateArchetype = value => ({
   type: types.UPDATE_ARCHETYPE,
@@ -90,7 +94,7 @@ export const unpurchaseMoralityDot = () => ({
   type: types.UNPURCHASE_MORALITY_DOT
 });
 
-export const unconditionalUpdateMorality = (path, meritPoints) => ({
+export const updateMorality = (path, meritPoints) => ({
   type: types.UPDATE_MORALITY,
   payload: {
     path,
@@ -98,7 +102,23 @@ export const unconditionalUpdateMorality = (path, meritPoints) => ({
   }
 });
 
+const getMeritPoints = (path, optionsMap) =>
+  path === humanity ? 0 : optionsMap.get(path).points;
+
 // thunk
-export const updateMorality = (path, meritPoints) => (dispatch, getState) => {
-  dispatch(unconditionalUpdateMorality(path, meritPoints));
+// TODO: Test
+export const updateMoralityIfPointsAvailable = path => (dispatch, getState) => {
+  const state = getState();
+  const currentPath = state.character.morality.path;
+  const optionsMap = moralityMeritsOptionsSelector(state);
+  let { availablePoints } = meritsFlawsSelector(state, 'merits');
+
+  const newMeritPoints = getMeritPoints(path, optionsMap);
+  const currentMeritPoints = getMeritPoints(currentPath, optionsMap);
+
+  availablePoints += currentMeritPoints;
+
+  if (newMeritPoints <= availablePoints) {
+    dispatch(updateMorality(path, newMeritPoints));
+  }
 };

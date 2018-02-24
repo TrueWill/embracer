@@ -9,12 +9,11 @@ const getDescription = option =>
 class Morality extends Component {
   static propTypes = {
     optionsMap: PropTypes.instanceOf(Map).isRequired,
-    availablePoints: PropTypes.number.isRequired,
     path: PropTypes.string.isRequired,
     level: PropTypes.number.isRequired,
     maxDots: PropTypes.number.isRequired,
     purchaseOrUnpurchaseDot: PropTypes.func.isRequired,
-    updateMorality: PropTypes.func.isRequired
+    updateMoralityIfPointsAvailable: PropTypes.func.isRequired
   };
 
   handleOnClick = () => {
@@ -24,21 +23,7 @@ class Morality extends Component {
   handlePathChange = e => {
     const newPath = e.target.value;
 
-    // TODO: Test, refactor
-
-    const newMeritPoints =
-      newPath === humanity ? 0 : this.props.optionsMap.get(newPath).points;
-
-    const currentMeritPoints =
-      this.props.path === humanity
-        ? 0
-        : this.props.optionsMap.get(this.props.path).points;
-
-    const availablePoints = this.props.availablePoints + currentMeritPoints;
-
-    if (newMeritPoints <= availablePoints) {
-      this.props.updateMorality(newPath, newMeritPoints);
-    }
+    this.props.updateMoralityIfPointsAvailable(newPath);
   };
 
   render() {

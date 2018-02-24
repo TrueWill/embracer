@@ -7,10 +7,10 @@ import {
 import {
   purchaseMoralityDot,
   unpurchaseMoralityDot,
-  updateMorality
+  updateMoralityIfPointsAvailable
 } from '../actions/characterCreationActions';
 import dotSelector from '../utils/dotSelector';
-import meritsFlawsSelector, { moralityMeritsOptionsSelector } from '../utils/meritsFlawsSelector';
+import { moralityMeritsOptionsSelector } from '../utils/meritsFlawsSelector';
 import Morality from '../components/Morality';
 
 const mapStateToProps = state => {
@@ -19,11 +19,8 @@ const mapStateToProps = state => {
   const maxDots =
     path === humanity ? moralityMaxDotsHumanity : moralityMaxDotsPath;
 
-  const { availablePoints } = meritsFlawsSelector(state, 'merits');
-
   return {
     optionsMap: moralityMeritsOptionsSelector(state),
-    availablePoints,
     path,
     level: dotSelector(state.character.morality),
     maxDots,
@@ -34,19 +31,18 @@ const mapStateToProps = state => {
 const mapDispatchToProps = {
   purchaseMoralityDot,
   unpurchaseMoralityDot,
-  updateMorality
+  updateMoralityIfPointsAvailable
 };
 
 const mergeProps = (stateProps, dispatchProps) => ({
   optionsMap: stateProps.optionsMap,
-  availablePoints: stateProps.availablePoints,
   path: stateProps.path,
   level: stateProps.level,
   maxDots: stateProps.maxDots,
   purchaseOrUnpurchaseDot: stateProps.isEraser
     ? dispatchProps.unpurchaseMoralityDot
     : dispatchProps.purchaseMoralityDot,
-  updateMorality: dispatchProps.updateMorality
+  updateMoralityIfPointsAvailable: dispatchProps.updateMoralityIfPointsAvailable
 });
 
 export default connect(mapStateToProps, mapDispatchToProps, mergeProps)(
