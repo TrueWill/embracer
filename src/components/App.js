@@ -6,7 +6,7 @@ import {
   backgroundTraitNames,
   backgroundTraitDisplayNameOverride
 } from '../constants/characterOptions';
-import BasicInfoContainer from '../containers/BasicInfoContainer';
+import BasicInfo from '../components/BasicInfo';
 import AttributesContainer from '../containers/AttributesContainer';
 import TraitCategoryContainer from '../containers/TraitCategoryContainer';
 import DisciplinesContainer from '../containers/DisciplinesContainer';
@@ -51,7 +51,7 @@ const meritsFlaws = (
 const App = () => (
   <div>
     <h2>Embracer</h2>
-    <BasicInfoContainer />
+    <BasicInfo />
     <XPContainer />
     <BloodContainer />
     <PencilEraserContainer />
