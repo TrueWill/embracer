@@ -8,7 +8,9 @@ it('should render without crashing', () => {
     clan: ''
   };
 
-  const actions = {};
+  const actions = {
+    updateClan: () => {}
+  };
 
   shallow(<BasicInfo basicInfo={basicInfo} actions={actions} />);
 });

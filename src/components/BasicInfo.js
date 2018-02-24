@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Select from 'react-select';
 import * as options from '../constants/characterOptions';
+import Clan from './Clan';
 
 export default class BasicInfo extends Component {
   static propTypes = {
@@ -12,10 +13,6 @@ export default class BasicInfo extends Component {
   handleArchetypeChange = val => {
     const value = val ? val.value : '';
     this.props.actions.updateArchetype(value);
-  };
-
-  handleClanChange = e => {
-    this.props.actions.updateClan(e.target.value);
   };
 
   render() {
@@ -36,12 +33,6 @@ export default class BasicInfo extends Component {
       });
     }
 
-    const clanOptions = options.clans.map(c => (
-      <option value={c} key={c}>
-        {c}
-      </option>
-    ));
-
     return (
       <div>
         Archetype
@@ -51,12 +42,10 @@ export default class BasicInfo extends Component {
           options={archetypeOptions}
           onChange={this.handleArchetypeChange}
         />
-        Clan
-        <select value={basicInfo.clan} onChange={this.handleClanChange}>
-          <option value="">(not selected)</option>
-          {clanOptions}
-        </select>
-        (changing will reset Disciplines, Merits, and Morality)
+        <Clan
+          clan={basicInfo.clan}
+          updateClan={this.props.actions.updateClan}
+        />
       </div>
     );
   }
