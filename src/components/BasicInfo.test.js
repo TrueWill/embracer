@@ -9,6 +9,7 @@ it('should render without crashing', () => {
   };
 
   const actions = {
+    updateArchetype: () => {},
     updateClan: () => {}
   };
 

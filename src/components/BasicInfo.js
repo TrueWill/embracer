@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Select from 'react-select';
-import * as options from '../constants/characterOptions';
 import Clan from './Clan';
+import Archetype from './Archetype';
 
 export default class BasicInfo extends Component {
   static propTypes = {
@@ -10,37 +9,14 @@ export default class BasicInfo extends Component {
     actions: PropTypes.objectOf(PropTypes.func).isRequired
   };
 
-  handleArchetypeChange = val => {
-    const value = val ? val.value : '';
-    this.props.actions.updateArchetype(value);
-  };
-
   render() {
     const basicInfo = this.props.basicInfo;
 
-    let archetypeOptions = options.archetypes.map(a => ({
-      value: a,
-      label: a
-    }));
-
-    if (
-      basicInfo.archetype &&
-      options.archetypes.indexOf(basicInfo.archetype) === -1
-    ) {
-      archetypeOptions.push({
-        value: basicInfo.archetype,
-        label: basicInfo.archetype
-      });
-    }
-
     return (
       <div>
-        Archetype
-        <Select.Creatable
-          value={basicInfo.archetype}
-          multi={false}
-          options={archetypeOptions}
-          onChange={this.handleArchetypeChange}
+        <Archetype
+          archetype={basicInfo.archetype}
+          updateArchetype={this.props.actions.updateArchetype}
         />
         <Clan
           clan={basicInfo.clan}
