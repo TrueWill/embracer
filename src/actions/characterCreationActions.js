@@ -106,7 +106,6 @@ const getMeritPoints = (path, optionsMap) =>
   path === humanity ? 0 : optionsMap.get(path).points;
 
 // thunk
-// TODO: Test
 export const updateMoralityIfPointsAvailable = path => (dispatch, getState) => {
   const state = getState();
   const currentPath = state.character.morality.path;
