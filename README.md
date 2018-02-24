@@ -46,6 +46,6 @@ Currently deployment is manual, so the site may not reflect the latest changes.
 
 ## Acknowledgements
 
-Built with [React](https://reactjs.org/) and [Redux](https://redux.js.org/) - thanks so much to Facebook, Dan Abramov, and all contributors!
+Built with [React](https://reactjs.org/) and [Redux](https://redux.js.org/) - thanks so much to Facebook, Dan Abramov, Mark Erikson, and all contributors!
 
 Uses [Font Awesome](http://fontawesome.io) by Dave Gandy (v4, **not** v5).
