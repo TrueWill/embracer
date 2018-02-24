@@ -90,10 +90,15 @@ export const unpurchaseMoralityDot = () => ({
   type: types.UNPURCHASE_MORALITY_DOT
 });
 
-export const updateMorality = (path, meritPoints) => ({
+export const unconditionalUpdateMorality = (path, meritPoints) => ({
   type: types.UPDATE_MORALITY,
   payload: {
     path,
     meritPoints
   }
 });
+
+// thunk
+export const updateMorality = (path, meritPoints) => (dispatch, getState) => {
+  dispatch(unconditionalUpdateMorality(path, meritPoints));
+};

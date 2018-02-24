@@ -107,7 +107,10 @@ it('should set merit points and starting dots, clearing dots purchased, if updat
 
   deepFreeze(state);
 
-  const action = actions.updateMorality('Path of Metamorphosis', 2);
+  const action = actions.unconditionalUpdateMorality(
+    'Path of Metamorphosis',
+    2
+  );
 
   const nextState = reducer(state, action);
 
@@ -127,7 +130,7 @@ it('should clear merit points and set starting dots if update to Humanity', () =
 
   deepFreeze(state);
 
-  const action = actions.updateMorality('Humanity', 0);
+  const action = actions.unconditionalUpdateMorality('Humanity', 0);
 
   const nextState = reducer(state, action);
 
@@ -146,7 +149,7 @@ it('should not clear dots purchased if update to Humanity when on Humanity', () 
 
   deepFreeze(state);
 
-  const action = actions.updateMorality('Humanity', 0);
+  const action = actions.unconditionalUpdateMorality('Humanity', 0);
 
   const nextState = reducer(state, action);
 
