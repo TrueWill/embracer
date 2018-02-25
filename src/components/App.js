@@ -50,7 +50,7 @@ const meritsFlaws = (
 );
 
 const App = () => (
-  <div>
+  <div className="container-fluid">
     <h2>Embracer</h2>
     <div>
       <ArchetypeContainer />

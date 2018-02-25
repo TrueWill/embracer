@@ -34,7 +34,7 @@ class Attributes extends Component {
     const { attributes, attributeBonus } = this.props;
 
     const traits = attributeTraitNames.map(name => (
-      <div key={name}>
+      <div key={name} className="col-sm-4">
         <RankedTrait
           name={name}
           maxDots={attributeMaxDots}
@@ -53,10 +53,16 @@ class Attributes extends Component {
     ));
 
     return (
-      <div>
-        <h3>Attributes</h3>
-        {traits}
-        <div>Attribute Bonus: {attributeBonus}</div>
+      <div className="row">
+        <div className="col-sm-12">
+          <div className="panel panel-default">
+            <div className="panel-heading">Attributes</div>
+            <div className="panel-body">{traits}</div>
+            <div className="panel-footer">
+              Attribute Bonus: {attributeBonus}
+            </div>
+          </div>
+        </div>
       </div>
     );
   }
