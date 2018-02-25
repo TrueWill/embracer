@@ -19,7 +19,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "deploy": "yarn build && s3cmd sync build/* s3://truewill-embracer"
   },
   "devDependencies": {
     "deep-freeze": "^0.0.1",
