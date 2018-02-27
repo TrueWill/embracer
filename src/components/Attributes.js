@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import RankedTrait from './RankedTrait';
 import Focus from './Focus';
+import Section from './Section';
 import {
   attributeTraitNames,
   attributeMaxDots,
@@ -53,19 +54,14 @@ class Attributes extends Component {
     ));
 
     return (
-      <div className="row">
-        <div className="col-sm-12">
-          <div className="card">
-            <div className="card-header">Attributes</div>
-            <div className="card-body">
-              <div className="container-fluid">
-                <div className="row">{traits}</div>
-              </div>
-            </div>
-            <div className="card-footer">Attribute Bonus: {attributeBonus}</div>
-          </div>
-        </div>
-      </div>
+      <Section
+        header="Attributes"
+        footer={
+          <React.Fragment>Attribute Bonus: {attributeBonus}</React.Fragment>
+        }
+      >
+        <div className="row">{traits}</div>
+      </Section>
     );
   }
 }
