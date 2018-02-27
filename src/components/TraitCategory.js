@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { capitalizeFirstLetter } from '../utils/stringUtils';
 import { standardTraitMaxDots } from '../constants/characterOptions';
 import Trait from './Trait';
+import Section from './Section';
+import chunk from 'lodash.chunk';
 
 class TraitCategory extends Component {
   static propTypes = {
@@ -43,11 +45,18 @@ class TraitCategory extends Component {
       />
     ));
 
-    return (
-      <div>
-        <h3>{capitalizeFirstLetter(categoryName)}</h3>
-        {traits}
+    const traitsPerColumn = 9;
+
+    const columns = chunk(traits, traitsPerColumn).map((column, index) => (
+      <div key={index} className="col-sm-4">
+        {column}
       </div>
+    ));
+
+    return (
+      <Section header={capitalizeFirstLetter(categoryName)}>
+        <div className="row">{columns}</div>
+      </Section>
     );
   }
 }
