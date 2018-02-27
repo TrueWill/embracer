@@ -28,6 +28,7 @@ Currently deployment is manual, so the site may not reflect the latest changes.
 * Techniques (clear if change Generation)
 * Elder Powers (clear if change Generation)
 * No focus selected - should empty object
+* Repeated Skills (Crafts, etc.)
 * Copyright/TM notice on app?
 * Ask By Night Studios to add to their list of generators
 
