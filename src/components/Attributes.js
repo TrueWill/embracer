@@ -55,12 +55,14 @@ class Attributes extends Component {
     return (
       <div className="row">
         <div className="col-sm-12">
-          <div className="panel panel-default">
-            <div className="panel-heading">Attributes</div>
-            <div className="panel-body">{traits}</div>
-            <div className="panel-footer">
-              Attribute Bonus: {attributeBonus}
+          <div className="card">
+            <div className="card-header">Attributes</div>
+            <div className="card-body">
+              <div className="container-fluid">
+                <div className="row">{traits}</div>
+              </div>
             </div>
+            <div className="card-footer">Attribute Bonus: {attributeBonus}</div>
           </div>
         </div>
       </div>

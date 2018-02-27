@@ -16,7 +16,7 @@ const PencilEraser = ({ isEraser, togglePencilEraserMode }) => {
   return (
     <button
       type="button"
-      className="btn btn-default"
+      className="btn btn-outline-primary"
       title={tooltip}
       onClick={togglePencilEraserMode}
     >
