@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Section from './Section';
 
 const Blood = ({ bloodPool, bloodPerTurn }) => (
-  <div>
-    <h3>Blood</h3>
+  <Section header="Blood">
     <div>Blood Pool: {bloodPool}</div>
     <div>Blood/Turn: {bloodPerTurn}</div>
-  </div>
+  </Section>
 );
 
 Blood.propTypes = {
