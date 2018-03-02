@@ -1,5 +1,4 @@
 import React from 'react';
-import { Route, Link } from 'react-router-dom';
 import {
   skillTraitNames,
   skillTraitDisplayNameOverride,
@@ -18,38 +17,6 @@ import PencilEraserContainer from '../containers/PencilEraserContainer';
 import MoralityContainer from '../containers/MoralityContainer';
 import Section from '../components/Section';
 
-const skills = (
-  <TraitCategoryContainer
-    categoryName="skills"
-    traitNames={skillTraitNames}
-    traitDisplayNameOverride={skillTraitDisplayNameOverride}
-  />
-);
-
-const backgrounds = (
-  <TraitCategoryContainer
-    categoryName="backgrounds"
-    traitNames={backgroundTraitNames}
-    traitDisplayNameOverride={backgroundTraitDisplayNameOverride}
-  />
-);
-
-const disciplines = (
-  <div>
-    <DisciplinesContainer affinity="inClan" />
-    <hr />
-    <DisciplinesContainer affinity="outOfClan" />
-  </div>
-);
-
-const meritsFlaws = (
-  <div>
-    <MeritsFlawsContainer type="merits" />
-    <hr />
-    <MeritsFlawsContainer type="flaws" />
-  </div>
-);
-
 const App = () => (
   <div className="container-fluid">
     <h1>Embracer</h1>
@@ -59,20 +26,55 @@ const App = () => (
       <PencilEraserContainer />
     </Section>
     <XPContainer />
-    <BloodContainer />
-    <hr />
-    <Link to="/">Attributes</Link> |
-    <Link to="/skills">Skills</Link> |
-    <Link to="/backgrounds">Backgrounds</Link> |
-    <Link to="/disciplines">Disciplines</Link> |
-    <Link to="/merits_flaws">Merits / Flaws</Link> |
-    <Link to="/morality">Morality</Link>
-    <Route exact path="/" component={AttributesContainer} />
-    <Route path="/skills" render={() => skills} />
-    <Route path="/backgrounds" render={() => backgrounds} />
-    <Route path="/disciplines" render={() => disciplines} />
-    <Route path="/merits_flaws" render={() => meritsFlaws} />
-    <Route path="/morality" component={MoralityContainer} />
+    <AttributesContainer />
+    <TraitCategoryContainer
+      categoryName="skills"
+      traitNames={skillTraitNames}
+      traitDisplayNameOverride={skillTraitDisplayNameOverride}
+    />
+
+    <div className="row">
+      <div className="col-sm-7">
+        <div className="container-fluid">
+          <TraitCategoryContainer
+            categoryName="backgrounds"
+            traitNames={backgroundTraitNames}
+            traitDisplayNameOverride={backgroundTraitDisplayNameOverride}
+          />
+        </div>
+      </div>
+      <div className="col-sm-5">
+        <div className="container-fluid">
+          <DisciplinesContainer affinity="inClan" />
+          <DisciplinesContainer affinity="outOfClan" />
+        </div>
+      </div>
+    </div>
+    <div className="row">
+      <div className="col-sm-6">
+        <div className="container-fluid">
+          <MeritsFlawsContainer type="merits" />
+        </div>
+      </div>
+      <div className="col-sm-6">
+        <div className="container-fluid">
+          <MeritsFlawsContainer type="flaws" />
+        </div>
+      </div>
+    </div>
+
+    <div className="row">
+      <div className="col-sm-6">
+        <div className="container-fluid">
+          <BloodContainer />
+        </div>
+      </div>
+      <div className="col-sm-6">
+        <div className="container-fluid">
+          <MoralityContainer />
+        </div>
+      </div>
+    </div>
   </div>
 );
 
