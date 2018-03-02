@@ -16,6 +16,7 @@ import XPContainer from '../containers/XPContainer';
 import BloodContainer from '../containers/BloodContainer';
 import PencilEraserContainer from '../containers/PencilEraserContainer';
 import MoralityContainer from '../containers/MoralityContainer';
+import Section from '../components/Section';
 
 const skills = (
   <TraitCategoryContainer
@@ -51,14 +52,14 @@ const meritsFlaws = (
 
 const App = () => (
   <div className="container-fluid">
-    <h2>Embracer</h2>
-    <div>
+    <h1>Embracer</h1>
+    <Section header="Character">
       <ArchetypeContainer />
       <ClanContainer />
-    </div>
+      <PencilEraserContainer />
+    </Section>
     <XPContainer />
     <BloodContainer />
-    <PencilEraserContainer />
     <hr />
     <Link to="/">Attributes</Link> |
     <Link to="/skills">Skills</Link> |

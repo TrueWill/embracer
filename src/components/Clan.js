@@ -22,14 +22,22 @@ export default class Clan extends Component {
     ));
 
     return (
-      <div>
-        <h3>Clan</h3>
-        <select value={clan} onChange={this.handleClanChange}>
-          <option value="">(not selected)</option>
-          {clanOptions}
-        </select>
-        (changing will reset Disciplines, Merits, and Morality)
-      </div>
+      <React.Fragment>
+        <div className="row">
+          <div className="col-sm-3">Clan:</div>
+          <div className="col-sm-9">
+            <select value={clan} onChange={this.handleClanChange}>
+              <option value="">(not selected)</option>
+              {clanOptions}
+            </select>
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-sm-9 offset-sm-3">
+            (changing will reset Disciplines, Merits, and Morality)
+          </div>
+        </div>
+      </React.Fragment>
     );
   }
 }
