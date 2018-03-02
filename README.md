@@ -15,7 +15,7 @@ Currently deployment is manual, so the site may not reflect the latest changes.
 
 ## TODO
 
-* STYLE
+* Improve styling/responsiveness
 * Display Generation title
 * Print / export (include Willpower and health levels)
 * Improve test coverage
