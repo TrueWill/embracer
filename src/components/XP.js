@@ -1,20 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import Section from './Section';
 
 const XP = ({ spent, gainedFromFlaws, available, bankable }) => {
   const availableClass = classNames({ negativePoints: available < 0 });
 
   return (
-    <div>
-      <h3>XP</h3>
+    <Section header="XP">
       <div>Spent: {spent}</div>
       <div>Gained from Flaws: {gainedFromFlaws}</div>
       <div>
         Available: <span className={availableClass}>{available}</span>
       </div>
       <div>Bankable: {bankable}</div>
-    </div>
+    </Section>
   );
 };
 

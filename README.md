@@ -15,7 +15,7 @@ Currently deployment is manual, so the site may not reflect the latest changes.
 
 ## TODO
 
-* STYLE
+* Improve styling/responsiveness
 * Display Generation title
 * Print / export (include Willpower and health levels)
 * Improve test coverage
@@ -28,6 +28,8 @@ Currently deployment is manual, so the site may not reflect the latest changes.
 * Techniques (clear if change Generation)
 * Elder Powers (clear if change Generation)
 * No focus selected - should empty object
+* Repeated Skills (Crafts, etc.)
+* Setting-specific Merits/Flaws
 * Copyright/TM notice on app?
 * Ask By Night Studios to add to their list of generators
 

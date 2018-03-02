@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Section from './Section';
 
 const typeDescription = {
   merits: 'Merits',
@@ -90,8 +91,7 @@ class MeritsFlaws extends Component {
       selectedValue && optionsMap.get(selectedValue).points;
 
     return (
-      <div>
-        <h3>{typeDescription[type]}</h3>
+      <Section header={typeDescription[type]}>
         <ul>{selectedList}</ul>
         <select value={selectedValue} onChange={this.handleSelectChange}>
           <option value="">(not selected)</option>
@@ -101,13 +101,13 @@ class MeritsFlaws extends Component {
           selectedPoints <= availablePoints && (
             <button
               type="button"
-              className="btn btn-primary"
+              className="btn btn-primary btn-sm"
               onClick={this.handleAdd}
             >
               Add
             </button>
           )}
-      </div>
+      </Section>
     );
   }
 }

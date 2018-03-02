@@ -30,14 +30,16 @@ export default class Archetype extends Component {
     }
 
     return (
-      <div>
-        Archetype
-        <Select.Creatable
-          value={archetype}
-          multi={false}
-          options={archetypeOptions}
-          onChange={this.handleArchetypeChange}
-        />
+      <div className="row">
+        <div className="col-sm-3">Archetype:</div>
+        <div className="col-sm-9">
+          <Select.Creatable
+            value={archetype}
+            multi={false}
+            options={archetypeOptions}
+            onChange={this.handleArchetypeChange}
+          />
+        </div>
       </div>
     );
   }

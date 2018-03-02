@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { humanity } from '../constants/characterOptions';
 import Dots from './Dots';
+import Section from './Section';
 
 const getDescription = option =>
   `${option.name} (${option.points} point merit)`;
@@ -45,14 +46,13 @@ class Morality extends Component {
     });
 
     return (
-      <div>
-        <h3>Morality</h3>
+      <Section header="Morality">
         <select value={path} onChange={this.handlePathChange}>
           <option value={humanity}>{humanity}</option>
           {pathOptions}
         </select>
         <Dots level={level} max={maxDots} onClick={this.handleOnClick} />
-      </div>
+      </Section>
     );
   }
 }
