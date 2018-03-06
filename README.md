@@ -29,6 +29,7 @@ Currently deployment is manual, so the site may not reflect the latest changes.
 * Elder Powers (clear if change Generation)
 * No focus selected - should empty object
 * Repeated Skills (Crafts, etc.)
+* Certain Merits (such as Thaumaturgic Expertise) can be purchased multiple times
 * Setting-specific Merits/Flaws
 * Copyright/TM notice on app?
 * Ask By Night Studios to add to their list of generators
