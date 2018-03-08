@@ -1,5 +1,5 @@
 import deepFreeze from 'deep-freeze';
-import generationSelector from './generationSelector';
+import getGenerationDetails from './getGenerationDetails';
 
 it('should return correct values for Neonate', () => {
   const state = {
@@ -14,7 +14,7 @@ it('should return correct values for Neonate', () => {
 
   deepFreeze(state);
 
-  const result = generationSelector(state);
+  const result = getGenerationDetails(state);
 
   expect(result).toMatchObject({
     title: 'Neonate',
@@ -40,7 +40,7 @@ it('should return correct values for Luminary Elder', () => {
 
   deepFreeze(state);
 
-  const result = generationSelector(state);
+  const result = getGenerationDetails(state);
 
   expect(result).toMatchObject({
     title: 'Luminary Elder',
