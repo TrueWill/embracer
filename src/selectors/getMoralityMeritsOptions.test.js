@@ -1,5 +1,5 @@
 import deepFreeze from 'deep-freeze';
-import { moralityMeritsOptionsSelector } from './getMoralityMeritsOptions';
+import getMoralityMeritsOptions from './getMoralityMeritsOptions';
 
 it('should return correct map for morality merits options when no clan selected', () => {
   const state = {
@@ -12,7 +12,7 @@ it('should return correct map for morality merits options when no clan selected'
 
   deepFreeze(state);
 
-  const result = moralityMeritsOptionsSelector(state);
+  const result = getMoralityMeritsOptions(state);
 
   expect(result.get('Path of Blood')).toEqual({
     points: 3
@@ -30,7 +30,7 @@ it('should return correct map for morality merits options when clan discount', (
 
   deepFreeze(state);
 
-  const result = moralityMeritsOptionsSelector(state);
+  const result = getMoralityMeritsOptions(state);
 
   expect(result.get('Path of Blood')).toEqual({
     points: 2
@@ -48,7 +48,7 @@ it('should return correct map for morality merits options when no clan discount'
 
   deepFreeze(state);
 
-  const result = moralityMeritsOptionsSelector(state);
+  const result = getMoralityMeritsOptions(state);
 
   expect(result.get('Path of Blood')).toEqual({
     points: 3

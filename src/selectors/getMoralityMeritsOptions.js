@@ -1,14 +1,14 @@
+import { createSelector } from 'reselect';
 import {
   moralityMerits,
   moralityMeritBasePoints,
   moralityMeritClanAffinityDiscount
 } from '../constants/merits';
 
-// TODO: Convert to reselect
-export const moralityMeritsOptionsSelector = state => {
-  const clan = state.character.basicInfo.clan;
+const getClan = state => state.character.basicInfo.clan;
 
-  return moralityMerits.reduce((acc, cur) => {
+const getMoralityMeritsOptions = createSelector([getClan], clan =>
+  moralityMerits.reduce((acc, cur) => {
     acc.set(cur.name, {
       points:
         moralityMeritBasePoints -
@@ -17,5 +17,7 @@ export const moralityMeritsOptionsSelector = state => {
           : 0)
     });
     return acc;
-  }, new Map());
-};
+  }, new Map())
+);
+
+export default getMoralityMeritsOptions;

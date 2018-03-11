@@ -1,6 +1,6 @@
 import * as types from '../constants/actionTypes';
 import { humanity } from '../constants/characterOptions';
-import { moralityMeritsOptionsSelector } from '../selectors/getMoralityMeritsOptions';
+import getMoralityMeritsOptions from '../selectors/getMoralityMeritsOptions';
 import { meritsSelector } from '../utils/meritsSelector';
 
 export const updateArchetype = value => ({
@@ -108,7 +108,7 @@ const getMeritPoints = (path, optionsMap) =>
 export const updateMoralityIfPointsAvailable = path => (dispatch, getState) => {
   const state = getState();
   const currentPath = state.character.morality.path;
-  const optionsMap = moralityMeritsOptionsSelector(state);
+  const optionsMap = getMoralityMeritsOptions(state);
   let { availablePoints } = meritsSelector(state);
 
   const newMeritPoints = getMeritPoints(path, optionsMap);
