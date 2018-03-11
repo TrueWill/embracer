@@ -1,16 +1,13 @@
 import { connect } from 'react-redux';
 import { addMerit, removeMerit } from '../actions/characterCreationActions';
-import meritsFlawsSelector, {
-  meritsFlawsOptionsSelector
-} from '../utils/meritsFlawsSelector';
-import MeritsFlaws from '../components/MeritsFlaws';
+import { meritsSelector, meritsOptionsSelector } from '../utils/meritsSelector';
+import Merits from '../components/Merits';
 
 const mapStateToProps = state => {
-  const optionsMap = meritsFlawsOptionsSelector(state, 'merits');
-  const { selected, availablePoints } = meritsFlawsSelector(state, 'merits');
+  const optionsMap = meritsOptionsSelector(state);
+  const { selected, availablePoints } = meritsSelector(state);
 
   return {
-    type: 'merits',
     optionsMap,
     selected,
     availablePoints
@@ -18,8 +15,8 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = {
-  add: addMerit,
-  remove: removeMerit
+  addMerit,
+  removeMerit
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(MeritsFlaws);
+export default connect(mapStateToProps, mapDispatchToProps)(Merits);

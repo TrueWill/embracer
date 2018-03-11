@@ -1,6 +1,7 @@
 import { createSelector } from 'reselect';
 import { initialXP, bankedXPLimit } from '../constants/characterOptions';
-import { meritsFlawsSelector } from '../utils/meritsFlawsSelector';
+import { meritsSelector } from '../utils/meritsSelector';
+import { flawsSelector } from '../utils/flawsSelector';
 import getGenerationDetails from './getGenerationDetails';
 
 const calculateTraitXPCost = (trait, dotCost, initialLevelProperty) => {
@@ -45,10 +46,9 @@ const getSkills = state => state.character.skills;
 const getBackgrounds = state => state.character.backgrounds;
 const getDisciplines = state => state.character.disciplines;
 const getMorality = state => state.character.morality;
-// TODO: Break up merits/flaws component and selector?
-// Looks like it's not currently caching, as the following pseudo-selector always returns a new object.
-const getMerits = state => meritsFlawsSelector(state, 'merits');
-const getFlaws = state => meritsFlawsSelector(state, 'flaws');
+// TODO: Looks like it's not currently caching, as the following pseudo-selector always returns a new object.
+const getMerits = state => meritsSelector(state);
+const getFlaws = state => flawsSelector(state);
 
 const getXP = createSelector(
   [

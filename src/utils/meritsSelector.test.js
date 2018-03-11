@@ -1,8 +1,5 @@
 import deepFreeze from 'deep-freeze';
-import meritsFlawsSelector, {
-  meritsFlawsOptionsSelector,
-  moralityMeritsOptionsSelector
-} from './meritsFlawsSelector';
+import { meritsSelector, meritsOptionsSelector } from './meritsSelector';
 
 it('should return correct initial values for merits', () => {
   const state = {
@@ -17,7 +14,7 @@ it('should return correct initial values for merits', () => {
 
   deepFreeze(state);
 
-  const result = meritsFlawsSelector(state, 'merits');
+  const result = meritsSelector(state);
 
   expect(result).toEqual({
     selected: [],
@@ -57,7 +54,7 @@ it('should return correct values for merits', () => {
 
   deepFreeze(state);
 
-  const result = meritsFlawsSelector(state, 'merits');
+  const result = meritsSelector(state);
 
   expect(result).toEqual({
     selected: state.character.merits,
@@ -95,45 +92,12 @@ it('should include morality merits', () => {
 
   deepFreeze(state);
 
-  const result = meritsFlawsSelector(state, 'merits');
+  const result = meritsSelector(state);
 
   expect(result).toEqual({
     selected: state.character.merits,
     currentPoints: 6,
     availablePoints: 1
-  });
-});
-
-it('should return correct values for flaws', () => {
-  const state = {
-    character: {
-      merits: [
-        {
-          name: 'Calm Heart',
-          points: 1
-        }
-      ],
-      flaws: [
-        {
-          name: 'Bad Sight',
-          points: 2
-        },
-        {
-          name: 'Blood Rot',
-          points: 5
-        }
-      ]
-    }
-  };
-
-  deepFreeze(state);
-
-  const result = meritsFlawsSelector(state, 'flaws');
-
-  expect(result).toEqual({
-    selected: state.character.flaws,
-    currentPoints: 7,
-    availablePoints: 0
   });
 });
 
@@ -159,7 +123,7 @@ it('should return correct map for merit options when clan selected', () => {
 
   deepFreeze(state);
 
-  const result = meritsFlawsOptionsSelector(state, 'merits');
+  const result = meritsOptionsSelector(state);
 
   expect(result.has('Ambidextrous')).toBeFalsy();
   expect(result.has('Calm Heart')).toBeFalsy();
@@ -193,7 +157,7 @@ it('should return correct map for merit options when no clan selected', () => {
 
   deepFreeze(state);
 
-  const result = meritsFlawsOptionsSelector(state, 'merits');
+  const result = meritsOptionsSelector(state);
 
   expect(result.has('Ambidextrous')).toBeFalsy();
   expect(result.has('Calm Heart')).toBeFalsy();
@@ -203,83 +167,4 @@ it('should return correct map for merit options when no clan selected', () => {
   expect(result.has('Blood of the Tzimisce')).toBeFalsy();
   expect(result.get('Szlachta')).toBeFalsy();
   expect(result.has('Sophistry')).toBeFalsy();
-});
-
-it('should return correct map for flaw options', () => {
-  const state = {
-    character: {
-      basicInfo: {
-        clan: ''
-      },
-      merits: [],
-      flaws: [
-        {
-          name: 'Amnesia',
-          points: 1
-        }
-      ]
-    }
-  };
-
-  deepFreeze(state);
-
-  const result = meritsFlawsOptionsSelector(state, 'flaws');
-
-  expect(result.has('Amnesia')).toBeFalsy();
-  expect(result.get('Addiction')).toEqual({ points: 2 });
-  expect(result.get('Archaic')).toEqual({ points: 2 });
-});
-
-it('should return correct map for morality merits options when no clan selected', () => {
-  const state = {
-    character: {
-      basicInfo: {
-        clan: ''
-      }
-    }
-  };
-
-  deepFreeze(state);
-
-  const result = moralityMeritsOptionsSelector(state);
-
-  expect(result.get('Path of Blood')).toEqual({
-    points: 3
-  });
-});
-
-it('should return correct map for morality merits options when clan discount', () => {
-  const state = {
-    character: {
-      basicInfo: {
-        clan: 'Assamite'
-      }
-    }
-  };
-
-  deepFreeze(state);
-
-  const result = moralityMeritsOptionsSelector(state);
-
-  expect(result.get('Path of Blood')).toEqual({
-    points: 2
-  });
-});
-
-it('should return correct map for morality merits options when no clan discount', () => {
-  const state = {
-    character: {
-      basicInfo: {
-        clan: 'Giovanni'
-      }
-    }
-  };
-
-  deepFreeze(state);
-
-  const result = moralityMeritsOptionsSelector(state);
-
-  expect(result.get('Path of Blood')).toEqual({
-    points: 3
-  });
 });

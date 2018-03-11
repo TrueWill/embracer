@@ -10,7 +10,7 @@ import {
   updateMoralityIfPointsAvailable
 } from '../actions/characterCreationActions';
 import dotSelector from '../utils/dotSelector';
-import { moralityMeritsOptionsSelector } from '../utils/meritsFlawsSelector';
+import { moralityMeritsOptionsSelector } from '../selectors/getMoralityMeritsOptions';
 import Morality from '../components/Morality';
 
 const mapStateToProps = state => {
