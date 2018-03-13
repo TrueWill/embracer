@@ -1,5 +1,5 @@
 import deepFreeze from 'deep-freeze';
-import { meritsOptionsSelector } from './meritsSelector';
+import getMeritsOptions from './getMeritsOptions';
 
 it('should return correct map for merit options when clan selected', () => {
   const state = {
@@ -23,7 +23,7 @@ it('should return correct map for merit options when clan selected', () => {
 
   deepFreeze(state);
 
-  const result = meritsOptionsSelector(state);
+  const result = getMeritsOptions(state);
 
   expect(result.has('Ambidextrous')).toBeFalsy();
   expect(result.has('Calm Heart')).toBeFalsy();
@@ -57,7 +57,7 @@ it('should return correct map for merit options when no clan selected', () => {
 
   deepFreeze(state);
 
-  const result = meritsOptionsSelector(state);
+  const result = getMeritsOptions(state);
 
   expect(result.has('Ambidextrous')).toBeFalsy();
   expect(result.has('Calm Heart')).toBeFalsy();

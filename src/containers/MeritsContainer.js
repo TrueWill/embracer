@@ -1,11 +1,11 @@
 import { connect } from 'react-redux';
 import { addMerit, removeMerit } from '../actions/characterCreationActions';
 import getMerits from '../selectors/getMerits';
-import { meritsOptionsSelector } from '../utils/meritsSelector';
+import getMeritsOptions from '../selectors/getMeritsOptions';
 import Merits from '../components/Merits';
 
 const mapStateToProps = state => {
-  const optionsMap = meritsOptionsSelector(state);
+  const optionsMap = getMeritsOptions(state);
   const { selected, availablePoints } = getMerits(state);
 
   return {
