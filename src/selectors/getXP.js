@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect';
 import { initialXP, bankedXPLimit } from '../constants/characterOptions';
-import { meritsSelector } from '../utils/meritsSelector';
+import getMerits from './getMerits';
 import { flawsSelector } from '../utils/flawsSelector';
 import getGenerationDetails from './getGenerationDetails';
 
@@ -47,7 +47,6 @@ const getBackgrounds = state => state.character.backgrounds;
 const getDisciplines = state => state.character.disciplines;
 const getMorality = state => state.character.morality;
 // TODO: Looks like it's not currently caching, as the following pseudo-selector always returns a new object.
-const getMerits = state => meritsSelector(state);
 const getFlaws = state => flawsSelector(state);
 
 const getXP = createSelector(

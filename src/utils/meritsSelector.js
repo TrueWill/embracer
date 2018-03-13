@@ -1,23 +1,4 @@
 import { merits, clanSpecificMerits } from '../constants/merits';
-import { maxMeritPoints } from '../constants/merits';
-
-export const meritsSelector = state => {
-  const selected = state.character.merits;
-  const additionalPoints = state.character.morality.meritPoints || 0;
-  const maxPoints = maxMeritPoints;
-
-  let currentPoints = selected
-    .map(x => x.points)
-    .reduce((acc, cur) => acc + cur, 0);
-
-  currentPoints += additionalPoints;
-
-  return {
-    selected,
-    currentPoints,
-    availablePoints: maxPoints - currentPoints
-  };
-};
 
 export const meritsOptionsSelector = state => {
   const selected = state.character.merits;
