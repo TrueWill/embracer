@@ -1,4 +1,4 @@
-import dotSelector from './dotSelector';
+import getDots from './getDots';
 import { removeProperty, isEmpty } from './objectUtils';
 
 const removeDotsPurchased = obj => removeProperty(obj, 'dotsPurchased');
@@ -6,7 +6,7 @@ const removeDotsPurchased = obj => removeProperty(obj, 'dotsPurchased');
 export const addPurchasedDot = (categoryTraits, trait, maxDots) => {
   const matchingTrait = categoryTraits[trait];
 
-  if (matchingTrait && dotSelector(matchingTrait) === maxDots) {
+  if (matchingTrait && getDots(matchingTrait) === maxDots) {
     return categoryTraits;
   }
 

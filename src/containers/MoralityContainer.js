@@ -9,7 +9,7 @@ import {
   unpurchaseMoralityDot,
   updateMoralityIfPointsAvailable
 } from '../actions/characterCreationActions';
-import dotSelector from '../utils/dotSelector';
+import getDots from '../utils/getDots';
 import getMoralityMeritsOptions from '../selectors/getMoralityMeritsOptions';
 import Morality from '../components/Morality';
 
@@ -22,7 +22,7 @@ const mapStateToProps = state => {
   return {
     optionsMap: getMoralityMeritsOptions(state),
     path,
-    level: dotSelector(state.character.morality),
+    level: getDots(state.character.morality),
     maxDots,
     isEraser: state.mode.isEraser
   };
