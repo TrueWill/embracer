@@ -1,10 +1,12 @@
+import { createSelector } from 'reselect';
 import { flaws } from '../constants/flaws';
 
-export const flawsOptionsSelector = state => {
-  const selected = state.character.flaws;
+const getSelectedFlaws = state => state.character.flaws;
+
+const getFlawsOptions = createSelector([getSelectedFlaws], selectedFlaws => {
   const options = flaws;
 
-  const selectedSet = selected.reduce((acc, cur) => {
+  const selectedSet = selectedFlaws.reduce((acc, cur) => {
     acc.add(cur.name);
     return acc;
   }, new Set());
@@ -13,4 +15,6 @@ export const flawsOptionsSelector = state => {
     acc.set(cur.name, { points: cur.points });
     return acc;
   }, new Map());
-};
+});
+
+export default getFlawsOptions;

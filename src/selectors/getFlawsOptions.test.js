@@ -1,5 +1,5 @@
 import deepFreeze from 'deep-freeze';
-import { flawsOptionsSelector } from './flawsSelector';
+import getFlawsOptions from './getFlawsOptions';
 
 it('should return correct map for flaw options', () => {
   const state = {
@@ -19,7 +19,7 @@ it('should return correct map for flaw options', () => {
 
   deepFreeze(state);
 
-  const result = flawsOptionsSelector(state);
+  const result = getFlawsOptions(state);
 
   expect(result.has('Amnesia')).toBeFalsy();
   expect(result.get('Addiction')).toEqual({ points: 2 });
