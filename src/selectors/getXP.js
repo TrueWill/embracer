@@ -1,7 +1,7 @@
 import { createSelector } from 'reselect';
 import { initialXP, bankedXPLimit } from '../constants/characterOptions';
 import getMerits from './getMerits';
-import { flawsSelector } from '../utils/flawsSelector';
+import getFlaws from './getFlaws';
 import getGenerationDetails from './getGenerationDetails';
 
 const calculateTraitXPCost = (trait, dotCost, initialLevelProperty) => {
@@ -46,8 +46,6 @@ const getSkills = state => state.character.skills;
 const getBackgrounds = state => state.character.backgrounds;
 const getDisciplines = state => state.character.disciplines;
 const getMorality = state => state.character.morality;
-// TODO: Looks like it's not currently caching, as the following pseudo-selector always returns a new object.
-const getFlaws = state => flawsSelector(state);
 
 const getXP = createSelector(
   [

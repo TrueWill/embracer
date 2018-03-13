@@ -1,11 +1,12 @@
 import { connect } from 'react-redux';
 import { addFlaw, removeFlaw } from '../actions/characterCreationActions';
-import { flawsSelector, flawsOptionsSelector } from '../utils/flawsSelector';
+import getFlaws from '../selectors/getFlaws';
+import { flawsOptionsSelector } from '../utils/flawsSelector';
 import Flaws from '../components/Flaws';
 
 const mapStateToProps = state => {
   const optionsMap = flawsOptionsSelector(state);
-  const { selected, availablePoints } = flawsSelector(state);
+  const { selected, availablePoints } = getFlaws(state);
 
   return {
     optionsMap,
