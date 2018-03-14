@@ -379,3 +379,56 @@ it('should calculate bankable when available is less', () => {
     bankable: 3
   });
 });
+
+it('should cache', () => {
+  const state = {
+    character: {
+      basicInfo: {
+        archetype: '',
+        clan: ''
+      },
+      attributes: {
+        physical: {},
+        social: {},
+        mental: {}
+      },
+      skills: {},
+      backgrounds: {
+        availableStartingDots: [
+          {
+            dots: 3,
+            count: 1
+          },
+          {
+            dots: 2,
+            count: 1
+          },
+          {
+            dots: 1,
+            count: 0
+          }
+        ],
+        generation: {
+          startingDots: 1
+        }
+      },
+      disciplines: {
+        inClan: {},
+        outOfClan: {}
+      },
+      merits: [],
+      flaws: [],
+      morality: {
+        path: 'Humanity',
+        startingDots: 5
+      }
+    }
+  };
+
+  const previousRecomputations = getXP.recomputations();
+
+  getXP(state);
+  getXP(state);
+
+  expect(getXP.recomputations()).toBe(previousRecomputations + 1);
+});
