@@ -1,9 +1,9 @@
 import { connect } from 'react-redux';
-import generationSelector from '../utils/generationSelector';
+import getGenerationDetails from '../selectors/getGenerationDetails';
 import Blood from '../components/Blood';
 
 const mapStateToProps = state => {
-  const generationDetails = generationSelector(state);
+  const generationDetails = getGenerationDetails(state);
 
   return {
     bloodPool: generationDetails.bloodPool,

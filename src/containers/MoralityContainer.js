@@ -9,8 +9,8 @@ import {
   unpurchaseMoralityDot,
   updateMoralityIfPointsAvailable
 } from '../actions/characterCreationActions';
-import dotSelector from '../utils/dotSelector';
-import { moralityMeritsOptionsSelector } from '../utils/meritsFlawsSelector';
+import getDots from '../utils/getDots';
+import getMoralityMeritsOptions from '../selectors/getMoralityMeritsOptions';
 import Morality from '../components/Morality';
 
 const mapStateToProps = state => {
@@ -20,9 +20,9 @@ const mapStateToProps = state => {
     path === humanity ? moralityMaxDotsHumanity : moralityMaxDotsPath;
 
   return {
-    optionsMap: moralityMeritsOptionsSelector(state),
+    optionsMap: getMoralityMeritsOptions(state),
     path,
-    level: dotSelector(state.character.morality),
+    level: getDots(state.character.morality),
     maxDots,
     isEraser: state.mode.isEraser
   };

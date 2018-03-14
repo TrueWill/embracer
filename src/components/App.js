@@ -10,7 +10,8 @@ import ArchetypeContainer from '../containers/ArchetypeContainer';
 import AttributesContainer from '../containers/AttributesContainer';
 import TraitCategoryContainer from '../containers/TraitCategoryContainer';
 import DisciplinesContainer from '../containers/DisciplinesContainer';
-import MeritsFlawsContainer from '../containers/MeritsFlawsContainer';
+import MeritsContainer from '../containers/MeritsContainer';
+import FlawsContainer from '../containers/FlawsContainer';
 import XPContainer from '../containers/XPContainer';
 import BloodContainer from '../containers/BloodContainer';
 import PencilEraserContainer from '../containers/PencilEraserContainer';
@@ -53,12 +54,12 @@ const App = () => (
     <div className="row">
       <div className="col-sm-6">
         <div className="container-fluid">
-          <MeritsFlawsContainer type="merits" />
+          <MeritsContainer />
         </div>
       </div>
       <div className="col-sm-6">
         <div className="container-fluid">
-          <MeritsFlawsContainer type="flaws" />
+          <FlawsContainer />
         </div>
       </div>
     </div>

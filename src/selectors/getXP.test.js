@@ -1,11 +1,11 @@
 import deepFreeze from 'deep-freeze';
 import initialState from '../reducers/initialState';
-import xpSelector from './xpSelector';
+import getXP from './getXP';
 
 deepFreeze(initialState);
 
 it('should return correct initial values', () => {
-  const result = xpSelector(initialState);
+  const result = getXP(initialState);
 
   expect(result).toEqual({
     spent: 0,
@@ -160,7 +160,7 @@ it('should calculate values', () => {
 
   deepFreeze(state);
 
-  const result = xpSelector(state);
+  const result = getXP(state);
 
   expect(result).toEqual({
     spent: 112, // 6+3 + 10+8+10+6+2 + 8+10+4+2+4 + 9+6+9 + 4+8 + 2+1
@@ -218,7 +218,7 @@ it('should calculate generation costs', () => {
 
   deepFreeze(state);
 
-  const result = xpSelector(state);
+  const result = getXP(state);
 
   expect(result).toEqual({
     spent: 10,
@@ -276,7 +276,7 @@ it('should calculate morality costs', () => {
 
   deepFreeze(state);
 
-  const result = xpSelector(state);
+  const result = getXP(state);
 
   expect(result).toEqual({
     spent: 10,
@@ -370,7 +370,7 @@ it('should calculate bankable when available is less', () => {
 
   deepFreeze(state);
 
-  const result = xpSelector(state);
+  const result = getXP(state);
 
   expect(result).toEqual({
     spent: 27,
@@ -378,4 +378,57 @@ it('should calculate bankable when available is less', () => {
     available: 3,
     bankable: 3
   });
+});
+
+it('should cache', () => {
+  const state = {
+    character: {
+      basicInfo: {
+        archetype: '',
+        clan: ''
+      },
+      attributes: {
+        physical: {},
+        social: {},
+        mental: {}
+      },
+      skills: {},
+      backgrounds: {
+        availableStartingDots: [
+          {
+            dots: 3,
+            count: 1
+          },
+          {
+            dots: 2,
+            count: 1
+          },
+          {
+            dots: 1,
+            count: 0
+          }
+        ],
+        generation: {
+          startingDots: 1
+        }
+      },
+      disciplines: {
+        inClan: {},
+        outOfClan: {}
+      },
+      merits: [],
+      flaws: [],
+      morality: {
+        path: 'Humanity',
+        startingDots: 5
+      }
+    }
+  };
+
+  const previousRecomputations = getXP.recomputations();
+
+  getXP(state);
+  getXP(state);
+
+  expect(getXP.recomputations()).toBe(previousRecomputations + 1);
 });

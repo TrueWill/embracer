@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Dots from './Dots';
 import StartingDots from './StartingDots';
-import dotSelector from '../utils/dotSelector';
+import getDots from '../utils/getDots';
 import { capitalizeFirstLetter } from '../utils/stringUtils';
 
 class Trait extends Component {
@@ -43,7 +43,7 @@ class Trait extends Component {
       <div>
         {displayName}{' '}
         <Dots
-          level={dotSelector(traitState)}
+          level={getDots(traitState)}
           max={maxDots}
           onClick={this.handleOnClick}
         />

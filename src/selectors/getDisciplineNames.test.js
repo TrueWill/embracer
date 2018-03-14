@@ -1,5 +1,5 @@
 import deepFreeze from 'deep-freeze';
-import disciplineNamesSelector from './disciplineNamesSelector';
+import getDisciplineNames from './getDisciplineNames';
 
 it('should return empty for both affinities if no clan selected', () => {
   const state = {
@@ -16,7 +16,7 @@ it('should return empty for both affinities if no clan selected', () => {
 
   deepFreeze(state);
 
-  const result = disciplineNamesSelector(state);
+  const result = getDisciplineNames(state);
 
   expect(result).toEqual({
     inClan: [],
@@ -39,7 +39,7 @@ it('should return correct values for Brujah', () => {
 
   deepFreeze(state);
 
-  const result = disciplineNamesSelector(state);
+  const result = getDisciplineNames(state);
 
   expect(result).toEqual({
     inClan: ['Celerity', 'Potence', 'Presence'],
@@ -62,7 +62,7 @@ it('should return correct initial values for Caitiff', () => {
 
   deepFreeze(state);
 
-  const result = disciplineNamesSelector(state);
+  const result = getDisciplineNames(state);
 
   expect(result).toEqual({
     inClan: [
@@ -98,7 +98,7 @@ it('should return correct values for Caitiff after some in-clan selected', () =>
 
   deepFreeze(state);
 
-  const result = disciplineNamesSelector(state);
+  const result = getDisciplineNames(state);
 
   expect(result).toEqual({
     inClan: [
@@ -140,7 +140,7 @@ it('should return correct values for Caitiff after all in-clan selected', () => 
 
   deepFreeze(state);
 
-  const result = disciplineNamesSelector(state);
+  const result = getDisciplineNames(state);
 
   expect(result).toEqual({
     inClan: ['Celerity', 'Obfuscate', 'Potence'],

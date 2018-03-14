@@ -4,14 +4,14 @@ import {
   purchaseDot,
   unpurchaseDot
 } from '../actions/characterCreationActions';
-import disciplineNamesSelector from '../utils/disciplineNamesSelector';
+import getDisciplineNames from '../selectors/getDisciplineNames';
 import Disciplines from '../components/Disciplines';
 
 const mapStateToProps = (state, ownProps) => {
   const { affinity } = ownProps;
 
   return {
-    names: disciplineNamesSelector(state)[affinity],
+    names: getDisciplineNames(state)[affinity],
     displayNameOverride: {},
     traits: state.character.disciplines[affinity],
     isEraser: state.mode.isEraser

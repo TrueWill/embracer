@@ -2,15 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Section from './Section';
 
-const typeDescription = {
-  merits: 'Merits',
-  flaws: 'Flaws'
-};
-
-const getDescription = meritFlaw =>
-  `${meritFlaw.name} (${meritFlaw.points} point${
-    meritFlaw.points > 1 ? 's' : ''
-  })`;
+const getDescription = flaw =>
+  `${flaw.name} (${flaw.points} point${flaw.points > 1 ? 's' : ''})`;
 
 class DeleteButton extends Component {
   static propTypes = {
@@ -27,9 +20,8 @@ class DeleteButton extends Component {
   }
 }
 
-class MeritsFlaws extends Component {
+class Flaws extends Component {
   static propTypes = {
-    type: PropTypes.oneOf(['merits', 'flaws']).isRequired,
     optionsMap: PropTypes.instanceOf(Map).isRequired,
     selected: PropTypes.arrayOf(
       PropTypes.shape({
@@ -38,8 +30,8 @@ class MeritsFlaws extends Component {
       })
     ).isRequired,
     availablePoints: PropTypes.number.isRequired,
-    add: PropTypes.func.isRequired,
-    remove: PropTypes.func.isRequired
+    addFlaw: PropTypes.func.isRequired,
+    removeFlaw: PropTypes.func.isRequired
   };
 
   state = {
@@ -53,16 +45,16 @@ class MeritsFlaws extends Component {
   handleAdd = () => {
     const name = this.state.selectedValue;
     const points = this.props.optionsMap.get(name).points;
-    this.props.add(name, points);
+    this.props.addFlaw(name, points);
     this.setState({ selectedValue: '' });
   };
 
   handleRemove = name => {
-    this.props.remove(name);
+    this.props.removeFlaw(name);
   };
 
   render() {
-    const { type, optionsMap, selected, availablePoints } = this.props;
+    const { optionsMap, selected, availablePoints } = this.props;
     const { selectedValue } = this.state;
 
     const selectedList = selected.map(x => (
@@ -75,14 +67,14 @@ class MeritsFlaws extends Component {
     const optionsList = [];
 
     optionsMap.forEach((value, key) => {
-      const meritFlaw = {
+      const flaw = {
         name: key,
         points: value.points
       };
 
       optionsList.push(
-        <option value={meritFlaw.name} key={meritFlaw.name}>
-          {getDescription(meritFlaw)}
+        <option value={flaw.name} key={flaw.name}>
+          {getDescription(flaw)}
         </option>
       );
     });
@@ -91,7 +83,7 @@ class MeritsFlaws extends Component {
       selectedValue && optionsMap.get(selectedValue).points;
 
     return (
-      <Section header={typeDescription[type]}>
+      <Section header="Flaws">
         <ul>{selectedList}</ul>
         <select value={selectedValue} onChange={this.handleSelectChange}>
           <option value="">(not selected)</option>
@@ -112,4 +104,4 @@ class MeritsFlaws extends Component {
   }
 }
 
-export default MeritsFlaws;
+export default Flaws;

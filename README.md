@@ -23,7 +23,6 @@ Currently deployment is manual, so the site may not reflect the latest changes.
 * Bloodlines - enable when select clan - list and charge Merit costs against total (clear on change)
 * Add Lesser/Rare Clans - how to handle Rarity Merit costs? Also count against total Merits
 * Automate deployment
-* Use reselect library?
 * Rituals
 * Techniques (clear if change Generation)
 * Elder Powers (clear if change Generation)
@@ -42,6 +41,7 @@ Currently deployment is manual, so the site may not reflect the latest changes.
 * [EditorConfig](http://editorconfig.org/)
 * [Yarn](https://yarnpkg.com/en/)
 * [Flux Standard Actions](https://github.com/acdlite/flux-standard-action)
+* [Reselect](https://github.com/reactjs/reselect) selectors
 * Jest/Enzyme tests (using it() alias for test())
 * No ESLint warnings/errors
 * No console warnings/errors

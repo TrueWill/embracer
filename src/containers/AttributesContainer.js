@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import generationSelector from '../utils/generationSelector';
+import getGenerationDetails from '../selectors/getGenerationDetails';
 import {
   setRank,
   setFocus,
@@ -9,7 +9,7 @@ import {
 import Attributes from '../components/Attributes';
 
 const mapStateToProps = state => {
-  const attributeBonus = generationSelector(state).attributeBonus;
+  const attributeBonus = getGenerationDetails(state).attributeBonus;
 
   return {
     attributes: state.character.attributes,
