@@ -85,6 +85,18 @@ export const unpurchaseDot = (category, trait) => ({
   }
 });
 
+// thunk
+export const purchaseOrUnpurchaseDot = (category, trait) => (
+  dispatch,
+  getState
+) => {
+  const state = getState();
+  const actionCreator = state.mode.isEraser ? unpurchaseDot : purchaseDot;
+
+  dispatch(actionCreator(category, trait));
+};
+
+// TODO: Replace with thunk
 export const purchaseMoralityDot = () => ({
   type: types.PURCHASE_MORALITY_DOT
 });

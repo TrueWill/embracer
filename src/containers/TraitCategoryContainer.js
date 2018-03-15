@@ -1,8 +1,7 @@
 import { connect } from 'react-redux';
 import {
   setStartingDots,
-  purchaseDot,
-  unpurchaseDot
+  purchaseOrUnpurchaseDot
 } from '../actions/characterCreationActions';
 import TraitCategory from '../components/TraitCategory';
 
@@ -10,26 +9,13 @@ const mapStateToProps = (state, ownProps) => {
   const { categoryName } = ownProps;
 
   return {
-    categoryTraits: state.character[categoryName],
-    isEraser: state.mode.isEraser
+    categoryTraits: state.character[categoryName]
   };
 };
 
 const mapDispatchToProps = {
   setStartingDots,
-  purchaseDot,
-  unpurchaseDot
+  purchaseOrUnpurchaseDot
 };
 
-const mergeProps = (stateProps, dispatchProps, ownProps) => ({
-  ...ownProps,
-  categoryTraits: stateProps.categoryTraits,
-  setStartingDots: dispatchProps.setStartingDots,
-  purchaseOrUnpurchaseDot: stateProps.isEraser
-    ? dispatchProps.unpurchaseDot
-    : dispatchProps.purchaseDot
-});
-
-export default connect(mapStateToProps, mapDispatchToProps, mergeProps)(
-  TraitCategory
-);
+export default connect(mapStateToProps, mapDispatchToProps)(TraitCategory);

@@ -3,8 +3,7 @@ import getGenerationDetails from '../selectors/getGenerationDetails';
 import {
   setRank,
   setFocus,
-  purchaseDot,
-  unpurchaseDot
+  purchaseOrUnpurchaseDot
 } from '../actions/characterCreationActions';
 import Attributes from '../components/Attributes';
 
@@ -13,28 +12,14 @@ const mapStateToProps = state => {
 
   return {
     attributes: state.character.attributes,
-    attributeBonus,
-    isEraser: state.mode.isEraser
+    attributeBonus
   };
 };
 
 const mapDispatchToProps = {
   setRank,
   setFocus,
-  purchaseDot,
-  unpurchaseDot
+  purchaseOrUnpurchaseDot
 };
 
-const mergeProps = (stateProps, dispatchProps) => ({
-  attributes: stateProps.attributes,
-  attributeBonus: stateProps.attributeBonus,
-  setRank: dispatchProps.setRank,
-  setFocus: dispatchProps.setFocus,
-  purchaseOrUnpurchaseDot: stateProps.isEraser
-    ? dispatchProps.unpurchaseDot
-    : dispatchProps.purchaseDot
-});
-
-export default connect(mapStateToProps, mapDispatchToProps, mergeProps)(
-  Attributes
-);
+export default connect(mapStateToProps, mapDispatchToProps)(Attributes);

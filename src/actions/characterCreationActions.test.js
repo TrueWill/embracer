@@ -1,6 +1,54 @@
 import * as actions from './characterCreationActions';
 import * as types from '../constants/actionTypes';
 
+describe('purchase or unpurchase dot', () => {
+  it('should dispatch purchase dot if not in eraser mode', () => {
+    const f = actions.purchaseOrUnpurchaseDot('attributes', 'mental');
+
+    const getState = () => ({
+      mode: {
+        isEraser: false
+      }
+    });
+
+    const dispatch = jest.fn();
+
+    f(dispatch, getState);
+
+    expect(dispatch.mock.calls.length).toBe(1);
+    expect(dispatch.mock.calls[0][0]).toEqual({
+      type: types.PURCHASE_DOT,
+      payload: {
+        category: 'attributes',
+        trait: 'mental'
+      }
+    });
+  });
+
+  it('should dispatch unpurchase dot if in eraser mode', () => {
+    const f = actions.purchaseOrUnpurchaseDot('attributes', 'mental');
+
+    const getState = () => ({
+      mode: {
+        isEraser: true
+      }
+    });
+
+    const dispatch = jest.fn();
+
+    f(dispatch, getState);
+
+    expect(dispatch.mock.calls.length).toBe(1);
+    expect(dispatch.mock.calls[0][0]).toEqual({
+      type: types.UNPURCHASE_DOT,
+      payload: {
+        category: 'attributes',
+        trait: 'mental'
+      }
+    });
+  });
+});
+
 describe('update morality', () => {
   it('should calculate merit points when path and clan affinity', () => {
     const f = actions.updateMoralityIfPointsAvailable('Path of Metamorphosis');
