@@ -13,12 +13,12 @@ class Morality extends Component {
     path: PropTypes.string.isRequired,
     level: PropTypes.number.isRequired,
     maxDots: PropTypes.number.isRequired,
-    purchaseOrUnpurchaseDot: PropTypes.func.isRequired,
+    purchaseOrUnpurchaseMoralityDot: PropTypes.func.isRequired,
     updateMoralityIfPointsAvailable: PropTypes.func.isRequired
   };
 
   handleOnClick = () => {
-    this.props.purchaseOrUnpurchaseDot();
+    this.props.purchaseOrUnpurchaseMoralityDot();
   };
 
   handlePathChange = e => {

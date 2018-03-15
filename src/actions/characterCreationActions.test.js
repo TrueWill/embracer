@@ -49,6 +49,46 @@ describe('purchase or unpurchase dot', () => {
   });
 });
 
+describe('purchase or unpurchase morality dot', () => {
+  it('should dispatch purchase morality dot if not in eraser mode', () => {
+    const f = actions.purchaseOrUnpurchaseMoralityDot();
+
+    const getState = () => ({
+      mode: {
+        isEraser: false
+      }
+    });
+
+    const dispatch = jest.fn();
+
+    f(dispatch, getState);
+
+    expect(dispatch.mock.calls.length).toBe(1);
+    expect(dispatch.mock.calls[0][0]).toEqual({
+      type: types.PURCHASE_MORALITY_DOT
+    });
+  });
+
+  it('should dispatch unpurchase morality dot if in eraser mode', () => {
+    const f = actions.purchaseOrUnpurchaseMoralityDot();
+
+    const getState = () => ({
+      mode: {
+        isEraser: true
+      }
+    });
+
+    const dispatch = jest.fn();
+
+    f(dispatch, getState);
+
+    expect(dispatch.mock.calls.length).toBe(1);
+    expect(dispatch.mock.calls[0][0]).toEqual({
+      type: types.UNPURCHASE_MORALITY_DOT
+    });
+  });
+});
+
 describe('update morality', () => {
   it('should calculate merit points when path and clan affinity', () => {
     const f = actions.updateMoralityIfPointsAvailable('Path of Metamorphosis');
