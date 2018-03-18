@@ -20,7 +20,7 @@ it('should calculate values', () => {
     character: {
       basicInfo: {
         archetype: '',
-        clan: 'Brujah'
+        clan: { name: 'Brujah' }
       },
       attributes: {
         physical: {
@@ -175,7 +175,7 @@ it('should calculate generation costs', () => {
     character: {
       basicInfo: {
         archetype: '',
-        clan: ''
+        clan: { name: '' }
       },
       attributes: {
         physical: {},
@@ -233,7 +233,7 @@ it('should calculate morality costs', () => {
     character: {
       basicInfo: {
         archetype: '',
-        clan: ''
+        clan: { name: '' }
       },
       attributes: {
         physical: {},
@@ -294,7 +294,7 @@ it('should calculate bankable when available is less', () => {
     character: {
       basicInfo: {
         archetype: '',
-        clan: ''
+        clan: { name: '' }
       },
       attributes: {
         physical: {
@@ -385,7 +385,7 @@ it('should cache', () => {
     character: {
       basicInfo: {
         archetype: '',
-        clan: ''
+        clan: { name: '' }
       },
       attributes: {
         physical: {},

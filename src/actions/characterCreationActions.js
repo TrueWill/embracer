@@ -8,9 +8,14 @@ export const updateArchetype = value => ({
   payload: value
 });
 
-export const updateClan = value => ({
+// bloodline and meritPoints are optional
+export const updateClan = (name, bloodline, meritPoints) => ({
   type: types.UPDATE_CLAN,
-  payload: value
+  payload: {
+    name,
+    bloodline,
+    meritPoints
+  }
 });
 
 export const setRank = (category, trait, dotsFromRank) => ({

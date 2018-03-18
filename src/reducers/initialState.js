@@ -28,7 +28,7 @@ export default {
   character: {
     basicInfo: {
       archetype: '',
-      clan: ''
+      clan: { name: '' }
     },
     attributes: attributeTraitNames.reduce(
       (acc, name) => ({ ...acc, [name]: {} }),

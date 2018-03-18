@@ -16,7 +16,7 @@ it('should initialize', () => {
 it('should update archetype', () => {
   const state = {
     archetype: 'old',
-    clan: 'aclan'
+    clan: { name: 'Tremere' }
   };
 
   deepFreeze(state);
@@ -27,24 +27,50 @@ it('should update archetype', () => {
 
   expect(nextState).toEqual({
     archetype: 'new',
-    clan: 'aclan'
+    clan: { name: 'Tremere' }
   });
 });
 
-it('should update clan', () => {
+it('should update clan from bloodline', () => {
   const state = {
-    archetype: 'arc',
-    clan: 'old'
+    archetype: 'Monster',
+    clan: {
+      name: 'Tzimisce',
+      bloodline: 'Koldun',
+      meritPoints: 4
+    }
   };
 
   deepFreeze(state);
 
-  const action = actions.updateClan('new');
+  const action = actions.updateClan('Tremere');
 
   const nextState = reducer(state, action);
 
   expect(nextState).toEqual({
-    archetype: 'arc',
-    clan: 'new'
+    archetype: 'Monster',
+    clan: { name: 'Tremere' }
+  });
+});
+
+it('should update clan to bloodline', () => {
+  const state = {
+    archetype: 'Monster',
+    clan: { name: 'Tremere' }
+  };
+
+  deepFreeze(state);
+
+  const action = actions.updateClan('Tzimisce', 'Koldun', 4);
+
+  const nextState = reducer(state, action);
+
+  expect(nextState).toEqual({
+    archetype: 'Monster',
+    clan: {
+      name: 'Tzimisce',
+      bloodline: 'Koldun',
+      meritPoints: 4
+    }
   });
 });

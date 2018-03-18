@@ -5,7 +5,7 @@ it('should return empty for both affinities if no clan selected', () => {
   const state = {
     character: {
       basicInfo: {
-        clan: ''
+        clan: { name: '' }
       },
       disciplines: {
         inClan: {},
@@ -28,7 +28,7 @@ it('should return correct values for Brujah', () => {
   const state = {
     character: {
       basicInfo: {
-        clan: 'Brujah'
+        clan: { name: 'Brujah' }
       },
       disciplines: {
         inClan: {},
@@ -51,7 +51,7 @@ it('should return correct initial values for Caitiff', () => {
   const state = {
     character: {
       basicInfo: {
-        clan: 'Caitiff'
+        clan: { name: 'Caitiff' }
       },
       disciplines: {
         inClan: {},
@@ -83,7 +83,7 @@ it('should return correct values for Caitiff after some in-clan selected', () =>
   const state = {
     character: {
       basicInfo: {
-        clan: 'Caitiff'
+        clan: { name: 'Caitiff' }
       },
       disciplines: {
         inClan: {
@@ -119,7 +119,7 @@ it('should return correct values for Caitiff after all in-clan selected', () => 
   const state = {
     character: {
       basicInfo: {
-        clan: 'Caitiff'
+        clan: { name: 'Caitiff' }
       },
       disciplines: {
         inClan: {

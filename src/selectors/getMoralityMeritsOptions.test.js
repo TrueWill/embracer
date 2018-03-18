@@ -5,7 +5,7 @@ it('should return correct map for morality merits options when no clan selected'
   const state = {
     character: {
       basicInfo: {
-        clan: ''
+        clan: { name: '' }
       }
     }
   };
@@ -23,7 +23,7 @@ it('should return correct map for morality merits options when clan discount', (
   const state = {
     character: {
       basicInfo: {
-        clan: 'Assamite'
+        clan: { name: 'Assamite' }
       }
     }
   };
@@ -41,7 +41,7 @@ it('should return correct map for morality merits options when no clan discount'
   const state = {
     character: {
       basicInfo: {
-        clan: 'Giovanni'
+        clan: { name: 'Giovanni' }
       }
     }
   };

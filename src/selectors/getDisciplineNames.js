@@ -5,16 +5,16 @@ import {
   disciplineNamesByClan
 } from '../constants/characterOptions';
 
-const getClan = state => state.character.basicInfo.clan;
+const getClanName = state => state.character.basicInfo.clan.name;
 const getInClanState = state => state.character.disciplines.inClan;
 
 // returns by affinity
 const getDisciplineNames = createSelector(
-  [getClan, getInClanState],
-  (clan, inClanState) => {
+  [getClanName, getInClanState],
+  (clanName, inClanState) => {
     let inClan;
 
-    if (clan === 'Caitiff') {
+    if (clanName === 'Caitiff') {
       // Caitiff choose their in-clan disciplines from the common ones.
       const selectedInClan = Object.keys(inClanState).filter(
         x => inClanState[x].startingDots
@@ -25,7 +25,7 @@ const getDisciplineNames = createSelector(
           ? commonDisciplineNames
           : selectedInClan;
     } else {
-      inClan = disciplineNamesByClan[clan] || [];
+      inClan = disciplineNamesByClan[clanName] || [];
     }
 
     const outOfClan =
