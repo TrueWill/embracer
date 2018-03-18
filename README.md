@@ -16,13 +16,10 @@ Currently deployment is manual, so the site may not reflect the latest changes.
 ## TODO
 
 * Improve styling/responsiveness
-* Display Generation title
-* Print / export (include Willpower and health levels)
+* Print / export (include Willpower and health levels; display generation title)
 * Improve test coverage
-* Refactor
 * Bloodlines - enable when select clan - list and charge Merit costs against total (clear on change)
 * Add Lesser/Rare Clans - how to handle Rarity Merit costs? Also count against total Merits
-* Automate deployment
 * Rituals
 * Techniques (clear if change Generation)
 * Elder Powers (clear if change Generation)
