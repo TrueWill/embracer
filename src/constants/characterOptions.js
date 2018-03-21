@@ -1,3 +1,5 @@
+import { arrayToMap } from '../utils/mapUtils';
+
 export const archetypes = [
   'Architect',
   'Artist',
@@ -40,21 +42,30 @@ export const archetypes = [
   'Untrustworthy'
 ];
 
-export const clans = [
-  'Assamite',
-  'Brujah',
-  'Followers of Set',
-  'Gangrel',
-  'Giovanni',
-  'Lasombra',
-  'Malkavian',
-  'Nosferatu',
-  'Toreador',
-  'Tremere',
-  'Tzimisce',
-  'Ventrue',
-  'Caitiff'
-];
+// TODO working
+export const clans = arrayToMap([
+  [
+    'Assamite',
+    {
+      bloodlines: arrayToMap([
+        ['Vizier', { meritPoints: 2 }],
+        ['Sorcerer', { meritPoints: 4 }]
+      ])
+    }
+  ],
+  ['Brujah', { bloodlines: arrayToMap([]) }],
+  ['Followers of Set', { bloodlines: arrayToMap([]) }],
+  ['Gangrel', { bloodlines: arrayToMap([]) }],
+  ['Giovanni', { bloodlines: arrayToMap([]) }],
+  ['Lasombra', { bloodlines: arrayToMap([]) }],
+  ['Malkavian', { bloodlines: arrayToMap([]) }],
+  ['Nosferatu', { bloodlines: arrayToMap([]) }],
+  ['Toreador', { bloodlines: arrayToMap([]) }],
+  ['Tremere', { bloodlines: arrayToMap([]) }],
+  ['Tzimisce', { bloodlines: arrayToMap([]) }],
+  ['Ventrue', { bloodlines: arrayToMap([]) }],
+  ['Caitiff', { bloodlines: arrayToMap([]) }]
+]);
 
 export const caitiffInClanDisciplineCount = 3;
 
@@ -69,6 +80,7 @@ export const commonDisciplineNames = [
   'Presence'
 ];
 
+// TODO: Move into clans map
 export const disciplineNamesByClan = {
   Assamite: ['Celerity', 'Obfuscate', 'Quietus'],
   Brujah: ['Celerity', 'Potence', 'Presence'],
