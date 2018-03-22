@@ -53,7 +53,6 @@ export const commonDisciplineNames = [
   'Presence'
 ];
 
-// TODO working
 export const clans = arrayToMap([
   [
     'Assamite',
@@ -78,42 +77,110 @@ export const clans = arrayToMap([
     'Brujah',
     {
       disciplines: ['Celerity', 'Potence', 'Presence'],
-      bloodlines: arrayToMap([])
+      bloodlines: arrayToMap([
+        [
+          'True Brujah',
+          { meritPoints: 4, disciplines: ['Potence', 'Presence', 'Temporis'] }
+        ]
+      ])
     }
   ],
   [
     'Followers of Set',
     {
       disciplines: ['Obfuscate', 'Presence', 'Serpentis'],
-      bloodlines: arrayToMap([])
+      bloodlines: arrayToMap([
+        [
+          'Tlacique',
+          { meritPoints: 2, disciplines: ['Presence', 'Obfuscate', 'Protean'] }
+        ],
+        [
+          'Viper',
+          {
+            meritPoints: 2,
+            disciplines: ['Potence', 'Presence', 'Serpentis']
+          }
+        ]
+      ])
     }
   ],
   [
     'Gangrel',
     {
       disciplines: ['Animalism', 'Fortitude', 'Protean'],
-      bloodlines: arrayToMap([])
+      bloodlines: arrayToMap([
+        [
+          'Coyote',
+          { meritPoints: 2, disciplines: ['Celerity', 'Obfuscate', 'Protean'] }
+        ],
+        [
+          'Noiad',
+          {
+            meritPoints: 2,
+            disciplines: ['Animalism', 'Auspex', 'Protean']
+          }
+        ],
+        [
+          'Ahrimanes',
+          {
+            meritPoints: 4,
+            disciplines: [
+              'Animalism',
+              'Presence',
+              'Thaumaturgy: Path of Elemental Mastery'
+            ]
+          }
+        ]
+      ])
     }
   ],
   [
     'Giovanni',
     {
       disciplines: ['Dominate', 'Potence', 'Necromancy: Sepulchre Path'],
-      bloodlines: arrayToMap([])
+      bloodlines: arrayToMap([
+        [
+          'Premascine',
+          {
+            meritPoints: 4,
+            disciplines: ['Dominate', 'Potence', 'Necromancy: Sepulchre Path']
+          }
+        ]
+      ])
     }
   ],
   [
     'Lasombra',
     {
       disciplines: ['Dominate', 'Potence', 'Obtenebration'],
-      bloodlines: arrayToMap([])
+      bloodlines: arrayToMap([
+        [
+          'Kiasyd',
+          {
+            meritPoints: 4,
+            disciplines: ['Dominate', 'Mytherceria', 'Obtenebration']
+          }
+        ]
+      ])
     }
   ],
   [
     'Malkavian',
     {
       disciplines: ['Auspex', 'Dementation', 'Obfuscate'],
-      bloodlines: arrayToMap([])
+      bloodlines: arrayToMap([
+        [
+          'Ananke',
+          { meritPoints: 2, disciplines: ['Auspex', 'Dementation', 'Presence'] }
+        ],
+        [
+          'Knights of the Moon',
+          {
+            meritPoints: 2,
+            disciplines: ['Auspex', 'Dominate', 'Obfuscate']
+          }
+        ]
+      ])
     }
   ],
   [
@@ -127,28 +194,69 @@ export const clans = arrayToMap([
     'Toreador',
     {
       disciplines: ['Auspex', 'Celerity', 'Presence'],
-      bloodlines: arrayToMap([])
+      bloodlines: arrayToMap([
+        [
+          'Ishtarri',
+          { meritPoints: 2, disciplines: ['Celerity', 'Fortitude', 'Presence'] }
+        ],
+        [
+          'Volgirre',
+          {
+            meritPoints: 2,
+            disciplines: ['Auspex', 'Celerity', 'Presence']
+          }
+        ]
+      ])
     }
   ],
   [
     'Tremere',
     {
       disciplines: ['Auspex', 'Dominate', 'Thaumaturgy: Path of Blood'],
-      bloodlines: arrayToMap([])
+      bloodlines: arrayToMap([
+        [
+          'Telyav',
+          {
+            meritPoints: 2,
+            disciplines: ['Auspex', 'Presence', 'Thaumaturgy: Path of Blood']
+          }
+        ]
+      ])
     }
   ],
   [
     'Tzimisce',
     {
       disciplines: ['Animalism', 'Auspex', 'Vicissitude'],
-      bloodlines: arrayToMap([])
+      bloodlines: arrayToMap([
+        [
+          'Carpathian',
+          { meritPoints: 3, disciplines: ['Animalism', 'Auspex', 'Dominate'] }
+        ],
+        [
+          'Koldun',
+          {
+            meritPoints: 4,
+            disciplines: [
+              'Animalism',
+              'Auspex',
+              'Thaumaturgy: Path of Elemental Mastery'
+            ]
+          }
+        ]
+      ])
     }
   ],
   [
     'Ventrue',
     {
       disciplines: ['Dominate', 'Fortitude', 'Presence'],
-      bloodlines: arrayToMap([])
+      bloodlines: arrayToMap([
+        [
+          'Crusader',
+          { meritPoints: 2, disciplines: ['Auspex', 'Dominate', 'Fortitude'] }
+        ]
+      ])
     }
   ],
   [
