@@ -147,3 +147,37 @@ it('should return correct values for Caitiff after all in-clan selected', () => 
     outOfClan: ['Animalism', 'Auspex', 'Dominate', 'Fortitude', 'Presence']
   });
 });
+
+it('should return correct values for bloodline', () => {
+  const state = {
+    character: {
+      basicInfo: {
+        clan: {
+          name: 'Assamite',
+          bloodline: 'Vizier',
+          meritPoints: 2
+        }
+      },
+      disciplines: {
+        inClan: {},
+        outOfClan: {}
+      }
+    }
+  };
+
+  deepFreeze(state);
+
+  const result = getDisciplineNames(state);
+
+  expect(result).toEqual({
+    inClan: ['Auspex', 'Celerity', 'Quietus'],
+    outOfClan: [
+      'Animalism',
+      'Dominate',
+      'Fortitude',
+      'Obfuscate',
+      'Potence',
+      'Presence'
+    ]
+  });
+});

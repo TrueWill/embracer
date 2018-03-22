@@ -60,8 +60,17 @@ export const clans = arrayToMap([
     {
       disciplines: ['Celerity', 'Obfuscate', 'Quietus'],
       bloodlines: arrayToMap([
-        ['Vizier', { meritPoints: 2 }],
-        ['Sorcerer', { meritPoints: 4 }]
+        [
+          'Vizier',
+          { meritPoints: 2, disciplines: ['Auspex', 'Celerity', 'Quietus'] }
+        ],
+        [
+          'Sorcerer',
+          {
+            meritPoints: 4,
+            disciplines: ['Obfuscate', 'Quietus', 'Thaumaturgy: Lure of Flames']
+          }
+        ]
       ])
     }
   ],
