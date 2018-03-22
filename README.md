@@ -18,7 +18,6 @@ Currently deployment is manual, so the site may not reflect the latest changes.
 * Improve styling/responsiveness
 * Print / export (include Willpower and health levels; display generation title)
 * Improve test coverage
-* Bloodlines - enable when select clan - list and charge Merit costs against total (clear on change)
 * Add Lesser/Rare Clans - how to handle Rarity Merit costs? Also count against total Merits
 * Rituals
 * Techniques (clear if change Generation)
@@ -27,6 +26,13 @@ Currently deployment is manual, so the site may not reflect the latest changes.
 * Repeated Skills (Crafts, etc.)
 * Certain Merits (such as Thaumaturgic Expertise) can be purchased multiple times
 * Setting-specific Merits/Flaws
+* Nosferatu cannot have the Appearance attribute focus
+* Caitiff cannot have more than 2 dots in Generation
+* True Brujah cannot purchase Empathy and pay double XP for dots of Morality
+* Premascine can learn Necromancy: Mortis Path as out-of-clan
+* Volgirre can learn Vicissitude out-of-clan (up to 2 dots)
+* Carpathians can learn Protean out-of-clan and cannot take the Szlachta merit
+* Koldun additional Thaumaturgy path (odd costs)
 * Copyright/TM notice on app?
 * Ask By Night Studios to add to their list of generators
 
