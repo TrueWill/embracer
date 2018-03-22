@@ -42,33 +42,6 @@ export const archetypes = [
   'Untrustworthy'
 ];
 
-// TODO working
-export const clans = arrayToMap([
-  [
-    'Assamite',
-    {
-      bloodlines: arrayToMap([
-        ['Vizier', { meritPoints: 2 }],
-        ['Sorcerer', { meritPoints: 4 }]
-      ])
-    }
-  ],
-  ['Brujah', { bloodlines: arrayToMap([]) }],
-  ['Followers of Set', { bloodlines: arrayToMap([]) }],
-  ['Gangrel', { bloodlines: arrayToMap([]) }],
-  ['Giovanni', { bloodlines: arrayToMap([]) }],
-  ['Lasombra', { bloodlines: arrayToMap([]) }],
-  ['Malkavian', { bloodlines: arrayToMap([]) }],
-  ['Nosferatu', { bloodlines: arrayToMap([]) }],
-  ['Toreador', { bloodlines: arrayToMap([]) }],
-  ['Tremere', { bloodlines: arrayToMap([]) }],
-  ['Tzimisce', { bloodlines: arrayToMap([]) }],
-  ['Ventrue', { bloodlines: arrayToMap([]) }],
-  ['Caitiff', { bloodlines: arrayToMap([]) }]
-]);
-
-export const caitiffInClanDisciplineCount = 3;
-
 export const commonDisciplineNames = [
   'Animalism',
   'Auspex',
@@ -80,22 +53,105 @@ export const commonDisciplineNames = [
   'Presence'
 ];
 
-// TODO: Move into clans map
-export const disciplineNamesByClan = {
-  Assamite: ['Celerity', 'Obfuscate', 'Quietus'],
-  Brujah: ['Celerity', 'Potence', 'Presence'],
-  'Followers of Set': ['Obfuscate', 'Presence', 'Serpentis'],
-  Gangrel: ['Animalism', 'Fortitude', 'Protean'],
-  Giovanni: ['Dominate', 'Potence', 'Necromancy: Sepulchre Path'],
-  Lasombra: ['Dominate', 'Potence', 'Obtenebration'],
-  Malkavian: ['Auspex', 'Dementation', 'Obfuscate'],
-  Nosferatu: ['Animalism', 'Obfuscate', 'Potence'],
-  Toreador: ['Auspex', 'Celerity', 'Presence'],
-  Tremere: ['Auspex', 'Dominate', 'Thaumaturgy: Path of Blood'],
-  Tzimisce: ['Animalism', 'Auspex', 'Vicissitude'],
-  Ventrue: ['Dominate', 'Fortitude', 'Presence'],
-  Caitiff: commonDisciplineNames
-};
+// TODO working
+export const clans = arrayToMap([
+  [
+    'Assamite',
+    {
+      disciplines: ['Celerity', 'Obfuscate', 'Quietus'],
+      bloodlines: arrayToMap([
+        ['Vizier', { meritPoints: 2 }],
+        ['Sorcerer', { meritPoints: 4 }]
+      ])
+    }
+  ],
+  [
+    'Brujah',
+    {
+      disciplines: ['Celerity', 'Potence', 'Presence'],
+      bloodlines: arrayToMap([])
+    }
+  ],
+  [
+    'Followers of Set',
+    {
+      disciplines: ['Obfuscate', 'Presence', 'Serpentis'],
+      bloodlines: arrayToMap([])
+    }
+  ],
+  [
+    'Gangrel',
+    {
+      disciplines: ['Animalism', 'Fortitude', 'Protean'],
+      bloodlines: arrayToMap([])
+    }
+  ],
+  [
+    'Giovanni',
+    {
+      disciplines: ['Dominate', 'Potence', 'Necromancy: Sepulchre Path'],
+      bloodlines: arrayToMap([])
+    }
+  ],
+  [
+    'Lasombra',
+    {
+      disciplines: ['Dominate', 'Potence', 'Obtenebration'],
+      bloodlines: arrayToMap([])
+    }
+  ],
+  [
+    'Malkavian',
+    {
+      disciplines: ['Auspex', 'Dementation', 'Obfuscate'],
+      bloodlines: arrayToMap([])
+    }
+  ],
+  [
+    'Nosferatu',
+    {
+      disciplines: ['Animalism', 'Obfuscate', 'Potence'],
+      bloodlines: arrayToMap([])
+    }
+  ],
+  [
+    'Toreador',
+    {
+      disciplines: ['Auspex', 'Celerity', 'Presence'],
+      bloodlines: arrayToMap([])
+    }
+  ],
+  [
+    'Tremere',
+    {
+      disciplines: ['Auspex', 'Dominate', 'Thaumaturgy: Path of Blood'],
+      bloodlines: arrayToMap([])
+    }
+  ],
+  [
+    'Tzimisce',
+    {
+      disciplines: ['Animalism', 'Auspex', 'Vicissitude'],
+      bloodlines: arrayToMap([])
+    }
+  ],
+  [
+    'Ventrue',
+    {
+      disciplines: ['Dominate', 'Fortitude', 'Presence'],
+      bloodlines: arrayToMap([])
+    }
+  ],
+  [
+    'Caitiff',
+    {
+      disciplines: commonDisciplineNames,
+      bloodlines: arrayToMap([])
+    }
+  ]
+]);
+
+export const caitiffInClanDisciplineCount = 3;
 
 export const inClanDisciplinesAvailableStartingDots = [
   { dots: 2, count: 1 },

@@ -2,7 +2,7 @@ import { createSelector } from 'reselect';
 import {
   caitiffInClanDisciplineCount,
   commonDisciplineNames,
-  disciplineNamesByClan
+  clans
 } from '../constants/characterOptions';
 
 const getClanName = state => state.character.basicInfo.clan.name;
@@ -25,7 +25,7 @@ const getDisciplineNames = createSelector(
           ? commonDisciplineNames
           : selectedInClan;
     } else {
-      inClan = disciplineNamesByClan[clanName] || [];
+      inClan = clanName ? clans.get(clanName).disciplines : [];
     }
 
     const outOfClan =
