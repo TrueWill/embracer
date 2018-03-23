@@ -5,14 +5,15 @@ import {
   moralityMeritClanAffinityDiscount
 } from '../constants/merits';
 
-const getClanName = state => state.character.basicInfo.clan.name;
+const getClan = state => state.character.basicInfo.clan;
 
-const getMoralityMeritsOptions = createSelector([getClanName], clanName =>
+const getMoralityMeritsOptions = createSelector([getClan], clan =>
   moralityMerits.reduce((acc, cur) => {
     acc.set(cur.name, {
       points:
         moralityMeritBasePoints -
-        (cur.clanAffinity && cur.clanAffinity === clanName
+        (cur.clanAffinity &&
+        (cur.clanAffinity === clan.name || cur.clanAffinity === clan.bloodline)
           ? moralityMeritClanAffinityDiscount
           : 0)
     });

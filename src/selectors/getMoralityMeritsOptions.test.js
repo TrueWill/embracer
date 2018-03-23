@@ -54,3 +54,25 @@ it('should return correct map for morality merits options when no clan discount'
     points: 3
   });
 });
+
+it('should return correct map for morality merits options when bloodline discount', () => {
+  const state = {
+    character: {
+      basicInfo: {
+        clan: {
+          name: 'Followers of Set',
+          bloodline: 'Viper',
+          meritPoints: 2
+        }
+      }
+    }
+  };
+
+  deepFreeze(state);
+
+  const result = getMoralityMeritsOptions(state);
+
+  expect(result.get('Path of Typhon-Set')).toEqual({
+    points: 2
+  });
+});
