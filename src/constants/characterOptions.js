@@ -58,6 +58,16 @@ export const clans = arrayToMap([
     'Assamite',
     {
       disciplines: ['Celerity', 'Obfuscate', 'Quietus'],
+      merits: [
+        {
+          name: 'Surprise Attack',
+          points: 1
+        },
+        {
+          name: 'Awakening the Steel',
+          points: 3
+        }
+      ],
       bloodlines: arrayToMap([
         [
           'Vizier',
@@ -77,6 +87,20 @@ export const clans = arrayToMap([
     'Brujah',
     {
       disciplines: ['Celerity', 'Potence', 'Presence'],
+      merits: [
+        {
+          name: 'Brotherhood',
+          points: 1
+        },
+        {
+          name: 'Burning Wrath',
+          points: 2
+        },
+        {
+          name: 'Scourge of Alecto',
+          points: 3
+        }
+      ],
       bloodlines: arrayToMap([
         [
           'True Brujah',
@@ -89,6 +113,20 @@ export const clans = arrayToMap([
     'Followers of Set',
     {
       disciplines: ['Obfuscate', 'Presence', 'Serpentis'],
+      merits: [
+        {
+          name: 'Personal Cult',
+          points: 1
+        },
+        {
+          name: 'Addictive Blood',
+          points: 3
+        },
+        {
+          name: 'Setite Sorcery',
+          points: 4
+        }
+      ],
       bloodlines: arrayToMap([
         [
           'Tlacique',
@@ -108,6 +146,16 @@ export const clans = arrayToMap([
     'Gangrel',
     {
       disciplines: ['Animalism', 'Fortitude', 'Protean'],
+      merits: [
+        {
+          name: 'Protean Blood',
+          points: 1
+        },
+        {
+          name: "Shape of Beast's Wrath",
+          points: 3
+        }
+      ],
       bloodlines: arrayToMap([
         [
           'Coyote',
@@ -138,6 +186,20 @@ export const clans = arrayToMap([
     'Giovanni',
     {
       disciplines: ['Dominate', 'Potence', 'Necromancy: Sepulchre Path'],
+      merits: [
+        {
+          name: 'Necromantic Expertise',
+          points: 1
+        },
+        {
+          name: 'Mook',
+          points: 2
+        },
+        {
+          name: 'Ghostly Retainer',
+          points: 3
+        }
+      ],
       bloodlines: arrayToMap([
         [
           'Premascine',
@@ -153,6 +215,20 @@ export const clans = arrayToMap([
     'Lasombra',
     {
       disciplines: ['Dominate', 'Potence', 'Obtenebration'],
+      merits: [
+        {
+          name: 'Angelic Visage',
+          points: 1
+        },
+        {
+          name: 'Born in Shadow',
+          points: 2
+        },
+        {
+          name: 'Walk the Abyss',
+          points: 3
+        }
+      ],
       bloodlines: arrayToMap([
         [
           'Kiasyd',
@@ -168,6 +244,20 @@ export const clans = arrayToMap([
     'Malkavian',
     {
       disciplines: ['Auspex', 'Dementation', 'Obfuscate'],
+      merits: [
+        {
+          name: 'Expanded Consciousness',
+          points: 1
+        },
+        {
+          name: 'Labyrinthine Mind',
+          points: 3
+        },
+        {
+          name: 'Sophistry',
+          points: 4
+        }
+      ],
       bloodlines: arrayToMap([
         [
           'Ananke',
@@ -187,6 +277,24 @@ export const clans = arrayToMap([
     'Nosferatu',
     {
       disciplines: ['Animalism', 'Obfuscate', 'Potence'],
+      merits: [
+        {
+          name: 'Unseeing Eye',
+          points: 1
+        },
+        {
+          name: 'Hidden Advantage',
+          points: 2
+        },
+        {
+          name: 'Pliable Blood',
+          points: 3
+        },
+        {
+          name: 'Unnatural Adaptation',
+          points: 4
+        }
+      ],
       bloodlines: arrayToMap([])
     }
   ],
@@ -194,6 +302,20 @@ export const clans = arrayToMap([
     'Toreador',
     {
       disciplines: ['Auspex', 'Celerity', 'Presence'],
+      merits: [
+        {
+          name: "Artist's Blessing",
+          points: 1
+        },
+        {
+          name: 'Absent Sway',
+          points: 3
+        },
+        {
+          name: "Dancer's Grace",
+          points: 4
+        }
+      ],
       bloodlines: arrayToMap([
         [
           'Ishtarri',
@@ -213,6 +335,20 @@ export const clans = arrayToMap([
     'Tremere',
     {
       disciplines: ['Auspex', 'Dominate', 'Thaumaturgy: Path of Blood'],
+      merits: [
+        {
+          name: 'Thaumaturgic Expertise',
+          points: 1
+        },
+        {
+          name: 'Talisman',
+          points: 3
+        },
+        {
+          name: 'Countermagic',
+          points: 4
+        }
+      ],
       bloodlines: arrayToMap([
         [
           'Telyav',
@@ -228,6 +364,16 @@ export const clans = arrayToMap([
     'Tzimisce',
     {
       disciplines: ['Animalism', 'Auspex', 'Vicissitude'],
+      merits: [
+        {
+          name: 'Blood of the Tzimisce',
+          points: 1
+        },
+        {
+          name: 'Szlachta',
+          points: 2
+        }
+      ],
       bloodlines: arrayToMap([
         [
           'Carpathian',
@@ -251,6 +397,20 @@ export const clans = arrayToMap([
     'Ventrue',
     {
       disciplines: ['Dominate', 'Fortitude', 'Presence'],
+      merits: [
+        {
+          name: 'Aura of Command',
+          points: 1
+        },
+        {
+          name: 'Paragon',
+          points: 3
+        },
+        {
+          name: 'Regal Bearing',
+          points: 4
+        }
+      ],
       bloodlines: arrayToMap([
         [
           'Crusader',
@@ -263,6 +423,20 @@ export const clans = arrayToMap([
     'Caitiff',
     {
       disciplines: commonDisciplineNames,
+      merits: [
+        {
+          name: 'Auspicious',
+          points: 1
+        },
+        {
+          name: 'Eclipsed Blood',
+          points: 2
+        },
+        {
+          name: 'Vestiges of Greatness',
+          points: 3
+        }
+      ],
       bloodlines: arrayToMap([])
     }
   ]
