@@ -1,9 +1,9 @@
 import { createSelector } from 'reselect';
 import {
-  caitiffInClanDisciplineCount,
   commonDisciplineNames,
-  clans
-} from '../constants/characterOptions';
+  clans,
+  caitiffInClanDisciplineCount
+} from '../constants/clanOptions';
 
 const getClan = state => state.character.basicInfo.clan;
 const getInClanState = state => state.character.disciplines.inClan;

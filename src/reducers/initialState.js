@@ -2,12 +2,14 @@ import {
   attributeTraitNames,
   skillsAvailableStartingDots,
   backgroundsAvailableStartingDots,
-  inClanDisciplinesAvailableStartingDots,
-  outOfClanDisciplinesAvailableStartingDots,
   standardTraitMaxDots,
   humanity,
   moralityStartingDotsHumanity
 } from '../constants/characterOptions';
+import {
+  inClanDisciplinesAvailableStartingDots,
+  outOfClanDisciplinesAvailableStartingDots
+} from '../constants/clanOptions';
 import { setDotsFromStartingDots } from '../utils/categoryStarter';
 
 let backgrounds = {

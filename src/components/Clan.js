@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { mapKeysToArray } from '../utils/mapUtils';
-import { clans } from '../constants/characterOptions';
+import { clans } from '../constants/clanOptions';
 
 export default class Clan extends Component {
   static propTypes = {
