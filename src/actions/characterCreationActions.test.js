@@ -96,7 +96,9 @@ describe('update morality', () => {
     const getState = () => ({
       character: {
         basicInfo: {
-          clan: 'Tzimisce'
+          clan: {
+            name: 'Tzimisce'
+          }
         },
         merits: [],
         morality: {
@@ -126,7 +128,7 @@ describe('update morality', () => {
     const getState = () => ({
       character: {
         basicInfo: {
-          clan: 'Tzimisce'
+          clan: { name: 'Tzimisce' }
         },
         merits: [],
         morality: {
@@ -159,7 +161,7 @@ describe('update morality', () => {
     const getState = () => ({
       character: {
         basicInfo: {
-          clan: ''
+          clan: { name: '' }
         },
         merits: [
           {
@@ -197,7 +199,7 @@ describe('update morality', () => {
     const getState = () => ({
       character: {
         basicInfo: {
-          clan: ''
+          clan: { name: '' }
         },
         merits: [
           {

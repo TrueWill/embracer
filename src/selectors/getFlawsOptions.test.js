@@ -5,7 +5,7 @@ it('should return correct map for flaw options', () => {
   const state = {
     character: {
       basicInfo: {
-        clan: ''
+        clan: { name: '' }
       },
       merits: [],
       flaws: [

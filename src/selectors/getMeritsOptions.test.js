@@ -5,7 +5,7 @@ it('should return correct map for merit options when clan selected', () => {
   const state = {
     character: {
       basicInfo: {
-        clan: 'Tzimisce'
+        clan: { name: 'Tzimisce' }
       },
       merits: [
         {
@@ -39,7 +39,7 @@ it('should return correct map for merit options when no clan selected', () => {
   const state = {
     character: {
       basicInfo: {
-        clan: ''
+        clan: { name: '' }
       },
       merits: [
         {

@@ -1,9 +1,9 @@
 import { createSelector } from 'reselect';
 import {
-  caitiffInClanDisciplineCount,
   commonDisciplineNames,
-  disciplineNamesByClan
-} from '../constants/characterOptions';
+  clans,
+  caitiffInClanDisciplineCount
+} from '../constants/clanOptions';
 
 const getClan = state => state.character.basicInfo.clan;
 const getInClanState = state => state.character.disciplines.inClan;
@@ -14,7 +14,7 @@ const getDisciplineNames = createSelector(
   (clan, inClanState) => {
     let inClan;
 
-    if (clan === 'Caitiff') {
+    if (clan.name === 'Caitiff') {
       // Caitiff choose their in-clan disciplines from the common ones.
       const selectedInClan = Object.keys(inClanState).filter(
         x => inClanState[x].startingDots
@@ -24,8 +24,15 @@ const getDisciplineNames = createSelector(
         selectedInClan.length < caitiffInClanDisciplineCount
           ? commonDisciplineNames
           : selectedInClan;
+    } else if (clan.name) {
+      if (clan.bloodline) {
+        inClan = clans.get(clan.name).bloodlines.get(clan.bloodline)
+          .disciplines;
+      } else {
+        inClan = clans.get(clan.name).disciplines;
+      }
     } else {
-      inClan = disciplineNamesByClan[clan] || [];
+      inClan = [];
     }
 
     const outOfClan =

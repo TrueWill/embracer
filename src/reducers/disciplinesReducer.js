@@ -1,9 +1,7 @@
 import initialState from './initialState';
 import * as types from '../constants/actionTypes';
-import {
-  outOfClanDisciplineLevelLimit,
-  standardTraitMaxDots
-} from '../constants/characterOptions';
+import { standardTraitMaxDots } from '../constants/characterOptions';
+import { outOfClanDisciplineLevelLimit } from '../constants/clanOptions';
 import { setDotsFromStartingDots } from '../utils/categoryStarter';
 import {
   addPurchasedDot,

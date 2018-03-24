@@ -4,6 +4,9 @@ import getMerits from './getMerits';
 it('should return correct initial values for merits', () => {
   const state = {
     character: {
+      basicInfo: {
+        clan: { name: '' }
+      },
       merits: [],
       flaws: [],
       morality: {
@@ -26,6 +29,9 @@ it('should return correct initial values for merits', () => {
 it('should return correct values for merits', () => {
   const state = {
     character: {
+      basicInfo: {
+        clan: { name: '' }
+      },
       merits: [
         {
           name: 'Ambidextrous',
@@ -66,6 +72,9 @@ it('should return correct values for merits', () => {
 it('should include morality merits', () => {
   const state = {
     character: {
+      basicInfo: {
+        clan: { name: '' }
+      },
       merits: [
         {
           name: 'Calm Heart',
@@ -82,6 +91,76 @@ it('should include morality merits', () => {
           points: 2
         }
       ],
+      morality: {
+        path: 'Path of Metamorphosis',
+        meritPoints: 2,
+        startingDots: 4
+      }
+    }
+  };
+
+  deepFreeze(state);
+
+  const result = getMerits(state);
+
+  expect(result).toEqual({
+    selected: state.character.merits,
+    currentPoints: 6,
+    availablePoints: 1
+  });
+});
+
+it('should include bloodline merits', () => {
+  const state = {
+    character: {
+      basicInfo: {
+        clan: {
+          name: 'Tzimisce',
+          bloodline: 'Koldun',
+          meritPoints: 4
+        }
+      },
+      merits: [
+        {
+          name: 'Calm Heart',
+          points: 1
+        }
+      ],
+      flaws: [
+        {
+          name: 'Bad Sight',
+          points: 2
+        }
+      ],
+      morality: {
+        path: 'Humanity'
+      }
+    }
+  };
+
+  deepFreeze(state);
+
+  const result = getMerits(state);
+
+  expect(result).toEqual({
+    selected: state.character.merits,
+    currentPoints: 5,
+    availablePoints: 2
+  });
+});
+
+it('should include morality and bloodline merits', () => {
+  const state = {
+    character: {
+      basicInfo: {
+        clan: {
+          name: 'Tzimisce',
+          bloodline: 'Koldun',
+          meritPoints: 4
+        }
+      },
+      merits: [],
+      flaws: [],
       morality: {
         path: 'Path of Metamorphosis',
         meritPoints: 2,

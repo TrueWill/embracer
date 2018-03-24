@@ -5,7 +5,7 @@ it('should return correct map for morality merits options when no clan selected'
   const state = {
     character: {
       basicInfo: {
-        clan: ''
+        clan: { name: '' }
       }
     }
   };
@@ -23,7 +23,7 @@ it('should return correct map for morality merits options when clan discount', (
   const state = {
     character: {
       basicInfo: {
-        clan: 'Assamite'
+        clan: { name: 'Assamite' }
       }
     }
   };
@@ -41,7 +41,7 @@ it('should return correct map for morality merits options when no clan discount'
   const state = {
     character: {
       basicInfo: {
-        clan: 'Giovanni'
+        clan: { name: 'Giovanni' }
       }
     }
   };
@@ -52,5 +52,27 @@ it('should return correct map for morality merits options when no clan discount'
 
   expect(result.get('Path of Blood')).toEqual({
     points: 3
+  });
+});
+
+it('should return correct map for morality merits options when bloodline discount', () => {
+  const state = {
+    character: {
+      basicInfo: {
+        clan: {
+          name: 'Followers of Set',
+          bloodline: 'Viper',
+          meritPoints: 2
+        }
+      }
+    }
+  };
+
+  deepFreeze(state);
+
+  const result = getMoralityMeritsOptions(state);
+
+  expect(result.get('Path of Typhon-Set')).toEqual({
+    points: 2
   });
 });

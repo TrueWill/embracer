@@ -12,7 +12,8 @@ const getMoralityMeritsOptions = createSelector([getClan], clan =>
     acc.set(cur.name, {
       points:
         moralityMeritBasePoints -
-        (cur.clanAffinity && cur.clanAffinity === clan
+        (cur.clanAffinity &&
+        (cur.clanAffinity === clan.name || cur.clanAffinity === clan.bloodline)
           ? moralityMeritClanAffinityDiscount
           : 0)
     });

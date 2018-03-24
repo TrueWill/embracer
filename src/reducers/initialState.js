@@ -2,12 +2,14 @@ import {
   attributeTraitNames,
   skillsAvailableStartingDots,
   backgroundsAvailableStartingDots,
-  inClanDisciplinesAvailableStartingDots,
-  outOfClanDisciplinesAvailableStartingDots,
   standardTraitMaxDots,
   humanity,
   moralityStartingDotsHumanity
 } from '../constants/characterOptions';
+import {
+  inClanDisciplinesAvailableStartingDots,
+  outOfClanDisciplinesAvailableStartingDots
+} from '../constants/clanOptions';
 import { setDotsFromStartingDots } from '../utils/categoryStarter';
 
 let backgrounds = {
@@ -28,7 +30,7 @@ export default {
   character: {
     basicInfo: {
       archetype: '',
-      clan: ''
+      clan: { name: '' }
     },
     attributes: attributeTraitNames.reduce(
       (acc, name) => ({ ...acc, [name]: {} }),
