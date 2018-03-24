@@ -36,15 +36,17 @@ export default class Clan extends Component {
       </option>
     ));
 
-    const bloodlines = clan.name
-      ? mapKeysToArray(clans.get(clan.name).bloodlines)
-      : [];
+    const bloodlineOptions = [];
 
-    const bloodlineOptions = bloodlines.map(b => (
-      <option value={b} key={b}>
-        {b}
-      </option>
-    ));
+    if (clan.name) {
+      clans.get(clan.name).bloodlines.forEach((value, key) => {
+        bloodlineOptions.push(
+          <option value={key} key={key}>
+            {`${key} (${value.meritPoints} points)`}
+          </option>
+        );
+      });
+    }
 
     return (
       <React.Fragment>
