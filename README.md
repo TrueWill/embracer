@@ -45,7 +45,7 @@ Currently deployment is manual, so the site may not reflect the latest changes.
 * [Yarn](https://yarnpkg.com/en/)
 * [Flux Standard Actions](https://github.com/acdlite/flux-standard-action)
 * [Reselect](https://github.com/reactjs/reselect) selectors
-* Jest/Enzyme tests (using it() alias for test())
+* Jest/Enzyme tests (using it() alias for test()) - all passing
 * No ESLint warnings/errors
 * No console warnings/errors
 * Works in modern browsers (and IE 11)
