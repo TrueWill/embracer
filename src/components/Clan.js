@@ -73,7 +73,8 @@ export default class Clan extends Component {
         </div>
         <div className="row">
           <div className="col-sm-9 offset-sm-3">
-            (changing either will reset Disciplines, Merits, and Morality)
+            (changing either will reset Disciplines, Merits, and Morality)<br />
+            (STs may require Rarity Merits for some clans/bloodlines)
           </div>
         </div>
       </React.Fragment>

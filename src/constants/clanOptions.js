@@ -397,6 +397,146 @@ export const clans = arrayToMap([
       ],
       bloodlines: arrayToMap([])
     }
+  ],
+  [
+    'Baali',
+    {
+      disciplines: ['Daimoinon', 'Obfuscate', 'Presence'],
+      merits: [
+        {
+          name: 'Infernal Heritage',
+          points: 1
+        }
+      ],
+      bloodlines: arrayToMap([
+        [
+          'Angellis Ater',
+          {
+            meritPoints: 3,
+            disciplines: [
+              'Daimoinon',
+              'Dominate',
+              'Potence',
+              'Presence',
+              'Obfuscate'
+            ]
+          }
+        ]
+      ])
+    }
+  ],
+  [
+    'Cappadocians',
+    {
+      disciplines: ['Auspex', 'Fortitude', 'Necromancy: Mortis Path'],
+      merits: [
+        {
+          name: 'Necromantic Insight',
+          points: 1
+        },
+        {
+          name: 'Pierced Shroud',
+          points: 3
+        }
+      ],
+      bloodlines: arrayToMap([
+        [
+          'Samedi',
+          {
+            meritPoints: 2,
+            disciplines: ['Fortitude', 'Obfuscate', 'Thanatosis']
+          }
+        ],
+        [
+          'Lamia',
+          {
+            meritPoints: 4,
+            disciplines: ['Fortitude', 'Necromancy: Mortis Path', 'Potence']
+          }
+        ]
+      ])
+    }
+  ],
+  [
+    'Ravnos',
+    {
+      disciplines: ['Animalism', 'Fortitude', 'Chimeristry'],
+      merits: [
+        {
+          name: 'Waking Dream',
+          points: 1
+        },
+        {
+          name: 'Escape Artist',
+          points: 3
+        }
+      ],
+      bloodlines: arrayToMap([
+        [
+          'Brahman',
+          {
+            meritPoints: 2,
+            disciplines: ['Animalism', 'Auspex', 'Chimeristry']
+          }
+        ]
+      ])
+    }
+  ],
+  [
+    'Salubri',
+    {
+      disciplines: ['Auspex', 'Fortitude', 'Valeren'],
+      merits: [
+        {
+          name: 'Righteous Fury',
+          points: 1
+        },
+        {
+          name: 'Spiritual Armor',
+          points: 2
+        }
+      ],
+      bloodlines: arrayToMap([
+        [
+          'Healer',
+          { meritPoints: 3, disciplines: ['Auspex', 'Fortitude', 'Obeah'] }
+        ]
+      ])
+    }
+  ],
+  [
+    'Daughters of Cacophony',
+    {
+      disciplines: ['Fortitude', 'Melpominee', 'Presence'],
+      merits: [
+        {
+          name: 'Supernatural Aria',
+          points: 1
+        },
+        {
+          name: 'Soaring Octaves',
+          points: 3
+        }
+      ],
+      bloodlines: arrayToMap([])
+    }
+  ],
+  [
+    'Gargoyles',
+    {
+      disciplines: ['Fortitude', 'Potence', 'Visceratika'],
+      merits: [
+        {
+          name: 'Flight',
+          points: 1
+        },
+        {
+          name: 'Dark Statue',
+          points: 3
+        }
+      ],
+      bloodlines: arrayToMap([])
+    }
   ]
 ]);
 

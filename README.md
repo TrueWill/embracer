@@ -18,7 +18,6 @@ Currently deployment is manual, so the site may not reflect the latest changes.
 * Improve styling/responsiveness
 * Print / export (include Willpower and health levels; display generation title)
 * Improve test coverage
-* Add Lesser/Rare Clans - how to handle Rarity Merit costs? Also count against total Merits
 * Rituals
 * Techniques (clear if change Generation)
 * Elder Powers (clear if change Generation)
@@ -33,6 +32,7 @@ Currently deployment is manual, so the site may not reflect the latest changes.
 * Volgirre can learn Vicissitude out-of-clan (up to 2 dots)
 * Carpathians can learn Protean out-of-clan and cannot take the Szlachta merit
 * Koldun additional Thaumaturgy path (odd costs)
+* Angellis Ater choice of in-clan discipline
 * Copyright/TM notice on app?
 * Ask By Night Studios to add to their list of generators
 
