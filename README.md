@@ -13,7 +13,7 @@ Deployed to http://truewill-embracer.s3-website.us-east-2.amazonaws.com/
 
 Currently deployment is manual, so the site may not reflect the latest changes.
 
-## TODO
+## To Do
 
 * Improve styling/responsiveness
 * Print / export (include Willpower and health levels; display generation title)
@@ -21,12 +21,12 @@ Currently deployment is manual, so the site may not reflect the latest changes.
 * Rituals
 * Techniques (clear if change Generation)
 * Elder Powers (clear if change Generation)
-* No focus selected - should empty object
 * Repeated Skills (Crafts, etc.)
 * Certain Merits (such as Thaumaturgic Expertise) can be purchased multiple times
 * Setting-specific Merits/Flaws
 * Nosferatu cannot have the Appearance attribute focus
 * Caitiff cannot have more than 2 dots in Generation
+* Validation/display of "done" - starting dots set, foci selected, etc.
 * True Brujah cannot purchase Empathy and pay double XP for dots of Morality
 * Premascine can learn Necromancy: Mortis Path as out-of-clan
 * Volgirre can learn Vicissitude out-of-clan (up to 2 dots)
