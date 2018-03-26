@@ -16,6 +16,7 @@ import XPContainer from '../containers/XPContainer';
 import BloodContainer from '../containers/BloodContainer';
 import PencilEraserContainer from '../containers/PencilEraserContainer';
 import MoralityContainer from '../containers/MoralityContainer';
+import ValidationContainer from '../containers/ValidationContainer';
 import Section from '../components/Section';
 
 const App = () => (
@@ -26,6 +27,7 @@ const App = () => (
       <ClanContainer />
       <PencilEraserContainer />
     </Section>
+    <ValidationContainer />
     <XPContainer />
     <AttributesContainer />
     <TraitCategoryContainer
