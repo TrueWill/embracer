@@ -26,7 +26,6 @@ Currently deployment is manual, so the site may not reflect the latest changes.
 * Setting-specific Merits/Flaws
 * Nosferatu cannot have the Appearance attribute focus
 * Caitiff cannot have more than 2 dots in Generation
-* Validation/display of "done" - starting dots set, foci selected, etc.
 * True Brujah cannot purchase Empathy and pay double XP for dots of Morality
 * Premascine can learn Necromancy: Mortis Path as out-of-clan
 * Volgirre can learn Vicissitude out-of-clan (up to 2 dots)
