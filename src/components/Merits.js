@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Section from './Section';
+import { maxMeritPoints } from '../constants/merits';
 
 const getDescription = merit =>
   `${merit.name} (${merit.points} point${merit.points > 1 ? 's' : ''})`;
@@ -99,6 +100,10 @@ class Merits extends Component {
               Add
             </button>
           )}
+        <div>
+          Max points: {maxMeritPoints} Available: {availablePoints} (other areas
+          have merits)
+        </div>
       </Section>
     );
   }

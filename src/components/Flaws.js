@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Section from './Section';
+import { maxFlawPoints } from '../constants/flaws';
 
 const getDescription = flaw =>
   `${flaw.name} (${flaw.points} point${flaw.points > 1 ? 's' : ''})`;
@@ -99,6 +100,9 @@ class Flaws extends Component {
               Add
             </button>
           )}
+        <div>
+          Max points: {maxFlawPoints} Available: {availablePoints}
+        </div>
       </Section>
     );
   }
