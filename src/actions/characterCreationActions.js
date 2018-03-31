@@ -1,6 +1,7 @@
 import * as types from '../constants/actionTypes';
 import { humanity } from '../constants/characterOptions';
 import getMoralityMeritsOptions from '../selectors/getMoralityMeritsOptions';
+import getDots from '../utils/getDots';
 import getMerits from '../selectors/getMerits';
 
 export const updateArchetype = value => ({
@@ -96,6 +97,17 @@ export const purchaseOrUnpurchaseDot = (category, trait) => (
   getState
 ) => {
   const state = getState();
+
+  if (
+    category === 'backgrounds' &&
+    trait === 'generation' &&
+    !state.mode.isEraser &&
+    state.character.basicInfo.clan.name === 'Caitiff' &&
+    getDots(state.character.backgrounds.generation) >= 2
+  ) {
+    return;
+  }
+
   const actionCreator = state.mode.isEraser ? unpurchaseDot : purchaseDot;
 
   dispatch(actionCreator(category, trait));

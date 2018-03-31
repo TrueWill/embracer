@@ -35,12 +35,15 @@ class Disciplines extends Component {
   render() {
     const { affinity, names, displayNameOverride, traits } = this.props;
 
+    const adjustAvailable = availableStartingDots => availableStartingDots;
+
     return (
       <TraitCategory
         categoryName={categoryNameByAffinity[affinity]}
         traitNames={names}
         traitDisplayNameOverride={displayNameOverride}
         categoryTraits={traits}
+        adjustAvailable={adjustAvailable}
         setStartingDots={this.handleSetStartingDots}
         purchaseOrUnpurchaseDot={this.handlePurchaseOrUnpurchaseDot}
       />

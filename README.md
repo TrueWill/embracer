@@ -24,7 +24,6 @@ Currently deployment is manual, so the site may not reflect the latest changes.
 * Repeated Skills (Crafts, etc.)
 * Certain Merits (such as Thaumaturgic Expertise) can be purchased multiple times
 * Setting-specific Merits/Flaws
-* Caitiff cannot have more than 2 dots in Generation
 * True Brujah cannot purchase Empathy and pay double XP for dots of Morality
 * Premascine can learn Necromancy: Mortis Path as out-of-clan
 * Volgirre can learn Vicissitude out-of-clan (up to 2 dots)

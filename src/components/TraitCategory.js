@@ -12,6 +12,7 @@ class TraitCategory extends Component {
     traitNames: PropTypes.arrayOf(PropTypes.string).isRequired,
     traitDisplayNameOverride: PropTypes.object.isRequired,
     categoryTraits: PropTypes.object.isRequired,
+    adjustAvailable: PropTypes.func.isRequired,
     setStartingDots: PropTypes.func.isRequired,
     purchaseOrUnpurchaseDot: PropTypes.func.isRequired
   };
@@ -29,21 +30,32 @@ class TraitCategory extends Component {
       categoryName,
       traitNames,
       traitDisplayNameOverride,
-      categoryTraits
+      categoryTraits,
+      adjustAvailable
     } = this.props;
 
-    const traits = traitNames.map(name => (
-      <Trait
-        key={name}
-        name={name}
-        displayName={traitDisplayNameOverride[name]}
-        maxDots={standardTraitMaxDots}
-        availableStartingDots={categoryTraits.availableStartingDots}
-        traitState={categoryTraits[name] || {}}
-        onStartingDotsChange={this.handleStartingDotsChange}
-        onClick={this.handleOnClick}
-      />
-    ));
+    const traits = traitNames.map(name => {
+      const traitState = categoryTraits[name] || {};
+
+      const availableStartingDots = adjustAvailable(
+        categoryTraits.availableStartingDots,
+        name,
+        traitState.dotsPurchased || 0
+      );
+
+      return (
+        <Trait
+          key={name}
+          name={name}
+          displayName={traitDisplayNameOverride[name]}
+          maxDots={standardTraitMaxDots}
+          availableStartingDots={availableStartingDots}
+          traitState={traitState}
+          onStartingDotsChange={this.handleStartingDotsChange}
+          onClick={this.handleOnClick}
+        />
+      );
+    });
 
     const traitsPerColumn = 9;
 

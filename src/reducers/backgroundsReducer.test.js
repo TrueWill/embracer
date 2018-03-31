@@ -195,3 +195,81 @@ it('should remove initial purchased dot and background if no other properties', 
     }
   });
 });
+
+it('should clear if change clan to Caitiff', () => {
+  const state = {
+    availableStartingDots: [
+      {
+        dots: 3,
+        count: 0
+      },
+      {
+        dots: 2,
+        count: 0
+      },
+      {
+        dots: 1,
+        count: 0
+      }
+    ],
+    generation: {
+      startingDots: 3,
+      dotsPurchased: 2
+    },
+    fame: {
+      startingDots: 2,
+      dotsPurchased: 1
+    },
+    haven: {
+      startingDots: 1,
+      dotsPurchased: 1
+    }
+  };
+
+  deepFreeze(state);
+
+  const action = actions.updateClan('Caitiff');
+
+  const nextState = reducer(state, action);
+
+  expect(nextState).toBe(initialState.character.backgrounds);
+});
+
+it('should not clear Generation if change clan to Brujah', () => {
+  const state = {
+    availableStartingDots: [
+      {
+        dots: 3,
+        count: 0
+      },
+      {
+        dots: 2,
+        count: 0
+      },
+      {
+        dots: 1,
+        count: 0
+      }
+    ],
+    generation: {
+      startingDots: 3,
+      dotsPurchased: 2
+    },
+    fame: {
+      startingDots: 2,
+      dotsPurchased: 1
+    },
+    haven: {
+      startingDots: 1,
+      dotsPurchased: 1
+    }
+  };
+
+  deepFreeze(state);
+
+  const action = actions.updateClan('Brujah');
+
+  const nextState = reducer(state, action);
+
+  expect(nextState).toBe(state);
+});

@@ -8,8 +8,27 @@ import TraitCategory from '../components/TraitCategory';
 const mapStateToProps = (state, ownProps) => {
   const { categoryName } = ownProps;
 
+  let adjustAvailable;
+
+  if (
+    categoryName === 'backgrounds' &&
+    state.character.basicInfo.clan.name === 'Caitiff'
+  ) {
+    adjustAvailable = (availableStartingDots, traitName, dotsPurchased) => {
+      if (traitName === 'generation') {
+        const maxStartingDots = dotsPurchased ? 1 : 2;
+        return availableStartingDots.filter(a => a.dots <= maxStartingDots);
+      } else {
+        return availableStartingDots;
+      }
+    };
+  } else {
+    adjustAvailable = availableStartingDots => availableStartingDots;
+  }
+
   return {
-    categoryTraits: state.character[categoryName]
+    categoryTraits: state.character[categoryName],
+    adjustAvailable
   };
 };
 

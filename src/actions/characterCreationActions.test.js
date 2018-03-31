@@ -47,6 +47,33 @@ describe('purchase or unpurchase dot', () => {
       }
     });
   });
+
+  it('should not dispatch purchase dot when Caitiff and buying Generation over 2', () => {
+    const getState = () => ({
+      mode: {
+        isEraser: false
+      },
+      character: {
+        basicInfo: {
+          clan: { name: 'Caitiff' }
+        },
+        backgrounds: {
+          generation: {
+            startingDots: 1,
+            dotsPurchased: 1
+          }
+        }
+      }
+    });
+
+    const f = actions.purchaseOrUnpurchaseDot('backgrounds', 'generation');
+
+    const dispatch = jest.fn();
+
+    f(dispatch, getState);
+
+    expect(dispatch.mock.calls.length).toBe(0);
+  });
 });
 
 describe('purchase or unpurchase morality dot', () => {

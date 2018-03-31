@@ -42,6 +42,12 @@ export default (state = initialState.character.backgrounds, action) => {
       }
 
       return removePurchasedDot(state, trait);
+    case types.UPDATE_CLAN:
+      if (action.payload.name === 'Caitiff') {
+        return initialState.character.backgrounds;
+      }
+
+      return state;
     default:
       return state;
   }

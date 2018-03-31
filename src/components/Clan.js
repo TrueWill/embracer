@@ -74,6 +74,7 @@ export default class Clan extends Component {
         <div className="row">
           <div className="col-sm-9 offset-sm-3">
             (changing either will reset Disciplines, Merits, and Morality)<br />
+            (selecting Caitiff will also reset Backgrounds)<br />
             (STs may require Rarity Merits for some clans/bloodlines)
           </div>
         </div>
