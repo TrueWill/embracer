@@ -41,6 +41,15 @@ export default (state = initialState.character.attributes, action) => {
       }
 
       return removePurchasedDot(state, trait, true);
+    case types.UPDATE_CLAN:
+      if (
+        action.payload.name === 'Nosferatu' &&
+        state.social.focus === 'Appearance'
+      ) {
+        return { ...state, social: { ...state.social, focus: '' } };
+      }
+
+      return state;
     default:
       return state;
   }

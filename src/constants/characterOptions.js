@@ -46,7 +46,7 @@ export const attributeMaxDots = 10;
 
 export const attributesRankDots = [7, 5, 3];
 
-export const foci = {
+export const standardFoci = {
   physical: ['Strength', 'Dexterity', 'Stamina'],
   social: ['Charisma', 'Manipulation', 'Appearance'],
   mental: ['Perception', 'Intelligence', 'Wits']

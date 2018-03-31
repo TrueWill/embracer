@@ -6,14 +6,14 @@ import Section from './Section';
 import {
   attributeTraitNames,
   attributeMaxDots,
-  attributesRankDots,
-  foci
+  attributesRankDots
 } from '../constants/characterOptions';
 
 class Attributes extends Component {
   static propTypes = {
     attributes: PropTypes.object.isRequired,
     attributeBonus: PropTypes.number.isRequired,
+    foci: PropTypes.objectOf(PropTypes.arrayOf(PropTypes.string)).isRequired,
     setRank: PropTypes.func.isRequired,
     setFocus: PropTypes.func.isRequired,
     purchaseOrUnpurchaseDot: PropTypes.func.isRequired
@@ -32,7 +32,7 @@ class Attributes extends Component {
   };
 
   render() {
-    const { attributes, attributeBonus } = this.props;
+    const { attributes, attributeBonus, foci } = this.props;
 
     const traits = attributeTraitNames.map(name => (
       <div key={name} className="col-sm-4">

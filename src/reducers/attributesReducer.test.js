@@ -172,6 +172,78 @@ it('should set empty focus', () => {
   });
 });
 
+it('should clear Appearance focus when clan changed to Nosferatu', () => {
+  const state = {
+    physical: {
+      focus: 'Strength'
+    },
+    social: {
+      other: 'stuff',
+      focus: 'Appearance'
+    },
+    mental: {}
+  };
+
+  deepFreeze(state);
+
+  const action = actions.updateClan('Nosferatu');
+
+  const nextState = reducer(state, action);
+
+  expect(nextState).toEqual({
+    physical: {
+      focus: 'Strength'
+    },
+    social: {
+      other: 'stuff',
+      focus: ''
+    },
+    mental: {}
+  });
+});
+
+it('should not clear other social focus when clan changed to Nosferatu', () => {
+  const state = {
+    physical: {
+      focus: 'Strength'
+    },
+    social: {
+      other: 'stuff',
+      focus: 'Manipulation'
+    },
+    mental: {}
+  };
+
+  deepFreeze(state);
+
+  const action = actions.updateClan('Nosferatu');
+
+  const nextState = reducer(state, action);
+
+  expect(nextState).toEqual(state);
+});
+
+it('should not clear Appearance focus when clan changed to Brujah', () => {
+  const state = {
+    physical: {
+      focus: 'Strength'
+    },
+    social: {
+      other: 'stuff',
+      focus: 'Appearance'
+    },
+    mental: {}
+  };
+
+  deepFreeze(state);
+
+  const action = actions.updateClan('Brujah');
+
+  const nextState = reducer(state, action);
+
+  expect(nextState).toEqual(state);
+});
+
 it('should add initial purchased dot', () => {
   const state = {
     physical: {
