@@ -1,10 +1,10 @@
 import { createSelector } from 'reselect';
 import { maxMeritPoints } from '../constants/merits';
-
-const getSelectedMerits = state => state.character.merits;
-const getMoralityMeritPoints = state => state.character.morality.meritPoints;
-const getBloodlineMeritPoints = state =>
-  state.character.basicInfo.clan.meritPoints;
+import {
+  getSelectedMerits,
+  getMoralityMeritPoints,
+  getBloodlineMeritPoints
+} from './simple';
 
 const getMerits = createSelector(
   [getSelectedMerits, getMoralityMeritPoints, getBloodlineMeritPoints],

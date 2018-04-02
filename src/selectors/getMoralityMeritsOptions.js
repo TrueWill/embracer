@@ -4,8 +4,7 @@ import {
   moralityMeritBasePoints,
   moralityMeritClanAffinityDiscount
 } from '../constants/merits';
-
-const getClan = state => state.character.basicInfo.clan;
+import { getClan } from './simple';
 
 const getMoralityMeritsOptions = createSelector([getClan], clan =>
   moralityMerits.reduce((acc, cur) => {

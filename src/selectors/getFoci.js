@@ -1,7 +1,6 @@
 import { createSelector } from 'reselect';
 import { standardFoci } from '../constants/characterOptions';
-
-const getClanName = state => state.character.basicInfo.clan.name;
+import { getClanName } from './simple';
 
 const getFoci = createSelector([getClanName], clanName => {
   return clanName === 'Nosferatu'

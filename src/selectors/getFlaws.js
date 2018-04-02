@@ -1,7 +1,6 @@
 import { createSelector } from 'reselect';
 import { maxFlawPoints } from '../constants/flaws';
-
-const getSelectedFlaws = state => state.character.flaws;
+import { getSelectedFlaws } from './simple';
 
 const getFlaws = createSelector([getSelectedFlaws], selectedFlaws => {
   const additionalPoints = 0;

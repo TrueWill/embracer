@@ -1,8 +1,7 @@
 import { createSelector } from 'reselect';
 import getDots from '../utils/getDots';
 import { generationChart } from '../constants/characterOptions';
-
-const getGeneration = state => state.character.backgrounds.generation;
+import { getGeneration } from './simple';
 
 const getGenerationDetails = createSelector(
   [getGeneration],

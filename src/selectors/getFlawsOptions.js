@@ -1,7 +1,6 @@
 import { createSelector } from 'reselect';
 import { flaws } from '../constants/flaws';
-
-const getSelectedFlaws = state => state.character.flaws;
+import { getSelectedFlaws } from './simple';
 
 const getFlawsOptions = createSelector([getSelectedFlaws], selectedFlaws => {
   const options = flaws;

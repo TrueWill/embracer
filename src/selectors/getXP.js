@@ -3,6 +3,13 @@ import { initialXP, bankedXPLimit } from '../constants/characterOptions';
 import getMerits from './getMerits';
 import getFlaws from './getFlaws';
 import getGenerationDetails from './getGenerationDetails';
+import {
+  getAttributes,
+  getSkills,
+  getBackgrounds,
+  getDisciplines,
+  getMorality
+} from './simple';
 
 const calculateTraitXPCost = (trait, dotCost, initialLevelProperty) => {
   const dotsPurchased = trait.dotsPurchased || 0;
@@ -40,12 +47,6 @@ const calculateCategoryXPCost = (
 
     return acc + xpCost;
   }, 0);
-
-const getAttributes = state => state.character.attributes;
-const getSkills = state => state.character.skills;
-const getBackgrounds = state => state.character.backgrounds;
-const getDisciplines = state => state.character.disciplines;
-const getMorality = state => state.character.morality;
 
 const getXP = createSelector(
   [

@@ -4,9 +4,7 @@ import {
   clans,
   caitiffInClanDisciplineCount
 } from '../constants/clanOptions';
-
-const getClan = state => state.character.basicInfo.clan;
-const getInClanState = state => state.character.disciplines.inClan;
+import { getClan, getInClanState } from './simple';
 
 // returns by affinity
 const getDisciplineNames = createSelector(
