@@ -1,4 +1,5 @@
 import { connect } from 'react-redux';
+import { getClanName } from '../selectors/simple';
 import {
   setStartingDots,
   purchaseOrUnpurchaseDot
@@ -10,10 +11,7 @@ const mapStateToProps = (state, ownProps) => {
 
   let adjustAvailable;
 
-  if (
-    categoryName === 'backgrounds' &&
-    state.character.basicInfo.clan.name === 'Caitiff'
-  ) {
+  if (categoryName === 'backgrounds' && getClanName(state) === 'Caitiff') {
     adjustAvailable = (availableStartingDots, traitName, dotsPurchased) => {
       if (traitName === 'generation') {
         const maxStartingDots = dotsPurchased ? 1 : 2;

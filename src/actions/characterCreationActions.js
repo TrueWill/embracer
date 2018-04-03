@@ -3,6 +3,7 @@ import { humanity } from '../constants/characterOptions';
 import getMoralityMeritsOptions from '../selectors/getMoralityMeritsOptions';
 import getDots from '../utils/getDots';
 import getMerits from '../selectors/getMerits';
+import { getClanName, getGeneration, getMorality } from '../selectors/simple';
 
 export const updateArchetype = value => ({
   type: types.UPDATE_ARCHETYPE,
@@ -102,8 +103,8 @@ export const purchaseOrUnpurchaseDot = (category, trait) => (
     category === 'backgrounds' &&
     trait === 'generation' &&
     !state.mode.isEraser &&
-    state.character.basicInfo.clan.name === 'Caitiff' &&
-    getDots(state.character.backgrounds.generation) >= 2
+    getClanName(state) === 'Caitiff' &&
+    getDots(getGeneration(state)) >= 2
   ) {
     return;
   }
@@ -146,7 +147,7 @@ const getMeritPoints = (path, optionsMap) =>
 // thunk
 export const updateMoralityIfPointsAvailable = path => (dispatch, getState) => {
   const state = getState();
-  const currentPath = state.character.morality.path;
+  const currentPath = getMorality(state).path;
   const optionsMap = getMoralityMeritsOptions(state);
   let { availablePoints } = getMerits(state);
 

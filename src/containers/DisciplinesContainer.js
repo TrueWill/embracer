@@ -4,6 +4,7 @@ import {
   purchaseOrUnpurchaseDot
 } from '../actions/characterCreationActions';
 import getDisciplineNames from '../selectors/getDisciplineNames';
+import { getDisciplines } from '../selectors/simple';
 import Disciplines from '../components/Disciplines';
 
 const mapStateToProps = (state, ownProps) => {
@@ -12,7 +13,7 @@ const mapStateToProps = (state, ownProps) => {
   return {
     names: getDisciplineNames(state)[affinity],
     displayNameOverride: {},
-    traits: state.character.disciplines[affinity]
+    traits: getDisciplines(state)[affinity]
   };
 };
 

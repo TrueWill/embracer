@@ -10,10 +10,12 @@ import {
 } from '../actions/characterCreationActions';
 import getDots from '../utils/getDots';
 import getMoralityMeritsOptions from '../selectors/getMoralityMeritsOptions';
+import { getMorality } from '../selectors/simple';
 import Morality from '../components/Morality';
 
 const mapStateToProps = state => {
-  const path = state.character.morality.path;
+  const morality = getMorality(state);
+  const path = morality.path;
 
   const maxDots =
     path === humanity ? moralityMaxDotsHumanity : moralityMaxDotsPath;
@@ -21,7 +23,7 @@ const mapStateToProps = state => {
   return {
     optionsMap: getMoralityMeritsOptions(state),
     path,
-    level: getDots(state.character.morality),
+    level: getDots(morality),
     maxDots
   };
 };

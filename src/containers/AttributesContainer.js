@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import getGenerationDetails from '../selectors/getGenerationDetails';
 import getFoci from '../selectors/getFoci';
+import { getAttributes } from '../selectors/simple';
 import {
   setRank,
   setFocus,
@@ -13,7 +14,7 @@ const mapStateToProps = state => {
   const foci = getFoci(state);
 
   return {
-    attributes: state.character.attributes,
+    attributes: getAttributes(state),
     attributeBonus,
     foci
   };
