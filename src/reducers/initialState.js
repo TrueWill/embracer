@@ -27,6 +27,9 @@ export default {
   mode: {
     isEraser: false
   },
+  setting: {
+    name: 'Camarilla'
+  },
   character: {
     basicInfo: {
       archetype: '',
