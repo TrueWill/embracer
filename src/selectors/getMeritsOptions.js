@@ -1,14 +1,20 @@
 import { createSelector } from 'reselect';
 import { merits } from '../constants/merits';
+import { settings } from '../constants/settingOptions';
 import { clans } from '../constants/clanOptions';
-import { getSelectedMerits, getClanName } from './simple';
+import { getSelectedMerits, getSettingName, getClanName } from './simple';
 
 const getMeritsOptions = createSelector(
-  [getSelectedMerits, getClanName],
-  (selectedMerits, clanName) => {
-    const options = clanName
-      ? [...clans.get(clanName).merits, ...merits]
-      : merits;
+  [getSelectedMerits, getSettingName, getClanName],
+  (selectedMerits, settingName, clanName) => {
+    const clanSpecificMerits = clanName ? clans.get(clanName).merits : [];
+    const settingSpecificMerits = settings.get(settingName).merits;
+
+    const options = [
+      ...settingSpecificMerits,
+      ...clanSpecificMerits,
+      ...merits
+    ];
 
     const selectedSet = selectedMerits.reduce((acc, cur) => {
       acc.add(cur.name);
