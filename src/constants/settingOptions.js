@@ -4,7 +4,8 @@ export const settings = arrayToMap([
   [
     'Camarilla',
     {
-      merits: []
+      merits: [],
+      flaws: []
     }
   ],
   [
@@ -23,19 +24,39 @@ export const settings = arrayToMap([
           name: 'Fanatic',
           points: 2
         } // TODO: p. 453
+      ],
+      flaws: [
+        {
+          name: 'Crisis of Faith',
+          points: 2
+        },
+        {
+          name: 'Mistrusted',
+          points: 1
+        },
+        {
+          name: 'Soul Shard',
+          points: 3
+        },
+        {
+          name: 'Tenuous Loyalty',
+          points: 3
+        }
       ]
     }
   ],
   [
     'Anarch Movement',
     {
-      merits: []
+      merits: [],
+      flaws: []
     }
   ],
   [
     'Other',
     {
-      merits: []
+      merits: [],
+      flaws: []
     }
   ]
 ]);

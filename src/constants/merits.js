@@ -1,6 +1,6 @@
 export const maxMeritPoints = 7;
 
-// Excludes Clan-Specific and Morality Merits
+// Excludes Setting-Specific, Clan-Specific, and Morality Merits
 export const merits = [
   {
     name: 'Acute Sense',

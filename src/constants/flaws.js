@@ -1,5 +1,6 @@
 export const maxFlawPoints = 7;
 
+// Excludes Setting-Specific Flaws
 export const flaws = [
   {
     name: 'Addiction',
