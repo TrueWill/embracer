@@ -17,13 +17,15 @@ Currently deployment is manual, so the site may not reflect the latest changes.
 
 * Improve styling/responsiveness
 * Print / export (include Willpower and health levels; display generation title)
+* Add more simple selectors - only reducers and selectors should know state structure
 * Improve test coverage
 * Rituals
 * Techniques (clear if change Generation)
 * Elder Powers (clear if change Generation)
 * Repeated Skills (Crafts, etc.)
 * Certain Merits (such as Thaumaturgic Expertise) can be purchased multiple times
-* Setting-specific Merits/Flaws
+* Setting-specific (Sabbat) Rituals Background
+* Anarch Movement Generation merit and Path costs
 * True Brujah cannot purchase Empathy and pay double XP for dots of Morality
 * Premascine can learn Necromancy: Mortis Path as out-of-clan
 * Volgirre can learn Vicissitude out-of-clan (up to 2 dots)

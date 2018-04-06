@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux';
 import mode from './modeReducer';
+import setting from './settingReducer';
 import basicInfo from './basicInfoReducer';
 import attributes from './attributesReducer';
 import skills from './skillsReducer';
@@ -11,6 +12,7 @@ import morality from './moralityReducer';
 
 const rootReducer = combineReducers({
   mode,
+  setting,
   character: combineReducers({
     basicInfo,
     attributes,

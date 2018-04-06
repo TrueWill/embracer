@@ -3,6 +3,9 @@ import getMeritsOptions from './getMeritsOptions';
 
 it('should return correct map for merit options when clan selected', () => {
   const state = {
+    setting: {
+      name: 'Other'
+    },
     character: {
       basicInfo: {
         clan: { name: 'Tzimisce' }
@@ -37,6 +40,9 @@ it('should return correct map for merit options when clan selected', () => {
 
 it('should return correct map for merit options when no clan selected', () => {
   const state = {
+    setting: {
+      name: 'Other'
+    },
     character: {
       basicInfo: {
         clan: { name: '' }
@@ -67,4 +73,75 @@ it('should return correct map for merit options when no clan selected', () => {
   expect(result.has('Blood of the Tzimisce')).toBeFalsy();
   expect(result.get('Szlachta')).toBeFalsy();
   expect(result.has('Sophistry')).toBeFalsy();
+});
+
+it('should return correct map for merit options when setting selected', () => {
+  const state = {
+    setting: {
+      name: 'Sabbat'
+    },
+    character: {
+      basicInfo: {
+        clan: { name: '' }
+      },
+      merits: [
+        {
+          name: 'Ambidextrous',
+          points: 2
+        }
+      ],
+      flaws: []
+    }
+  };
+
+  deepFreeze(state);
+
+  const result = getMeritsOptions(state);
+
+  expect(result.has('Ambidextrous')).toBeFalsy();
+  expect(result.get('Acute Sense')).toEqual({ points: 1 });
+  expect(result.get('Black Hand Membership')).toEqual({ points: 2 });
+  expect(result.get('Fanatic')).toEqual({ points: 2 });
+  expect(result.has('Emissary to the Camarilla')).toBeFalsy();
+});
+
+it('should return correct map for merit options when setting and clan selected', () => {
+  const state = {
+    setting: {
+      name: 'Sabbat'
+    },
+    character: {
+      basicInfo: {
+        clan: { name: 'Tzimisce' }
+      },
+      merits: [
+        {
+          name: 'Ambidextrous',
+          points: 2
+        },
+        {
+          name: 'Executioner',
+          points: 1
+        },
+        {
+          name: 'Szlachta',
+          points: 2
+        }
+      ],
+      flaws: []
+    }
+  };
+
+  deepFreeze(state);
+
+  const result = getMeritsOptions(state);
+
+  expect(result.has('Ambidextrous')).toBeFalsy();
+  expect(result.has('Executioner')).toBeFalsy();
+  expect(result.has('Szlachta')).toBeFalsy();
+  expect(result.get('Acute Sense')).toEqual({ points: 1 });
+  expect(result.get('Blood of the Tzimisce')).toEqual({ points: 1 });
+  expect(result.get('Black Hand Membership')).toEqual({ points: 2 });
+  expect(result.get('Fanatic')).toEqual({ points: 2 });
+  expect(result.has('Emissary to the Camarilla')).toBeFalsy();
 });

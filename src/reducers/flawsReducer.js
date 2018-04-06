@@ -10,6 +10,9 @@ export default (state = initialState.character.flaws, action) => {
     case types.REMOVE_FLAW:
       const { name } = action.payload;
       return state.filter(x => x.name !== name);
+    case types.UPDATE_SETTING:
+      // reset, as there are setting-specific flaws
+      return initialState.character.flaws;
     default:
       return state;
   }
