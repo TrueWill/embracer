@@ -1,5 +1,6 @@
 import deepFreeze from 'deep-freeze';
 import * as actions from '../actions/characterCreationActions';
+import { updateSetting } from '../actions/settingActions';
 import initialState from './initialState';
 import reducer from './flawsReducer';
 
@@ -63,4 +64,25 @@ it('should remove flaw', () => {
       points: 2
     }
   ]);
+});
+
+it('should clear if change setting', () => {
+  const state = [
+    {
+      name: 'Addiction',
+      points: 2
+    },
+    {
+      name: 'Beacon of the Unholy',
+      points: 3
+    }
+  ];
+
+  deepFreeze(state);
+
+  const action = updateSetting('Sabbat');
+
+  const nextState = reducer(state, action);
+
+  expect(nextState).toEqual([]);
 });
