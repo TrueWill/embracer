@@ -1,11 +1,11 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { mount } from 'enzyme';
 import Merits from './Merits';
 
 const noop = () => {};
 
 const getWrapper = (optionsMap, selected = []) =>
-  shallow(
+  mount(
     <Merits
       optionsMap={optionsMap}
       selected={selected}
@@ -22,11 +22,11 @@ const getSelectedValue = select => select.props().value;
 const changeSelectedValue = (select, value) =>
   select.simulate('change', { target: { value } });
 
-// TODO: Enable once enzyme fixes getDerivedStateFromProps calling behavior
+// TODO: Change to shallow rendering once enzyme fixes getDerivedStateFromProps calling behavior
 // TODO: Add test for not clearing state when value in options
 // TODO: Write similar tests for Flaws
 // TODO: Remove duplication (enzyme helpers)
-xit('should clear state when previously selected value not in new options', () => {
+it('should clear state when previously selected value not in new options', () => {
   const optionsMap = new Map();
 
   optionsMap.set('Arcane', { points: 1 });
