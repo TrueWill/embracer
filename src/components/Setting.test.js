@@ -1,9 +1,14 @@
 import React from 'react';
 import { shallow } from 'enzyme';
+import {
+  noop,
+  getFirstSelect,
+  getSelectedValue,
+  getOptionValues,
+  changeSelectedValue
+} from '../utils/testUtils';
 import { settings } from '../constants/settingOptions';
 import Setting from './Setting';
-
-const noop = () => {};
 
 const getWrapper = (
   setting = {
@@ -12,15 +17,7 @@ const getWrapper = (
   updateSetting = noop
 ) => shallow(<Setting setting={setting} updateSetting={updateSetting} />);
 
-const getSettingSelect = wrapper => wrapper.find('select').first();
-
-const getSelectedValue = select => select.props().value;
-
-const getOptionValues = select =>
-  select.find('option').map(o => o.props().value);
-
-const changeSelectedValue = (select, value) =>
-  select.simulate('change', { target: { value } });
+const getSettingSelect = getFirstSelect;
 
 it('should render without crashing', () => {
   getWrapper();

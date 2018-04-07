@@ -1,23 +1,21 @@
 import React from 'react';
 import { shallow } from 'enzyme';
+import {
+  noop,
+  getFirstSelect,
+  getSecondSelect,
+  getSelectedValue,
+  getOptionValues,
+  changeSelectedValue
+} from '../utils/testUtils';
 import { clans } from '../constants/clanOptions';
 import Clan from './Clan';
-
-const noop = () => {};
 
 const getWrapper = (clan = { name: '' }, updateClan = noop) =>
   shallow(<Clan clan={clan} updateClan={updateClan} />);
 
-const getClanSelect = wrapper => wrapper.find('select').at(0);
-const getBloodlineSelect = wrapper => wrapper.find('select').at(1);
-
-const getSelectedValue = select => select.props().value;
-
-const getOptionValues = select =>
-  select.find('option').map(o => o.props().value);
-
-const changeSelectedValue = (select, value) =>
-  select.simulate('change', { target: { value } });
+const getClanSelect = getFirstSelect;
+const getBloodlineSelect = getSecondSelect;
 
 it('should render without crashing', () => {
   getWrapper();

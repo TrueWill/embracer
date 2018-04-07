@@ -1,9 +1,12 @@
 import React from 'react';
 import { mount } from 'enzyme';
+import {
+  noop,
+  getFirstSelect,
+  getSelectedValue,
+  changeSelectedValue
+} from '../utils/testUtils';
 import Merits from './Merits';
-
-// TODO: Remove duplication (enzyme helpers)
-const noop = () => {};
 
 // TODO: Change to shallow rendering once enzyme fixes getDerivedStateFromProps calling behavior
 const getWrapper = (optionsMap, selected = []) =>
@@ -17,12 +20,7 @@ const getWrapper = (optionsMap, selected = []) =>
     />
   );
 
-const getMeritsSelect = wrapper => wrapper.find('select').first();
-
-const getSelectedValue = select => select.props().value;
-
-const changeSelectedValue = (select, value) =>
-  select.simulate('change', { target: { value } });
+const getMeritsSelect = getFirstSelect;
 
 it('should clear state when previously selected value not in new options', () => {
   const optionsMap = new Map([['Zealot', { points: 1 }]]);

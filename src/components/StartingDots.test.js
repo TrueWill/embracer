@@ -1,13 +1,14 @@
 import React from 'react';
 import { shallow } from 'enzyme';
+import {
+  noop,
+  getFirstSelect,
+  getSelectedValue,
+  getOptionValues
+} from '../utils/testUtils';
 import StartingDots from './StartingDots';
 
-const getSelectedValue = wrapper => wrapper.find('select').props().value;
-
-const getOptionValues = wrapper =>
-  wrapper.find('option').map(o => o.props().value);
-
-const noop = () => {};
+const getDotsSelect = getFirstSelect;
 
 it('should render without crashing', () => {
   shallow(
@@ -24,15 +25,17 @@ it('should display current value and clear when none available', () => {
     <StartingDots available={[]} value={1} onChange={noop} />
   );
 
-  expect(getSelectedValue(wrapper)).toBe(1);
-  expect(getOptionValues(wrapper)).toEqual([0, 1]);
+  const dotsSelect = getDotsSelect(wrapper);
+  expect(getSelectedValue(dotsSelect)).toBe(1);
+  expect(getOptionValues(dotsSelect)).toEqual([0, 1]);
 });
 
 it('should display only clear when no current value and none available', () => {
   const wrapper = shallow(<StartingDots available={[]} onChange={noop} />);
 
-  expect(getSelectedValue(wrapper)).toBe(0);
-  expect(getOptionValues(wrapper)).toEqual([0]);
+  const dotsSelect = getDotsSelect(wrapper);
+  expect(getSelectedValue(dotsSelect)).toBe(0);
+  expect(getOptionValues(dotsSelect)).toEqual([0]);
 });
 
 it('should display only clear and other values when no current value', () => {
@@ -43,8 +46,9 @@ it('should display only clear and other values when no current value', () => {
     />
   );
 
-  expect(getSelectedValue(wrapper)).toBe(0);
-  expect(getOptionValues(wrapper)).toEqual([0, 4, 3]);
+  const dotsSelect = getDotsSelect(wrapper);
+  expect(getSelectedValue(dotsSelect)).toBe(0);
+  expect(getOptionValues(dotsSelect)).toEqual([0, 4, 3]);
 });
 
 it('should display current value, other values, and clear', () => {
@@ -60,8 +64,9 @@ it('should display current value, other values, and clear', () => {
     />
   );
 
-  expect(getSelectedValue(wrapper)).toBe(2);
-  expect(getOptionValues(wrapper)).toEqual([0, 2, 4, 3, 1]);
+  const dotsSelect = getDotsSelect(wrapper);
+  expect(getSelectedValue(dotsSelect)).toBe(2);
+  expect(getOptionValues(dotsSelect)).toEqual([0, 2, 4, 3, 1]);
 });
 
 it('should exclude available matching current value', () => {
@@ -78,8 +83,9 @@ it('should exclude available matching current value', () => {
     />
   );
 
-  expect(getSelectedValue(wrapper)).toBe(2);
-  expect(getOptionValues(wrapper)).toEqual([0, 2, 4, 3, 1]);
+  const dotsSelect = getDotsSelect(wrapper);
+  expect(getSelectedValue(dotsSelect)).toBe(2);
+  expect(getOptionValues(dotsSelect)).toEqual([0, 2, 4, 3, 1]);
 });
 
 it('should exclude values with 0 counts unless current', () => {
@@ -96,8 +102,9 @@ it('should exclude values with 0 counts unless current', () => {
     />
   );
 
-  expect(getSelectedValue(wrapper)).toBe(2);
-  expect(getOptionValues(wrapper)).toEqual([0, 2, 4, 1]);
+  const dotsSelect = getDotsSelect(wrapper);
+  expect(getSelectedValue(dotsSelect)).toBe(2);
+  expect(getOptionValues(dotsSelect)).toEqual([0, 2, 4, 1]);
 });
 
 it('should not include clear as an option if disallow clear', () => {
@@ -114,6 +121,7 @@ it('should not include clear as an option if disallow clear', () => {
     />
   );
 
-  expect(getSelectedValue(wrapper)).toBe(2);
-  expect(getOptionValues(wrapper)).toEqual([2, 4, 3, 1]);
+  const dotsSelect = getDotsSelect(wrapper);
+  expect(getSelectedValue(dotsSelect)).toBe(2);
+  expect(getOptionValues(dotsSelect)).toEqual([2, 4, 3, 1]);
 });
