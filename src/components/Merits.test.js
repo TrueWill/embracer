@@ -23,19 +23,27 @@ const changeSelectedValue = (select, value) =>
   select.simulate('change', { target: { value } });
 
 // TODO: Change to shallow rendering once enzyme fixes getDerivedStateFromProps calling behavior
-// TODO: Add test for not clearing state when value in options
 // TODO: Write similar tests for Flaws
 // TODO: Remove duplication (enzyme helpers)
 it('should clear state when previously selected value not in new options', () => {
-  const optionsMap = new Map();
-
-  optionsMap.set('Arcane', { points: 1 });
-
+  const optionsMap = new Map([['Zealot', { points: 1 }]]);
   const wrapper = getWrapper(optionsMap);
-
-  changeSelectedValue(getMeritsSelect(wrapper), 'Arcane');
+  changeSelectedValue(getMeritsSelect(wrapper), 'Zealot');
 
   wrapper.setProps({ optionsMap: new Map() });
 
   expect(getSelectedValue(getMeritsSelect(wrapper))).toBe('');
+});
+
+it('should not clear state when previously selected value in new options', () => {
+  const optionsMap = new Map([
+    ['Zealot', { points: 1 }],
+    ['Arcane', { points: 1 }]
+  ]);
+  const wrapper = getWrapper(optionsMap);
+  changeSelectedValue(getMeritsSelect(wrapper), 'Arcane');
+
+  wrapper.setProps({ optionsMap: new Map([['Arcane', { points: 1 }]]) });
+
+  expect(getSelectedValue(getMeritsSelect(wrapper))).toBe('Arcane');
 });
