@@ -23,6 +23,9 @@ const changeSelectedValue = (select, value) =>
   select.simulate('change', { target: { value } });
 
 // TODO: Enable once enzyme fixes getDerivedStateFromProps calling behavior
+// TODO: Add test for not clearing state when value in options
+// TODO: Write similar tests for Flaws
+// TODO: Remove duplication (enzyme helpers)
 xit('should clear state when previously selected value not in new options', () => {
   const optionsMap = new Map();
 

@@ -39,6 +39,18 @@ class Flaws extends Component {
     selectedValue: ''
   };
 
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (!nextProps.optionsMap.get(prevState.selectedValue)) {
+      // Clear out stale state
+      return {
+        selectedValue: ''
+      };
+    }
+
+    // No state updates required
+    return null;
+  }
+
   handleSelectChange = e => {
     this.setState({ selectedValue: e.target.value });
   };
