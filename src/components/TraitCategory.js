@@ -58,9 +58,14 @@ class TraitCategory extends Component {
     });
 
     const traitsPerColumn = 9;
+    const traitsByColumn = chunk(traits, traitsPerColumn);
+    const columnCount = traitsByColumn.length;
+    const pageGridWidth = 12;
+    const columnGridWidth = pageGridWidth / columnCount;
+    const className = `col-sm-${columnGridWidth}`;
 
-    const columns = chunk(traits, traitsPerColumn).map((column, index) => (
-      <div key={index} className="col-sm-4">
+    const columns = traitsByColumn.map((column, index) => (
+      <div key={index} className={className}>
         {column}
       </div>
     ));
