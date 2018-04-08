@@ -31,7 +31,6 @@ Currently deployment is manual, so the site may not reflect the latest changes.
 * Carpathians can learn Protean out-of-clan and cannot take the Szlachta merit
 * Koldun additional Thaumaturgy path (odd costs)
 * Angellis Ater choice of in-clan discipline
-* Copyright/TM notice on app?
 * Ask By Night Studios to add to their list of generators
 
 ## Contributing

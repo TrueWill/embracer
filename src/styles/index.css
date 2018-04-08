@@ -23,3 +23,7 @@ body {
 .starting-dots__label {
   white-space: nowrap;
 }
+
+.footer__attribution {
+  font-size: x-small;
+}
