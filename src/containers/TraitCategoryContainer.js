@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { getClanName } from '../selectors/simple';
+import { getCharacter, getClanName } from '../selectors/simple';
 import {
   setStartingDots,
   purchaseOrUnpurchaseDot
@@ -25,7 +25,7 @@ const mapStateToProps = (state, ownProps) => {
   }
 
   return {
-    categoryTraits: state.character[categoryName],
+    categoryTraits: getCharacter(state)[categoryName],
     adjustAvailable
   };
 };

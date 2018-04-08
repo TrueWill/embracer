@@ -1,6 +1,9 @@
 // non-memoized selector functions, typically used as input-selectors
 
+export const getIsEraserMode = state => state.mode.isEraser;
+export const getSetting = state => state.setting;
 export const getSettingName = state => state.setting.name;
+export const getCharacter = state => state.character;
 export const getClan = state => state.character.basicInfo.clan;
 export const getInClanState = state => state.character.disciplines.inClan;
 export const getSelectedFlaws = state => state.character.flaws;

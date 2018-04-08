@@ -17,7 +17,6 @@ Currently deployment is manual, so the site may not reflect the latest changes.
 
 * Improve styling/responsiveness
 * Print / export (include Willpower and health levels; display generation title)
-* Add more simple selectors - only reducers and selectors should know state structure
 * Improve test coverage
 * Rituals
 * Techniques (clear if change Generation)

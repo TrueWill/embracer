@@ -1,9 +1,10 @@
 import { connect } from 'react-redux';
 import { togglePencilEraserMode } from '../actions/modeActions';
+import { getIsEraserMode } from '../selectors/simple';
 import PencilEraser from '../components/PencilEraser';
 
 const mapStateToProps = state => ({
-  isEraser: state.mode.isEraser
+  isEraser: getIsEraserMode(state)
 });
 
 const mapDispatchToProps = {

@@ -3,7 +3,12 @@ import { humanity } from '../constants/characterOptions';
 import getMoralityMeritsOptions from '../selectors/getMoralityMeritsOptions';
 import getDots from '../utils/getDots';
 import getMerits from '../selectors/getMerits';
-import { getClanName, getGeneration, getMorality } from '../selectors/simple';
+import {
+  getIsEraserMode,
+  getClanName,
+  getGeneration,
+  getMorality
+} from '../selectors/simple';
 
 export const updateArchetype = value => ({
   type: types.UPDATE_ARCHETYPE,
@@ -98,18 +103,19 @@ export const purchaseOrUnpurchaseDot = (category, trait) => (
   getState
 ) => {
   const state = getState();
+  const isEraserMode = getIsEraserMode(state);
 
   if (
     category === 'backgrounds' &&
     trait === 'generation' &&
-    !state.mode.isEraser &&
+    !isEraserMode &&
     getClanName(state) === 'Caitiff' &&
     getDots(getGeneration(state)) >= 2
   ) {
     return;
   }
 
-  const actionCreator = state.mode.isEraser ? unpurchaseDot : purchaseDot;
+  const actionCreator = isEraserMode ? unpurchaseDot : purchaseDot;
 
   dispatch(actionCreator(category, trait));
 };
@@ -126,7 +132,7 @@ export const unpurchaseMoralityDot = () => ({
 export const purchaseOrUnpurchaseMoralityDot = () => (dispatch, getState) => {
   const state = getState();
 
-  const actionCreator = state.mode.isEraser
+  const actionCreator = getIsEraserMode(state)
     ? unpurchaseMoralityDot
     : purchaseMoralityDot;
 
