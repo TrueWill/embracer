@@ -41,7 +41,7 @@ class Trait extends Component {
 
     return (
       <div>
-        {displayName}{' '}
+        <div className="trait__name">{displayName}</div>
         <Dots
           level={getDots(traitState)}
           max={maxDots}

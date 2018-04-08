@@ -12,7 +12,7 @@ const StartingDots = ({ available, value, disallowClear, onChange }) => {
 
   return (
     <div>
-      Starting dots
+      <span className="starting-dots__label">Starting dots</span>
       <select value={value} onChange={onChange}>
         {!disallowClear && <option value={0}>Clear</option>}
         {value !== 0 && <option value={value}>{value}</option>}

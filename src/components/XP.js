@@ -4,7 +4,9 @@ import classNames from 'classnames';
 import Section from './Section';
 
 const XP = ({ spent, gainedFromFlaws, available, bankable }) => {
-  const availableClass = classNames({ negativePoints: available < 0 });
+  const availableClass = classNames({
+    'xp__available-points--negative': available < 0
+  });
 
   return (
     <Section header="XP">

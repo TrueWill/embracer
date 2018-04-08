@@ -43,6 +43,8 @@ Currently deployment is manual, so the site may not reflect the latest changes.
 * [Yarn](https://yarnpkg.com/en/)
 * [Flux Standard Actions](https://github.com/acdlite/flux-standard-action)
 * [Reselect](https://github.com/reactjs/reselect) selectors
+* Only reducers and selectors should know the exact state structure
+* [BEM](http://getbem.com/) CSS naming convention
 * Jest/Enzyme tests (using it() alias for test()) - all passing
 * No ESLint warnings/errors
 * No console warnings/errors

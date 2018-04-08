@@ -12,7 +12,7 @@ const Dots = ({ level = 0, max = 5, onClick }) => {
   }
 
   return (
-    <div className="pointer" onClick={onClick}>
+    <div className="dots pointer" onClick={onClick}>
       {items.map((value, index) => (
         <i key={index} className={value} aria-hidden="true" />
       ))}
