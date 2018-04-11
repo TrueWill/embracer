@@ -62,6 +62,8 @@ export const skillTraitNames = [
   'brawl',
   'computer',
   'crafts',
+  'crafts2',
+  'crafts3',
   'dodge',
   'drive',
   'empathy',
@@ -75,7 +77,11 @@ export const skillTraitNames = [
   'melee',
   'occult',
   'performance',
+  'performance2',
+  'performance3',
   'science',
+  'science2',
+  'science3',
   'security',
   'stealth',
   'streetwise',
@@ -84,7 +90,13 @@ export const skillTraitNames = [
 ];
 
 export const skillTraitDisplayNameOverride = {
-  animalKen: 'Animal Ken'
+  animalKen: 'Animal Ken',
+  crafts2: 'Crafts (2nd field)',
+  crafts3: 'Crafts (3rd field)',
+  performance2: 'Performance (2nd field)',
+  performance3: 'Performance (3rd field)',
+  science2: 'Science (2nd field)',
+  science3: 'Science (3rd field)'
 };
 
 export const skillsAvailableStartingDots = [
