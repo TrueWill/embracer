@@ -147,7 +147,8 @@ export const clans = arrayToMap([
       merits: [
         {
           name: 'Necromantic Expertise',
-          points: 1
+          points: 1,
+          multiple: true
         },
         {
           name: 'Mook',
@@ -296,7 +297,8 @@ export const clans = arrayToMap([
       merits: [
         {
           name: 'Thaumaturgic Expertise',
-          points: 1
+          points: 1,
+          multiple: true
         },
         {
           name: 'Talisman',
@@ -432,7 +434,8 @@ export const clans = arrayToMap([
       merits: [
         {
           name: 'Necromantic Insight',
-          points: 1
+          points: 1,
+          multiple: true
         },
         {
           name: 'Pierced Shroud',

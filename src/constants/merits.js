@@ -112,7 +112,8 @@ export const merits = [
   },
   {
     name: 'Skill Aptitude',
-    points: 2
+    points: 2,
+    multiple: true
   },
   {
     name: 'Slippery Customer',
