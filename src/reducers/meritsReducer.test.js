@@ -40,6 +40,32 @@ it('should add merit, preserving existing', () => {
   ]);
 });
 
+it('should add merit when multiple', () => {
+  const state = [
+    {
+      name: 'Skill Aptitude',
+      points: 2
+    }
+  ];
+
+  deepFreeze(state);
+
+  const action = actions.addMerit('Skill Aptitude', 2);
+
+  const nextState = reducer(state, action);
+
+  expect(nextState).toEqual([
+    {
+      name: 'Skill Aptitude',
+      points: 2
+    },
+    {
+      name: 'Skill Aptitude',
+      points: 2
+    }
+  ]);
+});
+
 it('should remove merit', () => {
   const state = [
     {
@@ -62,6 +88,40 @@ it('should remove merit', () => {
     {
       name: 'Clear Sighted',
       points: 3
+    }
+  ]);
+});
+
+it('should remove one merit when multiple', () => {
+  const state = [
+    {
+      name: 'Calm Heart',
+      points: 1
+    },
+    {
+      name: 'Skill Aptitude',
+      points: 2
+    },
+    {
+      name: 'Skill Aptitude',
+      points: 2
+    }
+  ];
+
+  deepFreeze(state);
+
+  const action = actions.removeMerit('Skill Aptitude');
+
+  const nextState = reducer(state, action);
+
+  expect(nextState).toEqual([
+    {
+      name: 'Calm Heart',
+      points: 1
+    },
+    {
+      name: 'Skill Aptitude',
+      points: 2
     }
   ]);
 });

@@ -21,7 +21,7 @@ Currently deployment is manual, so the site may not reflect the latest changes.
 * Rituals
 * Techniques (clear if change Generation)
 * Elder Powers (clear if change Generation)
-* Certain Merits (such as Thaumaturgic Expertise) can be purchased multiple times
+* Eerie Presence Flaw can be purchased multiple times
 * Setting-specific (Sabbat) Rituals Background
 * Anarch Movement Generation merit and Path costs
 * True Brujah cannot purchase Empathy and pay double XP for dots of Morality

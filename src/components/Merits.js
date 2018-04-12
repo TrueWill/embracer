@@ -4,7 +4,9 @@ import Section from './Section';
 import { maxMeritPoints } from '../constants/merits';
 
 const getDescription = merit =>
-  `${merit.name} (${merit.points} point${merit.points > 1 ? 's' : ''})`;
+  `${merit.name}${merit.multiple ? '*' : ''} (${merit.points} point${
+    merit.points > 1 ? 's' : ''
+  })`;
 
 class DeleteButton extends Component {
   static propTypes = {
@@ -70,19 +72,28 @@ class Merits extends Component {
     const { optionsMap, selected, availablePoints } = this.props;
     const { selectedValue } = this.state;
 
-    const selectedList = selected.map(x => (
-      <li key={x.name}>
-        {getDescription(x)}{' '}
-        <DeleteButton id={x.name} onClick={this.handleRemove} />
-      </li>
-    ));
+    const counts = new Map();
+
+    const selectedList = selected.map(x => {
+      const name = x.name;
+      const priorCount = counts.get(name) || 0;
+      counts.set(name, priorCount + 1);
+
+      return (
+        <li key={name + priorCount}>
+          {getDescription(x)}{' '}
+          <DeleteButton id={name} onClick={this.handleRemove} />
+        </li>
+      );
+    });
 
     const optionsList = [];
 
     optionsMap.forEach((value, key) => {
       const merit = {
         name: key,
-        points: value.points
+        points: value.points,
+        multiple: value.multiple
       };
 
       optionsList.push(
@@ -112,6 +123,7 @@ class Merits extends Component {
               Add
             </button>
           )}
+        <div>* - Can purchase multiple times</div>
         <div>
           Max points: {maxMeritPoints} Available: {availablePoints} (other areas
           have merits)

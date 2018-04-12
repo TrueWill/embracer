@@ -21,10 +21,15 @@ const getMeritsOptions = createSelector(
       return acc;
     }, new Set());
 
-    return options.filter(x => !selectedSet.has(x.name)).reduce((acc, cur) => {
-      acc.set(cur.name, { points: cur.points });
-      return acc;
-    }, new Map());
+    return options
+      .filter(x => x.multiple || !selectedSet.has(x.name))
+      .reduce((acc, cur) => {
+        acc.set(cur.name, {
+          points: cur.points,
+          ...(cur.multiple && { multiple: cur.multiple })
+        });
+        return acc;
+      }, new Map());
   }
 );
 

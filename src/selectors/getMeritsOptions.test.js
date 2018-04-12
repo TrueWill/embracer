@@ -145,3 +145,30 @@ it('should return correct map for merit options when setting and clan selected',
   expect(result.get('Fanatic')).toEqual({ points: 2 });
   expect(result.has('Emissary to the Camarilla')).toBeFalsy();
 });
+
+it('should not remove selected merit if multiple permitted', () => {
+  const state = {
+    setting: {
+      name: 'Other'
+    },
+    character: {
+      basicInfo: {
+        clan: { name: '' }
+      },
+      merits: [
+        {
+          name: 'Skill Aptitude',
+          points: 2
+        }
+      ],
+      flaws: []
+    }
+  };
+
+  deepFreeze(state);
+
+  const result = getMeritsOptions(state);
+
+  expect(result.get('Skill Aptitude')).toEqual({ points: 2, multiple: true });
+  expect(result.get('Acute Sense')).not.toHaveProperty('multiple');
+});

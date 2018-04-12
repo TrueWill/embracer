@@ -10,5 +10,8 @@ export const getSelectedValue = select => select.props().value;
 export const getOptionValues = select =>
   select.find('option').map(o => o.props().value);
 
+export const getOptionItems = select =>
+  select.find('option').map(o => o.text());
+
 export const changeSelectedValue = (select, value) =>
   select.simulate('change', { target: { value } });

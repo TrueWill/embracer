@@ -380,6 +380,72 @@ it('should calculate bankable when available is less', () => {
   });
 });
 
+it('should calculate multiple merits', () => {
+  const state = {
+    character: {
+      basicInfo: {
+        archetype: '',
+        clan: { name: '' }
+      },
+      attributes: {
+        physical: {},
+        social: {},
+        mental: {}
+      },
+      skills: {},
+      backgrounds: {
+        availableStartingDots: [
+          {
+            dots: 3,
+            count: 1
+          },
+          {
+            dots: 2,
+            count: 1
+          },
+          {
+            dots: 1,
+            count: 0
+          }
+        ],
+        generation: {
+          startingDots: 1
+        }
+      },
+      disciplines: {
+        inClan: {},
+        outOfClan: {}
+      },
+      merits: [
+        {
+          name: 'Skill Aptitude',
+          points: 2
+        },
+        {
+          name: 'Skill Aptitude',
+          points: 2
+        }
+      ],
+      flaws: [],
+      morality: {
+        path: 'Humanity',
+        startingDots: 5
+      }
+    }
+  };
+
+  deepFreeze(state);
+
+  const result = getXP(state);
+
+  expect(result).toEqual({
+    spent: 4,
+    gainedFromFlaws: 0,
+    available: 26,
+    bankable: 5
+  });
+});
+
 it('should cache', () => {
   const state = {
     character: {

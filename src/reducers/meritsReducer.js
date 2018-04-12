@@ -9,7 +9,15 @@ export default (state = initialState.character.merits, action) => {
       return newState;
     case types.REMOVE_MERIT:
       const { name } = action.payload;
-      return state.filter(x => x.name !== name);
+      let found = false;
+      return state.filter(x => {
+        if (found) {
+          // multiple, and one instance already removed, so preserve
+          return true;
+        }
+        found = x.name === name;
+        return !found;
+      });
     case types.UPDATE_SETTING:
       // reset, as there are setting-specific merits
       return initialState.character.merits;
