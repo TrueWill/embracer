@@ -4,6 +4,7 @@ import {
   noop,
   getFirstSelect,
   getSelectedValue,
+  getOptionItems,
   changeSelectedValue
 } from '../utils/testUtils';
 import Merits from './Merits';
@@ -43,4 +44,17 @@ it('should not clear state when previously selected value in new options', () =>
   wrapper.setProps({ optionsMap: new Map([['Arcane', { points: 1 }]]) });
 
   expect(getSelectedValue(getMeritsSelect(wrapper))).toBe('Arcane');
+});
+
+it('should calculate descriptions', () => {
+  const optionsMap = new Map([
+    ['Arcane', { points: 1 }],
+    ['Skill Aptitude', { points: 2, multiple: true }]
+  ]);
+  const wrapper = getWrapper(optionsMap);
+  expect(getOptionItems(getMeritsSelect(wrapper))).toEqual([
+    '(not selected)',
+    'Arcane (1 point)',
+    'Skill Aptitude* (2 points)'
+  ]);
 });
