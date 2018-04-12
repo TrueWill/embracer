@@ -72,12 +72,20 @@ class Merits extends Component {
     const { optionsMap, selected, availablePoints } = this.props;
     const { selectedValue } = this.state;
 
-    const selectedList = selected.map(x => (
-      <li key={x.name}>
-        {getDescription(x)}{' '}
-        <DeleteButton id={x.name} onClick={this.handleRemove} />
-      </li>
-    ));
+    const counts = new Map();
+
+    const selectedList = selected.map(x => {
+      const name = x.name;
+      const priorCount = counts.get(name) || 0;
+      counts.set(name, priorCount + 1);
+
+      return (
+        <li key={name + priorCount}>
+          {getDescription(x)}{' '}
+          <DeleteButton id={name} onClick={this.handleRemove} />
+        </li>
+      );
+    });
 
     const optionsList = [];
 
