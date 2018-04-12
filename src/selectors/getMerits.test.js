@@ -69,6 +69,40 @@ it('should return correct values for merits', () => {
   });
 });
 
+it('should return correct values for merits when multiple', () => {
+  const state = {
+    character: {
+      basicInfo: {
+        clan: { name: '' }
+      },
+      merits: [
+        {
+          name: 'Skill Aptitude',
+          points: 2
+        },
+        {
+          name: 'Skill Aptitude',
+          points: 2
+        }
+      ],
+      flaws: [],
+      morality: {
+        path: 'Humanity'
+      }
+    }
+  };
+
+  deepFreeze(state);
+
+  const result = getMerits(state);
+
+  expect(result).toEqual({
+    selected: state.character.merits,
+    currentPoints: 4,
+    availablePoints: 3
+  });
+});
+
 it('should include morality merits', () => {
   const state = {
     character: {
