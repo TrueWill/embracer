@@ -380,7 +380,7 @@ it('should calculate bankable when available is less', () => {
   });
 });
 
-it('should calculate multiple merits', () => {
+it('should calculate when merit purchased multiple times', () => {
   const state = {
     character: {
       basicInfo: {
@@ -419,11 +419,8 @@ it('should calculate multiple merits', () => {
       merits: [
         {
           name: 'Skill Aptitude',
-          points: 2
-        },
-        {
-          name: 'Skill Aptitude',
-          points: 2
+          points: 2,
+          timesPurchased: 2
         }
       ],
       flaws: [],
