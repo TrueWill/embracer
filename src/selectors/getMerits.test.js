@@ -69,7 +69,7 @@ it('should return correct values for merits', () => {
   });
 });
 
-it('should return correct values for merits when multiple', () => {
+it('should return correct values for merits when purchased multiple times', () => {
   const state = {
     character: {
       basicInfo: {
@@ -78,11 +78,8 @@ it('should return correct values for merits when multiple', () => {
       merits: [
         {
           name: 'Skill Aptitude',
-          points: 2
-        },
-        {
-          name: 'Skill Aptitude',
-          points: 2
+          points: 2,
+          timesPurchased: 3
         }
       ],
       flaws: [],
@@ -98,8 +95,8 @@ it('should return correct values for merits when multiple', () => {
 
   expect(result).toEqual({
     selected: state.character.merits,
-    currentPoints: 4,
-    availablePoints: 3
+    currentPoints: 6,
+    availablePoints: 1
   });
 });
 

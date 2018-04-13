@@ -1,23 +1,51 @@
 import initialState from './initialState';
 import * as types from '../constants/actionTypes';
+import { removeProperty } from '../utils/objectUtils';
 
 export default (state = initialState.character.merits, action) => {
+  let name, newState;
+
   switch (action.type) {
     case types.ADD_MERIT:
-      const newState = state.slice();
-      newState.push(action.payload);
+      ({ name } = action.payload);
+      let found = false;
+
+      newState = state.map(x => {
+        if (x.name === name) {
+          found = true;
+          const timesPurchased = (x.timesPurchased || 1) + 1;
+          return { ...x, timesPurchased };
+        }
+
+        return x;
+      });
+
+      if (!found) {
+        newState.push(action.payload);
+      }
+
       return newState;
     case types.REMOVE_MERIT:
-      const { name } = action.payload;
-      let found = false;
-      return state.filter(x => {
-        if (found) {
-          // multiple, and one instance already removed, so preserve
-          return true;
+      ({ name } = action.payload);
+
+      newState = [];
+
+      state.forEach(x => {
+        if (x.name === name) {
+          const timesPurchased = (x.timesPurchased || 1) - 1;
+
+          if (timesPurchased > 1) {
+            newState.push({ ...x, timesPurchased });
+          } else if (timesPurchased === 1) {
+            newState.push(removeProperty(x, 'timesPurchased'));
+          }
+          // else exclude
+        } else {
+          newState.push(x);
         }
-        found = x.name === name;
-        return !found;
       });
+
+      return newState;
     case types.UPDATE_SETTING:
       // reset, as there are setting-specific merits
       return initialState.character.merits;

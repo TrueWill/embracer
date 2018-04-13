@@ -40,8 +40,12 @@ it('should add merit, preserving existing', () => {
   ]);
 });
 
-it('should add merit when multiple', () => {
+it('should add second merit when purchased multiple times', () => {
   const state = [
+    {
+      name: 'Calm Heart',
+      points: 1
+    },
     {
       name: 'Skill Aptitude',
       points: 2
@@ -56,12 +60,45 @@ it('should add merit when multiple', () => {
 
   expect(nextState).toEqual([
     {
-      name: 'Skill Aptitude',
-      points: 2
+      name: 'Calm Heart',
+      points: 1
     },
     {
       name: 'Skill Aptitude',
-      points: 2
+      points: 2,
+      timesPurchased: 2
+    }
+  ]);
+});
+
+it('should add third merit when purchased multiple times', () => {
+  const state = [
+    {
+      name: 'Calm Heart',
+      points: 1
+    },
+    {
+      name: 'Skill Aptitude',
+      points: 2,
+      timesPurchased: 2
+    }
+  ];
+
+  deepFreeze(state);
+
+  const action = actions.addMerit('Skill Aptitude', 2);
+
+  const nextState = reducer(state, action);
+
+  expect(nextState).toEqual([
+    {
+      name: 'Calm Heart',
+      points: 1
+    },
+    {
+      name: 'Skill Aptitude',
+      points: 2,
+      timesPurchased: 3
     }
   ]);
 });
@@ -92,7 +129,7 @@ it('should remove merit', () => {
   ]);
 });
 
-it('should remove one merit when multiple', () => {
+it('should remove second merit when purchased multiple times', () => {
   const state = [
     {
       name: 'Calm Heart',
@@ -100,11 +137,8 @@ it('should remove one merit when multiple', () => {
     },
     {
       name: 'Skill Aptitude',
-      points: 2
-    },
-    {
-      name: 'Skill Aptitude',
-      points: 2
+      points: 2,
+      timesPurchased: 2
     }
   ];
 
@@ -122,6 +156,38 @@ it('should remove one merit when multiple', () => {
     {
       name: 'Skill Aptitude',
       points: 2
+    }
+  ]);
+});
+
+it('should remove third merit when purchased multiple times', () => {
+  const state = [
+    {
+      name: 'Calm Heart',
+      points: 1
+    },
+    {
+      name: 'Skill Aptitude',
+      points: 2,
+      timesPurchased: 3
+    }
+  ];
+
+  deepFreeze(state);
+
+  const action = actions.removeMerit('Skill Aptitude');
+
+  const nextState = reducer(state, action);
+
+  expect(nextState).toEqual([
+    {
+      name: 'Calm Heart',
+      points: 1
+    },
+    {
+      name: 'Skill Aptitude',
+      points: 2,
+      timesPurchased: 2
     }
   ]);
 });

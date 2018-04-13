@@ -3,7 +3,16 @@ import PropTypes from 'prop-types';
 import Section from './Section';
 import { maxMeritPoints } from '../constants/merits';
 
-const getDescription = merit =>
+const getSelectedDescription = merit => {
+  const timesPurchased = merit.timesPurchased || 1;
+  const timesText = timesPurchased === 1 ? '' : ` X ${timesPurchased}`;
+
+  return `${merit.name} (${merit.points} point${
+    merit.points > 1 ? 's' : ''
+  }${timesText})`;
+};
+
+const getOptionDescription = merit =>
   `${merit.name}${merit.multiple ? '*' : ''} (${merit.points} point${
     merit.points > 1 ? 's' : ''
   })`;
@@ -28,8 +37,9 @@ class Merits extends Component {
     optionsMap: PropTypes.instanceOf(Map).isRequired,
     selected: PropTypes.arrayOf(
       PropTypes.shape({
-        name: PropTypes.string,
-        points: PropTypes.number
+        name: PropTypes.string.isRequired,
+        points: PropTypes.number.isRequired,
+        timesPurchased: PropTypes.number
       })
     ).isRequired,
     availablePoints: PropTypes.number.isRequired,
@@ -72,20 +82,12 @@ class Merits extends Component {
     const { optionsMap, selected, availablePoints } = this.props;
     const { selectedValue } = this.state;
 
-    const counts = new Map();
-
-    const selectedList = selected.map(x => {
-      const name = x.name;
-      const priorCount = counts.get(name) || 0;
-      counts.set(name, priorCount + 1);
-
-      return (
-        <li key={name + priorCount}>
-          {getDescription(x)}{' '}
-          <DeleteButton id={name} onClick={this.handleRemove} />
-        </li>
-      );
-    });
+    const selectedList = selected.map(x => (
+      <li key={x.name}>
+        {getSelectedDescription(x)}{' '}
+        <DeleteButton id={x.name} onClick={this.handleRemove} />
+      </li>
+    ));
 
     const optionsList = [];
 
@@ -98,7 +100,7 @@ class Merits extends Component {
 
       optionsList.push(
         <option value={merit.name} key={merit.name}>
-          {getDescription(merit)}
+          {getOptionDescription(merit)}
         </option>
       );
     });
