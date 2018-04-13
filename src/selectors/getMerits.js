@@ -15,7 +15,7 @@ const getMerits = createSelector(
     const maxPoints = maxMeritPoints;
 
     let currentPoints = selectedMerits
-      .map(x => x.points)
+      .map(x => x.points * (x.timesPurchased || 1))
       .reduce((acc, cur) => acc + cur, 0);
 
     currentPoints += additionalPoints;
