@@ -52,9 +52,31 @@ it('should calculate descriptions', () => {
     ['Skill Aptitude', { points: 2, multiple: true }]
   ]);
   const wrapper = getWrapper(optionsMap);
+
   expect(getOptionItems(getMeritsSelect(wrapper))).toEqual([
     '(not selected)',
     'Arcane (1 point)',
     'Skill Aptitude* (2 points)'
   ]);
+});
+
+it('should display selected when merit purchased multiple times', () => {
+  const optionsMap = new Map([
+    ['Skill Aptitude', { points: 2, multiple: true }]
+  ]);
+  const selected = [
+    {
+      name: 'Arcane',
+      points: 1
+    },
+    {
+      name: 'Skill Aptitude',
+      points: 2,
+      timesPurchased: 3
+    }
+  ];
+  const wrapper = getWrapper(optionsMap, selected);
+
+  const items = wrapper.find('li').map(o => o.text().trim());
+  expect(items).toEqual(['Arcane (1 point)', 'Skill Aptitude (2 points X 3)']);
 });
