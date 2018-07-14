@@ -5,7 +5,7 @@
   "dependencies": {
     "classnames": "^2.2.6",
     "lodash.chunk": "^4.2.0",
-    "prop-types": "^15.6.1",
+    "prop-types": "^15.6.2",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "react-redux": "^5.0.7",
@@ -13,7 +13,7 @@
     "react-scripts": "1.1.4",
     "react-select": "^1.2.1",
     "redux": "^4.0.0",
-    "redux-devtools-extension": "^2.13.2",
+    "redux-devtools-extension": "^2.13.5",
     "redux-thunk": "^2.3.0",
     "reselect": "^3.0.1"
   },
@@ -28,7 +28,7 @@
     "deep-freeze": "^0.0.1",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
-    "jest-enzyme": "^6.0.1",
+    "jest-enzyme": "^6.0.2",
     "lodash.clonedeep": "^4.5.0"
   }
 }
