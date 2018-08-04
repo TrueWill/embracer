@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Select from 'react-select';
+import CreatableSelect from 'react-select/lib/Creatable';
 import { archetypes } from '../constants/characterOptions';
 
 export default class Archetype extends Component {
@@ -17,25 +17,25 @@ export default class Archetype extends Component {
   render() {
     const { archetype } = this.props;
 
-    let archetypeOptions = archetypes.map(a => ({
+    const value = archetype
+      ? {
+          value: archetype,
+          label: archetype
+        }
+      : null;
+
+    const archetypeOptions = archetypes.map(a => ({
       value: a,
       label: a
     }));
-
-    if (archetype && archetypes.indexOf(archetype) === -1) {
-      archetypeOptions.push({
-        value: archetype,
-        label: archetype
-      });
-    }
 
     return (
       <div className="row">
         <div className="col-sm-3">Archetype:</div>
         <div className="col-sm-9">
-          <Select.Creatable
-            value={archetype}
-            multi={false}
+          <CreatableSelect
+            isClearable
+            value={value}
             options={archetypeOptions}
             onChange={this.handleArchetypeChange}
           />
