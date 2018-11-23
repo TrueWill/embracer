@@ -38,6 +38,7 @@ Currently deployment is manual, so the site may not reflect the latest changes.
 * [Prettier](https://prettier.io/) with single quotes
 * [EditorConfig](http://editorconfig.org/)
 * [Yarn](https://yarnpkg.com/en/)
+* [prop-types](https://github.com/facebook/prop-types)
 * [Flux Standard Actions](https://github.com/acdlite/flux-standard-action)
 * [Reselect](https://github.com/reactjs/reselect) selectors
 * Only reducers and selectors should know the exact state structure
