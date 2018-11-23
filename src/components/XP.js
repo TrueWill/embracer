@@ -2,10 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import Section from './Section';
+import styles from './XP.module.css';
 
 const XP = ({ spent, gainedFromFlaws, available, bankable }) => {
   const availableClass = classNames({
-    'xp__available-points--negative': available < 0
+    [styles.negative]: available < 0
   });
 
   return (

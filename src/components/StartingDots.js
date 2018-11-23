@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styles from './StartingDots.module.css';
 
 const StartingDots = ({ available, value, disallowClear, onChange }) => {
   const optionElements = available
@@ -12,7 +13,7 @@ const StartingDots = ({ available, value, disallowClear, onChange }) => {
 
   return (
     <div>
-      <span className="starting-dots__label">Starting dots</span>
+      <span className={styles.label}>Starting dots</span>
       <select value={value} onChange={onChange}>
         {!disallowClear && <option value={0}>Clear</option>}
         {value !== 0 && <option value={value}>{value}</option>}

@@ -19,6 +19,7 @@ import PencilEraserContainer from '../containers/PencilEraserContainer';
 import MoralityContainer from '../containers/MoralityContainer';
 import ValidationContainer from '../containers/ValidationContainer';
 import Section from '../components/Section';
+import styles from './App.module.css';
 
 const App = () => (
   <div className="container-fluid">
@@ -80,7 +81,7 @@ const App = () => (
         </div>
       </div>
     </div>
-    <div className="row footer__attribution">
+    <div className={`row ${styles.attribution}`}>
       <div className="col-sm-12">
         Some terms are copyrighted by or registered trademarks of CCP hf. This
         tool is unofficial, and the author is not affiliated with the companies

@@ -1,0 +1,4 @@
+.dots {
+  composes: pointer from "../styles/index.css";
+  white-space: nowrap;
+}

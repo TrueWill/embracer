@@ -41,7 +41,7 @@ Currently deployment is manual, so the site may not reflect the latest changes.
 * [Flux Standard Actions](https://github.com/acdlite/flux-standard-action)
 * [Reselect](https://github.com/reactjs/reselect) selectors
 * Only reducers and selectors should know the exact state structure
-* [BEM](http://getbem.com/) CSS naming convention
+* [CSS Modules](https://facebook.github.io/create-react-app/docs/adding-a-css-modules-stylesheet)
 * Jest/Enzyme tests (using it() alias for test()) - all passing
 * No ESLint warnings/errors
 * No console warnings/errors

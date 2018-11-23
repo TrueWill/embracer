@@ -4,6 +4,7 @@ import Dots from './Dots';
 import StartingDots from './StartingDots';
 import getDots from '../utils/getDots';
 import { capitalizeFirstLetter } from '../utils/stringUtils';
+import styles from './Trait.module.css';
 
 class Trait extends Component {
   static propTypes = {
@@ -41,7 +42,7 @@ class Trait extends Component {
 
     return (
       <div>
-        <div className="trait__name">{displayName}</div>
+        <div className={styles.name}>{displayName}</div>
         <Dots
           level={getDots(traitState)}
           max={maxDots}

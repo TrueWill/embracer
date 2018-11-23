@@ -7,23 +7,3 @@ body {
 .pointer {
   cursor: pointer;
 }
-
-.dots {
-  white-space: nowrap;
-}
-
-.trait__name {
-  white-space: nowrap;
-}
-
-.xp__available-points--negative {
-  color: red;
-}
-
-.starting-dots__label {
-  white-space: nowrap;
-}
-
-.footer__attribution {
-  font-size: x-small;
-}

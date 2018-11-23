@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styles from './Dots.module.css';
 
 const unfilledClass = 'fa fa-circle-thin';
 const filledClass = 'fa fa-circle';
@@ -12,7 +13,7 @@ const Dots = ({ level = 0, max = 5, onClick }) => {
   }
 
   return (
-    <div className="dots pointer" onClick={onClick}>
+    <div className={styles.dots} onClick={onClick}>
       {items.map((value, index) => (
         <i key={index} className={value} aria-hidden="true" />
       ))}
