@@ -8,6 +8,7 @@ export const getClan = state => state.character.basicInfo.clan;
 export const getInClanState = state => state.character.disciplines.inClan;
 export const getSelectedFlaws = state => state.character.flaws;
 export const getClanName = state => state.character.basicInfo.clan.name;
+export const getBloodline = state => state.character.basicInfo.clan.bloodline;
 export const getGeneration = state => state.character.backgrounds.generation;
 export const getSelectedMerits = state => state.character.merits;
 export const getMoralityMeritPoints = state =>
