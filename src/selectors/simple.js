@@ -26,6 +26,8 @@ export const getPhysicalFocus = state =>
   state.character.attributes.physical.focus;
 export const getSocialFocus = state => state.character.attributes.social.focus;
 export const getMentalFocus = state => state.character.attributes.mental.focus;
+export const getFocus = (state, attributeName) =>
+  state.character.attributes[attributeName].focus;
 export const getSkillsAvailableStartingDots = state =>
   state.character.skills.availableStartingDots;
 export const getBackgroundsAvailableStartingDots = state =>

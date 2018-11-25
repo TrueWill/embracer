@@ -4,7 +4,8 @@ import { capitalizeFirstLetter } from './stringUtils';
 import * as simple from '../selectors/simple';
 import {
   attributeTraitNames,
-  attributeMaxDots
+  attributeMaxDots,
+  bonusAttributeMaxDots
 } from '../constants/characterOptions';
 
 // Units are mm
@@ -22,6 +23,7 @@ const dotSpacing = 0.75;
 let currentYPosition;
 
 const moveToNextLine = () => (currentYPosition += defaultPageLineHeight);
+const moveToPreviousLine = () => (currentYPosition -= defaultPageLineHeight);
 
 const getColumnXPosition = columnNumber =>
   leftMargin + (columnWidth + gutter) * (columnNumber - 1);
@@ -70,14 +72,32 @@ const printAttributes = (doc, state) => {
 
   for (let i = 0; i < attributeTraitNames.length; i++) {
     const name = attributeTraitNames[i];
+    const columnXPosition = getColumnXPosition(i + 1);
 
     printTrait(
       doc,
       capitalizeFirstLetter(name),
       getDots(attributes[name]),
       attributeMaxDots,
-      getColumnXPosition(i + 1)
+      columnXPosition
     );
+
+    moveToNextLine();
+
+    printTrait(
+      doc,
+      'Bonus Attributes',
+      0,
+      bonusAttributeMaxDots,
+      columnXPosition
+    );
+
+    moveToNextLine();
+
+    print(doc, `Focus: ${simple.getFocus(state, name) || ''}`, columnXPosition);
+
+    moveToPreviousLine();
+    moveToPreviousLine();
   }
 };
 

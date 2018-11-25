@@ -43,6 +43,7 @@ export const archetypes = [
 export const attributeTraitNames = ['physical', 'social', 'mental'];
 
 export const attributeMaxDots = 10;
+export const bonusAttributeMaxDots = 5;
 
 export const attributesRankDots = [7, 5, 3];
 
