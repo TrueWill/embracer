@@ -5,7 +5,9 @@ import * as simple from '../selectors/simple';
 import {
   attributeTraitNames,
   attributeMaxDots,
-  bonusAttributeMaxDots
+  bonusAttributeMaxDots,
+  standardTraitMaxDots,
+  skillTraitDisplayNameOverride
 } from '../constants/characterOptions';
 
 // Units are mm
@@ -20,6 +22,8 @@ const defaultDrawLineWidth = 0.2;
 const defaultPageLineHeight = 7;
 const dotRadius = 1.2;
 const dotSpacing = 0.75;
+const skillsTopMargin = 80;
+const skillsRows = 10;
 let currentYPosition;
 
 const moveToNextLine = () => (currentYPosition += defaultPageLineHeight);
@@ -101,6 +105,35 @@ const printAttributes = (doc, state) => {
   }
 };
 
+const printSkills = (doc, state) => {
+  const skills = simple.getSkills(state);
+  const skillNames = Object.keys(skills).filter(
+    x => x !== 'availableStartingDots'
+  );
+  skillNames.sort();
+
+  for (let i = 0; i < skillNames.length; i++) {
+    const name = skillNames[i];
+    const displayName =
+      skillTraitDisplayNameOverride[name] || capitalizeFirstLetter(name);
+    const column = Math.floor(i / skillsRows) + 1;
+
+    if (i % skillsRows === 0) {
+      currentYPosition = skillsTopMargin;
+    }
+
+    printTrait(
+      doc,
+      displayName,
+      getDots(skills[name]),
+      standardTraitMaxDots,
+      getColumnXPosition(column)
+    );
+
+    moveToNextLine();
+  }
+};
+
 const exportPdf = state => {
   const doc = new jsPDF({
     unit: 'mm',
@@ -120,6 +153,7 @@ const exportPdf = state => {
   printLine(doc, 'Title:', column3XPosition);
 
   printAttributes(doc, state);
+  printSkills(doc, state);
 
   // Downloads
   doc.save('character.pdf');
