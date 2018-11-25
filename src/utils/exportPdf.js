@@ -65,6 +65,22 @@ const printTrait = (doc, displayName, dots, maxDots, x) => {
   printDots(doc, dots, maxDots, x + xOffset, currentYPosition);
 };
 
+const printAttributes = (doc, state) => {
+  const attributes = simple.getAttributes(state);
+
+  for (let i = 0; i < attributeTraitNames.length; i++) {
+    const name = attributeTraitNames[i];
+
+    printTrait(
+      doc,
+      capitalizeFirstLetter(name),
+      getDots(attributes[name]),
+      attributeMaxDots,
+      getColumnXPosition(i + 1)
+    );
+  }
+};
+
 const exportPdf = state => {
   const doc = new jsPDF({
     unit: 'mm',
@@ -83,19 +99,7 @@ const exportPdf = state => {
   print(doc, 'Setting/Sect: ' + simple.getSettingName(state), column2XPosition);
   printLine(doc, 'Title:', column3XPosition);
 
-  const attributes = simple.getAttributes(state);
-
-  for (let i = 0; i < attributeTraitNames.length; i++) {
-    const name = attributeTraitNames[i];
-
-    printTrait(
-      doc,
-      capitalizeFirstLetter(name),
-      getDots(attributes[name]),
-      attributeMaxDots,
-      getColumnXPosition(i + 1)
-    );
-  }
+  printAttributes(doc, state);
 
   // Downloads
   doc.save('character.pdf');
