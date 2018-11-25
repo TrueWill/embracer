@@ -7,7 +7,8 @@ import {
   attributeMaxDots,
   bonusAttributeMaxDots,
   standardTraitMaxDots,
-  skillTraitDisplayNameOverride
+  skillTraitDisplayNameOverride,
+  backgroundTraitDisplayNameOverride
 } from '../constants/characterOptions';
 
 // Units are mm
@@ -19,11 +20,13 @@ const gutter = 8;
 const defaultFont = 'times';
 const defaultFontSize = 10;
 const defaultDrawLineWidth = 0.2;
-const defaultPageLineHeight = 7;
+const defaultPageLineHeight = 6;
 const dotRadius = 1.2;
 const dotSpacing = 0.75;
-const skillsTopMargin = 80;
+const skillsTopMargin = 72;
 const skillsRows = 10;
+const midsectionTopMargin = 135;
+const startingDotsProperty = 'availableStartingDots';
 let currentYPosition;
 
 const moveToNextLine = () => (currentYPosition += defaultPageLineHeight);
@@ -108,7 +111,7 @@ const printAttributes = (doc, state) => {
 const printSkills = (doc, state) => {
   const skills = simple.getSkills(state);
   const skillNames = Object.keys(skills).filter(
-    x => x !== 'availableStartingDots'
+    x => x !== startingDotsProperty
   );
   skillNames.sort();
 
@@ -134,6 +137,31 @@ const printSkills = (doc, state) => {
   }
 };
 
+const printBackgrounds = (doc, state) => {
+  const backgrounds = simple.getBackgrounds(state);
+  const backgroundNames = Object.keys(backgrounds).filter(
+    x => x !== startingDotsProperty
+  );
+  backgroundNames.sort();
+
+  currentYPosition = midsectionTopMargin;
+
+  backgroundNames.forEach(name => {
+    const displayName =
+      backgroundTraitDisplayNameOverride[name] || capitalizeFirstLetter(name);
+
+    printTrait(
+      doc,
+      displayName,
+      getDots(backgrounds[name]),
+      standardTraitMaxDots,
+      column1XPosition
+    );
+
+    moveToNextLine();
+  });
+};
+
 const exportPdf = state => {
   const doc = new jsPDF({
     unit: 'mm',
@@ -154,6 +182,7 @@ const exportPdf = state => {
 
   printAttributes(doc, state);
   printSkills(doc, state);
+  printBackgrounds(doc, state);
 
   // Downloads
   doc.save('character.pdf');
