@@ -108,12 +108,17 @@ const printAttributes = (doc, state) => {
   }
 };
 
+const getTraitNames = traits => {
+  const names = Object.keys(traits).filter(x => x !== startingDotsProperty);
+
+  names.sort();
+
+  return names;
+};
+
 const printSkills = (doc, state) => {
   const skills = simple.getSkills(state);
-  const skillNames = Object.keys(skills).filter(
-    x => x !== startingDotsProperty
-  );
-  skillNames.sort();
+  const skillNames = getTraitNames(skills);
 
   for (let i = 0; i < skillNames.length; i++) {
     const name = skillNames[i];
@@ -137,10 +142,7 @@ const printSkills = (doc, state) => {
 
 const printBackgrounds = (doc, state) => {
   const backgrounds = simple.getBackgrounds(state);
-  const backgroundNames = Object.keys(backgrounds).filter(
-    x => x !== startingDotsProperty
-  );
-  backgroundNames.sort();
+  const backgroundNames = getTraitNames(backgrounds);
 
   currentYPosition = midsectionTopMargin;
 
@@ -160,10 +162,7 @@ const printBackgrounds = (doc, state) => {
 
 const printDisciplinesForAffinity = (doc, state, affinity) => {
   const disciplines = simple.getDisciplines(state)[affinity];
-  const disciplineNames = Object.keys(disciplines).filter(
-    x => x !== startingDotsProperty
-  );
-  disciplineNames.sort();
+  const disciplineNames = getTraitNames(disciplines);
 
   disciplineNames.forEach(name => {
     printTraitLine(
