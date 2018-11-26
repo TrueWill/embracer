@@ -158,6 +158,32 @@ const printBackgrounds = (doc, state) => {
   });
 };
 
+const printDisciplinesForAffinity = (doc, state, affinity) => {
+  const disciplines = simple.getDisciplines(state)[affinity];
+  const disciplineNames = Object.keys(disciplines).filter(
+    x => x !== startingDotsProperty
+  );
+  disciplineNames.sort();
+
+  disciplineNames.forEach(name => {
+    printTraitLine(
+      doc,
+      name + (affinity === 'outOfClan' ? '*' : ''),
+      getDots(disciplines[name]),
+      standardTraitMaxDots,
+      column2XPosition
+    );
+  });
+};
+
+const printDisciplines = (doc, state) => {
+  currentYPosition = midsectionTopMargin;
+
+  printDisciplinesForAffinity(doc, state, 'inClan');
+  printDisciplinesForAffinity(doc, state, 'outOfClan');
+  printLine(doc, '* - Out-of-clan', column2XPosition);
+};
+
 const exportPdf = state => {
   const doc = new jsPDF({
     unit: 'mm',
@@ -179,6 +205,7 @@ const exportPdf = state => {
   printAttributes(doc, state);
   printSkills(doc, state);
   printBackgrounds(doc, state);
+  printDisciplines(doc, state);
 
   // Downloads
   doc.save('character.pdf');
