@@ -23,6 +23,7 @@ const defaultDrawLineWidth = 0.2;
 const defaultPageLineHeight = 6;
 const dotRadius = 1.2;
 const dotSpacing = 0.75;
+const attributesTopMargin = 50;
 const skillsTopMargin = 72;
 const skillsRows = 10;
 const midsectionTopMargin = 135;
@@ -66,22 +67,25 @@ const printDots = (doc, dots, maxDots, x, y) => {
 const getDotsWidth = maxDots =>
   dotRadius * 2 * maxDots + dotSpacing * (maxDots - 1);
 
-const printTrait = (doc, displayName, dots, maxDots, x) => {
+const printTraitLine = (doc, displayName, dots, maxDots, x) => {
   const dotsWidth = getDotsWidth(maxDots);
   const xOffset = columnWidth - dotsWidth;
 
   print(doc, displayName, x);
   printDots(doc, dots, maxDots, x + xOffset, currentYPosition);
+  moveToNextLine();
 };
 
 const printAttributes = (doc, state) => {
   const attributes = simple.getAttributes(state);
 
+  currentYPosition = attributesTopMargin;
+
   for (let i = 0; i < attributeTraitNames.length; i++) {
     const name = attributeTraitNames[i];
     const columnXPosition = getColumnXPosition(i + 1);
 
-    printTrait(
+    printTraitLine(
       doc,
       capitalizeFirstLetter(name),
       getDots(attributes[name]),
@@ -89,17 +93,13 @@ const printAttributes = (doc, state) => {
       columnXPosition
     );
 
-    moveToNextLine();
-
-    printTrait(
+    printTraitLine(
       doc,
       'Bonus Attributes',
       0,
       bonusAttributeMaxDots,
       columnXPosition
     );
-
-    moveToNextLine();
 
     print(doc, `Focus: ${simple.getFocus(state, name) || ''}`, columnXPosition);
 
@@ -125,15 +125,13 @@ const printSkills = (doc, state) => {
       currentYPosition = skillsTopMargin;
     }
 
-    printTrait(
+    printTraitLine(
       doc,
       displayName,
       getDots(skills[name]),
       standardTraitMaxDots,
       getColumnXPosition(column)
     );
-
-    moveToNextLine();
   }
 };
 
@@ -150,15 +148,13 @@ const printBackgrounds = (doc, state) => {
     const displayName =
       backgroundTraitDisplayNameOverride[name] || capitalizeFirstLetter(name);
 
-    printTrait(
+    printTraitLine(
       doc,
       displayName,
       getDots(backgrounds[name]),
       standardTraitMaxDots,
       column1XPosition
     );
-
-    moveToNextLine();
   });
 };
 
