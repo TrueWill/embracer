@@ -183,6 +183,31 @@ const printDisciplines = (doc, state) => {
   printLine(doc, '* - Out-of-clan', column2XPosition);
 };
 
+const getMeritDescription = merit => {
+  const timesPurchased = merit.timesPurchased || 1;
+  const timesText = timesPurchased === 1 ? '' : ` X ${timesPurchased}`;
+
+  return `${merit.name} (${merit.points}pt M${timesText})`;
+};
+
+const getFlawDescription = flaw => `${flaw.name} (${flaw.points}pt F)`;
+
+const printMeritsFlaws = (doc, state) => {
+  const merits = simple.getSelectedMerits(state);
+
+  currentYPosition = midsectionTopMargin;
+
+  merits.forEach(merit => {
+    printLine(doc, getMeritDescription(merit), column3XPosition);
+  });
+
+  const flaws = simple.getSelectedFlaws(state);
+
+  flaws.forEach(flaw => {
+    printLine(doc, getFlawDescription(flaw), column3XPosition);
+  });
+};
+
 const exportPdf = state => {
   const doc = new jsPDF({
     unit: 'mm',
@@ -205,6 +230,7 @@ const exportPdf = state => {
   printSkills(doc, state);
   printBackgrounds(doc, state);
   printDisciplines(doc, state);
+  printMeritsFlaws(doc, state);
 
   // Downloads
   doc.save('character.pdf');
