@@ -17,6 +17,7 @@ Currently deployment is manual, so the site may not reflect the latest changes.
 
 * Improve styling/responsiveness
 * Print / export (include health levels; display generation title) (beta)
+* Restore deleted test (broken due to jspdf canvas)
 * Display version
 * Improve test coverage
 * Rituals
