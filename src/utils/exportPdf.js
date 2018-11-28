@@ -9,7 +9,8 @@ import {
   bonusAttributeMaxDots,
   standardTraitMaxDots,
   skillTraitDisplayNameOverride,
-  backgroundTraitDisplayNameOverride
+  backgroundTraitDisplayNameOverride,
+  startingWillpower
 } from '../constants/characterOptions';
 
 // Units are mm
@@ -228,6 +229,12 @@ const printBlood = (doc, state) => {
   );
 };
 
+const printWillpower = doc => {
+  currentYPosition = bloodSectionTopMargin;
+
+  printLine(doc, `Willpower: ${startingWillpower}`, column2XPosition);
+};
+
 const exportPdf = state => {
   const doc = new jsPDF({
     unit: 'mm',
@@ -252,6 +259,7 @@ const exportPdf = state => {
   printDisciplines(doc, state);
   printMeritsFlaws(doc, state);
   printBlood(doc, state);
+  printWillpower(doc);
 
   // Downloads
   doc.save('character.pdf');

@@ -139,6 +139,8 @@ export const moralityMaxDotsHumanity = 6;
 export const moralityStartingDotsPath = 4;
 export const moralityMaxDotsPath = 4;
 
+export const startingWillpower = 6;
+
 export const initialXP = 30;
 export const bankedXPLimit = 5;
 
