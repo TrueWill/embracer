@@ -3,6 +3,7 @@ import getDots from './getDots';
 import { capitalizeFirstLetter } from './stringUtils';
 import * as simple from '../selectors/simple';
 import getGenerationDetails from '../selectors/getGenerationDetails';
+import getXP from '../selectors/getXP';
 import {
   attributeTraitNames,
   attributeMaxDots,
@@ -33,6 +34,7 @@ const skillsTopMargin = 72;
 const skillsRows = 10;
 const midsectionTopMargin = 135;
 const bloodSectionTopMargin = 185;
+const bottomSectionTopMargin = 210;
 const startingDotsProperty = 'availableStartingDots';
 let currentYPosition;
 
@@ -264,6 +266,18 @@ const printMorality = (doc, state) => {
   );
 };
 
+const printXP = (doc, state) => {
+  const { spent, gainedFromFlaws, available, bankable } = getXP(state);
+
+  currentYPosition = bottomSectionTopMargin;
+
+  printLine(doc, 'XP', column2XPosition);
+  printLine(doc, `Spent: ${spent}`, column2XPosition);
+  printLine(doc, `Gained from Flaws: ${gainedFromFlaws}`, column2XPosition);
+  printLine(doc, `Available: ${available}`, column2XPosition);
+  printLine(doc, `Bankable: ${bankable}`, column2XPosition);
+};
+
 const exportPdf = state => {
   const doc = new jsPDF({
     unit: 'mm',
@@ -290,6 +304,7 @@ const exportPdf = state => {
   printBlood(doc, state);
   printWillpower(doc);
   printMorality(doc, state);
+  printXP(doc, state);
 
   // Downloads
   doc.save('character.pdf');
