@@ -17,7 +17,7 @@ class ExportDocument extends Component {
   render() {
     return (
       <button type="button" className="btn btn-dark" onClick={this.handleClick}>
-        Download PDF
+        Download PDF (beta)
       </button>
     );
   }

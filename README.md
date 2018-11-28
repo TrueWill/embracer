@@ -16,7 +16,8 @@ Currently deployment is manual, so the site may not reflect the latest changes.
 ## To Do
 
 * Improve styling/responsiveness
-* Print / export (include Willpower and health levels; display generation title) (WIP)
+* Print / export (include health levels; display generation title) (beta)
+* Display version
 * Improve test coverage
 * Rituals
 * Techniques (clear if change Generation)
