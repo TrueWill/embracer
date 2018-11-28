@@ -230,6 +230,12 @@ const printBlood = (doc, state) => {
     `Blood/Turn: ${generationDetails.bloodPerTurn}`,
     column1XPosition
   );
+
+  printLine(
+    doc,
+    `Attribute Bonus: ${generationDetails.attributeBonus}`,
+    column1XPosition
+  );
 };
 
 const printWillpower = doc => {
