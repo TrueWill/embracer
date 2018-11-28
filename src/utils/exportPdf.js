@@ -10,7 +10,10 @@ import {
   standardTraitMaxDots,
   skillTraitDisplayNameOverride,
   backgroundTraitDisplayNameOverride,
-  startingWillpower
+  startingWillpower,
+  humanity,
+  moralityMaxDotsHumanity,
+  moralityMaxDotsPath
 } from '../constants/characterOptions';
 
 // Units are mm
@@ -235,6 +238,26 @@ const printWillpower = doc => {
   printLine(doc, `Willpower: ${startingWillpower}`, column2XPosition);
 };
 
+const printMorality = (doc, state) => {
+  currentYPosition = bloodSectionTopMargin;
+
+  const morality = simple.getMorality(state);
+  const path = morality.path;
+
+  const maxDots =
+    path === humanity ? moralityMaxDotsHumanity : moralityMaxDotsPath;
+
+  printLine(doc, path, column3XPosition);
+
+  printDots(
+    doc,
+    getDots(morality),
+    maxDots,
+    column3XPosition,
+    currentYPosition
+  );
+};
+
 const exportPdf = state => {
   const doc = new jsPDF({
     unit: 'mm',
@@ -260,6 +283,7 @@ const exportPdf = state => {
   printMeritsFlaws(doc, state);
   printBlood(doc, state);
   printWillpower(doc);
+  printMorality(doc, state);
 
   // Downloads
   doc.save('character.pdf');
