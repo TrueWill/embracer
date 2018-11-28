@@ -2,6 +2,7 @@ import jsPDF from 'jspdf';
 import getDots from './getDots';
 import { capitalizeFirstLetter } from './stringUtils';
 import * as simple from '../selectors/simple';
+import getGenerationDetails from '../selectors/getGenerationDetails';
 import {
   attributeTraitNames,
   attributeMaxDots,
@@ -27,6 +28,7 @@ const attributesTopMargin = 50;
 const skillsTopMargin = 72;
 const skillsRows = 10;
 const midsectionTopMargin = 135;
+const bloodSectionTopMargin = 185;
 const startingDotsProperty = 'availableStartingDots';
 let currentYPosition;
 
@@ -208,6 +210,24 @@ const printMeritsFlaws = (doc, state) => {
   });
 };
 
+const printBlood = (doc, state) => {
+  const generationDetails = getGenerationDetails(state);
+
+  currentYPosition = bloodSectionTopMargin;
+
+  printLine(
+    doc,
+    `Blood Pool: ${generationDetails.bloodPool}`,
+    column1XPosition
+  );
+
+  printLine(
+    doc,
+    `Blood/Turn: ${generationDetails.bloodPerTurn}`,
+    column1XPosition
+  );
+};
+
 const exportPdf = state => {
   const doc = new jsPDF({
     unit: 'mm',
@@ -231,6 +251,7 @@ const exportPdf = state => {
   printBackgrounds(doc, state);
   printDisciplines(doc, state);
   printMeritsFlaws(doc, state);
+  printBlood(doc, state);
 
   // Downloads
   doc.save('character.pdf');
