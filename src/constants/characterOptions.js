@@ -43,6 +43,7 @@ export const archetypes = [
 export const attributeTraitNames = ['physical', 'social', 'mental'];
 
 export const attributeMaxDots = 10;
+export const bonusAttributeMaxDots = 5;
 
 export const attributesRankDots = [7, 5, 3];
 
@@ -137,6 +138,8 @@ export const moralityStartingDotsHumanity = 5;
 export const moralityMaxDotsHumanity = 6;
 export const moralityStartingDotsPath = 4;
 export const moralityMaxDotsPath = 4;
+
+export const startingWillpower = 6;
 
 export const initialXP = 30;
 export const bankedXPLimit = 5;

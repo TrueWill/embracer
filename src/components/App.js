@@ -5,6 +5,7 @@ import {
   backgroundTraitNames,
   backgroundTraitDisplayNameOverride
 } from '../constants/characterOptions';
+import ExportDocumentContainer from '../containers/ExportDocumentContainer';
 import SettingContainer from '../containers/SettingContainer';
 import ClanContainer from '../containers/ClanContainer';
 import ArchetypeContainer from '../containers/ArchetypeContainer';
@@ -24,6 +25,7 @@ import styles from './App.module.css';
 const App = () => (
   <div className="container-fluid">
     <h1>Embracer</h1>
+    <ExportDocumentContainer />
     <SettingContainer />
     <Section header="Character">
       <ArchetypeContainer />

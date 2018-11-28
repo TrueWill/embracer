@@ -8,6 +8,7 @@ export const getClan = state => state.character.basicInfo.clan;
 export const getInClanState = state => state.character.disciplines.inClan;
 export const getSelectedFlaws = state => state.character.flaws;
 export const getClanName = state => state.character.basicInfo.clan.name;
+export const getBloodline = state => state.character.basicInfo.clan.bloodline;
 export const getGeneration = state => state.character.backgrounds.generation;
 export const getSelectedMerits = state => state.character.merits;
 export const getMoralityMeritPoints = state =>
@@ -25,6 +26,8 @@ export const getPhysicalFocus = state =>
   state.character.attributes.physical.focus;
 export const getSocialFocus = state => state.character.attributes.social.focus;
 export const getMentalFocus = state => state.character.attributes.mental.focus;
+export const getFocus = (state, attributeName) =>
+  state.character.attributes[attributeName].focus;
 export const getSkillsAvailableStartingDots = state =>
   state.character.skills.availableStartingDots;
 export const getBackgroundsAvailableStartingDots = state =>

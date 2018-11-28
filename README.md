@@ -16,7 +16,8 @@ Currently deployment is manual, so the site may not reflect the latest changes.
 ## To Do
 
 * Improve styling/responsiveness
-* Print / export (include Willpower and health levels; display generation title)
+* Print / export (include health levels; display generation title) (beta)
+* Display version
 * Improve test coverage
 * Rituals
 * Techniques (clear if change Generation)
@@ -55,3 +56,5 @@ Built with [React](https://reactjs.org/) and [Redux](https://redux.js.org/) - th
 Thanks to Anthony Accomazzo for his article on [deploying a React app to Amazon's S3](https://www.fullstackreact.com/articles/deploying-a-react-app-to-s3/).
 
 Uses [Font Awesome](http://fontawesome.io) by Dave Gandy (v4, **not** v5).
+
+Uses [jsPDF](https://github.com/MrRio/jsPDF) by James Hall.
