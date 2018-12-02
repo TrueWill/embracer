@@ -216,9 +216,7 @@ const printMeritsFlaws = (doc, state) => {
   });
 };
 
-const printBlood = (doc, state) => {
-  const generationDetails = getGenerationDetails(state);
-
+const printBlood = (doc, generationDetails) => {
   currentYPosition = bloodSectionTopMargin;
 
   printLine(
@@ -288,20 +286,21 @@ const exportPdf = state => {
 
   const bloodline = simple.getBloodline(state);
   const clan = simple.getClanName(state) + (bloodline ? ` (${bloodline})` : '');
+  const generationDetails = getGenerationDetails(state);
 
   printLine(doc, 'Player:', column1XPosition);
   printLine(doc, 'Character:', column1XPosition);
   printLine(doc, 'Archetype: ' + simple.getArchetype(state), column1XPosition);
   print(doc, 'Clan: ' + clan, column1XPosition);
   print(doc, 'Setting/Sect: ' + simple.getSettingName(state), column2XPosition);
-  printLine(doc, 'Title:', column3XPosition);
+  printLine(doc, `Title: ${generationDetails.title}`, column3XPosition);
 
   printAttributes(doc, state);
   printSkills(doc, state);
   printBackgrounds(doc, state);
   printDisciplines(doc, state);
   printMeritsFlaws(doc, state);
-  printBlood(doc, state);
+  printBlood(doc, generationDetails);
   printWillpower(doc);
   printMorality(doc, state);
   printXP(doc, state);
