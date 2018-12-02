@@ -19,6 +19,7 @@ import {
 
 // Units are mm
 const sizeUSLetter = [279.4, 215.9];
+const pageWidth = sizeUSLetter[1];
 const topMargin = 20;
 const leftMargin = 15;
 const columnWidth = 55;
@@ -29,12 +30,12 @@ const defaultDrawLineWidth = 0.2;
 const defaultPageLineHeight = 6;
 const dotRadius = 1.2;
 const dotSpacing = 0.75;
-const attributesTopMargin = 50;
-const skillsTopMargin = 72;
+const attributesTopMargin = 45;
+const skillsTopMargin = 69;
 const skillsRows = 10;
-const midsectionTopMargin = 135;
-const bloodSectionTopMargin = 185;
-const bottomSectionTopMargin = 210;
+const midsectionTopMargin = 138;
+const bloodSectionTopMargin = 188;
+const bottomSectionTopMargin = 213;
 const startingDotsProperty = 'availableStartingDots';
 let currentYPosition;
 
@@ -57,6 +58,22 @@ const print = (doc, text, x) => {
 
 const printLine = (doc, text, x) => {
   print(doc, text, x);
+  moveToNextLine();
+};
+
+const printHeaderLine = (doc, text) => {
+  doc.setFont(defaultFont);
+  doc.setFontType('normal');
+  doc.setFontSize(defaultFontSize + 4);
+  doc.setLineWidth(defaultDrawLineWidth);
+
+  const textWidth = doc.getTextWidth(text);
+  const sideSpace = (pageWidth - textWidth) / 2;
+  const lineY = currentYPosition - 1;
+
+  doc.line(leftMargin, lineY, sideSpace, lineY);
+  doc.text(text, pageWidth / 2, currentYPosition, null, null, 'center');
+  doc.line(pageWidth - sideSpace, lineY, pageWidth - leftMargin, lineY);
   moveToNextLine();
 };
 
@@ -88,6 +105,8 @@ const printAttributes = (doc, state) => {
   const attributes = simple.getAttributes(state);
 
   currentYPosition = attributesTopMargin;
+
+  printHeaderLine(doc, 'Attributes');
 
   for (let i = 0; i < attributeTraitNames.length; i++) {
     const name = attributeTraitNames[i];
@@ -128,6 +147,10 @@ const printSkills = (doc, state) => {
   const skills = simple.getSkills(state);
   const skillNames = getTraitNames(skills);
 
+  currentYPosition = skillsTopMargin;
+  printHeaderLine(doc, 'Skills');
+  const skillsColumnTopMargin = currentYPosition;
+
   for (let i = 0; i < skillNames.length; i++) {
     const name = skillNames[i];
     const displayName =
@@ -135,7 +158,7 @@ const printSkills = (doc, state) => {
     const column = Math.floor(i / skillsRows) + 1;
 
     if (i % skillsRows === 0) {
-      currentYPosition = skillsTopMargin;
+      currentYPosition = skillsColumnTopMargin;
     }
 
     printTraitLine(
