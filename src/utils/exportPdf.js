@@ -33,9 +33,9 @@ const dotSpacing = 0.75;
 const attributesTopMargin = 45;
 const skillsTopMargin = 69;
 const skillsRows = 10;
-const midsectionTopMargin = 138;
-const bloodSectionTopMargin = 188;
-const bottomSectionTopMargin = 213;
+const midsectionTopMargin = 139;
+const bloodSectionTopMargin = 208;
+const bottomSectionTopMargin = 233;
 const startingDotsProperty = 'availableStartingDots';
 let currentYPosition;
 
@@ -75,6 +75,20 @@ const printHeaderLine = (doc, text) => {
   doc.text(text, pageWidth / 2, currentYPosition, null, null, 'center');
   doc.line(pageWidth - sideSpace, lineY, pageWidth - leftMargin, lineY);
   moveToNextLine();
+};
+
+const printColumnHeaderLine = (doc, text, x) => {
+  doc.setFont(defaultFont);
+  doc.setFontType('normal');
+  doc.setFontSize(defaultFontSize + 4);
+  doc.text(text, x + columnWidth / 2, currentYPosition, null, null, 'center');
+  moveToNextLine();
+};
+
+const printHorizontalLine = (doc, y) => {
+  doc.setLineWidth(defaultDrawLineWidth);
+
+  doc.line(leftMargin, y, pageWidth - leftMargin, y);
 };
 
 const printDots = (doc, dots, maxDots, x, y) => {
@@ -177,6 +191,9 @@ const printBackgrounds = (doc, state) => {
 
   currentYPosition = midsectionTopMargin;
 
+  printHorizontalLine(doc, currentYPosition - 5);
+  printColumnHeaderLine(doc, 'Backgrounds', column1XPosition);
+
   backgroundNames.forEach(name => {
     const displayName =
       backgroundTraitDisplayNameOverride[name] || capitalizeFirstLetter(name);
@@ -209,6 +226,8 @@ const printDisciplinesForAffinity = (doc, state, affinity) => {
 const printDisciplines = (doc, state) => {
   currentYPosition = midsectionTopMargin;
 
+  printColumnHeaderLine(doc, 'Disciplines', column2XPosition);
+
   printDisciplinesForAffinity(doc, state, 'inClan');
   printDisciplinesForAffinity(doc, state, 'outOfClan');
   printLine(doc, '* - Out-of-clan', column2XPosition);
@@ -228,6 +247,8 @@ const printMeritsFlaws = (doc, state) => {
 
   currentYPosition = midsectionTopMargin;
 
+  printColumnHeaderLine(doc, 'Merits & Flaws', column3XPosition);
+
   merits.forEach(merit => {
     printLine(doc, getMeritDescription(merit), column3XPosition);
   });
@@ -241,6 +262,9 @@ const printMeritsFlaws = (doc, state) => {
 
 const printBlood = (doc, generationDetails) => {
   currentYPosition = bloodSectionTopMargin;
+
+  printHorizontalLine(doc, currentYPosition - 5);
+  printColumnHeaderLine(doc, 'Blood', column1XPosition);
 
   printLine(
     doc,
@@ -264,11 +288,14 @@ const printBlood = (doc, generationDetails) => {
 const printWillpower = doc => {
   currentYPosition = bloodSectionTopMargin;
 
+  printColumnHeaderLine(doc, 'Willpower', column2XPosition);
   printLine(doc, `Willpower: ${startingWillpower}`, column2XPosition);
 };
 
 const printMorality = (doc, state) => {
   currentYPosition = bloodSectionTopMargin;
+
+  printColumnHeaderLine(doc, 'Morality', column3XPosition);
 
   const morality = simple.getMorality(state);
   const path = morality.path;
@@ -292,7 +319,9 @@ const printXP = (doc, state) => {
 
   currentYPosition = bottomSectionTopMargin;
 
-  printLine(doc, 'XP', column2XPosition);
+  printHorizontalLine(doc, currentYPosition - 5); // TODO: Move to printHealth?
+  printColumnHeaderLine(doc, 'XP', column2XPosition);
+
   printLine(doc, `Spent: ${spent}`, column2XPosition);
   printLine(doc, `Gained from Flaws: ${gainedFromFlaws}`, column2XPosition);
   printLine(doc, `Available: ${available}`, column2XPosition);
