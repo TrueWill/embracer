@@ -30,6 +30,7 @@ const defaultDrawLineWidth = 0.2;
 const defaultPageLineHeight = 6;
 const dotRadius = 1.2;
 const dotSpacing = 0.75;
+const squareSpacing = 2;
 const attributesTopMargin = 45;
 const skillsTopMargin = 69;
 const skillsRows = 10;
@@ -102,6 +103,20 @@ const printDots = (doc, dots, maxDots, x, y) => {
     doc.circle(x + xOffset, y + yOffset, dotRadius, style);
   }
 };
+
+const printSquares = (doc, squares, width, x, y) => {
+  doc.setLineWidth(defaultDrawLineWidth);
+
+  const yOffset = -width;
+
+  for (let i = 0; i < squares; i++) {
+    const xOffset = i * (width + squareSpacing);
+    doc.rect(x + xOffset, y + yOffset, width, width, 'S');
+  }
+};
+
+const getSquaresWidth = (squares, width) =>
+  width * squares + squareSpacing * (squares - 1);
 
 const getDotsWidth = maxDots =>
   dotRadius * 2 * maxDots + dotSpacing * (maxDots - 1);
@@ -314,12 +329,39 @@ const printMorality = (doc, state) => {
   );
 };
 
+const printHealth = doc => {
+  const tracks = ['Healthy', 'Injured', 'Incapacitated'];
+  const healthLevelsPerTrack = 3;
+  const squareWidth = 4;
+  const squaresWidth = getSquaresWidth(healthLevelsPerTrack, squareWidth);
+  const xOffset = columnWidth - squaresWidth;
+
+  currentYPosition = bottomSectionTopMargin;
+
+  printHorizontalLine(doc, currentYPosition - 5);
+  printColumnHeaderLine(doc, 'Health Levels', column1XPosition);
+  moveToNextLine();
+
+  tracks.forEach(track => {
+    print(doc, track, column1XPosition);
+
+    printSquares(
+      doc,
+      healthLevelsPerTrack,
+      squareWidth,
+      column1XPosition + xOffset,
+      currentYPosition
+    );
+
+    moveToNextLine();
+  });
+};
+
 const printXP = (doc, state) => {
   const { spent, gainedFromFlaws, available, bankable } = getXP(state);
 
   currentYPosition = bottomSectionTopMargin;
 
-  printHorizontalLine(doc, currentYPosition - 5); // TODO: Move to printHealth?
   printColumnHeaderLine(doc, 'XP', column2XPosition);
 
   printLine(doc, `Spent: ${spent}`, column2XPosition);
@@ -355,6 +397,7 @@ const exportPdf = state => {
   printBlood(doc, generationDetails);
   printWillpower(doc);
   printMorality(doc, state);
+  printHealth(doc);
   printXP(doc, state);
 
   // Downloads
