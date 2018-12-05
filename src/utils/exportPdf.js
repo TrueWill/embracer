@@ -387,6 +387,18 @@ const printBeastTraits = doc => {
     column3XPosition + xOffset,
     currentYPosition
   );
+
+  moveToNextLine();
+  moveToNextLine();
+};
+
+const printStatus = doc => {
+  const lineY = currentYPosition - 5;
+
+  doc.setLineWidth(defaultDrawLineWidth);
+  doc.line(column3XPosition, lineY, pageWidth - leftMargin, lineY);
+
+  printColumnHeaderLine(doc, 'Status', column3XPosition);
 };
 
 const exportPdf = state => {
@@ -419,6 +431,7 @@ const exportPdf = state => {
   printHealth(doc);
   printXP(doc, state);
   printBeastTraits(doc);
+  printStatus(doc);
 
   // Downloads
   doc.save('character.pdf');
