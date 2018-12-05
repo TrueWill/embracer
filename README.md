@@ -16,7 +16,7 @@ Currently deployment is manual, so the site may not reflect the latest changes.
 ## To Do
 
 * Improve styling/responsiveness
-* Print / export (include health levels) (beta)
+* Print options (A4 size, etc.)
 * Display version
 * Improve test coverage
 * Rituals

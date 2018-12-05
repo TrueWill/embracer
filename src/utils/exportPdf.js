@@ -370,6 +370,25 @@ const printXP = (doc, state) => {
   printLine(doc, `Bankable: ${bankable}`, column2XPosition);
 };
 
+const printBeastTraits = doc => {
+  const maxBeastTraits = 5;
+  const squareWidth = 3;
+  const squaresWidth = getSquaresWidth(maxBeastTraits, squareWidth);
+  const xOffset = (columnWidth - squaresWidth) / 2;
+
+  currentYPosition = bottomSectionTopMargin;
+
+  printColumnHeaderLine(doc, 'Beast Traits', column3XPosition);
+
+  printSquares(
+    doc,
+    maxBeastTraits,
+    squareWidth,
+    column3XPosition + xOffset,
+    currentYPosition
+  );
+};
+
 const exportPdf = state => {
   const doc = new jsPDF({
     unit: 'mm',
@@ -399,6 +418,7 @@ const exportPdf = state => {
   printMorality(doc, state);
   printHealth(doc);
   printXP(doc, state);
+  printBeastTraits(doc);
 
   // Downloads
   doc.save('character.pdf');
