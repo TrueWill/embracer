@@ -307,10 +307,21 @@ const printBlood = (doc, generationDetails) => {
 };
 
 const printWillpower = doc => {
+  const squareWidth = 4;
+  const squaresWidth = getSquaresWidth(startingWillpower, squareWidth);
+  const xOffset = (columnWidth - squaresWidth) / 2;
+
   currentYPosition = bloodSectionTopMargin;
 
   printColumnHeaderLine(doc, 'Willpower', column2XPosition);
-  printLine(doc, `Willpower: ${startingWillpower}`, column2XPosition);
+
+  printSquares(
+    doc,
+    startingWillpower,
+    squareWidth,
+    column2XPosition + xOffset,
+    currentYPosition
+  );
 };
 
 const printMorality = (doc, state) => {
