@@ -126,7 +126,13 @@ const printTraitLine = (doc, displayName, dots, maxDots, x) => {
   const xOffset = columnWidth - dotsWidth;
 
   print(doc, displayName, x);
+
+  const textWidth = doc.getTextWidth(displayName);
+  doc.setLineWidth(defaultDrawLineWidth);
+  doc.line(x + textWidth, currentYPosition, x + xOffset, currentYPosition);
+
   printDots(doc, dots, maxDots, x + xOffset, currentYPosition);
+
   moveToNextLine();
 };
 
