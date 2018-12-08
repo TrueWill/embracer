@@ -62,6 +62,21 @@ const printLine = (doc, text, x) => {
   moveToNextLine();
 };
 
+const printPageHeader = doc => {
+  const pageCenter = pageWidth / 2;
+
+  doc.setFont(defaultFont);
+  doc.setFontType('normal');
+  doc.setFontSize(defaultFontSize);
+  doc.text("MIND'S EYE THEATRE", pageCenter, topMargin, null, null, 'center');
+
+  doc.setFontSize(defaultFontSize * 3);
+  doc.text('VAMPIRE', pageCenter, topMargin + 8, null, null, 'center');
+
+  doc.setFontSize(defaultFontSize);
+  doc.text('THE MASQUERADE', pageCenter, topMargin + 11, null, null, 'center');
+};
+
 const printHeaderLine = (doc, text) => {
   doc.setFont(defaultFont);
   doc.setFontType('normal');
@@ -430,6 +445,7 @@ const exportPdf = state => {
   const clan = simple.getClanName(state) + (bloodline ? ` (${bloodline})` : '');
   const generationDetails = getGenerationDetails(state);
 
+  printPageHeader(doc);
   printLine(doc, 'Player:', column1XPosition);
   printLine(doc, 'Character:', column1XPosition);
   printLine(doc, 'Archetype: ' + simple.getArchetype(state), column1XPosition);
