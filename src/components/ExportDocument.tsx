@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import exportPdf from '../utils/exportPdf';
 
-class ExportDocument extends Component {
-  static propTypes = {
-    state: PropTypes.object.isRequired
-  };
+export interface Props {
+  state: any;
+}
+
+class ExportDocument extends Component<Props, object> {
+
 
   handleClick = () => {
     // Could dispatch an action, but this doesn't change state.
