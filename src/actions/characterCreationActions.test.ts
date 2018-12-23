@@ -1,5 +1,6 @@
 import * as actions from './characterCreationActions';
 import * as types from '../constants/actionTypes';
+import { IState } from '../reducers/initialState';
 
 describe('purchase or unpurchase dot', () => {
   it('should dispatch purchase dot if not in eraser mode', () => {
@@ -13,7 +14,8 @@ describe('purchase or unpurchase dot', () => {
 
     const dispatch = jest.fn();
 
-    f(dispatch, getState);
+    // @ts-ignore
+    f(dispatch, getState, null);
 
     expect(dispatch.mock.calls.length).toBe(1);
     expect(dispatch.mock.calls[0][0]).toEqual({
@@ -36,6 +38,7 @@ describe('purchase or unpurchase dot', () => {
 
     const dispatch = jest.fn();
 
+    // @ts-ignore
     f(dispatch, getState);
 
     expect(dispatch.mock.calls.length).toBe(1);
@@ -70,6 +73,7 @@ describe('purchase or unpurchase dot', () => {
 
     const dispatch = jest.fn();
 
+    // @ts-ignore
     f(dispatch, getState);
 
     expect(dispatch.mock.calls.length).toBe(0);
@@ -88,6 +92,7 @@ describe('purchase or unpurchase morality dot', () => {
 
     const dispatch = jest.fn();
 
+    // @ts-ignore
     f(dispatch, getState);
 
     expect(dispatch.mock.calls.length).toBe(1);
@@ -107,6 +112,7 @@ describe('purchase or unpurchase morality dot', () => {
 
     const dispatch = jest.fn();
 
+    // @ts-ignore
     f(dispatch, getState);
 
     expect(dispatch.mock.calls.length).toBe(1);
@@ -137,6 +143,7 @@ describe('update morality', () => {
 
     const dispatch = jest.fn();
 
+    // @ts-ignore
     f(dispatch, getState);
 
     expect(dispatch.mock.calls.length).toBe(1);
@@ -168,6 +175,7 @@ describe('update morality', () => {
 
     const dispatch = jest.fn();
 
+    // @ts-ignore
     f(dispatch, getState);
 
     expect(dispatch.mock.calls.length).toBe(1);
@@ -206,6 +214,7 @@ describe('update morality', () => {
 
     const dispatch = jest.fn();
 
+    // @ts-ignore
     f(dispatch, getState);
 
     expect(dispatch.mock.calls.length).toBe(1);
@@ -243,6 +252,7 @@ describe('update morality', () => {
 
     const dispatch = jest.fn();
 
+    // @ts-ignore
     f(dispatch, getState);
 
     expect(dispatch.mock.calls.length).toBe(0);
