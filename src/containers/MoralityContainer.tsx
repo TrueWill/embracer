@@ -11,9 +11,10 @@ import {
 import getDots from '../utils/getDots';
 import getMoralityMeritsOptions from '../selectors/getMoralityMeritsOptions';
 import { getMorality } from '../selectors/simple';
+import { IState } from '../reducers/initialState';
 import Morality from '../components/Morality';
 
-const mapStateToProps = state => {
+const mapStateToProps = (state: IState) => {
   const morality = getMorality(state);
   const path = morality.path;
 
@@ -33,4 +34,7 @@ const mapDispatchToProps = {
   updateMoralityIfPointsAvailable
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Morality);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Morality);

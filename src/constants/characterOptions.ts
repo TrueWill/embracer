@@ -100,6 +100,11 @@ export const skillTraitDisplayNameOverride = {
   science3: 'Science (3rd field)'
 };
 
+export type AvailableStartingDots = {
+  dots: number;
+  count: number;
+}[];
+
 export const skillsAvailableStartingDots = [
   { dots: 4, count: 1 },
   { dots: 3, count: 2 },

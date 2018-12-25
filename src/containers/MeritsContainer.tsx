@@ -2,9 +2,10 @@ import { connect } from 'react-redux';
 import { addMerit, removeMerit } from '../actions/characterCreationActions';
 import getMerits from '../selectors/getMerits';
 import getMeritsOptions from '../selectors/getMeritsOptions';
+import { IState } from '../reducers/initialState';
 import Merits from '../components/Merits';
 
-const mapStateToProps = state => {
+const mapStateToProps = (state: IState) => {
   const optionsMap = getMeritsOptions(state);
   const { selected, availablePoints } = getMerits(state);
 
@@ -20,4 +21,7 @@ const mapDispatchToProps = {
   removeMerit
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Merits);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Merits);

@@ -1,9 +1,10 @@
 import { connect } from 'react-redux';
 import { updateClan } from '../actions/characterCreationActions';
 import { getClan } from '../selectors/simple';
+import { IState } from '../reducers/initialState';
 import Clan from '../components/Clan';
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state: IState) => ({
   clan: getClan(state)
 });
 
@@ -11,4 +12,7 @@ const mapDispatchToProps = {
   updateClan
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Clan);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Clan);

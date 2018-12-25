@@ -4,15 +4,25 @@ import {
   setStartingDots,
   purchaseOrUnpurchaseDot
 } from '../actions/characterCreationActions';
+import { AvailableStartingDots } from '../constants/characterOptions';
+import { IState } from '../reducers/initialState';
 import TraitCategory from '../components/TraitCategory';
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state: IState, ownProps) => {
   const { categoryName } = ownProps;
 
-  let adjustAvailable;
+  let adjustAvailable: (
+    a: AvailableStartingDots,
+    t?: string,
+    d?: number
+  ) => AvailableStartingDots;
 
   if (categoryName === 'backgrounds' && getClanName(state) === 'Caitiff') {
-    adjustAvailable = (availableStartingDots, traitName, dotsPurchased) => {
+    adjustAvailable = (
+      availableStartingDots: AvailableStartingDots,
+      traitName?: string,
+      dotsPurchased?: number
+    ): AvailableStartingDots => {
       if (traitName === 'generation') {
         const maxStartingDots = dotsPurchased ? 1 : 2;
         return availableStartingDots.filter(a => a.dots <= maxStartingDots);
@@ -35,4 +45,7 @@ const mapDispatchToProps = {
   purchaseOrUnpurchaseDot
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(TraitCategory);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(TraitCategory);

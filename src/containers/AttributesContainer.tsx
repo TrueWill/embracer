@@ -7,9 +7,10 @@ import {
   setFocus,
   purchaseOrUnpurchaseDot
 } from '../actions/characterCreationActions';
+import { IState } from '../reducers/initialState';
 import Attributes from '../components/Attributes';
 
-const mapStateToProps = state => {
+const mapStateToProps = (state: IState) => {
   const attributeBonus = getGenerationDetails(state).attributeBonus;
   const foci = getFoci(state);
 
@@ -26,4 +27,7 @@ const mapDispatchToProps = {
   purchaseOrUnpurchaseDot
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Attributes);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Attributes);

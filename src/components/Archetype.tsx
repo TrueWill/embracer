@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import CreatableSelect from 'react-select/lib/Creatable';
 import { archetypes } from '../constants/characterOptions';
+import { UpdateArchetypeAction } from '../actions/characterCreationActions';
 
-export default class Archetype extends Component {
-  static propTypes = {
-    archetype: PropTypes.string.isRequired,
-    updateArchetype: PropTypes.func.isRequired
-  };
+export interface Props {
+  archetype: string;
+  updateArchetype: (value: string) => UpdateArchetypeAction;
+}
 
+export default class Archetype extends Component<Props, {}> {
   handleArchetypeChange = val => {
     const value = val ? val.value : '';
     this.props.updateArchetype(value);
