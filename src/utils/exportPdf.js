@@ -4,6 +4,7 @@ import { capitalizeFirstLetter } from './stringUtils';
 import * as simple from '../selectors/simple';
 import getGenerationDetails from '../selectors/getGenerationDetails';
 import getXP from '../selectors/getXP';
+import { version, docUrl } from '../constants/application';
 import {
   attributeTraitNames,
   attributeMaxDots,
@@ -20,6 +21,7 @@ import {
 // Units are mm
 const sizeUSLetter = [279.4, 215.9];
 const pageWidth = sizeUSLetter[1];
+const pageHeight = sizeUSLetter[0];
 const topMargin = 20;
 const leftMargin = 15;
 const columnWidth = 55;
@@ -433,6 +435,12 @@ const printStatus = doc => {
   printColumnHeaderLine(doc, 'Status', column3XPosition);
 };
 
+const printFooter = doc => {
+  currentYPosition = pageHeight - topMargin + 10;
+
+  print(doc, `Created by Embracer v${version}  ${docUrl}`, column1XPosition);
+};
+
 const exportPdf = state => {
   const doc = new jsPDF({
     unit: 'mm',
@@ -465,6 +473,7 @@ const exportPdf = state => {
   printXP(doc, state);
   printBeastTraits(doc);
   printStatus(doc);
+  printFooter(doc);
 
   // Downloads
   doc.save('character.pdf');

@@ -17,7 +17,6 @@ Currently deployment is manual, so the site may not reflect the latest changes.
 
 * Improve styling/responsiveness
 * Print options (A4 size, etc.)
-* Display version
 * Improve test coverage
 * Rituals
 * Techniques (clear if change Generation)

@@ -1,4 +1,5 @@
 import React from 'react';
+import { version } from '../constants/application';
 import {
   skillTraitNames,
   skillTraitDisplayNameOverride,
@@ -24,7 +25,10 @@ import styles from './App.module.css';
 
 const App = () => (
   <div className="container-fluid">
-    <h1>Embracer</h1>
+    <h1>
+      Embracer
+      <span className={styles.version}> v{version}</span>
+    </h1>
     <ExportDocumentContainer />
     <SettingContainer />
     <Section header="Character">
