@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import RankedTrait from './RankedTrait';
 import Focus from './Focus';
 import Section from './Section';
@@ -9,16 +8,18 @@ import {
   attributesRankDots
 } from '../constants/characterOptions';
 
-class Attributes extends Component {
-  static propTypes = {
-    attributes: PropTypes.object.isRequired,
-    attributeBonus: PropTypes.number.isRequired,
-    foci: PropTypes.objectOf(PropTypes.arrayOf(PropTypes.string)).isRequired,
-    setRank: PropTypes.func.isRequired,
-    setFocus: PropTypes.func.isRequired,
-    purchaseOrUnpurchaseDot: PropTypes.func.isRequired
+type AttributesProps = {
+  attributes: object;
+  attributeBonus: number;
+  foci: {
+    [key: string]: string[];
   };
+  setRank: (...args: any[]) => any;
+  setFocus: (...args: any[]) => any;
+  purchaseOrUnpurchaseDot: (...args: any[]) => any;
+};
 
+class Attributes extends Component<AttributesProps, {}> {
   handleRankChange = (trait, dotsFromRank) => {
     this.props.setRank('attributes', trait, dotsFromRank);
   };
