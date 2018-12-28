@@ -36,64 +36,65 @@ const App = () => (
       <ClanContainer />
       <PencilEraserContainer />
     </Section>
-    <ValidationContainer />
-    <XPContainer />
-    <AttributesContainer />
-    <TraitCategoryContainer
-      categoryName="skills"
-      traitNames={skillTraitNames}
-      traitDisplayNameOverride={skillTraitDisplayNameOverride}
-    />
-
-    <div className="row">
-      <div className="col-sm-7">
-        <div className="container-fluid">
-          <TraitCategoryContainer
-            categoryName="backgrounds"
-            traitNames={backgroundTraitNames}
-            traitDisplayNameOverride={backgroundTraitDisplayNameOverride}
-          />
+    <React.StrictMode>
+      {/* react-select in Archetype fails StrictMode */}
+      <ValidationContainer />
+      <XPContainer />
+      <AttributesContainer />
+      <TraitCategoryContainer
+        categoryName="skills"
+        traitNames={skillTraitNames}
+        traitDisplayNameOverride={skillTraitDisplayNameOverride}
+      />
+      <div className="row">
+        <div className="col-sm-7">
+          <div className="container-fluid">
+            <TraitCategoryContainer
+              categoryName="backgrounds"
+              traitNames={backgroundTraitNames}
+              traitDisplayNameOverride={backgroundTraitDisplayNameOverride}
+            />
+          </div>
+        </div>
+        <div className="col-sm-5">
+          <div className="container-fluid">
+            <DisciplinesContainer affinity="inClan" />
+            <DisciplinesContainer affinity="outOfClan" />
+          </div>
         </div>
       </div>
-      <div className="col-sm-5">
-        <div className="container-fluid">
-          <DisciplinesContainer affinity="inClan" />
-          <DisciplinesContainer affinity="outOfClan" />
+      <div className="row">
+        <div className="col-sm-6">
+          <div className="container-fluid">
+            <MeritsContainer />
+          </div>
+        </div>
+        <div className="col-sm-6">
+          <div className="container-fluid">
+            <FlawsContainer />
+          </div>
         </div>
       </div>
-    </div>
-    <div className="row">
-      <div className="col-sm-6">
-        <div className="container-fluid">
-          <MeritsContainer />
+      <div className="row">
+        <div className="col-sm-6">
+          <div className="container-fluid">
+            <BloodContainer />
+          </div>
+        </div>
+        <div className="col-sm-6">
+          <div className="container-fluid">
+            <MoralityContainer />
+          </div>
         </div>
       </div>
-      <div className="col-sm-6">
-        <div className="container-fluid">
-          <FlawsContainer />
+      <div className={`row ${styles.attribution}`}>
+        <div className="col-sm-12">
+          Some terms are copyrighted by or registered trademarks of CCP hf. This
+          tool is unofficial, and the author is not affiliated with the
+          companies mentioned above.
         </div>
       </div>
-    </div>
-
-    <div className="row">
-      <div className="col-sm-6">
-        <div className="container-fluid">
-          <BloodContainer />
-        </div>
-      </div>
-      <div className="col-sm-6">
-        <div className="container-fluid">
-          <MoralityContainer />
-        </div>
-      </div>
-    </div>
-    <div className={`row ${styles.attribution}`}>
-      <div className="col-sm-12">
-        Some terms are copyrighted by or registered trademarks of CCP hf. This
-        tool is unofficial, and the author is not affiliated with the companies
-        mentioned above.
-      </div>
-    </div>
+    </React.StrictMode>
   </div>
 );
 

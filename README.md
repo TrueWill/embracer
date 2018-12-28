@@ -40,6 +40,7 @@ Currently deployment is manual, so the site may not reflect the latest changes.
 * [Yarn](https://yarnpkg.com/en/)
 * [prop-types](https://github.com/facebook/prop-types)
 * [Flux Standard Actions](https://github.com/acdlite/flux-standard-action)
+* [Strict Mode](https://reactjs.org/docs/strict-mode.html) (except for react-select)
 * [Reselect](https://github.com/reactjs/reselect) selectors
 * Only reducers and selectors should know the exact state structure
 * [CSS Modules](https://facebook.github.io/create-react-app/docs/adding-a-css-modules-stylesheet)
