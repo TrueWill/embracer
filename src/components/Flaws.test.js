@@ -1,5 +1,5 @@
 import React from 'react';
-import { mount } from 'enzyme';
+import { shallow } from 'enzyme';
 import {
   noop,
   getFirstSelect,
@@ -8,9 +8,8 @@ import {
 } from '../utils/testUtils';
 import Flaws from './Flaws';
 
-// TODO: Change to shallow rendering once enzyme fixes getDerivedStateFromProps calling behavior
 const getWrapper = (optionsMap, selected = []) =>
-  mount(
+  shallow(
     <Flaws
       optionsMap={optionsMap}
       selected={selected}

@@ -1,5 +1,5 @@
 import React from 'react';
-import { mount } from 'enzyme';
+import { shallow } from 'enzyme';
 import {
   noop,
   getFirstSelect,
@@ -9,9 +9,8 @@ import {
 } from '../utils/testUtils';
 import Merits from './Merits';
 
-// TODO: Change to shallow rendering once enzyme fixes getDerivedStateFromProps calling behavior
 const getWrapper = (optionsMap, selected = []) =>
-  mount(
+  shallow(
     <Merits
       optionsMap={optionsMap}
       selected={selected}
@@ -77,6 +76,6 @@ it('should display selected when merit purchased multiple times', () => {
   ];
   const wrapper = getWrapper(optionsMap, selected);
 
-  const items = wrapper.find('li').map(o => o.text().trim());
+  const items = wrapper.find('li').map(o => o.render().text().trim());
   expect(items).toEqual(['Arcane (1 point)', 'Skill Aptitude (2 points X 3)']);
 });
