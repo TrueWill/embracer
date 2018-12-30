@@ -1,8 +1,6 @@
 import jsPDF from 'jspdf';
 import getDots from './getDots';
 import { capitalizeFirstLetter } from './stringUtils';
-import * as simple from '../selectors/simple';
-import getXP from '../selectors/getXP';
 import { version, docUrl } from '../constants/application';
 import {
   attributeTraitNames,
@@ -217,20 +215,19 @@ export default class Pdf {
     this.moveToNextLine();
   }
 
-  printAttributes(state) {
-    const attributes = simple.getAttributes(state);
-
+  printAttributes(attributes) {
     this.currentYPosition = attributesTopMargin;
 
     this.printHeaderLine('Attributes');
 
     for (let i = 0; i < attributeTraitNames.length; i++) {
       const name = attributeTraitNames[i];
+      const attribute = attributes[name];
       const columnXPosition = this.getColumnXPosition(i + 1);
 
       this.printTraitLine(
         capitalizeFirstLetter(name),
-        getDots(attributes[name]),
+        getDots(attribute),
         attributeMaxDots,
         columnXPosition
       );
@@ -242,19 +239,14 @@ export default class Pdf {
         columnXPosition
       );
 
-      this.print(
-        `Focus: ${simple.getFocus(state, name) || ''}`,
-        columnXPosition
-      );
+      this.print(`Focus: ${attribute.focus || ''}`, columnXPosition);
 
       this.moveToPreviousLine();
       this.moveToPreviousLine();
     }
   }
 
-  // TODO: pass in just skills
-  printSkills(state) {
-    const skills = simple.getSkills(state);
+  printSkills(skills) {
     const skillNames = getTraitNames(skills);
 
     this.currentYPosition = skillsTopMargin;
@@ -280,8 +272,7 @@ export default class Pdf {
     }
   }
 
-  printBackgrounds(state) {
-    const backgrounds = simple.getBackgrounds(state);
+  printBackgrounds(backgrounds) {
     const backgroundNames = getTraitNames(backgrounds);
 
     this.currentYPosition = midsectionTopMargin;
@@ -302,8 +293,8 @@ export default class Pdf {
     });
   }
 
-  printDisciplinesForAffinity(state, affinity) {
-    const disciplines = simple.getDisciplines(state)[affinity];
+  printDisciplinesForAffinity(allDisciplines, affinity) {
+    const disciplines = allDisciplines[affinity];
     const disciplineNames = getTraitNames(disciplines);
 
     disciplineNames.forEach(name => {
@@ -316,19 +307,17 @@ export default class Pdf {
     });
   }
 
-  printDisciplines(state) {
+  printDisciplines(disciplines) {
     this.currentYPosition = midsectionTopMargin;
 
     this.printColumnHeaderLine('Disciplines', this.column2XPosition);
 
-    this.printDisciplinesForAffinity(state, 'inClan');
-    this.printDisciplinesForAffinity(state, 'outOfClan');
+    this.printDisciplinesForAffinity(disciplines, 'inClan');
+    this.printDisciplinesForAffinity(disciplines, 'outOfClan');
     this.printLine('* - Out-of-clan', this.column2XPosition);
   }
 
-  printMeritsFlaws(state) {
-    const merits = simple.getSelectedMerits(state);
-
+  printMeritsFlaws(merits, flaws) {
     this.currentYPosition = midsectionTopMargin;
 
     this.printColumnHeaderLine('Merits & Flaws', this.column3XPosition);
@@ -336,8 +325,6 @@ export default class Pdf {
     merits.forEach(merit => {
       this.printLine(getMeritDescription(merit), this.column3XPosition);
     });
-
-    const flaws = simple.getSelectedFlaws(state);
 
     flaws.forEach(flaw => {
       this.printLine(getFlawDescription(flaw), this.column3XPosition);
@@ -383,12 +370,11 @@ export default class Pdf {
     );
   }
 
-  printMorality(state) {
+  printMorality(morality) {
     this.currentYPosition = bloodSectionTopMargin;
 
     this.printColumnHeaderLine('Morality', this.column3XPosition);
 
-    const morality = simple.getMorality(state);
     const path = morality.path;
 
     const maxDots =
@@ -431,9 +417,8 @@ export default class Pdf {
     });
   }
 
-  // TODO: Pass just xp
-  printXP(state) {
-    const { spent, gainedFromFlaws, available, bankable } = getXP(state);
+  printXP(xp) {
+    const { spent, gainedFromFlaws, available, bankable } = xp;
 
     this.currentYPosition = bottomSectionTopMargin;
 

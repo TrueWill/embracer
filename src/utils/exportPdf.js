@@ -1,6 +1,7 @@
 import Pdf from './Pdf';
 import * as simple from '../selectors/simple';
 import getGenerationDetails from '../selectors/getGenerationDetails';
+import getXP from '../selectors/getXP';
 
 const exportPdf = state => {
   const pdf = new Pdf();
@@ -23,16 +24,19 @@ const exportPdf = state => {
   );
   pdf.printLine(`Title: ${generationDetails.title}`, pdf.column3XPosition);
 
-  pdf.printAttributes(state);
-  pdf.printSkills(state);
-  pdf.printBackgrounds(state);
-  pdf.printDisciplines(state);
-  pdf.printMeritsFlaws(state);
+  pdf.printAttributes(simple.getAttributes(state));
+  pdf.printSkills(simple.getSkills(state));
+  pdf.printBackgrounds(simple.getBackgrounds(state));
+  pdf.printDisciplines(simple.getDisciplines(state));
+  pdf.printMeritsFlaws(
+    simple.getSelectedMerits(state),
+    simple.getSelectedFlaws(state)
+  );
   pdf.printBlood(generationDetails);
   pdf.printWillpower();
-  pdf.printMorality(state);
+  pdf.printMorality(simple.getMorality(state));
   pdf.printHealth();
-  pdf.printXP(state);
+  pdf.printXP(getXP(state));
   pdf.printBeastTraits();
   pdf.printStatus();
   pdf.printFooter();
