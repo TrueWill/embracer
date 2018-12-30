@@ -19,7 +19,7 @@ import {
 } from '../constants/characterOptions';
 
 // Units are mm
-const sizeUSLetter = [279.4, 215.9];
+const sizeUSLetter = [279.4, 215.9];  // Note: specifying 'letter' later
 const pageWidth = sizeUSLetter[1];
 const pageHeight = sizeUSLetter[0];
 const topMargin = 20;
@@ -444,7 +444,7 @@ const printFooter = doc => {
 const exportPdf = state => {
   const doc = new jsPDF({
     unit: 'mm',
-    format: sizeUSLetter // eventually should allow A4 - affects column width
+    format: 'letter' // eventually should allow a4 - affects column width
   });
 
   currentYPosition = topMargin;
