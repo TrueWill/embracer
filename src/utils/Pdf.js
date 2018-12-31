@@ -38,6 +38,13 @@ const bloodSectionTopMargin = 208;
 const bottomSectionTopMargin = 233;
 const startingDotsProperty = 'availableStartingDots';
 
+const defaultPrintOptions = {
+  fontName: 'times',
+  fontStyle: 'normal',
+  fontSize: 10,
+  align: 'left'
+};
+
 const getSquaresWidth = (squares, width) =>
   width * squares + squareSpacing * (squares - 1);
 
@@ -87,15 +94,21 @@ export default class Pdf {
     return leftMargin + (columnWidth + gutter) * (columnNumber - 1);
   }
 
-  print(text, x) {
-    this.doc.setFont(defaultFont);
-    this.doc.setFontType('normal');
-    this.doc.setFontSize(defaultFontSize);
-    this.doc.text(text, x, this.currentYPosition);
+  print(text, x, y = this.currentYPosition, options = null) {
+    let fontName, fontStyle, fontSize, align;
+
+    ({ fontName, fontStyle, fontSize, align } = {
+      ...defaultPrintOptions,
+      ...options
+    });
+
+    this.doc.setFont(fontName, fontStyle);
+    this.doc.setFontSize(fontSize);
+    this.doc.text(text, x, y, { align });
   }
 
-  printLine(text, x) {
-    this.print(text, x);
+  printLine(text, x, y = this.currentYPosition, options = null) {
+    this.print(text, x, y, options);
     this.moveToNextLine();
   }
 
