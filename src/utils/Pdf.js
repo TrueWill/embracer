@@ -206,10 +206,9 @@ export default class Pdf {
 
     this.printHeaderLine('Attributes');
 
-    for (let i = 0; i < attributeTraitNames.length; i++) {
-      const name = attributeTraitNames[i];
+    attributeTraitNames.forEach((name, index) => {
       const attribute = attributes[name];
-      const columnXPosition = this.getColumnXPosition(i + 1);
+      const columnXPosition = this.getColumnXPosition(index + 1);
 
       this.printTraitLine(
         capitalizeFirstLetter(name),
@@ -229,7 +228,7 @@ export default class Pdf {
 
       this.moveToPreviousLine();
       this.moveToPreviousLine();
-    }
+    });
   }
 
   printSkills(skills) {
@@ -239,13 +238,12 @@ export default class Pdf {
     this.printHeaderLine('Skills');
     const skillsColumnTopMargin = this.currentYPosition;
 
-    for (let i = 0; i < skillNames.length; i++) {
-      const name = skillNames[i];
+    skillNames.forEach((name, index) => {
       const displayName =
         skillTraitDisplayNameOverride[name] || capitalizeFirstLetter(name);
-      const column = Math.floor(i / skillsRows) + 1;
+      const column = Math.floor(index / skillsRows) + 1;
 
-      if (i % skillsRows === 0) {
+      if (index % skillsRows === 0) {
         this.currentYPosition = skillsColumnTopMargin;
       }
 
@@ -255,7 +253,7 @@ export default class Pdf {
         standardTraitMaxDots,
         this.getColumnXPosition(column)
       );
-    }
+    });
   }
 
   printBackgrounds(backgrounds) {
