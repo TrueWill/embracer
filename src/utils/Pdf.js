@@ -113,30 +113,18 @@ export default class Pdf {
   printPageHeader() {
     const pageCenter = pageWidth / 2;
 
-    this.doc.setFont(defaultFont);
-    this.doc.setFontType('normal');
-    this.doc.setFontSize(defaultFontSize);
-    this.doc.text(
-      "MIND'S EYE THEATRE",
-      pageCenter,
-      topMargin,
-      null,
-      null,
-      'center'
-    );
+    this.print("MIND'S EYE THEATRE", pageCenter, topMargin, {
+      align: 'center'
+    });
 
-    this.doc.setFontSize(defaultFontSize * 3);
-    this.doc.text('VAMPIRE', pageCenter, topMargin + 8, null, null, 'center');
+    this.print('VAMPIRE', pageCenter, topMargin + 8, {
+      fontSize: defaultFontSize * 3,
+      align: 'center'
+    });
 
-    this.doc.setFontSize(defaultFontSize);
-    this.doc.text(
-      'THE MASQUERADE',
-      pageCenter,
-      topMargin + 11,
-      null,
-      null,
-      'center'
-    );
+    this.print('THE MASQUERADE', pageCenter, topMargin + 11, {
+      align: 'center'
+    });
   }
 
   printHeaderLine(text) {
