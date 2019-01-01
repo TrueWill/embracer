@@ -95,19 +95,17 @@ export default class Pdf {
   }
 
   print(text, x, y = this.currentYPosition, options = null) {
-    let fontName, fontStyle, fontSize, align;
-
-    ({ fontName, fontStyle, fontSize, align } = {
+    let { fontName, fontStyle, fontSize, align } = {
       ...defaultPrintOptions,
       ...options
-    });
+    };
 
     this.doc.setFont(fontName, fontStyle);
     this.doc.setFontSize(fontSize);
     this.doc.text(text, x, y, { align });
   }
 
-  printLine(text, x, y = this.currentYPosition, options = null) {
+  printLine(text, x, y = undefined, options = undefined) {
     this.print(text, x, y, options);
     this.moveToNextLine();
   }
