@@ -23,7 +23,6 @@ const topMargin = 20;
 const leftMargin = 15;
 const columnWidth = 55;
 const gutter = 8;
-const defaultFont = 'times';
 const defaultFontSize = 10;
 const defaultDrawLineWidth = 0.2;
 const defaultPageLineHeight = 6;
@@ -41,7 +40,7 @@ const startingDotsProperty = 'availableStartingDots';
 const defaultPrintOptions = {
   fontName: 'times',
   fontStyle: 'normal',
-  fontSize: 10,
+  fontSize: defaultFontSize,
   align: 'left'
 };
 
@@ -82,6 +81,10 @@ export default class Pdf {
     this.column3XPosition = this.getColumnXPosition(3);
   }
 
+  get pageCenter() {
+    return pageWidth / 2;
+  }
+
   moveToNextLine() {
     this.currentYPosition += defaultPageLineHeight;
   }
@@ -94,6 +97,7 @@ export default class Pdf {
     return leftMargin + (columnWidth + gutter) * (columnNumber - 1);
   }
 
+  // Note side effects - make any calls to getTextWidth AFTER calling.
   print(text, x, y = this.currentYPosition, options = null) {
     let { fontName, fontStyle, fontSize, align } = {
       ...defaultPrintOptions,
@@ -111,63 +115,46 @@ export default class Pdf {
   }
 
   printPageHeader() {
-    const pageCenter = pageWidth / 2;
-
-    this.print("MIND'S EYE THEATRE", pageCenter, topMargin, {
+    this.print("MIND'S EYE THEATRE", this.pageCenter, topMargin, {
       align: 'center'
     });
 
-    this.print('VAMPIRE', pageCenter, topMargin + 8, {
+    this.print('VAMPIRE', this.pageCenter, topMargin + 8, {
       fontSize: defaultFontSize * 3,
       align: 'center'
     });
 
-    this.print('THE MASQUERADE', pageCenter, topMargin + 11, {
+    this.print('THE MASQUERADE', this.pageCenter, topMargin + 11, {
       align: 'center'
     });
   }
 
   printHeaderLine(text) {
-    this.doc.setFont(defaultFont);
-    this.doc.setFontType('normal');
-    this.doc.setFontSize(defaultFontSize + 4);
-    this.doc.setLineWidth(defaultDrawLineWidth);
+    this.print(text, this.pageCenter, undefined, {
+      fontSize: defaultFontSize + 4,
+      align: 'center'
+    });
 
     const textWidth = this.doc.getTextWidth(text);
     const sideSpace = (pageWidth - textWidth) / 2;
     const lineY = this.currentYPosition - 1;
 
+    this.doc.setLineWidth(defaultDrawLineWidth);
     this.doc.line(leftMargin, lineY, sideSpace, lineY);
-    this.doc.text(
-      text,
-      pageWidth / 2,
-      this.currentYPosition,
-      null,
-      null,
-      'center'
-    );
     this.doc.line(pageWidth - sideSpace, lineY, pageWidth - leftMargin, lineY);
+
     this.moveToNextLine();
   }
 
   printColumnHeaderLine(text, x) {
-    this.doc.setFont(defaultFont);
-    this.doc.setFontType('normal');
-    this.doc.setFontSize(defaultFontSize + 4);
-    this.doc.text(
-      text,
-      x + columnWidth / 2,
-      this.currentYPosition,
-      null,
-      null,
-      'center'
-    );
-    this.moveToNextLine();
+    this.printLine(text, x + columnWidth / 2, undefined, {
+      fontSize: defaultFontSize + 4,
+      align: 'center'
+    });
   }
 
   printHorizontalLine(y) {
     this.doc.setLineWidth(defaultDrawLineWidth);
-
     this.doc.line(leftMargin, y, pageWidth - leftMargin, y);
   }
 
