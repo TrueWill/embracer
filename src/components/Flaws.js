@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Section from './Section';
+import { getFlawDescription } from '../utils/meritFlawUtils';
 import { maxFlawPoints } from '../constants/flaws';
-
-const getDescription = flaw =>
-  `${flaw.name} (${flaw.points} point${flaw.points > 1 ? 's' : ''})`;
 
 class DeleteButton extends Component {
   static propTypes = {
@@ -72,7 +70,7 @@ class Flaws extends Component {
 
     const selectedList = selected.map(x => (
       <li key={x.name}>
-        {getDescription(x)}{' '}
+        {getFlawDescription(x)}{' '}
         <DeleteButton id={x.name} onClick={this.handleRemove} />
       </li>
     ));
@@ -87,7 +85,7 @@ class Flaws extends Component {
 
       optionsList.push(
         <option value={flaw.name} key={flaw.name}>
-          {getDescription(flaw)}
+          {getFlawDescription(flaw)}
         </option>
       );
     });

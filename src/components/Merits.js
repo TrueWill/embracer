@@ -1,16 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Section from './Section';
+import { getSelectedMeritDescription } from '../utils/meritFlawUtils';
 import { maxMeritPoints } from '../constants/merits';
-
-const getSelectedDescription = merit => {
-  const timesPurchased = merit.timesPurchased || 1;
-  const timesText = timesPurchased === 1 ? '' : ` X ${timesPurchased}`;
-
-  return `${merit.name} (${merit.points} point${
-    merit.points > 1 ? 's' : ''
-  }${timesText})`;
-};
 
 const getOptionDescription = merit =>
   `${merit.name}${merit.multiple ? '*' : ''} (${merit.points} point${
@@ -84,7 +76,7 @@ class Merits extends Component {
 
     const selectedList = selected.map(x => (
       <li key={x.name}>
-        {getSelectedDescription(x)}{' '}
+        {getSelectedMeritDescription(x)}{' '}
         <DeleteButton id={x.name} onClick={this.handleRemove} />
       </li>
     ));

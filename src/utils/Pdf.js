@@ -1,5 +1,9 @@
 import jsPDF from 'jspdf';
 import getDots from './getDots';
+import {
+  getSelectedMeritDescription,
+  getFlawDescription
+} from './meritFlawUtils';
 import { capitalizeFirstLetter } from './stringUtils';
 import { version, docUrl } from '../constants/application';
 import {
@@ -57,15 +61,6 @@ const getTraitNames = traits => {
 
   return names;
 };
-
-const getMeritDescription = merit => {
-  const timesPurchased = merit.timesPurchased || 1;
-  const timesText = timesPurchased === 1 ? '' : ` X ${timesPurchased}`;
-
-  return `${merit.name} (${merit.points}pt M${timesText})`;
-};
-
-const getFlawDescription = flaw => `${flaw.name} (${flaw.points}pt F)`;
 
 export default class Pdf {
   constructor() {
@@ -307,11 +302,14 @@ export default class Pdf {
     this.printColumnHeaderLine('Merits & Flaws', this.column3XPosition);
 
     merits.forEach(merit => {
-      this.printLine(getMeritDescription(merit), this.column3XPosition);
+      this.printLine(
+        getSelectedMeritDescription(merit, 'pt M'),
+        this.column3XPosition
+      );
     });
 
     flaws.forEach(flaw => {
-      this.printLine(getFlawDescription(flaw), this.column3XPosition);
+      this.printLine(getFlawDescription(flaw, 'pt F'), this.column3XPosition);
     });
   }
 
