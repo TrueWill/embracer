@@ -80,6 +80,45 @@ export default class Pdf {
     return pageWidth / 2;
   }
 
+  printCharacter({
+    archetype,
+    clanName,
+    bloodline,
+    settingName,
+    generationDetails,
+    attributes,
+    skills,
+    backgrounds,
+    disciplines,
+    merits,
+    flaws,
+    morality,
+    xp
+  }) {
+    const clan = clanName + (bloodline ? ` (${bloodline})` : '');
+
+    this.printPageHeader();
+    this.printLine('Player:', this.column1XPosition);
+    this.printLine('Character:', this.column1XPosition);
+    this.printLine('Archetype: ' + archetype, this.column1XPosition);
+    this.print('Clan: ' + clan, this.column1XPosition);
+    this.print('Setting/Sect: ' + settingName, this.column2XPosition);
+    this.printLine(`Title: ${generationDetails.title}`, this.column3XPosition);
+    this.printAttributes(attributes);
+    this.printSkills(skills);
+    this.printBackgrounds(backgrounds);
+    this.printDisciplines(disciplines);
+    this.printMeritsFlaws(merits, flaws);
+    this.printBlood(generationDetails);
+    this.printWillpower();
+    this.printMorality(morality);
+    this.printHealth();
+    this.printXP(xp);
+    this.printBeastTraits();
+    this.printStatus();
+    this.printFooter();
+  }
+
   moveToNextLine() {
     this.currentYPosition += defaultPageLineHeight;
   }

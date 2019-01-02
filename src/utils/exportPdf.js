@@ -6,40 +6,21 @@ import getXP from '../selectors/getXP';
 const exportPdf = state => {
   const pdf = new Pdf();
 
-  const bloodline = simple.getBloodline(state);
-  const clan = simple.getClanName(state) + (bloodline ? ` (${bloodline})` : '');
-  const generationDetails = getGenerationDetails(state);
-
-  pdf.printPageHeader();
-  pdf.printLine('Player:', pdf.column1XPosition); // TODO: Consider using method
-  pdf.printLine('Character:', pdf.column1XPosition);
-  pdf.printLine(
-    'Archetype: ' + simple.getArchetype(state),
-    pdf.column1XPosition
-  );
-  pdf.print('Clan: ' + clan, pdf.column1XPosition);
-  pdf.print(
-    'Setting/Sect: ' + simple.getSettingName(state),
-    pdf.column2XPosition
-  );
-  pdf.printLine(`Title: ${generationDetails.title}`, pdf.column3XPosition);
-
-  pdf.printAttributes(simple.getAttributes(state));
-  pdf.printSkills(simple.getSkills(state));
-  pdf.printBackgrounds(simple.getBackgrounds(state));
-  pdf.printDisciplines(simple.getDisciplines(state));
-  pdf.printMeritsFlaws(
-    simple.getSelectedMerits(state),
-    simple.getSelectedFlaws(state)
-  );
-  pdf.printBlood(generationDetails);
-  pdf.printWillpower();
-  pdf.printMorality(simple.getMorality(state));
-  pdf.printHealth();
-  pdf.printXP(getXP(state));
-  pdf.printBeastTraits();
-  pdf.printStatus();
-  pdf.printFooter();
+  pdf.printCharacter({
+    archetype: simple.getArchetype(state),
+    clanName: simple.getClanName(state),
+    bloodline: simple.getBloodline(state),
+    settingName: simple.getSettingName(state),
+    generationDetails: getGenerationDetails(state),
+    attributes: simple.getAttributes(state),
+    skills: simple.getSkills(state),
+    backgrounds: simple.getBackgrounds(state),
+    disciplines: simple.getDisciplines(state),
+    merits: simple.getSelectedMerits(state),
+    flaws: simple.getSelectedFlaws(state),
+    morality: simple.getMorality(state),
+    xp: getXP(state)
+  });
 
   pdf.downloadAs('character.pdf');
 };
