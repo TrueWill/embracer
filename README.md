@@ -44,7 +44,7 @@ Currently deployment is manual, so the site may not reflect the latest changes.
 * [Reselect](https://github.com/reactjs/reselect) selectors
 * Only reducers and selectors should know the exact state structure
 * [CSS Modules](https://facebook.github.io/create-react-app/docs/adding-a-css-modules-stylesheet)
-* Jest/Enzyme tests (using it() alias for test()) - all passing
+* Jest/Enzyme tests (using it() alias for test()) - all passing: [![Build Status](https://travis-ci.com/TrueWill/embracer.svg?branch=master)](https://travis-ci.com/TrueWill/embracer)
 * No ESLint warnings/errors
 * No console warnings/errors
 * Works in modern browsers (and IE 11)
