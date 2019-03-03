@@ -1,23 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Section from './Section';
+import DeleteButton from './DeleteButton';
 import { getFlawDescription } from '../utils/meritFlawUtils';
 import { maxFlawPoints } from '../constants/flaws';
-
-class DeleteButton extends Component {
-  static propTypes = {
-    id: PropTypes.string.isRequired,
-    onClick: PropTypes.func.isRequired
-  };
-
-  handleClick = () => {
-    this.props.onClick(this.props.id);
-  };
-
-  render() {
-    return <i className="fa fa-trash pointer" onClick={this.handleClick} />;
-  }
-}
 
 class Flaws extends Component {
   static propTypes = {
@@ -100,16 +86,15 @@ class Flaws extends Component {
           <option value="">(not selected)</option>
           {optionsList}
         </select>
-        {selectedValue &&
-          selectedPoints <= availablePoints && (
-            <button
-              type="button"
-              className="btn btn-primary btn-sm"
-              onClick={this.handleAdd}
-            >
-              Add
-            </button>
-          )}
+        {selectedValue && selectedPoints <= availablePoints && (
+          <button
+            type="button"
+            className="btn btn-primary btn-sm"
+            onClick={this.handleAdd}
+          >
+            Add
+          </button>
+        )}
         <div>
           Max points: {maxFlawPoints} Available: {availablePoints}
         </div>
