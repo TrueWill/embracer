@@ -1,84 +1,79 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { mapKeysToArray } from '../utils/mapUtils';
 import { clans } from '../constants/clanOptions';
 
-export default class Clan extends Component {
-  static propTypes = {
-    clan: PropTypes.object.isRequired,
-    updateClan: PropTypes.func.isRequired
+export default function Clan({ clan, updateClan }) {
+  const handleClanChange = e => {
+    updateClan(e.target.value);
   };
 
-  handleClanChange = e => {
-    this.props.updateClan(e.target.value);
-  };
-
-  handleBloodlineChange = e => {
-    const clanName = this.props.clan.name;
+  const handleBloodlineChange = e => {
+    const clanName = clan.name;
     const bloodline = e.target.value;
 
     if (bloodline) {
       const meritPoints = clans.get(clanName).bloodlines.get(bloodline)
         .meritPoints;
 
-      this.props.updateClan(clanName, bloodline, meritPoints);
+      updateClan(clanName, bloodline, meritPoints);
     } else {
-      this.props.updateClan(clanName);
+      updateClan(clanName);
     }
   };
 
-  render() {
-    const { clan } = this.props;
+  const clanOptions = mapKeysToArray(clans).map(clanName => (
+    <option value={clanName} key={clanName}>
+      {clanName}
+    </option>
+  ));
 
-    const clanOptions = mapKeysToArray(clans).map(clanName => (
-      <option value={clanName} key={clanName}>
-        {clanName}
-      </option>
-    ));
+  const bloodlineOptions = [];
 
-    const bloodlineOptions = [];
-
-    if (clan.name) {
-      clans.get(clan.name).bloodlines.forEach((value, key) => {
-        bloodlineOptions.push(
-          <option value={key} key={key}>
-            {`${key} (${value.meritPoints} points)`}
-          </option>
-        );
-      });
-    }
-
-    return (
-      <React.Fragment>
-        <div className="row">
-          <div className="col-sm-3">Clan:</div>
-          <div className="col-sm-9">
-            <select value={clan.name} onChange={this.handleClanChange}>
-              <option value="">(not selected)</option>
-              {clanOptions}
-            </select>
-          </div>
-        </div>
-        <div className="row">
-          <div className="col-sm-3">Bloodline:</div>
-          <div className="col-sm-9">
-            <select
-              value={clan.bloodline}
-              onChange={this.handleBloodlineChange}
-            >
-              <option value="">(none)</option>
-              {bloodlineOptions}
-            </select>
-          </div>
-        </div>
-        <div className="row">
-          <div className="col-sm-9 offset-sm-3">
-            (changing either will reset Disciplines, Merits, and Morality)<br />
-            (selecting Caitiff will also reset Backgrounds)<br />
-            (STs may require Rarity Merits for some clans/bloodlines)
-          </div>
-        </div>
-      </React.Fragment>
-    );
+  if (clan.name) {
+    clans.get(clan.name).bloodlines.forEach((value, key) => {
+      bloodlineOptions.push(
+        <option value={key} key={key}>
+          {`${key} (${value.meritPoints} points)`}
+        </option>
+      );
+    });
   }
+
+  return (
+    <React.Fragment>
+      <div className="row">
+        <div className="col-sm-3">Clan:</div>
+        <div className="col-sm-9">
+          <select value={clan.name} onChange={handleClanChange}>
+            <option value="">(not selected)</option>
+            {clanOptions}
+          </select>
+        </div>
+      </div>
+      <div className="row">
+        <div className="col-sm-3">Bloodline:</div>
+        <div className="col-sm-9">
+          <select value={clan.bloodline} onChange={handleBloodlineChange}>
+            <option value="">(none)</option>
+            {bloodlineOptions}
+          </select>
+        </div>
+      </div>
+      <div className="row">
+        <div className="col-sm-9 offset-sm-3">
+          (changing either will reset Disciplines, Merits, and Morality)
+          <br />
+          (selecting Caitiff will also reset Backgrounds)
+          <br />
+          (STs may require Rarity Merits for some clans/bloodlines)
+        </div>
+      </div>
+    </React.Fragment>
+  );
 }
+
+Clan.propTypes = {
+  clan: PropTypes.object.isRequired,
+  updateClan: PropTypes.func.isRequired
+};
