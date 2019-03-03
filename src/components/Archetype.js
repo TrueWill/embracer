@@ -1,46 +1,42 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import CreatableSelect from 'react-select/lib/Creatable';
 import { archetypes } from '../constants/characterOptions';
 
-export default class Archetype extends Component {
-  static propTypes = {
-    archetype: PropTypes.string.isRequired,
-    updateArchetype: PropTypes.func.isRequired
-  };
-
-  handleArchetypeChange = val => {
+export default function Archetype({ archetype, updateArchetype }) {
+  const handleArchetypeChange = val => {
     const value = val ? val.value : '';
-    this.props.updateArchetype(value);
+    updateArchetype(value);
   };
 
-  render() {
-    const { archetype } = this.props;
+  const value = archetype
+    ? {
+        value: archetype,
+        label: archetype
+      }
+    : null;
 
-    const value = archetype
-      ? {
-          value: archetype,
-          label: archetype
-        }
-      : null;
+  const archetypeOptions = archetypes.map(a => ({
+    value: a,
+    label: a
+  }));
 
-    const archetypeOptions = archetypes.map(a => ({
-      value: a,
-      label: a
-    }));
-
-    return (
-      <div className="row">
-        <div className="col-sm-3">Archetype:</div>
-        <div className="col-sm-9">
-          <CreatableSelect
-            isClearable
-            value={value}
-            options={archetypeOptions}
-            onChange={this.handleArchetypeChange}
-          />
-        </div>
+  return (
+    <div className="row">
+      <div className="col-sm-3">Archetype:</div>
+      <div className="col-sm-9">
+        <CreatableSelect
+          isClearable
+          value={value}
+          options={archetypeOptions}
+          onChange={handleArchetypeChange}
+        />
       </div>
-    );
-  }
+    </div>
+  );
 }
+
+Archetype.propTypes = {
+  archetype: PropTypes.string.isRequired,
+  updateArchetype: PropTypes.func.isRequired
+};
