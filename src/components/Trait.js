@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import Dots from './Dots';
 import StartingDots from './StartingDots';
@@ -15,20 +15,14 @@ export default function Trait({
   onStartingDotsChange,
   onClick
 }) {
-  const handleStartingDotsChange = useCallback(
-    e => {
-      const startingDots = parseInt(e.target.value, 10);
-      onStartingDotsChange(name, startingDots);
-    },
-    [name, onStartingDotsChange]
-  );
+  const handleStartingDotsChange = e => {
+    const startingDots = parseInt(e.target.value, 10);
+    onStartingDotsChange(name, startingDots);
+  };
 
-  const handleOnClick = useCallback(
-    () => {
-      onClick(name);
-    },
-    [name]
-  );
+  const handleOnClick = () => {
+    onClick(name);
+  };
 
   return (
     <div>
