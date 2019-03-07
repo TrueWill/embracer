@@ -14,7 +14,7 @@ const descriptions = [
   'Denary'
 ];
 
-const Rank = ({ dots, dotValue, onChange }) => {
+export default function Rank({ dots, dotValue, onChange }) {
   const optionElements = dots.map((value, index) => (
     <option key={index} value={value}>
       {descriptions[index]} ({value})
@@ -27,6 +27,10 @@ const Rank = ({ dots, dotValue, onChange }) => {
       {optionElements}
     </select>
   );
+}
+
+Rank.defaultProps = {
+  dotValue: 0
 };
 
 Rank.propTypes = {
@@ -34,9 +38,3 @@ Rank.propTypes = {
   dotValue: PropTypes.number,
   onChange: PropTypes.func.isRequired
 };
-
-Rank.defaultProps = {
-  dotValue: 0
-};
-
-export default Rank;

@@ -2,7 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './StartingDots.module.css';
 
-const StartingDots = ({ available, value, disallowClear, onChange }) => {
+export default function StartingDots({
+  available,
+  value,
+  disallowClear,
+  onChange
+}) {
   const optionElements = available
     .filter(a => a.count > 0 && a.dots !== value)
     .map(a => (
@@ -21,6 +26,11 @@ const StartingDots = ({ available, value, disallowClear, onChange }) => {
       </select>
     </div>
   );
+}
+
+StartingDots.defaultProps = {
+  value: 0,
+  disallowClear: false
 };
 
 StartingDots.propTypes = {
@@ -34,10 +44,3 @@ StartingDots.propTypes = {
   disallowClear: PropTypes.bool,
   onChange: PropTypes.func.isRequired
 };
-
-StartingDots.defaultProps = {
-  value: 0,
-  disallowClear: false
-};
-
-export default StartingDots;
