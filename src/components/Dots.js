@@ -5,7 +5,7 @@ import styles from './Dots.module.css';
 const unfilledClass = 'fa fa-circle-thin';
 const filledClass = 'fa fa-circle';
 
-const Dots = ({ level = 0, max = 5, onClick }) => {
+export default function Dots({ level = 0, max = 5, onClick }) {
   const items = Array(max);
 
   for (let i = 0; i < max; i++) {
@@ -19,12 +19,10 @@ const Dots = ({ level = 0, max = 5, onClick }) => {
       ))}
     </div>
   );
-};
+}
 
 Dots.propTypes = {
   level: PropTypes.number,
   max: PropTypes.number,
   onClick: PropTypes.func
 };
-
-export default Dots;

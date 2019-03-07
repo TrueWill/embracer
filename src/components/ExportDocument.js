@@ -1,26 +1,22 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import exportPdf from '../utils/exportPdf';
 
-class ExportDocument extends Component {
-  static propTypes = {
-    state: PropTypes.object.isRequired
-  };
-
-  handleClick = () => {
+export default function ExportDocument({ state }) {
+  const handleClick = () => {
     // Could dispatch an action, but this doesn't change state.
     // Could use an async action, but we're not really waiting for anything.
     // Might as well just generate the PDF here.
-    exportPdf(this.props.state);
+    exportPdf(state);
   };
 
-  render() {
-    return (
-      <button type="button" className="btn btn-dark" onClick={this.handleClick}>
-        Download PDF (beta)
-      </button>
-    );
-  }
+  return (
+    <button type="button" className="btn btn-dark" onClick={handleClick}>
+      Download PDF (beta)
+    </button>
+  );
 }
 
-export default ExportDocument;
+ExportDocument.propTypes = {
+  state: PropTypes.object.isRequired
+};

@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import Section from './Section';
 import styles from './XP.module.css';
 
-const XP = ({ spent, gainedFromFlaws, available, bankable }) => {
+export default function XP({ spent, gainedFromFlaws, available, bankable }) {
   const availableClass = classNames({
     [styles.negative]: available < 0
   });
@@ -19,7 +19,7 @@ const XP = ({ spent, gainedFromFlaws, available, bankable }) => {
       <div>Bankable: {bankable}</div>
     </Section>
   );
-};
+}
 
 XP.propTypes = {
   spent: PropTypes.number.isRequired,
@@ -27,5 +27,3 @@ XP.propTypes = {
   available: PropTypes.number.isRequired,
   bankable: PropTypes.number.isRequired
 };
-
-export default XP;
