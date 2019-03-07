@@ -1,55 +1,49 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import Dots from './Dots';
 import Rank from './Rank';
 import getDots from '../utils/getDots';
 import { capitalizeFirstLetter } from '../utils/stringUtils';
 
-class RankedTrait extends Component {
-  static propTypes = {
-    name: PropTypes.string.isRequired,
-    displayName: PropTypes.string,
-    maxDots: PropTypes.number.isRequired,
-    rankDots: PropTypes.arrayOf(PropTypes.number).isRequired,
-    traitState: PropTypes.object.isRequired,
-    onRankChange: PropTypes.func.isRequired,
-    onClick: PropTypes.func.isRequired
-  };
+export default function RankedTrait(props) {
+  const {
+    name,
+    displayName = capitalizeFirstLetter(name),
+    maxDots,
+    rankDots,
+    traitState,
+    onRankChange,
+    onClick
+  } = props;
 
-  handleRankChange = e => {
+  const handleRankChange = e => {
     const dotsFromRank = parseInt(e.target.value, 10);
-    this.props.onRankChange(this.props.name, dotsFromRank);
+    onRankChange(name, dotsFromRank);
   };
 
-  handleOnClick = () => {
-    this.props.onClick(this.props.name);
+  const handleOnClick = () => {
+    onClick(name);
   };
 
-  render() {
-    const {
-      name,
-      displayName = capitalizeFirstLetter(name),
-      maxDots,
-      rankDots,
-      traitState
-    } = this.props;
-
-    return (
-      <div>
-        {displayName}{' '}
-        <Dots
-          level={getDots(traitState)}
-          max={maxDots}
-          onClick={this.handleOnClick}
-        />
-        <Rank
-          dots={rankDots}
-          dotValue={traitState.dotsFromRank}
-          onChange={this.handleRankChange}
-        />
-      </div>
-    );
-  }
+  return (
+    <div>
+      {displayName}{' '}
+      <Dots level={getDots(traitState)} max={maxDots} onClick={handleOnClick} />
+      <Rank
+        dots={rankDots}
+        dotValue={traitState.dotsFromRank}
+        onChange={handleRankChange}
+      />
+    </div>
+  );
 }
 
-export default RankedTrait;
+RankedTrait.propTypes = {
+  name: PropTypes.string.isRequired,
+  displayName: PropTypes.string,
+  maxDots: PropTypes.number.isRequired,
+  rankDots: PropTypes.arrayOf(PropTypes.number).isRequired,
+  traitState: PropTypes.object.isRequired,
+  onRankChange: PropTypes.func.isRequired,
+  onClick: PropTypes.func.isRequired
+};
