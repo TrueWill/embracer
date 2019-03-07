@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { mount } from 'enzyme';
 import {
   noop,
   getFirstSelect,
@@ -10,7 +10,7 @@ import {
 import Merits from './Merits';
 
 const getWrapper = (optionsMap, selected = []) =>
-  shallow(
+  mount(
     <Merits
       optionsMap={optionsMap}
       selected={selected}
@@ -76,6 +76,11 @@ it('should display selected when merit purchased multiple times', () => {
   ];
   const wrapper = getWrapper(optionsMap, selected);
 
-  const items = wrapper.find('li').map(o => o.render().text().trim());
+  const items = wrapper.find('li').map(o =>
+    o
+      .render()
+      .text()
+      .trim()
+  );
   expect(items).toEqual(['Arcane (1 point)', 'Skill Aptitude (2 points X 3)']);
 });

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Section from './Section';
 import DeleteButton from './DeleteButton';
@@ -10,106 +10,99 @@ const getOptionDescription = merit =>
     merit.points > 1 ? 's' : ''
   })`;
 
-class Merits extends Component {
-  static propTypes = {
-    optionsMap: PropTypes.instanceOf(Map).isRequired,
-    selected: PropTypes.arrayOf(
-      PropTypes.shape({
-        name: PropTypes.string.isRequired,
-        points: PropTypes.number.isRequired,
-        timesPurchased: PropTypes.number
-      })
-    ).isRequired,
-    availablePoints: PropTypes.number.isRequired,
-    addMerit: PropTypes.func.isRequired,
-    removeMerit: PropTypes.func.isRequired
-  };
+export default function Merits({
+  optionsMap,
+  selected,
+  availablePoints,
+  addMerit,
+  removeMerit
+}) {
+  const [selectedValue, setSelectedValue] = useState('');
 
-  state = {
-    selectedValue: ''
-  };
+  let selectedMerit;
 
-  static getDerivedStateFromProps(nextProps, prevState) {
-    if (!nextProps.optionsMap.get(prevState.selectedValue)) {
+  if (selectedValue) {
+    selectedMerit = optionsMap.get(selectedValue);
+
+    if (selectedMerit) {
+      selectedMerit = { name: selectedValue, ...selectedMerit };
+    } else {
       // Clear out stale state
-      return {
-        selectedValue: ''
-      };
+      setSelectedValue('');
     }
-
-    // No state updates required
-    return null;
   }
 
-  handleSelectChange = e => {
-    this.setState({ selectedValue: e.target.value });
+  const handleSelectChange = e => {
+    setSelectedValue(e.target.value);
   };
 
-  handleAdd = () => {
-    const name = this.state.selectedValue;
-    const points = this.props.optionsMap.get(name).points;
-    this.props.addMerit(name, points);
-    this.setState({ selectedValue: '' });
+  const handleAdd = () => {
+    addMerit(selectedMerit.name, selectedMerit.points);
+    setSelectedValue('');
   };
 
-  handleRemove = name => {
-    this.props.removeMerit(name);
+  const handleRemove = name => {
+    removeMerit(name);
   };
 
-  render() {
-    const { optionsMap, selected, availablePoints } = this.props;
-    const { selectedValue } = this.state;
+  const selectedList = selected.map(x => (
+    <li key={x.name}>
+      {getSelectedMeritDescription(x)}{' '}
+      <DeleteButton id={x.name} onClick={handleRemove} />
+    </li>
+  ));
 
-    const selectedList = selected.map(x => (
-      <li key={x.name}>
-        {getSelectedMeritDescription(x)}{' '}
-        <DeleteButton id={x.name} onClick={this.handleRemove} />
-      </li>
-    ));
+  const optionsList = [];
 
-    const optionsList = [];
+  optionsMap.forEach((value, key) => {
+    const merit = {
+      name: key,
+      points: value.points,
+      multiple: value.multiple
+    };
 
-    optionsMap.forEach((value, key) => {
-      const merit = {
-        name: key,
-        points: value.points,
-        multiple: value.multiple
-      };
-
-      optionsList.push(
-        <option value={merit.name} key={merit.name}>
-          {getOptionDescription(merit)}
-        </option>
-      );
-    });
-
-    const selectedPoints =
-      selectedValue && optionsMap.get(selectedValue).points;
-
-    return (
-      <Section header="Merits">
-        <ul>{selectedList}</ul>
-        <select value={selectedValue} onChange={this.handleSelectChange}>
-          <option value="">(not selected)</option>
-          {optionsList}
-        </select>
-        {selectedValue && selectedPoints <= availablePoints && (
-          <button
-            type="button"
-            className="btn btn-primary btn-sm"
-            onClick={this.handleAdd}
-          >
-            Add
-          </button>
-        )}
-        <div>* - Can purchase multiple times</div>
-        <div>
-          Max points: {maxMeritPoints} Available: {availablePoints} (other areas
-          have merits)
-        </div>
-      </Section>
+    optionsList.push(
+      <option value={merit.name} key={merit.name}>
+        {getOptionDescription(merit)}
+      </option>
     );
-  }
+  });
+
+  return (
+    <Section header="Merits">
+      <ul>{selectedList}</ul>
+      <select value={selectedValue} onChange={handleSelectChange}>
+        <option value="">(not selected)</option>
+        {optionsList}
+      </select>
+      {selectedMerit && selectedMerit.points <= availablePoints && (
+        <button
+          type="button"
+          className="btn btn-primary btn-sm"
+          onClick={handleAdd}
+        >
+          Add
+        </button>
+      )}
+      <div>* - Can purchase multiple times</div>
+      <div>
+        Max points: {maxMeritPoints} Available: {availablePoints} (other areas
+        have merits)
+      </div>
+    </Section>
+  );
 }
 
-export default Merits;
+Merits.propTypes = {
+  optionsMap: PropTypes.instanceOf(Map).isRequired,
+  selected: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      points: PropTypes.number.isRequired,
+      timesPurchased: PropTypes.number
+    })
+  ).isRequired,
+  availablePoints: PropTypes.number.isRequired,
+  addMerit: PropTypes.func.isRequired,
+  removeMerit: PropTypes.func.isRequired
+};
