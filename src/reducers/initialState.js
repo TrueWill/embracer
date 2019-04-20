@@ -49,6 +49,10 @@ export default {
       },
       outOfClan: {
         availableStartingDots: outOfClanDisciplinesAvailableStartingDots
+      },
+      rituals: {
+        necromantic: [],
+        thaumaturgic: []
       }
     },
     merits: [],

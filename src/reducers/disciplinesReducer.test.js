@@ -20,6 +20,10 @@ it('should set starting dots', () => {
     },
     outOfClan: {
       availableStartingDots: []
+    },
+    rituals: {
+      necromantic: [],
+      thaumaturgic: []
     }
   };
 
@@ -38,6 +42,10 @@ it('should set starting dots', () => {
     },
     outOfClan: {
       availableStartingDots: []
+    },
+    rituals: {
+      necromantic: [],
+      thaumaturgic: []
     }
   });
 });
@@ -56,6 +64,10 @@ it('should add subsequent purchased dot in-clan', () => {
       Potence: {
         dotsPurchased: 1
       }
+    },
+    rituals: {
+      necromantic: [],
+      thaumaturgic: []
     }
   };
 
@@ -78,6 +90,10 @@ it('should add subsequent purchased dot in-clan', () => {
       Potence: {
         dotsPurchased: 1
       }
+    },
+    rituals: {
+      necromantic: [],
+      thaumaturgic: []
     }
   });
 });
@@ -99,6 +115,10 @@ it('should add subsequent purchased dot out-of-clan', () => {
       Presence: {
         dotsPurchased: 1
       }
+    },
+    rituals: {
+      necromantic: [],
+      thaumaturgic: []
     }
   };
 
@@ -124,6 +144,10 @@ it('should add subsequent purchased dot out-of-clan', () => {
       Presence: {
         dotsPurchased: 1
       }
+    },
+    rituals: {
+      necromantic: [],
+      thaumaturgic: []
     }
   });
 });
@@ -142,6 +166,10 @@ it('should clear if change clan', () => {
       Potence: {
         dotsPurchased: 1
       }
+    },
+    rituals: {
+      necromantic: [1],
+      thaumaturgic: [1]
     }
   };
 
@@ -157,6 +185,10 @@ it('should clear if change clan', () => {
     },
     outOfClan: {
       availableStartingDots: []
+    },
+    rituals: {
+      necromantic: [],
+      thaumaturgic: []
     }
   });
 });
@@ -171,6 +203,10 @@ it('should remove initial purchased dot and discipline if no other properties', 
     },
     outOfClan: {
       availableStartingDots: []
+    },
+    rituals: {
+      necromantic: [],
+      thaumaturgic: []
     }
   };
 
@@ -186,6 +222,10 @@ it('should remove initial purchased dot and discipline if no other properties', 
     },
     outOfClan: {
       availableStartingDots: []
+    },
+    rituals: {
+      necromantic: [],
+      thaumaturgic: []
     }
   });
 });
@@ -200,6 +240,10 @@ it('should reduce purchased dots exceeding max when set starting dots', () => {
     },
     outOfClan: {
       availableStartingDots: []
+    },
+    rituals: {
+      necromantic: [],
+      thaumaturgic: []
     }
   };
 
@@ -219,6 +263,10 @@ it('should reduce purchased dots exceeding max when set starting dots', () => {
     },
     outOfClan: {
       availableStartingDots: []
+    },
+    rituals: {
+      necromantic: [],
+      thaumaturgic: []
     }
   });
 });
@@ -234,6 +282,10 @@ it('should do nothing if purchased dot would exceed max in-clan', () => {
     },
     outOfClan: {
       availableStartingDots: []
+    },
+    rituals: {
+      necromantic: [],
+      thaumaturgic: []
     }
   };
 
@@ -256,6 +308,10 @@ it('should do nothing if purchased dot would exceed max out-of-clan', () => {
       Potence: {
         dotsPurchased: 3
       }
+    },
+    rituals: {
+      necromantic: [],
+      thaumaturgic: []
     }
   };
 
@@ -275,6 +331,10 @@ it('should do nothing when purchased dot category does not match', () => {
     },
     outOfClan: {
       availableStartingDots: []
+    },
+    rituals: {
+      necromantic: [],
+      thaumaturgic: []
     }
   };
 
