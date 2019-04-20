@@ -7,6 +7,7 @@ import {
   addPurchasedDot,
   removePurchasedDot
 } from '../utils/categoryPurchaser';
+import { getRitualInfoForDiscipline } from '../utils/ritualUtils';
 
 const isDisciplines = category => category.lastIndexOf('disciplines.', 0) === 0;
 
@@ -66,6 +67,18 @@ export default (state = initialState.character.disciplines, action) => {
       return {
         ...state,
         [affinity]: removePurchasedDot(state[affinity], trait)
+      };
+    case types.UPDATE_RITUALS:
+      let { discipline, rituals } = action.payload;
+
+      let { ritualType } = getRitualInfoForDiscipline(discipline);
+
+      return {
+        ...state,
+        rituals: {
+          ...state.rituals,
+          [ritualType]: rituals
+        }
       };
     case types.UPDATE_CLAN:
       // reset

@@ -1,3 +1,5 @@
+import startsWith from 'lodash.startsWith';
+
 const numberStrings = ['One', 'Two', 'Three', 'Four', 'Five'];
 
 export function getRitualPermutations(maxLevel, maxRituals) {
@@ -33,4 +35,26 @@ export function getRitualPermutations(maxLevel, maxRituals) {
   }
 
   return result;
+}
+
+export function getRitualInfoForDiscipline(discipline) {
+  if (startsWith(discipline, 'Thaumaturgy')) {
+    return {
+      hasRituals: true,
+      ritualType: 'thaumaturgic',
+      displayName: 'Thaumaturgic'
+    };
+  }
+
+  if (startsWith(discipline, 'Necromancy')) {
+    return {
+      hasRituals: true,
+      ritualType: 'necromantic',
+      displayName: 'Necromantic'
+    };
+  }
+
+  return {
+    hasRituals: false
+  };
 }

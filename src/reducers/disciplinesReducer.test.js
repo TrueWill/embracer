@@ -156,14 +156,14 @@ it('should clear if change clan', () => {
   const state = {
     inClan: {
       availableStartingDots: [{ dots: 2, count: 0 }, { dots: 1, count: 2 }],
-      Celerity: {
+      'Thaumaturgy: Path of Blood': {
         startingDots: 2,
-        dotsPurchased: 2
+        dotsPurchased: 1
       }
     },
     outOfClan: {
       availableStartingDots: [],
-      Potence: {
+      'Necromancy: Sepulchre Path': {
         dotsPurchased: 1
       }
     },
@@ -175,7 +175,7 @@ it('should clear if change clan', () => {
 
   deepFreeze(state);
 
-  const action = actions.updateClan('Tremere');
+  const action = actions.updateClan('Brujah');
 
   const nextState = reducer(state, action);
 
@@ -345,4 +345,96 @@ it('should do nothing when purchased dot category does not match', () => {
   const nextState = reducer(state, action);
 
   expect(nextState).toBe(state);
+});
+
+it('should update rituals when Thaumaturgic', () => {
+  const state = {
+    inClan: {
+      availableStartingDots: [{ dots: 2, count: 0 }, { dots: 1, count: 2 }],
+      'Thaumaturgy: Path of Blood': {
+        startingDots: 2
+      }
+    },
+    outOfClan: {
+      availableStartingDots: [],
+      'Necromancy: Sepulchre Path': {
+        dotsPurchased: 1
+      }
+    },
+    rituals: {
+      necromantic: [1],
+      thaumaturgic: [1]
+    }
+  };
+
+  deepFreeze(state);
+
+  const action = actions.updateRituals('Thaumaturgy: Path of Blood', [1, 1]);
+
+  const nextState = reducer(state, action);
+
+  expect(nextState).toEqual({
+    inClan: {
+      availableStartingDots: [{ dots: 2, count: 0 }, { dots: 1, count: 2 }],
+      'Thaumaturgy: Path of Blood': {
+        startingDots: 2
+      }
+    },
+    outOfClan: {
+      availableStartingDots: [],
+      'Necromancy: Sepulchre Path': {
+        dotsPurchased: 1
+      }
+    },
+    rituals: {
+      necromantic: [1],
+      thaumaturgic: [1, 1]
+    }
+  });
+});
+
+it('should update rituals when Necromantic', () => {
+  const state = {
+    inClan: {
+      availableStartingDots: [{ dots: 2, count: 0 }, { dots: 1, count: 2 }],
+      'Thaumaturgy: Path of Blood': {
+        startingDots: 2
+      }
+    },
+    outOfClan: {
+      availableStartingDots: [],
+      'Necromancy: Sepulchre Path': {
+        dotsPurchased: 2
+      }
+    },
+    rituals: {
+      necromantic: [1],
+      thaumaturgic: [1]
+    }
+  };
+
+  deepFreeze(state);
+
+  const action = actions.updateRituals('Necromancy: Sepulchre Path', [2]);
+
+  const nextState = reducer(state, action);
+
+  expect(nextState).toEqual({
+    inClan: {
+      availableStartingDots: [{ dots: 2, count: 0 }, { dots: 1, count: 2 }],
+      'Thaumaturgy: Path of Blood': {
+        startingDots: 2
+      }
+    },
+    outOfClan: {
+      availableStartingDots: [],
+      'Necromancy: Sepulchre Path': {
+        dotsPurchased: 2
+      }
+    },
+    rituals: {
+      necromantic: [2],
+      thaumaturgic: [1]
+    }
+  });
 });

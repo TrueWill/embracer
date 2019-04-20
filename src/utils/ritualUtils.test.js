@@ -1,4 +1,7 @@
-import { getRitualPermutations } from './ritualUtils';
+import {
+  getRitualPermutations,
+  getRitualInfoForDiscipline
+} from './ritualUtils';
 
 describe('getRitualPermutations', () => {
   it('should return expected when one dot in primary path', () => {
@@ -127,5 +130,35 @@ describe('getRitualPermutations', () => {
     expect(() => getRitualPermutations(0, 0)).toThrowError(
       'parameters must be 1 or higher'
     );
+  });
+});
+
+describe('getRitualInfoForDiscipline', () => {
+  it('should return expected when Thaumaturgy', () => {
+    const result = getRitualInfoForDiscipline('Thaumaturgy: Path of Blood');
+
+    expect(result).toEqual({
+      hasRituals: true,
+      ritualType: 'thaumaturgic',
+      displayName: 'Thaumaturgic'
+    });
+  });
+
+  it('should return expected when Necromancy', () => {
+    const result = getRitualInfoForDiscipline('Necromancy: Mortis Path');
+
+    expect(result).toEqual({
+      hasRituals: true,
+      ritualType: 'necromantic',
+      displayName: 'Necromantic'
+    });
+  });
+
+  it('should return expected when Dominate', () => {
+    const result = getRitualInfoForDiscipline('Dominate');
+
+    expect(result).toEqual({
+      hasRituals: false
+    });
   });
 });

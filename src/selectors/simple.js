@@ -36,8 +36,5 @@ export const getAttributes = state => state.character.attributes;
 export const getSkills = state => state.character.skills;
 export const getBackgrounds = state => state.character.backgrounds;
 export const getDisciplines = state => state.character.disciplines;
-export const getNecromanticRituals = state =>
-  state.character.disciplines.rituals.necromantic;
-export const getThaumaturgicRituals = state =>
-  state.character.disciplines.rituals.thaumaturgic;
+export const getRituals = state => state.character.disciplines.rituals;
 export const getMorality = state => state.character.morality;
