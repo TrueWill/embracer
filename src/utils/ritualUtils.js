@@ -37,20 +37,22 @@ export function getRitualPermutations(maxLevel, maxRituals) {
   return result;
 }
 
-export function getRitualInfoForDiscipline(discipline) {
-  if (startsWith(discipline, 'Thaumaturgy')) {
+export function getRitualInfoForDiscipline(disciplineName) {
+  if (startsWith(disciplineName, 'Thaumaturgy')) {
     return {
       hasRituals: true,
       ritualType: 'thaumaturgic',
-      displayName: 'Thaumaturgic'
+      displayName: 'Thaumaturgic',
+      disciplineName
     };
   }
 
-  if (startsWith(discipline, 'Necromancy')) {
+  if (startsWith(disciplineName, 'Necromancy')) {
     return {
       hasRituals: true,
       ritualType: 'necromantic',
-      displayName: 'Necromantic'
+      displayName: 'Necromantic',
+      disciplineName
     };
   }
 
