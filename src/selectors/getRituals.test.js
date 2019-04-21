@@ -32,20 +32,7 @@ it('should return correct initial values', () => {
 
   const result = getRituals(state);
 
-  expect(result).toEqual({
-    necromantic: {
-      isAvailable: false,
-      displayName: 'Necromantic',
-      permutations: [],
-      selected: []
-    },
-    thaumaturgic: {
-      isAvailable: false,
-      displayName: 'Thaumaturgic',
-      permutations: [],
-      selected: []
-    }
-  });
+  expect(result).toEqual([]);
 });
 
 it('should return correct values when no magic', () => {
@@ -85,20 +72,7 @@ it('should return correct values when no magic', () => {
 
   const result = getRituals(state);
 
-  expect(result).toEqual({
-    necromantic: {
-      isAvailable: false,
-      displayName: 'Necromantic',
-      permutations: [],
-      selected: []
-    },
-    thaumaturgic: {
-      isAvailable: false,
-      displayName: 'Thaumaturgic',
-      permutations: [],
-      selected: []
-    }
-  });
+  expect(result).toEqual([]);
 });
 
 it('should return correct values when has Thaumaturgy', () => {
@@ -136,15 +110,9 @@ it('should return correct values when has Thaumaturgy', () => {
 
   const result = getRituals(state);
 
-  expect(result).toEqual({
-    necromantic: {
-      isAvailable: false,
-      displayName: 'Necromantic',
-      permutations: [],
-      selected: []
-    },
-    thaumaturgic: {
-      isAvailable: true,
+  expect(result).toEqual([
+    {
+      ritualType: 'thaumaturgic',
       displayName: 'Thaumaturgic',
       permutations: [
         { description: '(none)', value: [] },
@@ -161,7 +129,7 @@ it('should return correct values when has Thaumaturgy', () => {
       ],
       selected: [1]
     }
-  });
+  ]);
 });
 
 it('should return correct values when has Necromancy', () => {
@@ -198,9 +166,9 @@ it('should return correct values when has Necromancy', () => {
 
   const result = getRituals(state);
 
-  expect(result).toEqual({
-    necromantic: {
-      isAvailable: true,
+  expect(result).toEqual([
+    {
+      ritualType: 'necromantic',
       displayName: 'Necromantic',
       permutations: [
         { description: '(none)', value: [] },
@@ -209,14 +177,8 @@ it('should return correct values when has Necromancy', () => {
         { description: '1 Level One, 1 Level Two', value: [1, 1] }
       ],
       selected: [2]
-    },
-    thaumaturgic: {
-      isAvailable: false,
-      displayName: 'Thaumaturgic',
-      permutations: [],
-      selected: []
     }
-  });
+  ]);
 });
 
 it('should return correct values when has both', () => {
@@ -259,9 +221,9 @@ it('should return correct values when has both', () => {
 
   const result = getRituals(state);
 
-  expect(result).toEqual({
-    necromantic: {
-      isAvailable: true,
+  expect(result).toEqual([
+    {
+      ritualType: 'necromantic',
       displayName: 'Necromantic',
       permutations: [
         { description: '(none)', value: [] },
@@ -271,8 +233,8 @@ it('should return correct values when has both', () => {
       ],
       selected: [2]
     },
-    thaumaturgic: {
-      isAvailable: true,
+    {
+      ritualType: 'thaumaturgic',
       displayName: 'Thaumaturgic',
       permutations: [
         { description: '(none)', value: [] },
@@ -280,7 +242,7 @@ it('should return correct values when has both', () => {
       ],
       selected: [1]
     }
-  });
+  ]);
 });
 
 it('should return correct values when multiple paths', () => {
@@ -320,15 +282,9 @@ it('should return correct values when multiple paths', () => {
 
   const result = getRituals(state);
 
-  expect(result).toEqual({
-    necromantic: {
-      isAvailable: false,
-      displayName: 'Necromantic',
-      permutations: [],
-      selected: []
-    },
-    thaumaturgic: {
-      isAvailable: true,
+  expect(result).toEqual([
+    {
+      ritualType: 'thaumaturgic',
       displayName: 'Thaumaturgic',
       permutations: [
         { description: '(none)', value: [] },
@@ -341,5 +297,5 @@ it('should return correct values when multiple paths', () => {
       ],
       selected: [1]
     }
-  });
+  ]);
 });

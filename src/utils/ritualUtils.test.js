@@ -142,8 +142,7 @@ describe('getRitualInfoForDiscipline', () => {
 
     expect(result).toEqual({
       hasRituals: true,
-      ritualType: 'thaumaturgic',
-      displayName: 'Thaumaturgic'
+      ritualType: 'thaumaturgic'
     });
   });
 
@@ -152,8 +151,7 @@ describe('getRitualInfoForDiscipline', () => {
 
     expect(result).toEqual({
       hasRituals: true,
-      ritualType: 'necromantic',
-      displayName: 'Necromantic'
+      ritualType: 'necromantic'
     });
   });
 

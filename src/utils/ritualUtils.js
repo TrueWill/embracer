@@ -41,16 +41,14 @@ export function getRitualInfoForDiscipline(disciplineName) {
   if (startsWith(disciplineName, 'Thaumaturgy')) {
     return {
       hasRituals: true,
-      ritualType: 'thaumaturgic',
-      displayName: 'Thaumaturgic'
+      ritualType: 'thaumaturgic'
     };
   }
 
   if (startsWith(disciplineName, 'Necromancy')) {
     return {
       hasRituals: true,
-      ritualType: 'necromantic',
-      displayName: 'Necromantic'
+      ritualType: 'necromantic'
     };
   }
 

@@ -6,6 +6,8 @@ import {
 } from '../utils/ritualUtils';
 import getDots from '../utils/getDots';
 import { getTraitNames } from '../utils/traitUtils';
+import { mapKeysToArray } from '../utils/mapUtils';
+import { capitalizeFirstLetter } from '../utils/stringUtils';
 
 const getEnhancedRitualInfoForAffinityDisciplines = affinityDisciplines =>
   getTraitNames(affinityDisciplines)
@@ -20,55 +22,47 @@ const getEnhancedRitualInfoForAffinityDisciplines = affinityDisciplines =>
     }));
 
 // Assumption: Discipline with most dots is primary path.
-// TODO: Consider splitting into multiple pipelines (necro/thau). Find better way to handle display name.
 
 const getRituals = createSelector(
   [getSelectedRituals, getDisciplines],
   (selectedRituals, disciplines) => {
-    const info = getEnhancedRitualInfoForAffinityDisciplines(disciplines.inClan)
+    const ritualInfoMap = getEnhancedRitualInfoForAffinityDisciplines(
+      disciplines.inClan
+    )
       .concat(
         getEnhancedRitualInfoForAffinityDisciplines(disciplines.outOfClan)
       )
-      .reduce(
-        (acc, cur) => ({
-          ...acc,
-          [cur.ritualType]: {
-            maxLevel: Math.max(acc[cur.ritualType].maxLevel, cur.dots),
-            maxRituals: acc[cur.ritualType].maxRituals + cur.dots
-          }
-        }),
-        {
-          necromantic: {
-            maxLevel: 0,
-            maxRituals: 0
-          },
-          thaumaturgic: {
-            maxLevel: 0,
-            maxRituals: 0
-          }
-        }
-      );
+      .reduce((acc, cur) => {
+        const value = acc.get(cur.ritualType) || {
+          maxLevel: 0,
+          maxRituals: 0
+        };
 
-    return {
-      necromantic: {
-        isAvailable: info.necromantic.maxLevel > 0,
-        displayName: 'Necromantic',
+        acc.set(cur.ritualType, {
+          maxLevel: Math.max(value.maxLevel, cur.dots),
+          maxRituals: value.maxRituals + cur.dots
+        });
+
+        return acc;
+      }, new Map());
+
+    const ritualTypes = mapKeysToArray(ritualInfoMap);
+
+    ritualTypes.sort();
+
+    return ritualTypes.map(ritualType => {
+      const ritualInfo = ritualInfoMap.get(ritualType);
+
+      return {
+        ritualType,
+        displayName: capitalizeFirstLetter(ritualType),
         permutations: getRitualPermutations(
-          info.necromantic.maxLevel,
-          info.necromantic.maxRituals
+          ritualInfo.maxLevel,
+          ritualInfo.maxRituals
         ),
-        selected: selectedRituals.necromantic
-      },
-      thaumaturgic: {
-        isAvailable: info.thaumaturgic.maxLevel > 0,
-        displayName: 'Thaumaturgic',
-        permutations: getRitualPermutations(
-          info.thaumaturgic.maxLevel,
-          info.thaumaturgic.maxRituals
-        ),
-        selected: selectedRituals.thaumaturgic
-      }
-    };
+        selected: selectedRituals[ritualType]
+      };
+    });
   }
 );
 
