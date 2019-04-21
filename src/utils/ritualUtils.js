@@ -1,4 +1,4 @@
-import startsWith from 'lodash.startsWith';
+import startsWith from 'lodash.startswith';
 
 const numberStrings = ['One', 'Two', 'Three', 'Four', 'Five'];
 
