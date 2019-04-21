@@ -21,8 +21,6 @@ const getEnhancedRitualInfoForAffinityDisciplines = affinityDisciplines =>
       dots: getDots(affinityDisciplines[info.disciplineName])
     }));
 
-// Assumption: Discipline with most dots is primary path.
-
 const getRituals = createSelector(
   [getSelectedRituals, getDisciplines],
   (selectedRituals, disciplines) => {
