@@ -5,17 +5,7 @@ import {
   getRitualInfoForDiscipline
 } from '../utils/ritualUtils';
 import getDots from '../utils/getDots';
-
-const startingDotsProperty = 'availableStartingDots';
-
-// TODO: Copied from Pdf.js (along with constant) - consolidate
-const getTraitNames = traits => {
-  const names = Object.keys(traits).filter(x => x !== startingDotsProperty);
-
-  names.sort();
-
-  return names;
-};
+import { getTraitNames } from '../utils/traitUtils';
 
 const getEnhancedRitualInfoForAffinityDisciplines = affinityDisciplines =>
   getTraitNames(affinityDisciplines)

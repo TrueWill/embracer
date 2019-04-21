@@ -5,6 +5,7 @@ import {
   getFlawDescription
 } from './meritFlawUtils';
 import { capitalizeFirstLetter } from './stringUtils';
+import { getTraitNames } from './traitUtils';
 import { version, docUrl } from '../constants/application';
 import {
   attributeTraitNames,
@@ -39,7 +40,6 @@ const skillsRows = 10;
 const midsectionTopMargin = 139;
 const bloodSectionTopMargin = 208;
 const bottomSectionTopMargin = 233;
-const startingDotsProperty = 'availableStartingDots';
 
 const defaultPrintOptions = {
   fontName: 'times',
@@ -53,14 +53,6 @@ const getSquaresWidth = (squares, width) =>
 
 const getDotsWidth = maxDots =>
   dotRadius * 2 * maxDots + dotSpacing * (maxDots - 1);
-
-const getTraitNames = traits => {
-  const names = Object.keys(traits).filter(x => x !== startingDotsProperty);
-
-  names.sort();
-
-  return names;
-};
 
 export default class Pdf {
   constructor() {
