@@ -10,7 +10,7 @@ export function getRitualPermutations(maxLevel, maxRituals) {
   };
 
   if (maxLevel < 1 || maxRituals < 1) {
-    throw new Error('getRitualPermutations parameters must be 1 or higher');
+    return [];
   }
 
   const result = [{ description: '(none)', value: [] }];

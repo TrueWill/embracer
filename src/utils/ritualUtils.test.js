@@ -126,10 +126,13 @@ describe('getRitualPermutations', () => {
     ]);
   });
 
-  it('should throw if called with zeros', () => {
-    expect(() => getRitualPermutations(0, 0)).toThrowError(
-      'parameters must be 1 or higher'
-    );
+  it('should return empty array if called with zeros', () => {
+    const maxLevel = 0;
+    const maxRituals = 0;
+
+    const result = getRitualPermutations(maxLevel, maxRituals);
+
+    expect(result).toEqual([]);
   });
 });
 

@@ -28,7 +28,6 @@ const getEnhancedRitualInfoForAffinityDisciplines = affinityDisciplines =>
 
 // Assumption: Discipline with most dots is primary path.
 // TODO: Consider splitting into multiple pipelines (necro/thau). Find better way to handle display name.
-// TODO: Consider making permutations handle 0 case.
 
 const getRituals = createSelector(
   [getSelectedRituals, getDisciplines],
@@ -61,25 +60,19 @@ const getRituals = createSelector(
       necromantic: {
         isAvailable: info.necromantic.maxLevel > 0,
         displayName: 'Necromantic',
-        permutations:
-          info.necromantic.maxLevel > 0
-            ? getRitualPermutations(
-                info.necromantic.maxLevel,
-                info.necromantic.maxRituals
-              )
-            : [],
+        permutations: getRitualPermutations(
+          info.necromantic.maxLevel,
+          info.necromantic.maxRituals
+        ),
         selected: selectedRituals.necromantic
       },
       thaumaturgic: {
         isAvailable: info.thaumaturgic.maxLevel > 0,
         displayName: 'Thaumaturgic',
-        permutations:
-          info.thaumaturgic.maxLevel > 0
-            ? getRitualPermutations(
-                info.thaumaturgic.maxLevel,
-                info.thaumaturgic.maxRituals
-              )
-            : [],
+        permutations: getRitualPermutations(
+          info.thaumaturgic.maxLevel,
+          info.thaumaturgic.maxRituals
+        ),
         selected: selectedRituals.thaumaturgic
       }
     };
