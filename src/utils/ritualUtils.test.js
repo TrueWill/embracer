@@ -143,8 +143,7 @@ describe('getRitualInfoForDiscipline', () => {
     expect(result).toEqual({
       hasRituals: true,
       ritualType: 'thaumaturgic',
-      displayName: 'Thaumaturgic',
-      disciplineName: 'Thaumaturgy: Path of Blood'
+      displayName: 'Thaumaturgic'
     });
   });
 
@@ -154,8 +153,7 @@ describe('getRitualInfoForDiscipline', () => {
     expect(result).toEqual({
       hasRituals: true,
       ritualType: 'necromantic',
-      displayName: 'Necromantic',
-      disciplineName: 'Necromancy: Mortis Path'
+      displayName: 'Necromantic'
     });
   });
 

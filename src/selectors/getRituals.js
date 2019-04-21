@@ -9,7 +9,10 @@ import { getTraitNames } from '../utils/traitUtils';
 
 const getEnhancedRitualInfoForAffinityDisciplines = affinityDisciplines =>
   getTraitNames(affinityDisciplines)
-    .map(name => getRitualInfoForDiscipline(name))
+    .map(disciplineName => ({
+      ...getRitualInfoForDiscipline(disciplineName),
+      disciplineName
+    }))
     .filter(info => info.hasRituals)
     .map(info => ({
       ...info,

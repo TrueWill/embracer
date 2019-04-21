@@ -42,8 +42,7 @@ export function getRitualInfoForDiscipline(disciplineName) {
     return {
       hasRituals: true,
       ritualType: 'thaumaturgic',
-      displayName: 'Thaumaturgic',
-      disciplineName
+      displayName: 'Thaumaturgic'
     };
   }
 
@@ -51,8 +50,7 @@ export function getRitualInfoForDiscipline(disciplineName) {
     return {
       hasRituals: true,
       ritualType: 'necromantic',
-      displayName: 'Necromantic',
-      disciplineName
+      displayName: 'Necromantic'
     };
   }
 
