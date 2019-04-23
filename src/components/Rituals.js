@@ -1,43 +1,45 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import RitualsForType from './RitualsForType';
 
-export default function Rituals({
-  rituals,
-  ritualPermutations,
-  updateRituals
-}) {
-  const handleChange = e => {
-    updateRituals(JSON.parse(e.target.value));
-  };
+export default function Rituals({ rituals, updateRituals }) {
+  if (rituals.length === 0) {
+    return null;
+  }
 
-  const options = ritualPermutations.map(p => {
-    const valueAsString = JSON.stringify(p.value);
+  // TODO: Pass ritualType and convert action creator to take that rather than discipline
+  // TODO: Pass displayName and display
+  // TODO: Add Bootstrap styling
 
-    return (
-      <option value={valueAsString} key={valueAsString}>
-        {p.description}
-      </option>
-    );
-  });
+  const ritualsForTypes = rituals.map(r => (
+    <RitualsForType
+      key={r.ritualType}
+      permutations={r.permutations}
+      selected={r.selected}
+      updateRituals={updateRituals}
+    />
+  ));
 
   return (
-    <div className="row">
-      <div className="col-sm-3">Rituals:</div>
-      <div className="col-sm-9">
-        <select value={JSON.stringify(rituals)} onChange={handleChange}>
-          {options}
-        </select>
-      </div>
+    <div>
+      <h1>RITUALS</h1>
+      {ritualsForTypes}
     </div>
   );
 }
 
 Rituals.propTypes = {
-  rituals: PropTypes.arrayOf(PropTypes.number).isRequired,
-  ritualPermutations: PropTypes.arrayOf(
+  rituals: PropTypes.arrayOf(
     PropTypes.shape({
-      description: PropTypes.string.isRequired,
-      value: PropTypes.arrayOf(PropTypes.number).isRequired
+      ritualType: PropTypes.string.isRequired,
+      displayName: PropTypes.string.isRequired,
+      permutations: PropTypes.arrayOf(
+        PropTypes.shape({
+          description: PropTypes.string.isRequired,
+          value: PropTypes.arrayOf(PropTypes.number).isRequired
+        })
+      ).isRequired,
+      selected: PropTypes.arrayOf(PropTypes.number).isRequired
     })
   ).isRequired,
   updateRituals: PropTypes.func.isRequired

@@ -21,6 +21,7 @@ import PencilEraserContainer from '../containers/PencilEraserContainer';
 import MoralityContainer from '../containers/MoralityContainer';
 import ValidationContainer from '../containers/ValidationContainer';
 import Section from '../components/Section';
+import RitualsContainer from '../containers/RitualsContainer';
 import styles from './App.module.css';
 
 export default function App() {
@@ -61,6 +62,7 @@ export default function App() {
             <div className="container-fluid">
               <DisciplinesContainer affinity="inClan" />
               <DisciplinesContainer affinity="outOfClan" />
+              <RitualsContainer />
             </div>
           </div>
         </div>
