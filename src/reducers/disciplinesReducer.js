@@ -7,6 +7,7 @@ import {
   addPurchasedDot,
   removePurchasedDot
 } from '../utils/categoryPurchaser';
+import { getRitualInfoForDiscipline } from '../utils/ritualUtils';
 
 const isDisciplines = category => category.lastIndexOf('disciplines.', 0) === 0;
 
@@ -18,7 +19,7 @@ const getMaxDots = affinity =>
     : standardTraitMaxDots;
 
 export default (state = initialState.character.disciplines, action) => {
-  let category, trait, startingDots, affinity, maxDots;
+  let category, trait, startingDots, affinity, maxDots, newState, ritualInfo;
 
   switch (action.type) {
     case types.SET_STARTING_DOTS:
@@ -63,10 +64,24 @@ export default (state = initialState.character.disciplines, action) => {
 
       affinity = getAffinity(category);
 
-      return {
+      newState = {
         ...state,
         [affinity]: removePurchasedDot(state[affinity], trait)
       };
+
+      ritualInfo = getRitualInfoForDiscipline(trait);
+
+      if (ritualInfo.hasRituals) {
+        newState = {
+          ...newState,
+          rituals: {
+            ...newState.rituals,
+            [ritualInfo.ritualType]: []
+          }
+        };
+      }
+
+      return newState;
     case types.UPDATE_RITUALS:
       const { ritualType, rituals } = action.payload;
 

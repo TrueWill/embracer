@@ -438,3 +438,153 @@ it('should update rituals when Necromantic', () => {
     }
   });
 });
+
+it('should clear ritual type when remove Necromancy dot', () => {
+  const state = {
+    inClan: {
+      availableStartingDots: [{ dots: 2, count: 0 }, { dots: 1, count: 2 }],
+      'Thaumaturgy: Path of Blood': {
+        startingDots: 2
+      }
+    },
+    outOfClan: {
+      availableStartingDots: [],
+      'Necromancy: Sepulchre Path': {
+        dotsPurchased: 2
+      }
+    },
+    rituals: {
+      necromantic: [1],
+      thaumaturgic: [1]
+    }
+  };
+
+  deepFreeze(state);
+
+  const action = actions.unpurchaseDot(
+    'disciplines.outOfClan',
+    'Necromancy: Sepulchre Path'
+  );
+
+  const nextState = reducer(state, action);
+
+  expect(nextState).toEqual({
+    inClan: {
+      availableStartingDots: [{ dots: 2, count: 0 }, { dots: 1, count: 2 }],
+      'Thaumaturgy: Path of Blood': {
+        startingDots: 2
+      }
+    },
+    outOfClan: {
+      availableStartingDots: [],
+      'Necromancy: Sepulchre Path': {
+        dotsPurchased: 1
+      }
+    },
+    rituals: {
+      necromantic: [],
+      thaumaturgic: [1]
+    }
+  });
+});
+
+it('should clear ritual type when remove Thaumaturgy dot', () => {
+  const state = {
+    inClan: {
+      availableStartingDots: [{ dots: 2, count: 0 }, { dots: 1, count: 2 }],
+      'Thaumaturgy: Path of Blood': {
+        startingDots: 2,
+        dotsPurchased: 1
+      }
+    },
+    outOfClan: {
+      availableStartingDots: [],
+      'Necromancy: Sepulchre Path': {
+        dotsPurchased: 2
+      }
+    },
+    rituals: {
+      necromantic: [1],
+      thaumaturgic: [1]
+    }
+  };
+
+  deepFreeze(state);
+
+  const action = actions.unpurchaseDot(
+    'disciplines.inClan',
+    'Thaumaturgy: Path of Blood'
+  );
+
+  const nextState = reducer(state, action);
+
+  expect(nextState).toEqual({
+    inClan: {
+      availableStartingDots: [{ dots: 2, count: 0 }, { dots: 1, count: 2 }],
+      'Thaumaturgy: Path of Blood': {
+        startingDots: 2
+      }
+    },
+    outOfClan: {
+      availableStartingDots: [],
+      'Necromancy: Sepulchre Path': {
+        dotsPurchased: 2
+      }
+    },
+    rituals: {
+      necromantic: [1],
+      thaumaturgic: []
+    }
+  });
+});
+
+it('should not clear ritual type when remove non-magic dot', () => {
+  const state = {
+    inClan: {
+      availableStartingDots: [{ dots: 2, count: 0 }, { dots: 1, count: 2 }],
+      'Thaumaturgy: Path of Blood': {
+        startingDots: 2,
+        dotsPurchased: 1
+      },
+      Dominate: {
+        dotsPurchased: 1
+      }
+    },
+    outOfClan: {
+      availableStartingDots: [],
+      'Necromancy: Sepulchre Path': {
+        dotsPurchased: 2
+      }
+    },
+    rituals: {
+      necromantic: [1],
+      thaumaturgic: [1]
+    }
+  };
+
+  deepFreeze(state);
+
+  const action = actions.unpurchaseDot('disciplines.inClan', 'Dominate');
+
+  const nextState = reducer(state, action);
+
+  expect(nextState).toEqual({
+    inClan: {
+      availableStartingDots: [{ dots: 2, count: 0 }, { dots: 1, count: 2 }],
+      'Thaumaturgy: Path of Blood': {
+        startingDots: 2,
+        dotsPurchased: 1
+      }
+    },
+    outOfClan: {
+      availableStartingDots: [],
+      'Necromancy: Sepulchre Path': {
+        dotsPurchased: 2
+      }
+    },
+    rituals: {
+      necromantic: [1],
+      thaumaturgic: [1]
+    }
+  });
+});
