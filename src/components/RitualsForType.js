@@ -2,12 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 export default function RitualsForType({
+  ritualType,
+  displayName,
   permutations,
   selected,
   updateRituals
 }) {
   const handleChange = e => {
-    updateRituals('Thaumaturgy: ', JSON.parse(e.target.value)); // TODO: debug
+    const rituals = JSON.parse(e.target.value);
+
+    updateRituals(ritualType, rituals);
   };
 
   const options = permutations.map(p => {
@@ -22,7 +26,7 @@ export default function RitualsForType({
 
   return (
     <div className="row">
-      <div className="col-sm-3">Rituals:</div>
+      <div className="col-sm-3">{displayName} Rituals:</div>
       <div className="col-sm-9">
         <select value={JSON.stringify(selected)} onChange={handleChange}>
           {options}
@@ -33,6 +37,8 @@ export default function RitualsForType({
 }
 
 RitualsForType.propTypes = {
+  ritualType: PropTypes.string.isRequired,
+  displayName: PropTypes.string.isRequired,
   permutations: PropTypes.arrayOf(
     PropTypes.shape({
       description: PropTypes.string.isRequired,

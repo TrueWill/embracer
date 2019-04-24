@@ -7,13 +7,13 @@ export default function Rituals({ rituals, updateRituals }) {
     return null;
   }
 
-  // TODO: Pass ritualType and convert action creator to take that rather than discipline
-  // TODO: Pass displayName and display
   // TODO: Add Bootstrap styling
 
   const ritualsForTypes = rituals.map(r => (
     <RitualsForType
       key={r.ritualType}
+      ritualType={r.ritualType}
+      displayName={r.displayName}
       permutations={r.permutations}
       selected={r.selected}
       updateRituals={updateRituals}

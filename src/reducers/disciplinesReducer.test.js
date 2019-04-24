@@ -369,7 +369,7 @@ it('should update rituals when Thaumaturgic', () => {
 
   deepFreeze(state);
 
-  const action = actions.updateRituals('Thaumaturgy: Path of Blood', [1, 1]);
+  const action = actions.updateRituals('thaumaturgic', [1, 1]);
 
   const nextState = reducer(state, action);
 
@@ -415,7 +415,7 @@ it('should update rituals when Necromantic', () => {
 
   deepFreeze(state);
 
-  const action = actions.updateRituals('Necromancy: Sepulchre Path', [2]);
+  const action = actions.updateRituals('necromantic', [2]);
 
   const nextState = reducer(state, action);
 
