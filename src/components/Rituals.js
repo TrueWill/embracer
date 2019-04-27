@@ -1,13 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import RitualsForType from './RitualsForType';
+import Section from './Section';
 
 export default function Rituals({ rituals, updateRituals }) {
   if (rituals.length === 0) {
     return null;
   }
-
-  // TODO: Add Bootstrap styling
 
   const ritualsForTypes = rituals.map(r => (
     <RitualsForType
@@ -20,12 +19,7 @@ export default function Rituals({ rituals, updateRituals }) {
     />
   ));
 
-  return (
-    <div>
-      <h1>RITUALS</h1>
-      {ritualsForTypes}
-    </div>
-  );
+  return <Section header="Rituals">{ritualsForTypes}</Section>;
 }
 
 Rituals.propTypes = {

@@ -26,11 +26,17 @@ export default function RitualsForType({
 
   return (
     <div className="row">
-      <div className="col-sm-3">{displayName} Rituals:</div>
-      <div className="col-sm-9">
-        <select value={JSON.stringify(selected)} onChange={handleChange}>
-          {options}
-        </select>
+      <div className="col-sm-12">
+        <div className="row">
+          <div className="col-sm-12">{displayName}</div>
+        </div>
+        <div className="row">
+          <div className="col-sm-12">
+            <select value={JSON.stringify(selected)} onChange={handleChange}>
+              {options}
+            </select>
+          </div>
+        </div>
       </div>
     </div>
   );
