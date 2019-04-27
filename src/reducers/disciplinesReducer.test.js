@@ -588,3 +588,106 @@ it('should not clear ritual type when remove non-magic dot', () => {
     }
   });
 });
+
+it('should clear ritual type when change Thaumaturgy starting dots', () => {
+  const state = {
+    inClan: {
+      availableStartingDots: [{ dots: 2, count: 0 }, { dots: 1, count: 2 }],
+      'Thaumaturgy: Path of Blood': {
+        startingDots: 2,
+        dotsPurchased: 1
+      }
+    },
+    outOfClan: {
+      availableStartingDots: [],
+      'Necromancy: Sepulchre Path': {
+        dotsPurchased: 2
+      }
+    },
+    rituals: {
+      necromantic: [1],
+      thaumaturgic: [1]
+    }
+  };
+
+  deepFreeze(state);
+
+  const action = actions.setStartingDots(
+    'disciplines.inClan',
+    'Thaumaturgy: Path of Blood',
+    1
+  );
+
+  const nextState = reducer(state, action);
+
+  expect(nextState).toEqual({
+    inClan: {
+      availableStartingDots: [{ dots: 2, count: 1 }, { dots: 1, count: 1 }],
+      'Thaumaturgy: Path of Blood': {
+        startingDots: 1,
+        dotsPurchased: 1
+      }
+    },
+    outOfClan: {
+      availableStartingDots: [],
+      'Necromancy: Sepulchre Path': {
+        dotsPurchased: 2
+      }
+    },
+    rituals: {
+      necromantic: [1],
+      thaumaturgic: []
+    }
+  });
+});
+
+it('should not clear ritual type when change non-magic starting dots', () => {
+  const state = {
+    inClan: {
+      availableStartingDots: [{ dots: 2, count: 0 }, { dots: 1, count: 1 }],
+      'Thaumaturgy: Path of Blood': {
+        startingDots: 2,
+        dotsPurchased: 1
+      },
+      Dominate: {
+        startingDots: 1
+      }
+    },
+    outOfClan: {
+      availableStartingDots: [],
+      'Necromancy: Sepulchre Path': {
+        dotsPurchased: 2
+      }
+    },
+    rituals: {
+      necromantic: [1],
+      thaumaturgic: [1]
+    }
+  };
+
+  deepFreeze(state);
+
+  const action = actions.setStartingDots('disciplines.inClan', 'Dominate', 0);
+
+  const nextState = reducer(state, action);
+
+  expect(nextState).toEqual({
+    inClan: {
+      availableStartingDots: [{ dots: 2, count: 0 }, { dots: 1, count: 2 }],
+      'Thaumaturgy: Path of Blood': {
+        startingDots: 2,
+        dotsPurchased: 1
+      }
+    },
+    outOfClan: {
+      availableStartingDots: [],
+      'Necromancy: Sepulchre Path': {
+        dotsPurchased: 2
+      }
+    },
+    rituals: {
+      necromantic: [1],
+      thaumaturgic: [1]
+    }
+  });
+});

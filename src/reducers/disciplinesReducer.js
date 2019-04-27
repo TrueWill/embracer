@@ -18,8 +18,27 @@ const getMaxDots = affinity =>
     ? outOfClanDisciplineLevelLimit
     : standardTraitMaxDots;
 
+const clearRitualTypeIfMagic = (trait, state) => {
+  const ritualInfo = getRitualInfoForDiscipline(trait);
+
+  if (
+    ritualInfo.hasRituals &&
+    state.rituals[ritualInfo.ritualType].length > 0
+  ) {
+    return {
+      ...state,
+      rituals: {
+        ...state.rituals,
+        [ritualInfo.ritualType]: []
+      }
+    };
+  }
+
+  return state;
+};
+
 export default (state = initialState.character.disciplines, action) => {
-  let category, trait, startingDots, affinity, maxDots, newState, ritualInfo;
+  let category, trait, startingDots, affinity, maxDots, newState;
 
   switch (action.type) {
     case types.SET_STARTING_DOTS:
@@ -32,7 +51,7 @@ export default (state = initialState.character.disciplines, action) => {
       affinity = getAffinity(category);
       maxDots = getMaxDots(affinity);
 
-      return {
+      newState = {
         ...state,
         [affinity]: setDotsFromStartingDots(
           state[affinity],
@@ -41,6 +60,9 @@ export default (state = initialState.character.disciplines, action) => {
           maxDots
         )
       };
+
+      // Currently clearing ritual type even if increasing starting dots.
+      return clearRitualTypeIfMagic(trait, newState);
     case types.PURCHASE_DOT:
       ({ category, trait } = action.payload);
 
@@ -69,19 +91,7 @@ export default (state = initialState.character.disciplines, action) => {
         [affinity]: removePurchasedDot(state[affinity], trait)
       };
 
-      ritualInfo = getRitualInfoForDiscipline(trait);
-
-      if (ritualInfo.hasRituals) {
-        newState = {
-          ...newState,
-          rituals: {
-            ...newState.rituals,
-            [ritualInfo.ritualType]: []
-          }
-        };
-      }
-
-      return newState;
+      return clearRitualTypeIfMagic(trait, newState);
     case types.UPDATE_RITUALS:
       const { ritualType, rituals } = action.payload;
 
