@@ -48,6 +48,25 @@ const calculateCategoryXPCost = (
     return acc + xpCost;
   }, 0);
 
+const calculateRitualsXPCost = (rituals, dotCost) => {
+  if (dotCost.per !== 'level') {
+    throw new Error(
+      'Rituals XP calculation only supports per level - per was: ' + dotCost.per
+    );
+  }
+
+  return Object.keys(rituals).reduce(
+    (totalXP, key) =>
+      totalXP +
+      rituals[key].reduce((subtotalXP, numberOfRituals, index) => {
+        const level = index + 1;
+        const xp = dotCost.xp * level * numberOfRituals;
+        return subtotalXP + xp;
+      }, 0),
+    0
+  );
+};
+
 const getXP = createSelector(
   [
     getGenerationDetails,
@@ -104,9 +123,10 @@ const getXP = createSelector(
         'startingDots'
       );
 
-    const ritualsXPCost = disciplines.rituals.necromantic
-      .concat(disciplines.rituals.thaumaturgic)
-      .reduce((a, b, idx) => a + b * (idx + 1) * 2, 0); // TODO: working
+    const ritualsXPCost = calculateRitualsXPCost(
+      disciplines.rituals,
+      dotCost.rituals
+    );
 
     const meritsXPCost = merits.currentPoints;
 
