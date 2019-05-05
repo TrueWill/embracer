@@ -2,13 +2,13 @@ import startsWith from 'lodash.startswith';
 
 const numberStrings = ['One', 'Two', 'Three', 'Four', 'Five'];
 
-export function getRitualPermutations(maxLevel, maxRituals) {
-  const getDescription = value => {
-    return value
-      .map((cur, i) => `${cur} Level ${numberStrings[i]}${cur > 1 ? 's' : ''}`)
-      .join(', ');
-  };
+export function getRitualsDescription(rituals) {
+  return rituals
+    .map((cur, i) => `${cur} Level ${numberStrings[i]}${cur > 1 ? 's' : ''}`)
+    .join(', ');
+}
 
+export function getRitualPermutations(maxLevel, maxRituals) {
   if (maxLevel < 1 || maxRituals < 1) {
     return [];
   }
@@ -27,7 +27,7 @@ export function getRitualPermutations(maxLevel, maxRituals) {
       const total = value.reduce((acc, cur) => acc + cur, 0);
 
       if (total <= maxRituals) {
-        const description = getDescription(value);
+        const description = getRitualsDescription(value);
 
         result.push({ description, value });
       }

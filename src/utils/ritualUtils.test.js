@@ -2,7 +2,8 @@ import deepFreeze from 'deep-freeze';
 import {
   getRitualPermutations,
   getRitualInfoForDiscipline,
-  calculateRitualsXPCost
+  calculateRitualsXPCost,
+  getRitualsDescription
 } from './ritualUtils';
 
 describe('getRitualPermutations', () => {
@@ -246,5 +247,37 @@ describe('calculateRitualsXPCost', () => {
     expect(() => {
       calculateRitualsXPCost(rituals, unsupportedDotCost);
     }).toThrow();
+  });
+});
+
+describe('getRitualsDescription', () => {
+  it('should return empty string when no rituals', () => {
+    const rituals = [];
+
+    deepFreeze(rituals);
+
+    const result = getRitualsDescription(rituals);
+
+    expect(result).toBe('');
+  });
+
+  it('should return expected when one level of rituals', () => {
+    const rituals = [3];
+
+    deepFreeze(rituals);
+
+    const result = getRitualsDescription(rituals);
+
+    expect(result).toBe('3 Level Ones');
+  });
+
+  it('should return expected when multiple levels of rituals', () => {
+    const rituals = [1, 1, 2];
+
+    deepFreeze(rituals);
+
+    const result = getRitualsDescription(rituals);
+
+    expect(result).toBe('1 Level One, 1 Level Two, 2 Level Threes');
   });
 });
