@@ -1,6 +1,7 @@
 import Pdf from './Pdf';
 import * as simple from '../selectors/simple';
 import getGenerationDetails from '../selectors/getGenerationDetails';
+import getRituals from '../selectors/getRituals';
 import getXP from '../selectors/getXP';
 
 const exportPdf = state => {
@@ -16,6 +17,7 @@ const exportPdf = state => {
     skills: simple.getSkills(state),
     backgrounds: simple.getBackgrounds(state),
     disciplines: simple.getDisciplines(state),
+    rituals: getRituals(state),
     merits: simple.getSelectedMerits(state),
     flaws: simple.getSelectedFlaws(state),
     morality: simple.getMorality(state),

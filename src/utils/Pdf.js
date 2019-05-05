@@ -6,6 +6,7 @@ import {
 } from './meritFlawUtils';
 import { capitalizeFirstLetter } from './stringUtils';
 import { getTraitNames } from './traitUtils';
+import { getRitualsDescription } from './ritualUtils';
 import { version, docUrl } from '../constants/application';
 import {
   attributeTraitNames,
@@ -82,6 +83,7 @@ export default class Pdf {
     skills,
     backgrounds,
     disciplines,
+    rituals,
     merits,
     flaws,
     morality,
@@ -100,6 +102,7 @@ export default class Pdf {
     this.printSkills(skills);
     this.printBackgrounds(backgrounds);
     this.printDisciplines(disciplines);
+    this.printRituals(rituals);
     this.printMeritsFlaws(merits, flaws);
     this.printBlood(generationDetails);
     this.printWillpower();
@@ -325,6 +328,25 @@ export default class Pdf {
     this.printDisciplinesForAffinity(disciplines, 'inClan');
     this.printDisciplinesForAffinity(disciplines, 'outOfClan');
     this.printLine('* - Out-of-clan', this.column2XPosition);
+  }
+
+  printRituals(rituals) {
+    rituals.forEach(({ displayName, selected }) => {
+      if (selected.length === 0) {
+        return;
+      }
+
+      const description = getRitualsDescription(selected);
+
+      this.printLine(
+        `${displayName} Rituals:`,
+        this.column2XPosition,
+        undefined,
+        { fontStyle: 'bold' }
+      );
+
+      this.printLine(description, this.column2XPosition);
+    });
   }
 
   printMeritsFlaws(merits, flaws) {
