@@ -1,6 +1,8 @@
+import deepFreeze from 'deep-freeze';
 import {
   getRitualPermutations,
-  getRitualInfoForDiscipline
+  getRitualInfoForDiscipline,
+  calculateRitualsXPCost
 } from './ritualUtils';
 
 describe('getRitualPermutations', () => {
@@ -161,5 +163,88 @@ describe('getRitualInfoForDiscipline', () => {
     expect(result).toEqual({
       hasRituals: false
     });
+  });
+});
+
+describe('calculateRitualsXPCost', () => {
+  const dotCost = {
+    xp: 2,
+    per: 'level'
+  };
+
+  deepFreeze(dotCost);
+
+  it('should return 0 when no rituals', () => {
+    const rituals = {
+      necromantic: [],
+      thaumaturgic: []
+    };
+
+    deepFreeze(rituals);
+
+    const result = calculateRitualsXPCost(rituals, dotCost);
+
+    expect(result).toBe(0);
+  });
+
+  it('should return expected when just Thaumaturgic', () => {
+    const rituals = {
+      necromantic: [],
+      thaumaturgic: [1, 1, 1]
+    };
+
+    deepFreeze(rituals);
+
+    const result = calculateRitualsXPCost(rituals, dotCost);
+
+    expect(result).toBe(12);
+  });
+
+  it('should return expected when Thaumaturgic and Necromantic', () => {
+    const rituals = {
+      necromantic: [3, 1],
+      thaumaturgic: [2, 2]
+    };
+
+    deepFreeze(rituals);
+
+    const result = calculateRitualsXPCost(rituals, dotCost);
+
+    expect(result).toBe(22);
+  });
+
+  it('should handle variant cost', () => {
+    const variantDotCost = {
+      xp: 3,
+      per: 'level'
+    };
+
+    const rituals = {
+      necromantic: [2],
+      thaumaturgic: [2, 1]
+    };
+
+    deepFreeze(variantDotCost);
+    deepFreeze(rituals);
+
+    const result = calculateRitualsXPCost(rituals, variantDotCost);
+
+    expect(result).toBe(18);
+  });
+
+  it('should throw when not per level', () => {
+    const rituals = {
+      necromantic: [],
+      thaumaturgic: []
+    };
+
+    const unsupportedDotCost = {
+      xp: 2,
+      per: 'each'
+    };
+
+    expect(() => {
+      calculateRitualsXPCost(rituals, unsupportedDotCost);
+    }).toThrow();
   });
 });

@@ -56,3 +56,22 @@ export function getRitualInfoForDiscipline(disciplineName) {
     hasRituals: false
   };
 }
+
+export function calculateRitualsXPCost(rituals, dotCost) {
+  if (dotCost.per !== 'level') {
+    throw new Error(
+      'Rituals XP calculation only supports per level - per was: ' + dotCost.per
+    );
+  }
+
+  return Object.keys(rituals).reduce(
+    (totalXP, key) =>
+      totalXP +
+      rituals[key].reduce((subtotalXP, numberOfRituals, index) => {
+        const level = index + 1;
+        const xp = dotCost.xp * level * numberOfRituals;
+        return subtotalXP + xp;
+      }, 0),
+    0
+  );
+}

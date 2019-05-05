@@ -519,5 +519,3 @@ it('should cache', () => {
 
   expect(getXP.recomputations()).toBe(previousRecomputations + 1);
 });
-
-// TODO: Add more test coverage of rituals XP
