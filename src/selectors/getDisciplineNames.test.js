@@ -9,7 +9,11 @@ it('should return empty for both affinities if no clan selected', () => {
       },
       disciplines: {
         inClan: {},
-        outOfClan: {}
+        outOfClan: {},
+        rituals: {
+          necromantic: [],
+          thaumaturgic: []
+        }
       }
     }
   };
@@ -32,7 +36,11 @@ it('should return correct values for Brujah', () => {
       },
       disciplines: {
         inClan: {},
-        outOfClan: {}
+        outOfClan: {},
+        rituals: {
+          necromantic: [],
+          thaumaturgic: []
+        }
       }
     }
   };
@@ -55,7 +63,11 @@ it('should return correct initial values for Caitiff', () => {
       },
       disciplines: {
         inClan: {},
-        outOfClan: {}
+        outOfClan: {},
+        rituals: {
+          necromantic: [],
+          thaumaturgic: []
+        }
       }
     }
   };
@@ -91,7 +103,11 @@ it('should return correct values for Caitiff after some in-clan selected', () =>
             startingDots: 2
           }
         },
-        outOfClan: {}
+        outOfClan: {},
+        rituals: {
+          necromantic: [],
+          thaumaturgic: []
+        }
       }
     }
   };
@@ -133,7 +149,11 @@ it('should return correct values for Caitiff after all in-clan selected', () => 
             startingDots: 1
           }
         },
-        outOfClan: {}
+        outOfClan: {},
+        rituals: {
+          necromantic: [],
+          thaumaturgic: []
+        }
       }
     }
   };
@@ -160,7 +180,11 @@ it('should return correct values for bloodline', () => {
       },
       disciplines: {
         inClan: {},
-        outOfClan: {}
+        outOfClan: {},
+        rituals: {
+          necromantic: [],
+          thaumaturgic: []
+        }
       }
     }
   };
