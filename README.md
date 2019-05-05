@@ -18,7 +18,6 @@ Currently deployment is manual, so the site may not reflect the latest changes.
 * Improve styling/responsiveness
 * Print options (A4 size, etc.)
 * Improve test coverage
-* Rituals
 * Techniques (clear if change Generation)
 * Elder Powers (clear if change Generation)
 * Eerie Presence Flaw can be purchased multiple times
