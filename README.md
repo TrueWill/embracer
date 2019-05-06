@@ -15,6 +15,7 @@ Currently deployment is manual, so the site may not reflect the latest changes.
 
 ## To Do
 
+* Long discipline names print over dots
 * Improve styling/responsiveness
 * Print options (A4 size, etc.)
 * Improve test coverage
