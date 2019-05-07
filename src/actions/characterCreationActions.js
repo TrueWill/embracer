@@ -166,3 +166,11 @@ export const updateMoralityIfPointsAvailable = path => (dispatch, getState) => {
     dispatch(updateMorality(path, newMeritPoints));
   }
 };
+
+export const updateRituals = (ritualType, rituals) => ({
+  type: types.UPDATE_RITUALS,
+  payload: {
+    ritualType,
+    rituals
+  }
+});

@@ -126,9 +126,13 @@ it('should calculate values', () => {
         },
         outOfClan: {
           availableStartingDots: [],
-          Dominate: {
+          'Necromancy: Mortis Path': {
             dotsPurchased: 2
           }
+        },
+        rituals: {
+          necromantic: [1, 1],
+          thaumaturgic: []
         }
       },
       merits: [
@@ -163,9 +167,9 @@ it('should calculate values', () => {
   const result = getXP(state);
 
   expect(result).toEqual({
-    spent: 112, // 6+3 + 10+8+10+6+2 + 8+10+4+2+4 + 9+6+9 + 4+8 + 2+1
+    spent: 118, // 6+3 + 10+8+10+6+2 + 8+10+4+2+4 + 9+6+9 + 4+8 + 2+4 + 2+1
     gainedFromFlaws: 7,
-    available: -75,
+    available: -81,
     bankable: 0
   });
 });
@@ -205,7 +209,11 @@ it('should calculate generation costs', () => {
       },
       disciplines: {
         inClan: {},
-        outOfClan: {}
+        outOfClan: {},
+        rituals: {
+          necromantic: [],
+          thaumaturgic: []
+        }
       },
       merits: [],
       flaws: [],
@@ -262,7 +270,11 @@ it('should calculate morality costs', () => {
       },
       disciplines: {
         inClan: {},
-        outOfClan: {}
+        outOfClan: {},
+        rituals: {
+          necromantic: [],
+          thaumaturgic: []
+        }
       },
       merits: [],
       flaws: [],
@@ -357,6 +369,10 @@ it('should calculate bankable when available is less', () => {
         },
         outOfClan: {
           availableStartingDots: []
+        },
+        rituals: {
+          necromantic: [],
+          thaumaturgic: []
         }
       },
       merits: [],
@@ -414,7 +430,11 @@ it('should calculate when merit purchased multiple times', () => {
       },
       disciplines: {
         inClan: {},
-        outOfClan: {}
+        outOfClan: {},
+        rituals: {
+          necromantic: [],
+          thaumaturgic: []
+        }
       },
       merits: [
         {
@@ -477,7 +497,11 @@ it('should cache', () => {
       },
       disciplines: {
         inClan: {},
-        outOfClan: {}
+        outOfClan: {},
+        rituals: {
+          necromantic: [],
+          thaumaturgic: []
+        }
       },
       merits: [],
       flaws: [],

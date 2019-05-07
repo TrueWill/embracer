@@ -167,6 +167,10 @@ const standardDotCost = {
       per: 'newLevel'
     }
   },
+  rituals: {
+    xp: 2,
+    per: 'level'
+  },
   morality: {
     xp: 10,
     per: 'each'

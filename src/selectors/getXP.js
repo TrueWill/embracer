@@ -1,5 +1,6 @@
 import { createSelector } from 'reselect';
 import { initialXP, bankedXPLimit } from '../constants/characterOptions';
+import { calculateRitualsXPCost } from '../utils/ritualUtils';
 import getMerits from './getMerits';
 import getFlaws from './getFlaws';
 import getGenerationDetails from './getGenerationDetails';
@@ -25,7 +26,7 @@ const calculateTraitXPCost = (trait, dotCost, initialLevelProperty) => {
     // sum of 1st n natural numbers is n(n+1)/2 (n is purchased)
     // add initial * purchased to adjust for initial level
     const newLevelsPurchased =
-      dotsPurchased * (dotsPurchased + 1) / 2 + initialLevel * dotsPurchased;
+      (dotsPurchased * (dotsPurchased + 1)) / 2 + initialLevel * dotsPurchased;
 
     return dotCost.xp * newLevelsPurchased;
   }
@@ -104,6 +105,11 @@ const getXP = createSelector(
         'startingDots'
       );
 
+    const ritualsXPCost = calculateRitualsXPCost(
+      disciplines.rituals,
+      dotCost.rituals
+    );
+
     const meritsXPCost = merits.currentPoints;
 
     const moralityXPCost = calculateTraitXPCost(
@@ -117,6 +123,7 @@ const getXP = createSelector(
       skillsXPCost +
       backgroundsXPCost +
       disciplinesXPCost +
+      ritualsXPCost +
       meritsXPCost +
       moralityXPCost;
 
