@@ -12,7 +12,7 @@ export default function ExportDocument({ state }) {
 
   return (
     <button type="button" className="btn btn-dark" onClick={handleClick}>
-      Download PDF (beta)
+      Download PDF
     </button>
   );
 }
