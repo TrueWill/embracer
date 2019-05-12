@@ -306,13 +306,21 @@ export default class Pdf {
     });
   }
 
+  getShortDisciplineName(name) {
+    return name
+      .replace('Thaumaturgy', 'Thau.')
+      .replace('Path of ', '')
+      .replace(/ Path$/, '');
+  }
+
   printDisciplinesForAffinity(allDisciplines, affinity) {
     const disciplines = allDisciplines[affinity];
     const disciplineNames = getTraitNames(disciplines);
 
     disciplineNames.forEach(name => {
       this.printTraitLine(
-        name + (affinity === 'outOfClan' ? '*' : ''),
+        this.getShortDisciplineName(name) +
+          (affinity === 'outOfClan' ? '*' : ''),
         getDots(disciplines[name]),
         standardTraitMaxDots,
         this.column2XPosition
