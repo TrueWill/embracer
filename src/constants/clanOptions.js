@@ -88,7 +88,7 @@ export const clans = arrayToMap([
       bloodlines: arrayToMap([
         [
           'Tlacique',
-          { meritPoints: 2, disciplines: ['Presence', 'Obfuscate', 'Protean'] }
+          { meritPoints: 2, disciplines: ['Obfuscate', 'Presence', 'Protean'] }
         ],
         [
           'Viper',
@@ -143,7 +143,7 @@ export const clans = arrayToMap([
   [
     'Giovanni',
     {
-      disciplines: ['Dominate', 'Potence', 'Necromancy: Sepulchre Path'],
+      disciplines: ['Dominate', 'Necromancy: Sepulchre Path', 'Potence'],
       merits: [
         {
           name: 'Necromantic Expertise',
@@ -164,7 +164,7 @@ export const clans = arrayToMap([
           'Premascine',
           {
             meritPoints: 4,
-            disciplines: ['Dominate', 'Potence', 'Necromancy: Sepulchre Path']
+            disciplines: ['Dominate', 'Necromancy: Sepulchre Path', 'Potence']
           }
         ]
       ])
@@ -173,7 +173,7 @@ export const clans = arrayToMap([
   [
     'Lasombra',
     {
-      disciplines: ['Dominate', 'Potence', 'Obtenebration'],
+      disciplines: ['Dominate', 'Obtenebration', 'Potence'],
       merits: [
         {
           name: 'Angelic Visage',
@@ -463,7 +463,7 @@ export const clans = arrayToMap([
   [
     'Ravnos',
     {
-      disciplines: ['Animalism', 'Fortitude', 'Chimeristry'],
+      disciplines: ['Animalism', 'Chimeristry', 'Fortitude'],
       merits: [
         {
           name: 'Waking Dream',
