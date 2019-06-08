@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import CreatableSelect from 'react-select/lib/Creatable';
+import CreatableSelect from 'react-select/creatable';
 import { archetypes } from '../constants/characterOptions';
 
 export default function Archetype({ archetype, updateArchetype }) {
