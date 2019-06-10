@@ -49,5 +49,5 @@ h1 {
     border-radius: calc(.25rem - 1px) calc(.25rem - 1px) 0 0;
     height: auto;
     border: 1px solid white;
-    border-image: url(doily.png) 40;
+    border-image: url(doily.png);
 }
