@@ -7,3 +7,46 @@ body {
 .pointer {
   cursor: pointer;
 }
+body {
+    margin: 0;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #ffffff, opacity 80.0%;
+    text-align: left;
+    background-color: #000;
+}
+h1 {
+    font-size: 2.5rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 52px;
+    line-height: 52px;
+    text-align: center;
+}
+.App_version__17zth {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    line-height: 28px;
+}
+.btn-dark {
+    color: #fff;
+    background-color: #c4171d;
+    color: ##ffffff;
+    font-size:12px;
+    line-height:16.8px;
+    box-shadow: rgb(0, 0, 0) 0px 1px 21px 5px;
+    border-color: #343a40;
+    font-family: 'gill-sans-nova', Arial, sans-serif;
+}
+.card-header {
+    padding: .75rem 1.25rem;
+    margin-bottom: 0;
+    background-color: rgba(0,0,0,.03);
+    border-bottom: 1px solid rgba(0,0,0,.125);
+    font-family: 'Cormorant Garamond', serif;
+    border-radius: calc(.25rem - 1px) calc(.25rem - 1px) 0 0;
+    height: auto;
+    border: 1px solid white;
+    border-image: url(doily.png) 40;
+}
