@@ -59,7 +59,8 @@ export const settings = arrayToMap([
           name: 'Untrained Combatant',
           points: 3
         }
-      ]
+      ],
+      backgrounds: []
     }
   ],
   [
@@ -128,7 +129,8 @@ export const settings = arrayToMap([
           name: 'Tenuous Loyalty',
           points: 3
         }
-      ]
+      ],
+      backgrounds: ['rituals']
     }
   ],
   [
@@ -197,14 +199,16 @@ export const settings = arrayToMap([
           name: 'Once Enslaved',
           points: 2
         }
-      ]
+      ],
+      backgrounds: []
     }
   ],
   [
     'Other',
     {
       merits: [],
-      flaws: []
+      flaws: [],
+      backgrounds: []
     }
   ]
 ]);

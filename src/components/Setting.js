@@ -25,7 +25,9 @@ export default function Setting({ setting, updateSetting }) {
         </div>
       </div>
       <div className="row">
-        <div className="col-sm-9">(changing will reset Merits and Flaws)</div>
+        <div className="col-sm-9">
+          (changing will reset Merits, Flaws, and Backgrounds)
+        </div>
       </div>
     </Section>
   );

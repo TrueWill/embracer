@@ -1,4 +1,5 @@
 import { connect } from 'react-redux';
+import getSpecificBackgrounds from '../selectors/getSpecificBackgrounds';
 import { getCharacter, getClanName } from '../selectors/simple';
 import {
   setStartingDots,
@@ -24,9 +25,13 @@ const mapStateToProps = (state, ownProps) => {
     adjustAvailable = availableStartingDots => availableStartingDots;
   }
 
+  const specificNames =
+    categoryName === 'backgrounds' ? getSpecificBackgrounds(state) : [];
+
   return {
     categoryTraits: getCharacter(state)[categoryName],
-    adjustAvailable
+    adjustAvailable,
+    specificNames
   };
 };
 
@@ -35,4 +40,7 @@ const mapDispatchToProps = {
   purchaseOrUnpurchaseDot
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(TraitCategory);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(TraitCategory);

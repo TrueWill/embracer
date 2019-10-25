@@ -21,7 +21,6 @@ Currently deployment is manual, so the site may not reflect the latest changes.
 * Techniques (clear if change Generation)
 * Elder Powers (clear if change Generation)
 * Eerie Presence Flaw can be purchased multiple times
-* Setting-specific (Sabbat) Rituals Background
 * Anarch Movement Generation merit and Path costs
 * True Brujah cannot purchase Empathy and pay double XP for dots of Morality
 * Premascine can learn Necromancy: Mortis Path as out-of-clan

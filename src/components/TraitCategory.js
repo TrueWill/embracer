@@ -9,6 +9,7 @@ import chunk from 'lodash.chunk';
 export default function TraitCategory({
   categoryName,
   traitNames,
+  specificNames,
   traitDisplayNameOverride,
   categoryTraits,
   adjustAvailable,
@@ -23,7 +24,12 @@ export default function TraitCategory({
     purchaseOrUnpurchaseDot(categoryName, trait);
   };
 
-  const traits = traitNames.map(name => {
+  const allTraitNames =
+    specificNames && specificNames.length
+      ? traitNames.concat(specificNames)
+      : traitNames;
+
+  const traits = allTraitNames.map(name => {
     const traitState = categoryTraits[name] || {};
 
     const availableStartingDots = adjustAvailable(
@@ -69,6 +75,7 @@ export default function TraitCategory({
 TraitCategory.propTypes = {
   categoryName: PropTypes.string.isRequired,
   traitNames: PropTypes.arrayOf(PropTypes.string).isRequired,
+  specificNames: PropTypes.arrayOf(PropTypes.string),
   traitDisplayNameOverride: PropTypes.object.isRequired,
   categoryTraits: PropTypes.object.isRequired,
   adjustAvailable: PropTypes.func.isRequired,
