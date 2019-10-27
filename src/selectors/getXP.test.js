@@ -298,6 +298,68 @@ it('should calculate morality costs', () => {
   });
 });
 
+it('should calculate morality costs when True Brujah', () => {
+  const state = {
+    character: {
+      basicInfo: {
+        archetype: '',
+        clan: { name: 'Brujah', bloodline: 'True Brujah', meritPoints: 4 }
+      },
+      attributes: {
+        physical: {},
+        social: {},
+        mental: {}
+      },
+      skills: {},
+      backgrounds: {
+        availableStartingDots: [
+          {
+            dots: 3,
+            count: 1
+          },
+          {
+            dots: 2,
+            count: 1
+          },
+          {
+            dots: 1,
+            count: 0
+          }
+        ],
+        generation: {
+          startingDots: 1
+        }
+      },
+      disciplines: {
+        inClan: {},
+        outOfClan: {},
+        rituals: {
+          necromantic: [],
+          thaumaturgic: []
+        }
+      },
+      merits: [],
+      flaws: [],
+      morality: {
+        path: 'Humanity',
+        startingDots: 5,
+        dotsPurchased: 1
+      }
+    }
+  };
+
+  deepFreeze(state);
+
+  const result = getXP(state);
+
+  expect(result).toEqual({
+    spent: 24,
+    gainedFromFlaws: 0,
+    available: 6,
+    bankable: 5
+  });
+});
+
 it('should calculate bankable when available is less', () => {
   const state = {
     mode: {

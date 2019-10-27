@@ -22,7 +22,7 @@ Currently deployment is manual, so the site may not reflect the latest changes.
 * Elder Powers (clear if change Generation)
 * Eerie Presence Flaw can be purchased multiple times
 * Anarch Movement Generation merit and Path costs
-* True Brujah cannot purchase Empathy and pay double XP for dots of Morality
+* True Brujah cannot purchase Empathy
 * Premascine can learn Necromancy: Mortis Path as out-of-clan
 * Volgirre can learn Vicissitude out-of-clan (up to 2 dots)
 * Carpathians can learn Protean out-of-clan and cannot take the Szlachta merit

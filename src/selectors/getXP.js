@@ -9,7 +9,8 @@ import {
   getSkills,
   getBackgrounds,
   getDisciplines,
-  getMorality
+  getMorality,
+  getBloodline
 } from './simple';
 
 const calculateTraitXPCost = (trait, dotCost, initialLevelProperty) => {
@@ -58,7 +59,8 @@ const getXP = createSelector(
     getDisciplines,
     getMorality,
     getMerits,
-    getFlaws
+    getFlaws,
+    getBloodline
   ],
   (
     generationDetails,
@@ -68,7 +70,8 @@ const getXP = createSelector(
     disciplines,
     morality,
     merits,
-    flaws
+    flaws,
+    bloodline
   ) => {
     const dotCost = generationDetails.dotCost;
 
@@ -112,11 +115,16 @@ const getXP = createSelector(
 
     const meritsXPCost = merits.currentPoints;
 
-    const moralityXPCost = calculateTraitXPCost(
+    let moralityXPCost = calculateTraitXPCost(
       morality,
       dotCost.morality,
       'startingDots'
     );
+
+    // True Brujah pay double the normal XP costs for dots of Morality.
+    if (bloodline === 'True Brujah') {
+      moralityXPCost *= 2;
+    }
 
     const spent =
       attributesXPCost +
