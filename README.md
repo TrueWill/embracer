@@ -9,7 +9,7 @@ This tool is unofficial, and the author is not affiliated with the companies men
 
 ## Live
 
-Deployed to http://truewill-embracer.s3-website.us-east-2.amazonaws.com/
+Deployed to https://www.met-embracer.com/
 
 Currently deployment is manual, so the site may not reflect the latest changes.
 
