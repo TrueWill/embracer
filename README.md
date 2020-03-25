@@ -15,7 +15,6 @@ Currently deployment is manual, so the site may not reflect the latest changes.
 
 ## To Do
 
-* Improve styling/responsiveness
 * Print options (A4 size, etc.)
 * Improve test coverage
 * Techniques (clear if change Generation)
@@ -34,7 +33,7 @@ Currently deployment is manual, so the site may not reflect the latest changes.
 
 ### Standards
 
-* [Prettier](https://prettier.io/) with single quotes
+* [Prettier](https://prettier.io/) v1 with single quotes
 * [EditorConfig](http://editorconfig.org/)
 * [Yarn](https://yarnpkg.com/en/)
 * [prop-types](https://github.com/facebook/prop-types)
@@ -52,6 +51,8 @@ Currently deployment is manual, so the site may not reflect the latest changes.
 ## Acknowledgements
 
 Built with [React](https://reactjs.org/) and [Redux](https://redux.js.org/) - thanks so much to Facebook, Dan Abramov, Mark Erikson, and all contributors!
+
+Special thanks to my lovely wife [hellomandie](https://github.com/hellomandie) for styling the app!
 
 Thanks to Anthony Accomazzo for his article on [deploying a React app to Amazon's S3](https://www.fullstackreact.com/articles/deploying-a-react-app-to-s3/).
 
