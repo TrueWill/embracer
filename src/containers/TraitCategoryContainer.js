@@ -40,7 +40,4 @@ const mapDispatchToProps = {
   purchaseOrUnpurchaseDot
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(TraitCategory);
+export default connect(mapStateToProps, mapDispatchToProps)(TraitCategory);

@@ -17,11 +17,12 @@ export const setDotsFromStartingDots = (
     return categoryTraits;
   }
 
-  const availableStartingDots = categoryTraits.availableStartingDots.map(
-    a =>
-      a.dots === startingDots
-        ? { ...a, count: a.count - 1 }
-        : a.dots === previousStartingDots ? { ...a, count: a.count + 1 } : a
+  const availableStartingDots = categoryTraits.availableStartingDots.map(a =>
+    a.dots === startingDots
+      ? { ...a, count: a.count - 1 }
+      : a.dots === previousStartingDots
+      ? { ...a, count: a.count + 1 }
+      : a
   );
 
   const updatedTrait =

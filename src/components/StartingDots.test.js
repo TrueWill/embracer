@@ -41,7 +41,10 @@ it('should display only clear when no current value and none available', () => {
 it('should display only clear and other values when no current value', () => {
   const wrapper = shallow(
     <StartingDots
-      available={[{ dots: 4, count: 1 }, { dots: 3, count: 2 }]}
+      available={[
+        { dots: 4, count: 1 },
+        { dots: 3, count: 2 }
+      ]}
       onChange={noop}
     />
   );

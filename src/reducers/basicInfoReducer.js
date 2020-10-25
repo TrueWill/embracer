@@ -1,7 +1,7 @@
 import initialState from './initialState';
 import * as types from '../constants/actionTypes';
 
-export default (state = initialState.character.basicInfo, action) => {
+const basicInfoReducer = (state = initialState.character.basicInfo, action) => {
   switch (action.type) {
     case types.UPDATE_ARCHETYPE:
       return { ...state, archetype: action.payload };
@@ -11,3 +11,5 @@ export default (state = initialState.character.basicInfo, action) => {
       return state;
   }
 };
+
+export default basicInfoReducer;

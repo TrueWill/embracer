@@ -16,7 +16,10 @@ it('should initialize', () => {
 it('should set starting dots', () => {
   const state = {
     inClan: {
-      availableStartingDots: [{ dots: 2, count: 1 }, { dots: 1, count: 2 }]
+      availableStartingDots: [
+        { dots: 2, count: 1 },
+        { dots: 1, count: 2 }
+      ]
     },
     outOfClan: {
       availableStartingDots: []
@@ -35,7 +38,10 @@ it('should set starting dots', () => {
 
   expect(nextState).toEqual({
     inClan: {
-      availableStartingDots: [{ dots: 2, count: 0 }, { dots: 1, count: 2 }],
+      availableStartingDots: [
+        { dots: 2, count: 0 },
+        { dots: 1, count: 2 }
+      ],
       Celerity: {
         startingDots: 2
       }
@@ -53,7 +59,10 @@ it('should set starting dots', () => {
 it('should add subsequent purchased dot in-clan', () => {
   const state = {
     inClan: {
-      availableStartingDots: [{ dots: 2, count: 0 }, { dots: 1, count: 2 }],
+      availableStartingDots: [
+        { dots: 2, count: 0 },
+        { dots: 1, count: 2 }
+      ],
       Celerity: {
         startingDots: 2,
         dotsPurchased: 2
@@ -79,7 +88,10 @@ it('should add subsequent purchased dot in-clan', () => {
 
   expect(nextState).toEqual({
     inClan: {
-      availableStartingDots: [{ dots: 2, count: 0 }, { dots: 1, count: 2 }],
+      availableStartingDots: [
+        { dots: 2, count: 0 },
+        { dots: 1, count: 2 }
+      ],
       Celerity: {
         startingDots: 2,
         dotsPurchased: 3
@@ -101,7 +113,10 @@ it('should add subsequent purchased dot in-clan', () => {
 it('should add subsequent purchased dot out-of-clan', () => {
   const state = {
     inClan: {
-      availableStartingDots: [{ dots: 2, count: 0 }, { dots: 1, count: 2 }],
+      availableStartingDots: [
+        { dots: 2, count: 0 },
+        { dots: 1, count: 2 }
+      ],
       Celerity: {
         startingDots: 2,
         dotsPurchased: 2
@@ -130,7 +145,10 @@ it('should add subsequent purchased dot out-of-clan', () => {
 
   expect(nextState).toEqual({
     inClan: {
-      availableStartingDots: [{ dots: 2, count: 0 }, { dots: 1, count: 2 }],
+      availableStartingDots: [
+        { dots: 2, count: 0 },
+        { dots: 1, count: 2 }
+      ],
       Celerity: {
         startingDots: 2,
         dotsPurchased: 2
@@ -155,7 +173,10 @@ it('should add subsequent purchased dot out-of-clan', () => {
 it('should clear if change clan', () => {
   const state = {
     inClan: {
-      availableStartingDots: [{ dots: 2, count: 0 }, { dots: 1, count: 2 }],
+      availableStartingDots: [
+        { dots: 2, count: 0 },
+        { dots: 1, count: 2 }
+      ],
       'Thaumaturgy: Path of Blood': {
         startingDots: 2,
         dotsPurchased: 1
@@ -181,7 +202,10 @@ it('should clear if change clan', () => {
 
   expect(nextState).toEqual({
     inClan: {
-      availableStartingDots: [{ dots: 2, count: 1 }, { dots: 1, count: 2 }]
+      availableStartingDots: [
+        { dots: 2, count: 1 },
+        { dots: 1, count: 2 }
+      ]
     },
     outOfClan: {
       availableStartingDots: []
@@ -196,7 +220,10 @@ it('should clear if change clan', () => {
 it('should remove initial purchased dot and discipline if no other properties', () => {
   const state = {
     inClan: {
-      availableStartingDots: [{ dots: 2, count: 1 }, { dots: 1, count: 2 }],
+      availableStartingDots: [
+        { dots: 2, count: 1 },
+        { dots: 1, count: 2 }
+      ],
       Celerity: {
         dotsPurchased: 1
       }
@@ -218,7 +245,10 @@ it('should remove initial purchased dot and discipline if no other properties', 
 
   expect(nextState).toEqual({
     inClan: {
-      availableStartingDots: [{ dots: 2, count: 1 }, { dots: 1, count: 2 }]
+      availableStartingDots: [
+        { dots: 2, count: 1 },
+        { dots: 1, count: 2 }
+      ]
     },
     outOfClan: {
       availableStartingDots: []
@@ -233,7 +263,10 @@ it('should remove initial purchased dot and discipline if no other properties', 
 it('should reduce purchased dots exceeding max when set starting dots', () => {
   const state = {
     inClan: {
-      availableStartingDots: [{ dots: 2, count: 1 }, { dots: 1, count: 2 }],
+      availableStartingDots: [
+        { dots: 2, count: 1 },
+        { dots: 1, count: 2 }
+      ],
       Celerity: {
         dotsPurchased: 4
       }
@@ -255,7 +288,10 @@ it('should reduce purchased dots exceeding max when set starting dots', () => {
 
   expect(nextState).toEqual({
     inClan: {
-      availableStartingDots: [{ dots: 2, count: 0 }, { dots: 1, count: 2 }],
+      availableStartingDots: [
+        { dots: 2, count: 0 },
+        { dots: 1, count: 2 }
+      ],
       Celerity: {
         startingDots: 2,
         dotsPurchased: 3
@@ -274,7 +310,10 @@ it('should reduce purchased dots exceeding max when set starting dots', () => {
 it('should do nothing if purchased dot would exceed max in-clan', () => {
   const state = {
     inClan: {
-      availableStartingDots: [{ dots: 2, count: 0 }, { dots: 1, count: 2 }],
+      availableStartingDots: [
+        { dots: 2, count: 0 },
+        { dots: 1, count: 2 }
+      ],
       Celerity: {
         startingDots: 2,
         dotsPurchased: 3
@@ -301,7 +340,10 @@ it('should do nothing if purchased dot would exceed max in-clan', () => {
 it('should do nothing if purchased dot would exceed max out-of-clan', () => {
   const state = {
     inClan: {
-      availableStartingDots: [{ dots: 2, count: 1 }, { dots: 1, count: 2 }]
+      availableStartingDots: [
+        { dots: 2, count: 1 },
+        { dots: 1, count: 2 }
+      ]
     },
     outOfClan: {
       availableStartingDots: [],
@@ -327,7 +369,10 @@ it('should do nothing if purchased dot would exceed max out-of-clan', () => {
 it('should do nothing when purchased dot category does not match', () => {
   const state = {
     inClan: {
-      availableStartingDots: [{ dots: 2, count: 1 }, { dots: 1, count: 2 }]
+      availableStartingDots: [
+        { dots: 2, count: 1 },
+        { dots: 1, count: 2 }
+      ]
     },
     outOfClan: {
       availableStartingDots: []
@@ -350,7 +395,10 @@ it('should do nothing when purchased dot category does not match', () => {
 it('should update rituals when Thaumaturgic', () => {
   const state = {
     inClan: {
-      availableStartingDots: [{ dots: 2, count: 0 }, { dots: 1, count: 2 }],
+      availableStartingDots: [
+        { dots: 2, count: 0 },
+        { dots: 1, count: 2 }
+      ],
       'Thaumaturgy: Path of Blood': {
         startingDots: 2
       }
@@ -375,7 +423,10 @@ it('should update rituals when Thaumaturgic', () => {
 
   expect(nextState).toEqual({
     inClan: {
-      availableStartingDots: [{ dots: 2, count: 0 }, { dots: 1, count: 2 }],
+      availableStartingDots: [
+        { dots: 2, count: 0 },
+        { dots: 1, count: 2 }
+      ],
       'Thaumaturgy: Path of Blood': {
         startingDots: 2
       }
@@ -396,7 +447,10 @@ it('should update rituals when Thaumaturgic', () => {
 it('should update rituals when Necromantic', () => {
   const state = {
     inClan: {
-      availableStartingDots: [{ dots: 2, count: 0 }, { dots: 1, count: 2 }],
+      availableStartingDots: [
+        { dots: 2, count: 0 },
+        { dots: 1, count: 2 }
+      ],
       'Thaumaturgy: Path of Blood': {
         startingDots: 2
       }
@@ -421,7 +475,10 @@ it('should update rituals when Necromantic', () => {
 
   expect(nextState).toEqual({
     inClan: {
-      availableStartingDots: [{ dots: 2, count: 0 }, { dots: 1, count: 2 }],
+      availableStartingDots: [
+        { dots: 2, count: 0 },
+        { dots: 1, count: 2 }
+      ],
       'Thaumaturgy: Path of Blood': {
         startingDots: 2
       }
@@ -442,7 +499,10 @@ it('should update rituals when Necromantic', () => {
 it('should clear ritual type when remove Necromancy dot', () => {
   const state = {
     inClan: {
-      availableStartingDots: [{ dots: 2, count: 0 }, { dots: 1, count: 2 }],
+      availableStartingDots: [
+        { dots: 2, count: 0 },
+        { dots: 1, count: 2 }
+      ],
       'Thaumaturgy: Path of Blood': {
         startingDots: 2
       }
@@ -470,7 +530,10 @@ it('should clear ritual type when remove Necromancy dot', () => {
 
   expect(nextState).toEqual({
     inClan: {
-      availableStartingDots: [{ dots: 2, count: 0 }, { dots: 1, count: 2 }],
+      availableStartingDots: [
+        { dots: 2, count: 0 },
+        { dots: 1, count: 2 }
+      ],
       'Thaumaturgy: Path of Blood': {
         startingDots: 2
       }
@@ -491,7 +554,10 @@ it('should clear ritual type when remove Necromancy dot', () => {
 it('should clear ritual type when remove Thaumaturgy dot', () => {
   const state = {
     inClan: {
-      availableStartingDots: [{ dots: 2, count: 0 }, { dots: 1, count: 2 }],
+      availableStartingDots: [
+        { dots: 2, count: 0 },
+        { dots: 1, count: 2 }
+      ],
       'Thaumaturgy: Path of Blood': {
         startingDots: 2,
         dotsPurchased: 1
@@ -520,7 +586,10 @@ it('should clear ritual type when remove Thaumaturgy dot', () => {
 
   expect(nextState).toEqual({
     inClan: {
-      availableStartingDots: [{ dots: 2, count: 0 }, { dots: 1, count: 2 }],
+      availableStartingDots: [
+        { dots: 2, count: 0 },
+        { dots: 1, count: 2 }
+      ],
       'Thaumaturgy: Path of Blood': {
         startingDots: 2
       }
@@ -541,7 +610,10 @@ it('should clear ritual type when remove Thaumaturgy dot', () => {
 it('should not clear ritual type when remove non-magic dot', () => {
   const state = {
     inClan: {
-      availableStartingDots: [{ dots: 2, count: 0 }, { dots: 1, count: 2 }],
+      availableStartingDots: [
+        { dots: 2, count: 0 },
+        { dots: 1, count: 2 }
+      ],
       'Thaumaturgy: Path of Blood': {
         startingDots: 2,
         dotsPurchased: 1
@@ -570,7 +642,10 @@ it('should not clear ritual type when remove non-magic dot', () => {
 
   expect(nextState).toEqual({
     inClan: {
-      availableStartingDots: [{ dots: 2, count: 0 }, { dots: 1, count: 2 }],
+      availableStartingDots: [
+        { dots: 2, count: 0 },
+        { dots: 1, count: 2 }
+      ],
       'Thaumaturgy: Path of Blood': {
         startingDots: 2,
         dotsPurchased: 1
@@ -592,7 +667,10 @@ it('should not clear ritual type when remove non-magic dot', () => {
 it('should clear ritual type when change Thaumaturgy starting dots', () => {
   const state = {
     inClan: {
-      availableStartingDots: [{ dots: 2, count: 0 }, { dots: 1, count: 2 }],
+      availableStartingDots: [
+        { dots: 2, count: 0 },
+        { dots: 1, count: 2 }
+      ],
       'Thaumaturgy: Path of Blood': {
         startingDots: 2,
         dotsPurchased: 1
@@ -622,7 +700,10 @@ it('should clear ritual type when change Thaumaturgy starting dots', () => {
 
   expect(nextState).toEqual({
     inClan: {
-      availableStartingDots: [{ dots: 2, count: 1 }, { dots: 1, count: 1 }],
+      availableStartingDots: [
+        { dots: 2, count: 1 },
+        { dots: 1, count: 1 }
+      ],
       'Thaumaturgy: Path of Blood': {
         startingDots: 1,
         dotsPurchased: 1
@@ -644,7 +725,10 @@ it('should clear ritual type when change Thaumaturgy starting dots', () => {
 it('should not clear ritual type when change non-magic starting dots', () => {
   const state = {
     inClan: {
-      availableStartingDots: [{ dots: 2, count: 0 }, { dots: 1, count: 1 }],
+      availableStartingDots: [
+        { dots: 2, count: 0 },
+        { dots: 1, count: 1 }
+      ],
       'Thaumaturgy: Path of Blood': {
         startingDots: 2,
         dotsPurchased: 1
@@ -673,7 +757,10 @@ it('should not clear ritual type when change non-magic starting dots', () => {
 
   expect(nextState).toEqual({
     inClan: {
-      availableStartingDots: [{ dots: 2, count: 0 }, { dots: 1, count: 2 }],
+      availableStartingDots: [
+        { dots: 2, count: 0 },
+        { dots: 1, count: 2 }
+      ],
       'Thaumaturgy: Path of Blood': {
         startingDots: 2,
         dotsPurchased: 1

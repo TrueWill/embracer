@@ -1,7 +1,7 @@
 import initialState from './initialState';
 import * as types from '../constants/actionTypes';
 
-export default (state = initialState.mode, action) => {
+const modeReducer = (state = initialState.mode, action) => {
   switch (action.type) {
     case types.TOGGLE_PENCIL_ERASER_MODE:
       return { ...state, isEraser: !state.isEraser };
@@ -9,3 +9,5 @@ export default (state = initialState.mode, action) => {
       return state;
   }
 };
+
+export default modeReducer;

@@ -9,7 +9,10 @@ import {
 
 const isAttributes = category => category === 'attributes';
 
-export default (state = initialState.character.attributes, action) => {
+const attributesReducer = (
+  state = initialState.character.attributes,
+  action
+) => {
   let category, trait, dotsFromRank;
 
   switch (action.type) {
@@ -54,3 +57,5 @@ export default (state = initialState.character.attributes, action) => {
       return state;
   }
 };
+
+export default attributesReducer;

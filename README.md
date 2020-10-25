@@ -33,7 +33,7 @@ Currently deployment is manual, so the site may not reflect the latest changes.
 
 ### Standards
 
-* [Prettier](https://prettier.io/) v1 with single quotes
+* [Prettier](https://prettier.io/) v1 with single quotes (`yarn prettify`)
 * [EditorConfig](http://editorconfig.org/)
 * [Yarn](https://yarnpkg.com/en/)
 * [prop-types](https://github.com/facebook/prop-types)

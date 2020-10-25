@@ -23,7 +23,7 @@ backgrounds = setDotsFromStartingDots(
   standardTraitMaxDots
 );
 
-export default {
+const initialState = {
   mode: {
     isEraser: false
   },
@@ -63,3 +63,5 @@ export default {
     }
   }
 };
+
+export default initialState;
