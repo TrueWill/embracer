@@ -9,7 +9,7 @@ import {
 
 const isBackgrounds = category => category === 'backgrounds';
 
-export default (state = initialState.character.backgrounds, action) => {
+const backgroundsReducer = (state = initialState.character.backgrounds, action) => {
   let category, trait, startingDots;
 
   switch (action.type) {
@@ -55,3 +55,5 @@ export default (state = initialState.character.backgrounds, action) => {
       return state;
   }
 };
+
+export default backgroundsReducer;

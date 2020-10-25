@@ -9,7 +9,7 @@ import {
 
 const isSkills = category => category === 'skills';
 
-export default (state = initialState.character.skills, action) => {
+const skillsReducer = (state = initialState.character.skills, action) => {
   let category, trait, startingDots;
 
   switch (action.type) {
@@ -46,3 +46,5 @@ export default (state = initialState.character.skills, action) => {
       return state;
   }
 };
+
+export default skillsReducer;

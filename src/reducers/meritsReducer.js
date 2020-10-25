@@ -2,7 +2,7 @@ import initialState from './initialState';
 import * as types from '../constants/actionTypes';
 import { removeProperty } from '../utils/objectUtils';
 
-export default (state = initialState.character.merits, action) => {
+const meritsReducer = (state = initialState.character.merits, action) => {
   let name, newState;
 
   switch (action.type) {
@@ -56,3 +56,5 @@ export default (state = initialState.character.merits, action) => {
       return state;
   }
 };
+
+export default meritsReducer;

@@ -37,7 +37,7 @@ const clearRitualTypeIfMagic = (trait, state) => {
   return state;
 };
 
-export default (state = initialState.character.disciplines, action) => {
+const disciplinesReducer = (state = initialState.character.disciplines, action) => {
   let category, trait, startingDots, affinity, maxDots, newState;
 
   switch (action.type) {
@@ -109,3 +109,5 @@ export default (state = initialState.character.disciplines, action) => {
       return state;
   }
 };
+
+export default disciplinesReducer;

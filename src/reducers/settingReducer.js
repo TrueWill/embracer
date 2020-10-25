@@ -1,7 +1,7 @@
 import initialState from './initialState';
 import * as types from '../constants/actionTypes';
 
-export default (state = initialState.setting, action) => {
+const settingReducer = (state = initialState.setting, action) => {
   switch (action.type) {
     case types.UPDATE_SETTING:
       return { ...state, name: action.payload.name };
@@ -9,3 +9,5 @@ export default (state = initialState.setting, action) => {
       return state;
   }
 };
+
+export default settingReducer;

@@ -1,7 +1,7 @@
 import initialState from './initialState';
 import * as types from '../constants/actionTypes';
 
-export default (state = initialState.character.flaws, action) => {
+const flawsReducer = (state = initialState.character.flaws, action) => {
   switch (action.type) {
     case types.ADD_FLAW:
       const newState = state.slice();
@@ -17,3 +17,5 @@ export default (state = initialState.character.flaws, action) => {
       return state;
   }
 };
+
+export default flawsReducer;
