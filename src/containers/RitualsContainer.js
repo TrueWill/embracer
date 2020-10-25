@@ -11,7 +11,4 @@ const mapDispatchToProps = {
   updateRituals
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Rituals);
+export default connect(mapStateToProps, mapDispatchToProps)(Rituals);

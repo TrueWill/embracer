@@ -3,7 +3,10 @@ import { arrayToMap, mapKeysToArray } from './mapUtils';
 
 describe('arrayToMap', () => {
   it('should create map from 2D array', () => {
-    const a = [['key1', 'value1'], ['key2', 'value2']];
+    const a = [
+      ['key1', 'value1'],
+      ['key2', 'value2']
+    ];
 
     deepFreeze(a);
 

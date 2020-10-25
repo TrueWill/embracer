@@ -9,7 +9,10 @@ import {
 
 const isBackgrounds = category => category === 'backgrounds';
 
-const backgroundsReducer = (state = initialState.character.backgrounds, action) => {
+const backgroundsReducer = (
+  state = initialState.character.backgrounds,
+  action
+) => {
   let category, trait, startingDots;
 
   switch (action.type) {
