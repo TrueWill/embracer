@@ -26,20 +26,19 @@ import styles from './App.module.css';
 
 export default function App() {
   return (
-    <div className="container-fluid">
-      <h1>
-        Embracer
-        <span className={styles.version}> v{version}</span>
-      </h1>
-      <ExportDocumentContainer />
-      <SettingContainer />
-      <Section header="Character">
-        <ArchetypeContainer />
-        <ClanContainer />
-        <PencilEraserContainer />
-      </Section>
-      <React.StrictMode>
-        {/* react-select in Archetype fails StrictMode */}
+    <React.StrictMode>
+      <div className="container-fluid">
+        <h1>
+          Embracer
+          <span className={styles.version}> v{version}</span>
+        </h1>
+        <ExportDocumentContainer />
+        <SettingContainer />
+        <Section header="Character">
+          <ArchetypeContainer />
+          <ClanContainer />
+          <PencilEraserContainer />
+        </Section>
         <ValidationContainer />
         <XPContainer />
         <AttributesContainer />
@@ -97,7 +96,7 @@ export default function App() {
             companies mentioned above.
           </div>
         </div>
-      </React.StrictMode>
-    </div>
+      </div>
+    </React.StrictMode>
   );
 }
