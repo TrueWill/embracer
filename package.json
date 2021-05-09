@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "classnames": "^2.2.6",
+    "classnames": "^2.3.1",
     "jspdf": "^2.3.1",
     "lodash.chunk": "^4.2.0",
     "lodash.startswith": "^4.2.1",
