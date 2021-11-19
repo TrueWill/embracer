@@ -12,7 +12,6 @@
     "react-app-polyfill": "^2.0.0",
     "react-dom": "^17.0.2",
     "react-redux": "^7.2.6",
-    "react-scripts": "4.0.3",
     "react-select": "^4.3.1",
     "redux": "^4.1.2",
     "redux-devtools-extension": "^2.13.9",
@@ -33,7 +32,8 @@
     "deep-freeze": "^0.0.1",
     "enzyme": "^3.11.0",
     "lodash.clonedeep": "^4.5.0",
-    "prettier": "1"
+    "prettier": "1",
+    "react-scripts": "4.0.3"
   },
   "browserslist": [
     ">0.2%",
