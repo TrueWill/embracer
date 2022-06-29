@@ -1,6 +1,12 @@
-// Utilities for use in unit tests, typically for use with enzyme.
+import { within } from '@testing-library/react';
+// Utilities for use in unit tests.
 
 export const noop = () => {};
+
+export const getOptionValues2 = select =>
+  within(select)
+    .getAllByRole('option')
+    .map(o => o.getAttribute('value'));
 
 export const getFirstSelect = wrapper => wrapper.find('select').first();
 export const getSecondSelect = wrapper => wrapper.find('select').at(1);
