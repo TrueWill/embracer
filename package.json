@@ -28,6 +28,9 @@
     "prettify": "prettier --write src/**/*.js"
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^5.16.4",
+    "@testing-library/react": "v12",
+    "@testing-library/user-event": "v12",
     "@wojtekmaj/enzyme-adapter-react-17": "^0.6.5",
     "deep-freeze": "^0.0.1",
     "enzyme": "^3.11.0",
