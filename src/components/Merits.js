@@ -71,7 +71,11 @@ export default function Merits({
   return (
     <Section header="Merits">
       <ul>{selectedList}</ul>
-      <select value={selectedValue} onChange={handleSelectChange}>
+      <select
+        value={selectedValue}
+        onChange={handleSelectChange}
+        data-testid="merits"
+      >
         <option value="">(not selected)</option>
         {optionsList}
       </select>

@@ -8,6 +8,11 @@ export const getOptionValues2 = select =>
     .getAllByRole('option')
     .map(o => o.getAttribute('value'));
 
+export const getOptionItems2 = select =>
+  within(select)
+    .getAllByRole('option')
+    .map(o => o.text);
+
 export const getFirstSelect = wrapper => wrapper.find('select').first();
 export const getSecondSelect = wrapper => wrapper.find('select').at(1);
 

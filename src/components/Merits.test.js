@@ -1,48 +1,68 @@
 import React from 'react';
-import { mount } from 'enzyme';
-import {
-  noop,
-  getFirstSelect,
-  getSelectedValue,
-  getOptionItems,
-  changeSelectedValue
-} from '../utils/testUtils';
+import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import { noop, getOptionItems2 } from '../utils/testUtils';
 import Merits from './Merits';
 
-const getWrapper = (optionsMap, selected = []) =>
-  mount(
+const getMeritsSelect = () => screen.getByTestId('merits');
+
+it('should clear state when previously selected value not in new options', async () => {
+  const optionsMap = new Map([['Zealot', { points: 1 }]]);
+
+  const { rerender } = render(
     <Merits
       optionsMap={optionsMap}
-      selected={selected}
+      selected={[]}
       availablePoints={7}
       addMerit={noop}
       removeMerit={noop}
     />
   );
 
-const getMeritsSelect = getFirstSelect;
+  await userEvent.selectOptions(getMeritsSelect(), 'Zealot');
 
-it('should clear state when previously selected value not in new options', () => {
-  const optionsMap = new Map([['Zealot', { points: 1 }]]);
-  const wrapper = getWrapper(optionsMap);
-  changeSelectedValue(getMeritsSelect(wrapper), 'Zealot');
+  rerender(
+    <Merits
+      optionsMap={new Map()}
+      selected={[]}
+      availablePoints={7}
+      addMerit={noop}
+      removeMerit={noop}
+    />
+  );
 
-  wrapper.setProps({ optionsMap: new Map() });
-
-  expect(getSelectedValue(getMeritsSelect(wrapper))).toBe('');
+  expect(getMeritsSelect()).toHaveValue('');
 });
 
-it('should not clear state when previously selected value in new options', () => {
+it('should not clear state when previously selected value in new options', async () => {
   const optionsMap = new Map([
     ['Zealot', { points: 1 }],
     ['Arcane', { points: 1 }]
   ]);
-  const wrapper = getWrapper(optionsMap);
-  changeSelectedValue(getMeritsSelect(wrapper), 'Arcane');
 
-  wrapper.setProps({ optionsMap: new Map([['Arcane', { points: 1 }]]) });
+  const { rerender } = render(
+    <Merits
+      optionsMap={optionsMap}
+      selected={[]}
+      availablePoints={7}
+      addMerit={noop}
+      removeMerit={noop}
+    />
+  );
 
-  expect(getSelectedValue(getMeritsSelect(wrapper))).toBe('Arcane');
+  await userEvent.selectOptions(getMeritsSelect(), 'Arcane');
+
+  rerender(
+    <Merits
+      optionsMap={new Map([['Arcane', { points: 1 }]])}
+      selected={[]}
+      availablePoints={7}
+      addMerit={noop}
+      removeMerit={noop}
+    />
+  );
+
+  expect(getMeritsSelect()).toHaveValue('Arcane');
 });
 
 it('should calculate descriptions', () => {
@@ -50,9 +70,18 @@ it('should calculate descriptions', () => {
     ['Arcane', { points: 1 }],
     ['Skill Aptitude', { points: 2, multiple: true }]
   ]);
-  const wrapper = getWrapper(optionsMap);
 
-  expect(getOptionItems(getMeritsSelect(wrapper))).toEqual([
+  render(
+    <Merits
+      optionsMap={optionsMap}
+      selected={[]}
+      availablePoints={7}
+      addMerit={noop}
+      removeMerit={noop}
+    />
+  );
+
+  expect(getOptionItems2(getMeritsSelect())).toEqual([
     '(not selected)',
     'Arcane (1 point)',
     'Skill Aptitude* (2 points)'
@@ -63,6 +92,7 @@ it('should display selected when merit purchased multiple times', () => {
   const optionsMap = new Map([
     ['Skill Aptitude', { points: 2, multiple: true }]
   ]);
+
   const selected = [
     {
       name: 'Arcane',
@@ -74,13 +104,18 @@ it('should display selected when merit purchased multiple times', () => {
       timesPurchased: 3
     }
   ];
-  const wrapper = getWrapper(optionsMap, selected);
 
-  const items = wrapper.find('li').map(o =>
-    o
-      .render()
-      .text()
-      .trim()
+  render(
+    <Merits
+      optionsMap={optionsMap}
+      selected={selected}
+      availablePoints={7}
+      addMerit={noop}
+      removeMerit={noop}
+    />
   );
+
+  const items = screen.getAllByRole('listitem').map(i => i.textContent.trim());
+
   expect(items).toEqual(['Arcane (1 point)', 'Skill Aptitude (2 points X 3)']);
 });
