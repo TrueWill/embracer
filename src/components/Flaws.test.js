@@ -1,45 +1,66 @@
 import React from 'react';
-import { mount } from 'enzyme';
-import {
-  noop,
-  getFirstSelect,
-  getSelectedValue,
-  changeSelectedValue
-} from '../utils/testUtils';
+import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import { noop } from '../utils/testUtils';
 import Flaws from './Flaws';
 
-const getWrapper = (optionsMap, selected = []) =>
-  mount(
+const getFlawsSelect = () => screen.getByTestId('flaws');
+
+it('should clear state when previously selected value not in new options', async () => {
+  const optionsMap = new Map([['Mistrusted', { points: 1 }]]);
+
+  const { rerender } = render(
     <Flaws
       optionsMap={optionsMap}
-      selected={selected}
+      selected={[]}
       availablePoints={7}
       addFlaw={noop}
       removeFlaw={noop}
     />
   );
 
-const getFlawsSelect = getFirstSelect;
+  await userEvent.selectOptions(getFlawsSelect(), 'Mistrusted');
 
-it('should clear state when previously selected value not in new options', () => {
-  const optionsMap = new Map([['Mistrusted', { points: 1 }]]);
-  const wrapper = getWrapper(optionsMap);
-  changeSelectedValue(getFlawsSelect(wrapper), 'Mistrusted');
+  rerender(
+    <Flaws
+      optionsMap={new Map()}
+      selected={[]}
+      availablePoints={7}
+      addFlaw={noop}
+      removeFlaw={noop}
+    />
+  );
 
-  wrapper.setProps({ optionsMap: new Map() });
-
-  expect(getSelectedValue(getFlawsSelect(wrapper))).toBe('');
+  expect(getFlawsSelect()).toHaveValue('');
 });
 
-it('should not clear state when previously selected value in new options', () => {
+it('should not clear state when previously selected value in new options', async () => {
   const optionsMap = new Map([
     ['Mistrusted', { points: 1 }],
     ['Amnesia', { points: 1 }]
   ]);
-  const wrapper = getWrapper(optionsMap);
-  changeSelectedValue(getFlawsSelect(wrapper), 'Amnesia');
 
-  wrapper.setProps({ optionsMap: new Map([['Amnesia', { points: 1 }]]) });
+  const { rerender } = render(
+    <Flaws
+      optionsMap={optionsMap}
+      selected={[]}
+      availablePoints={7}
+      addFlaw={noop}
+      removeFlaw={noop}
+    />
+  );
 
-  expect(getSelectedValue(getFlawsSelect(wrapper))).toBe('Amnesia');
+  await userEvent.selectOptions(getFlawsSelect(), 'Amnesia');
+
+  rerender(
+    <Flaws
+      optionsMap={new Map([['Amnesia', { points: 1 }]])}
+      selected={[]}
+      availablePoints={7}
+      addFlaw={noop}
+      removeFlaw={noop}
+    />
+  );
+
+  expect(getFlawsSelect()).toHaveValue('Amnesia');
 });

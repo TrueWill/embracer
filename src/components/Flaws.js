@@ -65,7 +65,11 @@ export default function Flaws({
   return (
     <Section header="Flaws">
       <ul>{selectedList}</ul>
-      <select value={selectedValue} onChange={handleSelectChange}>
+      <select
+        value={selectedValue}
+        onChange={handleSelectChange}
+        data-testid="flaws"
+      >
         <option value="">(not selected)</option>
         {optionsList}
       </select>
