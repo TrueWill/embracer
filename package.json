@@ -26,6 +26,7 @@
     "prettify": "prettier --write src/**/*.js"
   },
   "devDependencies": {
+    "@testing-library/dom": "^8.14.0",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "13.3.0",
     "@testing-library/user-event": "14.2.1",
