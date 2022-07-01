@@ -9,7 +9,6 @@
     "lodash.startswith": "^4.2.1",
     "prop-types": "^15.7.2",
     "react": "^18.2.0",
-    "react-app-polyfill": "^2.0.0",
     "react-dom": "^18.2.0",
     "react-redux": "^7.2.6",
     "react-select": "^5.4.0",
