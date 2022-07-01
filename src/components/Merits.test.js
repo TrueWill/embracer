@@ -7,6 +7,8 @@ import Merits from './Merits';
 const getMeritsSelect = () => screen.getByTestId('merits');
 
 it('should clear state when previously selected value not in new options', async () => {
+  const user = userEvent.setup();
+
   const optionsMap = new Map([['Zealot', { points: 1 }]]);
 
   const { rerender } = render(
@@ -19,7 +21,7 @@ it('should clear state when previously selected value not in new options', async
     />
   );
 
-  await userEvent.selectOptions(getMeritsSelect(), 'Zealot');
+  await user.selectOptions(getMeritsSelect(), 'Zealot');
 
   rerender(
     <Merits
@@ -35,6 +37,8 @@ it('should clear state when previously selected value not in new options', async
 });
 
 it('should not clear state when previously selected value in new options', async () => {
+  const user = userEvent.setup();
+
   const optionsMap = new Map([
     ['Zealot', { points: 1 }],
     ['Arcane', { points: 1 }]
@@ -50,7 +54,7 @@ it('should not clear state when previously selected value in new options', async
     />
   );
 
-  await userEvent.selectOptions(getMeritsSelect(), 'Arcane');
+  await user.selectOptions(getMeritsSelect(), 'Arcane');
 
   rerender(
     <Merits

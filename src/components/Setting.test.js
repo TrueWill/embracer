@@ -31,6 +31,7 @@ it('should select current setting', () => {
 });
 
 it('should update setting', async () => {
+  const user = userEvent.setup();
   const updateSetting = jest.fn();
 
   render(
@@ -44,7 +45,7 @@ it('should update setting', async () => {
 
   const newSetting = 'Anarch Movement';
 
-  await userEvent.selectOptions(getSettingSelect(), newSetting);
+  await user.selectOptions(getSettingSelect(), newSetting);
 
   expect(updateSetting.mock.calls.length).toBe(1);
   expect(updateSetting.mock.calls[0]).toEqual([newSetting]);
