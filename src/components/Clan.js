@@ -45,7 +45,11 @@ export default function Clan({ clan, updateClan }) {
       <div className="row">
         <div className="col-sm-3">Clan:</div>
         <div className="col-sm-9">
-          <select value={clan.name} onChange={handleClanChange}>
+          <select
+            value={clan.name}
+            onChange={handleClanChange}
+            data-testid="clan"
+          >
             <option value="">(not selected)</option>
             {clanOptions}
           </select>
@@ -54,7 +58,11 @@ export default function Clan({ clan, updateClan }) {
       <div className="row">
         <div className="col-sm-3">Bloodline:</div>
         <div className="col-sm-9">
-          <select value={clan.bloodline} onChange={handleBloodlineChange}>
+          <select
+            value={clan.bloodline}
+            onChange={handleBloodlineChange}
+            data-testid="bloodline"
+          >
             <option value="">(none)</option>
             {bloodlineOptions}
           </select>

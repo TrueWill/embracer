@@ -1,50 +1,39 @@
 import React from 'react';
-import { shallow } from 'enzyme';
-import {
-  noop,
-  getFirstSelect,
-  getSecondSelect,
-  getSelectedValue,
-  getOptionValues,
-  changeSelectedValue
-} from '../utils/testUtils';
+import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import { noop, getOptionValues } from '../utils/testUtils';
 import { clans } from '../constants/clanOptions';
 import Clan from './Clan';
 
-const getWrapper = (clan = { name: '' }, updateClan = noop) =>
-  shallow(<Clan clan={clan} updateClan={updateClan} />);
-
-const getClanSelect = getFirstSelect;
-const getBloodlineSelect = getSecondSelect;
-
-it('should render without crashing', () => {
-  getWrapper();
-});
+const getClanSelect = () => screen.getByTestId('clan');
+const getBloodlineSelect = () => screen.getByTestId('bloodline');
 
 it('should display clan options', () => {
-  const wrapper = getWrapper();
+  render(<Clan clan={{ name: '' }} updateClan={noop} />);
+
   const clanNames = Array.from(clans.keys());
 
-  expect(getOptionValues(getClanSelect(wrapper))).toEqual(['', ...clanNames]);
+  expect(getOptionValues(getClanSelect())).toEqual(['', ...clanNames]);
 });
 
 it('should select current clan', () => {
   const currentClan = 'Tzimisce';
-  const wrapper = getWrapper({ name: currentClan });
 
-  expect(getSelectedValue(getClanSelect(wrapper))).toBe(currentClan);
+  render(<Clan clan={{ name: currentClan }} updateClan={noop} />);
+
+  expect(getClanSelect()).toHaveValue(currentClan);
 });
 
 it('should not display bloodline options when no clan', () => {
-  const wrapper = getWrapper();
+  render(<Clan clan={{ name: '' }} updateClan={noop} />);
 
-  expect(getOptionValues(getBloodlineSelect(wrapper))).toEqual(['']);
+  expect(getOptionValues(getBloodlineSelect())).toEqual(['']);
 });
 
 it('should display bloodline options when clan', () => {
-  const wrapper = getWrapper({ name: 'Tzimisce' });
+  render(<Clan clan={{ name: 'Tzimisce' }} updateClan={noop} />);
 
-  expect(getOptionValues(getBloodlineSelect(wrapper))).toEqual([
+  expect(getOptionValues(getBloodlineSelect())).toEqual([
     '',
     'Carpathian',
     'Koldun'
@@ -54,34 +43,43 @@ it('should display bloodline options when clan', () => {
 it('should select current bloodline', () => {
   const currentBloodline = 'Koldun';
 
-  const wrapper = getWrapper({
-    name: 'Tzimisce',
-    bloodline: currentBloodline,
-    meritPoints: 4
-  });
+  render(
+    <Clan
+      clan={{
+        name: 'Tzimisce',
+        bloodline: currentBloodline,
+        meritPoints: 4
+      }}
+      updateClan={noop}
+    />
+  );
 
-  expect(getSelectedValue(getBloodlineSelect(wrapper))).toBe(currentBloodline);
+  expect(getBloodlineSelect()).toHaveValue(currentBloodline);
 });
 
-it('should update clan', () => {
+it('should update clan', async () => {
   const updateClan = jest.fn();
-  const wrapper = getWrapper(undefined, updateClan);
+
+  render(<Clan clan={{ name: '' }} updateClan={updateClan} />);
+
   const newClan = 'Tzimisce';
 
-  changeSelectedValue(getClanSelect(wrapper), newClan);
+  await userEvent.selectOptions(getClanSelect(), newClan);
 
   expect(updateClan.mock.calls.length).toBe(1);
   expect(updateClan.mock.calls[0]).toEqual([newClan]);
 });
 
-it('should update bloodline', () => {
+it('should update bloodline', async () => {
   const updateClan = jest.fn();
   const currentClan = 'Tzimisce';
-  const wrapper = getWrapper({ name: currentClan }, updateClan);
+
+  render(<Clan clan={{ name: currentClan }} updateClan={updateClan} />);
+
   const newBloodline = 'Koldun';
   const newBloodlineMeritPoints = 4;
 
-  changeSelectedValue(getBloodlineSelect(wrapper), newBloodline);
+  await userEvent.selectOptions(getBloodlineSelect(), newBloodline);
 
   expect(updateClan.mock.calls.length).toBe(1);
   expect(updateClan.mock.calls[0]).toEqual([
@@ -91,21 +89,23 @@ it('should update bloodline', () => {
   ]);
 });
 
-it('should clear bloodline when update clan', () => {
+it('should clear bloodline when update clan', async () => {
   const updateClan = jest.fn();
 
-  const wrapper = getWrapper(
-    {
-      name: 'Tzimisce',
-      bloodline: 'Koldun',
-      meritPoints: 4
-    },
-    updateClan
+  render(
+    <Clan
+      clan={{
+        name: 'Tzimisce',
+        bloodline: 'Koldun',
+        meritPoints: 4
+      }}
+      updateClan={updateClan}
+    />
   );
 
   const newClan = 'Nosferatu';
 
-  changeSelectedValue(getClanSelect(wrapper), newClan);
+  await userEvent.selectOptions(getClanSelect(), newClan);
 
   expect(updateClan.mock.calls.length).toBe(1);
   expect(updateClan.mock.calls[0]).toEqual([newClan]);
