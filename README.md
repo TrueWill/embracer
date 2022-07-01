@@ -46,7 +46,7 @@ Currently deployment is manual, so the site may not reflect the latest changes.
 * Jest/React Testing Library tests (using it() alias for test()) - all passing: [![Build Status](https://travis-ci.com/TrueWill/embracer.svg?branch=master)](https://travis-ci.com/TrueWill/embracer)
 * No ESLint warnings/errors
 * No console warnings/errors
-* Works in modern browsers (and IE 11)
+* Works in modern browsers (does _not_ support Internet Explorer)
 
 ## Acknowledgements
 
