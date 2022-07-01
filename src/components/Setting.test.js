@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { noop, getOptionValues2 } from '../utils/testUtils';
+import { noop, getOptionValues } from '../utils/testUtils';
 import { settings } from '../constants/settingOptions';
 import Setting from './Setting';
 
@@ -19,7 +19,7 @@ it('should display setting options', () => {
 
   const settingNames = Array.from(settings.keys());
 
-  expect(getOptionValues2(getSettingSelect())).toEqual(settingNames);
+  expect(getOptionValues(getSettingSelect())).toEqual(settingNames);
 });
 
 it('should select current setting', () => {

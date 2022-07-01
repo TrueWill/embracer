@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { noop, getOptionValues2 } from '../utils/testUtils';
+import { noop, getOptionValues } from '../utils/testUtils';
 import { clans } from '../constants/clanOptions';
 import Clan from './Clan';
 
@@ -13,7 +13,7 @@ it('should display clan options', () => {
 
   const clanNames = Array.from(clans.keys());
 
-  expect(getOptionValues2(getClanSelect())).toEqual(['', ...clanNames]);
+  expect(getOptionValues(getClanSelect())).toEqual(['', ...clanNames]);
 });
 
 it('should select current clan', () => {
@@ -27,13 +27,13 @@ it('should select current clan', () => {
 it('should not display bloodline options when no clan', () => {
   render(<Clan clan={{ name: '' }} updateClan={noop} />);
 
-  expect(getOptionValues2(getBloodlineSelect())).toEqual(['']);
+  expect(getOptionValues(getBloodlineSelect())).toEqual(['']);
 });
 
 it('should display bloodline options when clan', () => {
   render(<Clan clan={{ name: 'Tzimisce' }} updateClan={noop} />);
 
-  expect(getOptionValues2(getBloodlineSelect())).toEqual([
+  expect(getOptionValues(getBloodlineSelect())).toEqual([
     '',
     'Carpathian',
     'Koldun'

@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { noop, getOptionItems2 } from '../utils/testUtils';
+import { noop, getOptionItems } from '../utils/testUtils';
 import Merits from './Merits';
 
 const getMeritsSelect = () => screen.getByTestId('merits');
@@ -81,7 +81,7 @@ it('should calculate descriptions', () => {
     />
   );
 
-  expect(getOptionItems2(getMeritsSelect())).toEqual([
+  expect(getOptionItems(getMeritsSelect())).toEqual([
     '(not selected)',
     'Arcane (1 point)',
     'Skill Aptitude* (2 points)'

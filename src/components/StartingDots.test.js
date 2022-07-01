@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import { noop, getOptionValues2 } from '../utils/testUtils';
+import { noop, getOptionValues } from '../utils/testUtils';
 import StartingDots from './StartingDots';
 
 const getDotsSelect = () => screen.getByRole('combobox');
@@ -12,7 +12,7 @@ it('should display current value and clear when none available', () => {
 
   // See https://github.com/testing-library/jest-dom/issues/364
   expect(dotsSelect).toHaveValue('1');
-  expect(getOptionValues2(dotsSelect)).toEqual(['0', '1']);
+  expect(getOptionValues(dotsSelect)).toEqual(['0', '1']);
 });
 
 it('should display only clear when no current value and none available', () => {
@@ -21,7 +21,7 @@ it('should display only clear when no current value and none available', () => {
   const dotsSelect = getDotsSelect();
 
   expect(dotsSelect).toHaveValue('0');
-  expect(getOptionValues2(dotsSelect)).toEqual(['0']);
+  expect(getOptionValues(dotsSelect)).toEqual(['0']);
 });
 
 it('should display only clear and other values when no current value', () => {
@@ -38,7 +38,7 @@ it('should display only clear and other values when no current value', () => {
   const dotsSelect = getDotsSelect();
 
   expect(dotsSelect).toHaveValue('0');
-  expect(getOptionValues2(dotsSelect)).toEqual(['0', '4', '3']);
+  expect(getOptionValues(dotsSelect)).toEqual(['0', '4', '3']);
 });
 
 it('should display current value, other values, and clear', () => {
@@ -57,7 +57,7 @@ it('should display current value, other values, and clear', () => {
   const dotsSelect = getDotsSelect();
 
   expect(dotsSelect).toHaveValue('2');
-  expect(getOptionValues2(dotsSelect)).toEqual(['0', '2', '4', '3', '1']);
+  expect(getOptionValues(dotsSelect)).toEqual(['0', '2', '4', '3', '1']);
 });
 
 it('should exclude available matching current value', () => {
@@ -77,7 +77,7 @@ it('should exclude available matching current value', () => {
   const dotsSelect = getDotsSelect();
 
   expect(dotsSelect).toHaveValue('2');
-  expect(getOptionValues2(dotsSelect)).toEqual(['0', '2', '4', '3', '1']);
+  expect(getOptionValues(dotsSelect)).toEqual(['0', '2', '4', '3', '1']);
 });
 
 it('should exclude values with 0 counts unless current', () => {
@@ -97,7 +97,7 @@ it('should exclude values with 0 counts unless current', () => {
   const dotsSelect = getDotsSelect();
 
   expect(dotsSelect).toHaveValue('2');
-  expect(getOptionValues2(dotsSelect)).toEqual(['0', '2', '4', '1']);
+  expect(getOptionValues(dotsSelect)).toEqual(['0', '2', '4', '1']);
 });
 
 it('should not include clear as an option if disallow clear', () => {
@@ -117,5 +117,5 @@ it('should not include clear as an option if disallow clear', () => {
   const dotsSelect = getDotsSelect();
 
   expect(dotsSelect).toHaveValue('2');
-  expect(getOptionValues2(dotsSelect)).toEqual(['2', '4', '3', '1']);
+  expect(getOptionValues(dotsSelect)).toEqual(['2', '4', '3', '1']);
 });
