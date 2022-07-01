@@ -7,6 +7,8 @@ import Flaws from './Flaws';
 const getFlawsSelect = () => screen.getByTestId('flaws');
 
 it('should clear state when previously selected value not in new options', async () => {
+  const user = userEvent.setup();
+
   const optionsMap = new Map([['Mistrusted', { points: 1 }]]);
 
   const { rerender } = render(
@@ -19,7 +21,7 @@ it('should clear state when previously selected value not in new options', async
     />
   );
 
-  await userEvent.selectOptions(getFlawsSelect(), 'Mistrusted');
+  await user.selectOptions(getFlawsSelect(), 'Mistrusted');
 
   rerender(
     <Flaws
@@ -35,6 +37,8 @@ it('should clear state when previously selected value not in new options', async
 });
 
 it('should not clear state when previously selected value in new options', async () => {
+  const user = userEvent.setup();
+
   const optionsMap = new Map([
     ['Mistrusted', { points: 1 }],
     ['Amnesia', { points: 1 }]
@@ -50,7 +54,7 @@ it('should not clear state when previously selected value in new options', async
     />
   );
 
-  await userEvent.selectOptions(getFlawsSelect(), 'Amnesia');
+  await user.selectOptions(getFlawsSelect(), 'Amnesia');
 
   rerender(
     <Flaws

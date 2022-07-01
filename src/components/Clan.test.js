@@ -58,19 +58,21 @@ it('should select current bloodline', () => {
 });
 
 it('should update clan', async () => {
+  const user = userEvent.setup();
   const updateClan = jest.fn();
 
   render(<Clan clan={{ name: '' }} updateClan={updateClan} />);
 
   const newClan = 'Tzimisce';
 
-  await userEvent.selectOptions(getClanSelect(), newClan);
+  await user.selectOptions(getClanSelect(), newClan);
 
   expect(updateClan.mock.calls.length).toBe(1);
   expect(updateClan.mock.calls[0]).toEqual([newClan]);
 });
 
 it('should update bloodline', async () => {
+  const user = userEvent.setup();
   const updateClan = jest.fn();
   const currentClan = 'Tzimisce';
 
@@ -79,7 +81,7 @@ it('should update bloodline', async () => {
   const newBloodline = 'Koldun';
   const newBloodlineMeritPoints = 4;
 
-  await userEvent.selectOptions(getBloodlineSelect(), newBloodline);
+  await user.selectOptions(getBloodlineSelect(), newBloodline);
 
   expect(updateClan.mock.calls.length).toBe(1);
   expect(updateClan.mock.calls[0]).toEqual([
@@ -90,6 +92,7 @@ it('should update bloodline', async () => {
 });
 
 it('should clear bloodline when update clan', async () => {
+  const user = userEvent.setup();
   const updateClan = jest.fn();
 
   render(
@@ -105,7 +108,7 @@ it('should clear bloodline when update clan', async () => {
 
   const newClan = 'Nosferatu';
 
-  await userEvent.selectOptions(getClanSelect(), newClan);
+  await user.selectOptions(getClanSelect(), newClan);
 
   expect(updateClan.mock.calls.length).toBe(1);
   expect(updateClan.mock.calls[0]).toEqual([newClan]);
