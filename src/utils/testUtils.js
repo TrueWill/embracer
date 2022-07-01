@@ -3,6 +3,7 @@ import { within } from '@testing-library/react';
 
 export const noop = () => {};
 
+/** Values will be strings. */
 export const getOptionValues2 = select =>
   within(select)
     .getAllByRole('option')
