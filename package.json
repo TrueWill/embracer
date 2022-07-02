@@ -33,7 +33,8 @@
     "deep-freeze": "^0.0.1",
     "lodash.clonedeep": "^4.5.0",
     "prettier": "1",
-    "react-scripts": "5.0.1"
+    "react-scripts": "5.0.1",
+    "typescript": "^4.7.4"
   },
   "browserslist": [
     "defaults"
