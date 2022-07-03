@@ -36,7 +36,7 @@ Currently deployment is manual, so the site may not reflect the latest changes.
 * [Prettier](https://prettier.io/) v1 with single quotes (`yarn prettify`)
 * [EditorConfig](http://editorconfig.org/)
 * [Yarn](https://yarnpkg.com/en/)
-* [prop-types](https://github.com/facebook/prop-types)
+* TypeScript
 * Prefer function components to class components (OK to use [Hooks](https://reactjs.org/docs/hooks-intro.html))
 * [Flux Standard Actions](https://github.com/acdlite/flux-standard-action)
 * [Strict Mode](https://reactjs.org/docs/strict-mode.html) (except for react-select)
