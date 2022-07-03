@@ -1,6 +1,7 @@
+import { DotsCount } from '../types';
 import { arrayToMap } from '../utils/mapUtils';
 
-export const commonDisciplineNames = [
+export const commonDisciplineNames: readonly string[] = [
   'Animalism',
   'Auspex',
   'Celerity',
@@ -11,6 +12,7 @@ export const commonDisciplineNames = [
   'Presence'
 ];
 
+// TODO: Improve types
 export const clans = arrayToMap([
   [
     'Assamite',
@@ -545,11 +547,11 @@ export const clans = arrayToMap([
 
 export const caitiffInClanDisciplineCount = 3;
 
-export const inClanDisciplinesAvailableStartingDots = [
+export const inClanDisciplinesAvailableStartingDots: readonly DotsCount[] = [
   { dots: 2, count: 1 },
   { dots: 1, count: 2 }
 ];
 
-export const outOfClanDisciplinesAvailableStartingDots = [];
+export const outOfClanDisciplinesAvailableStartingDots: readonly DotsCount[] = [];
 
 export const outOfClanDisciplineLevelLimit = 3;
