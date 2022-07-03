@@ -1,4 +1,6 @@
-export const archetypes = [
+import type { DotCost, DotsCount, Generation } from '../types';
+
+export const archetypes: readonly string[] = [
   'Architect',
   'Artist',
   'Bully',
@@ -40,22 +42,26 @@ export const archetypes = [
   'Untrustworthy'
 ];
 
-export const attributeTraitNames = ['physical', 'social', 'mental'];
+export const attributeTraitNames: readonly string[] = [
+  'physical',
+  'social',
+  'mental'
+];
 
 export const attributeMaxDots = 10;
 export const bonusAttributeMaxDots = 5;
 
-export const attributesRankDots = [7, 5, 3];
+export const attributesRankDots: readonly number[] = [7, 5, 3];
 
 export const standardFoci = {
   physical: ['Strength', 'Dexterity', 'Stamina'],
   social: ['Charisma', 'Manipulation', 'Appearance'],
   mental: ['Perception', 'Intelligence', 'Wits']
-};
+} as const;
 
 export const standardTraitMaxDots = 5;
 
-export const skillTraitNames = [
+export const skillTraitNames: readonly string[] = [
   'academics',
   'animalKen',
   'athletics',
@@ -98,16 +104,16 @@ export const skillTraitDisplayNameOverride = {
   performance3: 'Performance (3rd field)',
   science2: 'Science (2nd field)',
   science3: 'Science (3rd field)'
-};
+} as const;
 
-export const skillsAvailableStartingDots = [
+export const skillsAvailableStartingDots: readonly DotsCount[] = [
   { dots: 4, count: 1 },
   { dots: 3, count: 2 },
   { dots: 2, count: 3 },
   { dots: 1, count: 4 }
 ];
 
-export const backgroundTraitNames = [
+export const backgroundTraitNames: readonly string[] = [
   'allies',
   'alternateIdentity',
   'contacts',
@@ -125,9 +131,9 @@ export const backgroundTraitDisplayNameOverride = {
   alternateIdentity: 'Alternate Identity',
   influence_elite: 'Influence (Elite)',
   influence_underworld: 'Influence (Underworld)'
-};
+} as const;
 
-export const backgroundsAvailableStartingDots = [
+export const backgroundsAvailableStartingDots: readonly DotsCount[] = [
   { dots: 3, count: 1 },
   { dots: 2, count: 1 },
   { dots: 1, count: 1 }
@@ -144,7 +150,7 @@ export const startingWillpower = 6;
 export const initialXP = 30;
 export const bankedXPLimit = 5;
 
-const standardDotCost = {
+const standardDotCost: DotCost = {
   attributes: {
     xp: 3,
     per: 'each'
@@ -177,7 +183,7 @@ const standardDotCost = {
   }
 };
 
-export const generationChart = {
+export const generationChart: Readonly<Record<number, Generation>> = {
   1: {
     title: 'Neonate',
     bloodPool: 10,
