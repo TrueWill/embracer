@@ -20,11 +20,11 @@ import BloodContainer from '../containers/BloodContainer';
 import PencilEraserContainer from '../containers/PencilEraserContainer';
 import MoralityContainer from '../containers/MoralityContainer';
 import ValidationContainer from '../containers/ValidationContainer';
-import Section from '../components/Section';
+import Section from './Section';
 import RitualsContainer from '../containers/RitualsContainer';
 import styles from './App.module.css';
 
-export default function App() {
+export default function App(): JSX.Element {
   return (
     <React.StrictMode>
       <div className="container-fluid">
