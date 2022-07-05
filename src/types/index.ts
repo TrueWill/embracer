@@ -40,3 +40,51 @@ export interface MoralityMerit {
   readonly name: string;
   readonly clanAffinity?: string;
 }
+
+export interface BaseAction {
+  type: string;
+}
+
+// This and base interface are from https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/redux-actions/index.d.ts
+export interface Action<Payload> extends BaseAction {
+  payload: Payload;
+  error?: boolean | undefined;
+}
+
+export interface ClanSetting {
+  readonly name: string;
+  readonly bloodline?: string;
+  readonly meritPoints?: number;
+}
+
+export interface RankSetting {
+  readonly category: 'attributes' | 'skills';
+  readonly trait: string;
+  readonly dotsFromRank: number;
+}
+
+export interface StartingDotsSetting {
+  readonly category: string;
+  readonly trait: string;
+  readonly startingDots: number;
+}
+
+export interface FocusSetting {
+  readonly attribute: string;
+  readonly focus: string;
+}
+
+export interface DotLocation {
+  readonly category: string;
+  readonly trait: string;
+}
+
+export interface MoralitySetting {
+  readonly path: string;
+  readonly meritPoints: number;
+}
+
+export interface RitualsSetting {
+  readonly ritualType: string;
+  readonly rituals: number[];
+}

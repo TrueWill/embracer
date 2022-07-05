@@ -9,14 +9,28 @@ import {
   getGeneration,
   getMorality
 } from '../selectors/simple';
+import {
+  Action,
+  ClanSetting,
+  DotLocation,
+  FocusSetting,
+  MoralitySetting,
+  RankSetting,
+  RitualsSetting,
+  StandardMeritFlaw,
+  StartingDotsSetting
+} from '../types';
 
-export const updateArchetype = value => ({
+export const updateArchetype: (value: string) => Action<string> = value => ({
   type: types.UPDATE_ARCHETYPE,
   payload: value
 });
 
-// bloodline and meritPoints are optional
-export const updateClan = (name, bloodline, meritPoints) => ({
+export const updateClan: (
+  name: string,
+  bloodline?: string,
+  meritPoints?: number
+) => Action<ClanSetting> = (name, bloodline, meritPoints) => ({
   type: types.UPDATE_CLAN,
   payload: {
     name,
@@ -25,7 +39,11 @@ export const updateClan = (name, bloodline, meritPoints) => ({
   }
 });
 
-export const setRank = (category, trait, dotsFromRank) => ({
+export const setRank: (
+  category: 'attributes' | 'skills',
+  trait: string,
+  dotsFromRank: number
+) => Action<RankSetting> = (category, trait, dotsFromRank) => ({
   type: types.SET_RANK,
   payload: {
     category,
@@ -34,7 +52,11 @@ export const setRank = (category, trait, dotsFromRank) => ({
   }
 });
 
-export const setStartingDots = (category, trait, startingDots) => ({
+export const setStartingDots: (
+  category: string,
+  trait: string,
+  startingDots: number
+) => Action<StartingDotsSetting> = (category, trait, startingDots) => ({
   type: types.SET_STARTING_DOTS,
   payload: {
     category,
@@ -43,7 +65,10 @@ export const setStartingDots = (category, trait, startingDots) => ({
   }
 });
 
-export const setFocus = (attribute, focus) => ({
+export const setFocus: (
+  attribute: string,
+  focus: string
+) => Action<FocusSetting> = (attribute, focus) => ({
   type: types.SET_FOCUS,
   payload: {
     attribute,
@@ -51,7 +76,10 @@ export const setFocus = (attribute, focus) => ({
   }
 });
 
-export const addMerit = (name, points) => ({
+export const addMerit: (
+  name: string,
+  points: number
+) => Action<StandardMeritFlaw> = (name, points) => ({
   type: types.ADD_MERIT,
   payload: {
     name,
@@ -59,14 +87,19 @@ export const addMerit = (name, points) => ({
   }
 });
 
-export const removeMerit = name => ({
+export const removeMerit: (
+  name: string
+) => Action<{ name: string }> = name => ({
   type: types.REMOVE_MERIT,
   payload: {
     name
   }
 });
 
-export const addFlaw = (name, points) => ({
+export const addFlaw: (
+  name: string,
+  points: number
+) => Action<StandardMeritFlaw> = (name, points) => ({
   type: types.ADD_FLAW,
   payload: {
     name,
@@ -74,14 +107,17 @@ export const addFlaw = (name, points) => ({
   }
 });
 
-export const removeFlaw = name => ({
+export const removeFlaw: (name: string) => Action<{ name: string }> = name => ({
   type: types.REMOVE_FLAW,
   payload: {
     name
   }
 });
 
-export const purchaseDot = (category, trait) => ({
+export const purchaseDot: (
+  category: string,
+  trait: string
+) => Action<DotLocation> = (category, trait) => ({
   type: types.PURCHASE_DOT,
   payload: {
     category,
@@ -89,7 +125,10 @@ export const purchaseDot = (category, trait) => ({
   }
 });
 
-export const unpurchaseDot = (category, trait) => ({
+export const unpurchaseDot: (
+  category: string,
+  trait: string
+) => Action<DotLocation> = (category, trait) => ({
   type: types.UNPURCHASE_DOT,
   payload: {
     category,
@@ -97,8 +136,12 @@ export const unpurchaseDot = (category, trait) => ({
   }
 });
 
+// TODO: See https://redux.js.org/usage/usage-with-typescript - type from store - also other thunks
 // thunk
-export const purchaseOrUnpurchaseDot = (category, trait) => (
+export const purchaseOrUnpurchaseDot: (
+  category: string,
+  trait: string
+) => (dispatch: any, getState: any) => void = (category, trait) => (
   dispatch,
   getState
 ) => {
@@ -129,7 +172,10 @@ export const unpurchaseMoralityDot = () => ({
 });
 
 // thunk
-export const purchaseOrUnpurchaseMoralityDot = () => (dispatch, getState) => {
+export const purchaseOrUnpurchaseMoralityDot: () => (
+  dispatch: any,
+  getState: any
+) => void = () => (dispatch, getState) => {
   const state = getState();
 
   const actionCreator = getIsEraserMode(state)
@@ -139,7 +185,10 @@ export const purchaseOrUnpurchaseMoralityDot = () => (dispatch, getState) => {
   dispatch(actionCreator());
 };
 
-export const updateMorality = (path, meritPoints) => ({
+export const updateMorality: (
+  path: string,
+  meritPoints: number
+) => Action<MoralitySetting> = (path, meritPoints) => ({
   type: types.UPDATE_MORALITY,
   payload: {
     path,
@@ -147,11 +196,16 @@ export const updateMorality = (path, meritPoints) => ({
   }
 });
 
-const getMeritPoints = (path, optionsMap) =>
-  path === humanity ? 0 : optionsMap.get(path).points;
+// TODO: Type optionsMap
+const getMeritPoints: (path: string, optionsMap: any) => number = (
+  path,
+  optionsMap
+) => (path === humanity ? 0 : optionsMap.get(path).points);
 
 // thunk
-export const updateMoralityIfPointsAvailable = path => (dispatch, getState) => {
+export const updateMoralityIfPointsAvailable: (
+  path: string
+) => (dispatch: any, getState: any) => void = path => (dispatch, getState) => {
   const state = getState();
   const currentPath = getMorality(state).path;
   const optionsMap = getMoralityMeritsOptions(state);
@@ -167,7 +221,10 @@ export const updateMoralityIfPointsAvailable = path => (dispatch, getState) => {
   }
 };
 
-export const updateRituals = (ritualType, rituals) => ({
+export const updateRituals: (
+  ritualType: string,
+  rituals: number[]
+) => Action<RitualsSetting> = (ritualType, rituals) => ({
   type: types.UPDATE_RITUALS,
   payload: {
     ritualType,
