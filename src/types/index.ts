@@ -29,3 +29,14 @@ export type Generation = Readonly<{
   attributeBonus: number;
   dotCost: DotCost;
 }>;
+
+export interface StandardMeritFlaw {
+  readonly name: string;
+  readonly points: number;
+  readonly multiple?: boolean;
+}
+
+export interface MoralityMerit {
+  readonly name: string;
+  readonly clanAffinity?: string;
+}

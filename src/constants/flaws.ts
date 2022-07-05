@@ -1,7 +1,9 @@
+import { StandardMeritFlaw } from '../types';
+
 export const maxFlawPoints = 7;
 
 // Excludes Setting-Specific Flaws
-export const flaws = [
+export const flaws: readonly StandardMeritFlaw[] = [
   {
     name: 'Addiction',
     points: 2

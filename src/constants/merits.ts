@@ -1,7 +1,9 @@
+import { MoralityMerit, StandardMeritFlaw } from '../types';
+
 export const maxMeritPoints = 7;
 
 // Excludes Setting-Specific, Clan-Specific, and Morality Merits
-export const merits = [
+export const merits: readonly StandardMeritFlaw[] = [
   {
     name: 'Acute Sense',
     points: 1
@@ -144,7 +146,7 @@ export const merits = [
 export const moralityMeritBasePoints = 3;
 export const moralityMeritClanAffinityDiscount = 1;
 
-export const moralityMerits = [
+export const moralityMerits: readonly MoralityMerit[] = [
   {
     name: 'Path of Blood',
     clanAffinity: 'Assamite'
