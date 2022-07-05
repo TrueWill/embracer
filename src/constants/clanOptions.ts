@@ -1,5 +1,4 @@
 import { DotsCount } from '../types';
-import { arrayToMap } from '../utils/mapUtils';
 
 export const commonDisciplineNames: readonly string[] = [
   'Animalism',
@@ -13,7 +12,7 @@ export const commonDisciplineNames: readonly string[] = [
 ];
 
 // TODO: Improve types
-export const clans = arrayToMap([
+export const clans = new Map([
   [
     'Assamite',
     {
@@ -28,7 +27,7 @@ export const clans = arrayToMap([
           points: 3
         }
       ],
-      bloodlines: arrayToMap([
+      bloodlines: new Map([
         [
           'Vizier',
           { meritPoints: 2, disciplines: ['Auspex', 'Celerity', 'Quietus'] }
@@ -61,7 +60,7 @@ export const clans = arrayToMap([
           points: 3
         }
       ],
-      bloodlines: arrayToMap([
+      bloodlines: new Map([
         [
           'True Brujah',
           { meritPoints: 4, disciplines: ['Potence', 'Presence', 'Temporis'] }
@@ -87,7 +86,7 @@ export const clans = arrayToMap([
           points: 4
         }
       ],
-      bloodlines: arrayToMap([
+      bloodlines: new Map([
         [
           'Tlacique',
           { meritPoints: 2, disciplines: ['Obfuscate', 'Presence', 'Protean'] }
@@ -116,7 +115,7 @@ export const clans = arrayToMap([
           points: 3
         }
       ],
-      bloodlines: arrayToMap([
+      bloodlines: new Map([
         [
           'Coyote',
           { meritPoints: 2, disciplines: ['Celerity', 'Obfuscate', 'Protean'] }
@@ -161,7 +160,7 @@ export const clans = arrayToMap([
           points: 3
         }
       ],
-      bloodlines: arrayToMap([
+      bloodlines: new Map([
         [
           'Premascine',
           {
@@ -190,7 +189,7 @@ export const clans = arrayToMap([
           points: 3
         }
       ],
-      bloodlines: arrayToMap([
+      bloodlines: new Map([
         [
           'Kiasyd',
           {
@@ -219,7 +218,7 @@ export const clans = arrayToMap([
           points: 4
         }
       ],
-      bloodlines: arrayToMap([
+      bloodlines: new Map([
         [
           'Ananke',
           { meritPoints: 2, disciplines: ['Auspex', 'Dementation', 'Presence'] }
@@ -256,7 +255,7 @@ export const clans = arrayToMap([
           points: 4
         }
       ],
-      bloodlines: arrayToMap([])
+      bloodlines: new Map([])
     }
   ],
   [
@@ -277,7 +276,7 @@ export const clans = arrayToMap([
           points: 4
         }
       ],
-      bloodlines: arrayToMap([
+      bloodlines: new Map([
         [
           'Ishtarri',
           { meritPoints: 2, disciplines: ['Celerity', 'Fortitude', 'Presence'] }
@@ -311,7 +310,7 @@ export const clans = arrayToMap([
           points: 4
         }
       ],
-      bloodlines: arrayToMap([
+      bloodlines: new Map([
         [
           'Telyav',
           {
@@ -336,7 +335,7 @@ export const clans = arrayToMap([
           points: 2
         }
       ],
-      bloodlines: arrayToMap([
+      bloodlines: new Map([
         [
           'Carpathian',
           { meritPoints: 3, disciplines: ['Animalism', 'Auspex', 'Dominate'] }
@@ -373,7 +372,7 @@ export const clans = arrayToMap([
           points: 4
         }
       ],
-      bloodlines: arrayToMap([
+      bloodlines: new Map([
         [
           'Crusader',
           { meritPoints: 2, disciplines: ['Auspex', 'Dominate', 'Fortitude'] }
@@ -399,7 +398,7 @@ export const clans = arrayToMap([
           points: 3
         }
       ],
-      bloodlines: arrayToMap([])
+      bloodlines: new Map([])
     }
   ],
   [
@@ -412,7 +411,7 @@ export const clans = arrayToMap([
           points: 1
         }
       ],
-      bloodlines: arrayToMap([
+      bloodlines: new Map([
         [
           'Angellis Ater',
           {
@@ -444,7 +443,7 @@ export const clans = arrayToMap([
           points: 3
         }
       ],
-      bloodlines: arrayToMap([
+      bloodlines: new Map([
         [
           'Samedi',
           {
@@ -476,7 +475,7 @@ export const clans = arrayToMap([
           points: 3
         }
       ],
-      bloodlines: arrayToMap([
+      bloodlines: new Map([
         [
           'Brahman',
           {
@@ -501,7 +500,7 @@ export const clans = arrayToMap([
           points: 2
         }
       ],
-      bloodlines: arrayToMap([
+      bloodlines: new Map([
         [
           'Healer',
           { meritPoints: 3, disciplines: ['Auspex', 'Fortitude', 'Obeah'] }
@@ -523,7 +522,7 @@ export const clans = arrayToMap([
           points: 3
         }
       ],
-      bloodlines: arrayToMap([])
+      bloodlines: new Map([])
     }
   ],
   [
@@ -540,7 +539,7 @@ export const clans = arrayToMap([
           points: 3
         }
       ],
-      bloodlines: arrayToMap([])
+      bloodlines: new Map([])
     }
   ]
 ]);

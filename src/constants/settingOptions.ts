@@ -1,6 +1,4 @@
-import { arrayToMap } from '../utils/mapUtils';
-
-export const settings = arrayToMap([
+export const settings = new Map([
   [
     'Camarilla',
     {
