@@ -88,3 +88,9 @@ export interface RitualsSetting {
   readonly ritualType: string;
   readonly rituals: number[];
 }
+
+export interface TraitState {
+  dotsFromRank?: number;
+  startingDots?: number;
+  dotsPurchased?: number;
+}
