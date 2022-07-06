@@ -94,3 +94,8 @@ export interface TraitState {
   startingDots?: number;
   dotsPurchased?: number;
 }
+
+export type CategoryTraits = {
+  availableStartingDots: readonly DotsCount[];
+  [key: string]: TraitState | readonly DotsCount[];
+};

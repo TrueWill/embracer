@@ -1,15 +1,18 @@
 import { removeProperty, isEmpty } from './objectUtils';
 import getDots from './getDots';
+import { CategoryTraits, TraitState } from '../types';
 
-const removeStartingDots = obj => removeProperty(obj, 'startingDots');
+function removeStartingDots(obj: Record<string, any>): Record<string, any> {
+  return removeProperty(obj, 'startingDots');
+}
 
-export const setDotsFromStartingDots = (
-  categoryTraits,
-  trait,
-  startingDots,
-  maxDots
-) => {
-  const matchingTrait = categoryTraits[trait];
+export function setDotsFromStartingDots(
+  categoryTraits: CategoryTraits,
+  trait: string,
+  startingDots: number,
+  maxDots: number
+): CategoryTraits {
+  const matchingTrait = categoryTraits[trait] as TraitState;
 
   const previousStartingDots = matchingTrait && matchingTrait.startingDots;
 
@@ -44,4 +47,4 @@ export const setDotsFromStartingDots = (
         availableStartingDots,
         [trait]: updatedTrait
       };
-};
+}
