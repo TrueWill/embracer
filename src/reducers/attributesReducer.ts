@@ -6,14 +6,16 @@ import {
   addPurchasedDot,
   removePurchasedDot
 } from '../utils/categoryPurchaser';
+import { Action } from '../types';
 
-const isAttributes = category => category === 'attributes';
+const isAttributes: (category: string) => boolean = category =>
+  category === 'attributes';
 
 const attributesReducer = (
-  state = initialState.character.attributes,
-  action
+  state = initialState.character.attributes as any,
+  action: Action<any>
 ) => {
-  let category, trait, dotsFromRank;
+  let category: string, trait: string, dotsFromRank: number;
 
   switch (action.type) {
     case types.SET_RANK:
