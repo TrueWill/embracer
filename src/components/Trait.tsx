@@ -1,5 +1,3 @@
-import React from 'react';
-import PropTypes from 'prop-types';
 import Dots from './Dots';
 import StartingDots from './StartingDots';
 import getDots from '../utils/getDots';
@@ -26,8 +24,8 @@ export default function Trait({
   traitState,
   onStartingDotsChange,
   onClick
-}) {
-  const handleStartingDotsChange = e => {
+}: TraitProps): JSX.Element {
+  const handleStartingDotsChange = (e: ChangeEvent<HTMLSelectElement>) => {
     const startingDots = parseInt(e.target.value, 10);
     onStartingDotsChange(name, startingDots);
   };
@@ -51,18 +49,3 @@ export default function Trait({
     </div>
   );
 }
-
-Trait.propTypes = {
-  name: PropTypes.string.isRequired,
-  displayName: PropTypes.string,
-  maxDots: PropTypes.number.isRequired,
-  availableStartingDots: PropTypes.arrayOf(
-    PropTypes.shape({
-      dots: PropTypes.number.isRequired,
-      count: PropTypes.number.isRequired
-    })
-  ).isRequired,
-  traitState: PropTypes.object.isRequired,
-  onStartingDotsChange: PropTypes.func.isRequired,
-  onClick: PropTypes.func.isRequired
-};

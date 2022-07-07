@@ -3,7 +3,10 @@ interface DeleteButtonProps {
   onClick: (id: string) => void;
 }
 
-export default function DeleteButton({ id, onClick }: DeleteButtonProps) {
+export default function DeleteButton({
+  id,
+  onClick
+}: DeleteButtonProps): JSX.Element {
   const handleClick = () => {
     onClick(id);
   };
