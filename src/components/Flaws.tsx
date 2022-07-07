@@ -1,9 +1,24 @@
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
+import { ChangeEvent, useState } from 'react';
 import Section from './Section';
 import DeleteButton from './DeleteButton';
 import { getFlawDescription } from '../utils/meritFlawUtils';
 import { maxFlawPoints } from '../constants/flaws';
+
+interface FlawsProps {
+  optionsMap: Map<
+    string,
+    {
+      readonly points: number;
+    }
+  >;
+  selected: {
+    name: string;
+    points: number;
+  }[];
+  availablePoints: number;
+  addFlaw: (name: string, points: number) => void;
+  removeFlaw: (name: string) => void;
+}
 
 export default function Flaws({
   optionsMap,
@@ -11,10 +26,15 @@ export default function Flaws({
   availablePoints,
   addFlaw,
   removeFlaw
-}) {
+}: FlawsProps): JSX.Element {
   const [selectedValue, setSelectedValue] = useState('');
 
-  let selectedFlaw;
+  let selectedFlaw:
+    | {
+        name?: string;
+        readonly points: number;
+      }
+    | undefined;
 
   if (selectedValue) {
     selectedFlaw = optionsMap.get(selectedValue);
@@ -27,16 +47,16 @@ export default function Flaws({
     }
   }
 
-  const handleSelectChange = e => {
+  const handleSelectChange = (e: ChangeEvent<HTMLSelectElement>) => {
     setSelectedValue(e.target.value);
   };
 
   const handleAdd = () => {
-    addFlaw(selectedFlaw.name, selectedFlaw.points);
+    addFlaw(selectedFlaw!.name!, selectedFlaw!.points);
     setSelectedValue('');
   };
 
-  const handleRemove = name => {
+  const handleRemove = (name: string) => {
     removeFlaw(name);
   };
 
@@ -47,7 +67,7 @@ export default function Flaws({
     </li>
   ));
 
-  const optionsList = [];
+  const optionsList: JSX.Element[] = [];
 
   optionsMap.forEach((value, key) => {
     const flaw = {
@@ -88,16 +108,3 @@ export default function Flaws({
     </Section>
   );
 }
-
-Flaws.propTypes = {
-  optionsMap: PropTypes.instanceOf(Map).isRequired,
-  selected: PropTypes.arrayOf(
-    PropTypes.shape({
-      name: PropTypes.string,
-      points: PropTypes.number
-    })
-  ).isRequired,
-  availablePoints: PropTypes.number.isRequired,
-  addFlaw: PropTypes.func.isRequired,
-  removeFlaw: PropTypes.func.isRequired
-};

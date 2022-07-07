@@ -1,5 +1,15 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import { ChangeEvent } from 'react';
+
+interface RitualsForTypeProps {
+  ritualType: string;
+  displayName: string;
+  permutations: {
+    description: string;
+    value: number[];
+  }[];
+  selected: number[];
+  updateRituals: (ritualType: string, rituals: number[]) => void;
+}
 
 export default function RitualsForType({
   ritualType,
@@ -7,8 +17,8 @@ export default function RitualsForType({
   permutations,
   selected,
   updateRituals
-}) {
-  const handleChange = e => {
+}: RitualsForTypeProps): JSX.Element {
+  const handleChange = (e: ChangeEvent<HTMLSelectElement>) => {
     const rituals = JSON.parse(e.target.value);
 
     updateRituals(ritualType, rituals);
@@ -41,16 +51,3 @@ export default function RitualsForType({
     </div>
   );
 }
-
-RitualsForType.propTypes = {
-  ritualType: PropTypes.string.isRequired,
-  displayName: PropTypes.string.isRequired,
-  permutations: PropTypes.arrayOf(
-    PropTypes.shape({
-      description: PropTypes.string.isRequired,
-      value: PropTypes.arrayOf(PropTypes.number).isRequired
-    })
-  ).isRequired,
-  selected: PropTypes.arrayOf(PropTypes.number).isRequired,
-  updateRituals: PropTypes.func.isRequired
-};

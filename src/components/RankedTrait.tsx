@@ -1,11 +1,21 @@
-import React from 'react';
-import PropTypes from 'prop-types';
 import Dots from './Dots';
 import Rank from './Rank';
 import getDots from '../utils/getDots';
 import { capitalizeFirstLetter } from '../utils/stringUtils';
+import { TraitState } from '../types';
+import { ChangeEvent } from 'react';
 
-export default function RankedTrait(props) {
+interface RankedTraitProps {
+  name: string;
+  displayName?: string;
+  maxDots: number;
+  rankDots: readonly number[];
+  traitState: TraitState;
+  onRankChange: (name: string, dotsFromRank: number) => void;
+  onClick: (name: string) => void;
+}
+
+export default function RankedTrait(props: RankedTraitProps): JSX.Element {
   const {
     name,
     displayName = capitalizeFirstLetter(name),
@@ -16,7 +26,7 @@ export default function RankedTrait(props) {
     onClick
   } = props;
 
-  const handleRankChange = e => {
+  const handleRankChange = (e: ChangeEvent<HTMLSelectElement>) => {
     const dotsFromRank = parseInt(e.target.value, 10);
     onRankChange(name, dotsFromRank);
   };
@@ -37,13 +47,3 @@ export default function RankedTrait(props) {
     </div>
   );
 }
-
-RankedTrait.propTypes = {
-  name: PropTypes.string.isRequired,
-  displayName: PropTypes.string,
-  maxDots: PropTypes.number.isRequired,
-  rankDots: PropTypes.arrayOf(PropTypes.number).isRequired,
-  traitState: PropTypes.object.isRequired,
-  onRankChange: PropTypes.func.isRequired,
-  onClick: PropTypes.func.isRequired
-};

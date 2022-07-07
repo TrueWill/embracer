@@ -1,11 +1,20 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import { MouseEventHandler } from 'react';
 import styles from './Dots.module.css';
 
 const unfilledClass = 'fa fa-circle-thin';
 const filledClass = 'fa fa-circle';
 
-export default function Dots({ level = 0, max = 5, onClick }) {
+interface DotsProps {
+  level?: number;
+  max?: number;
+  onClick?: MouseEventHandler<HTMLDivElement>;
+}
+
+export default function Dots({
+  level = 0,
+  max = 5,
+  onClick
+}: DotsProps): JSX.Element {
   const items = Array(max);
 
   for (let i = 0; i < max; i++) {
@@ -20,9 +29,3 @@ export default function Dots({ level = 0, max = 5, onClick }) {
     </div>
   );
 }
-
-Dots.propTypes = {
-  level: PropTypes.number,
-  max: PropTypes.number,
-  onClick: PropTypes.func
-};

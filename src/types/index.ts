@@ -34,6 +34,7 @@ export interface StandardMeritFlaw {
   readonly name: string;
   readonly points: number;
   readonly multiple?: boolean;
+  timesPurchased?: number;
 }
 
 export interface MoralityMerit {
@@ -93,9 +94,21 @@ export interface TraitState {
   dotsFromRank?: number;
   startingDots?: number;
   dotsPurchased?: number;
+  focus?: string;
 }
 
 export type CategoryTraits = {
   availableStartingDots: readonly DotsCount[];
   [key: string]: TraitState | readonly DotsCount[];
 };
+
+export interface Foci {
+  readonly physical: readonly string[];
+  readonly social: readonly string[];
+  readonly mental: readonly string[];
+}
+
+export interface Bloodline {
+  meritPoints: number;
+  disciplines: readonly string[];
+}

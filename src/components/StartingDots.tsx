@@ -1,13 +1,20 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import { ChangeEventHandler } from 'react';
 import styles from './StartingDots.module.css';
+import { DotsCount } from '../types';
+
+interface StartingDotsProps {
+  available: readonly DotsCount[];
+  value?: number;
+  disallowClear?: boolean;
+  onChange: ChangeEventHandler<HTMLSelectElement>;
+}
 
 export default function StartingDots({
   available,
   value,
   disallowClear,
   onChange
-}) {
+}: StartingDotsProps): JSX.Element {
   const optionElements = available
     .filter(a => a.count > 0 && a.dots !== value)
     .map(a => (
@@ -31,16 +38,4 @@ export default function StartingDots({
 StartingDots.defaultProps = {
   value: 0,
   disallowClear: false
-};
-
-StartingDots.propTypes = {
-  available: PropTypes.arrayOf(
-    PropTypes.shape({
-      dots: PropTypes.number.isRequired,
-      count: PropTypes.number.isRequired
-    })
-  ).isRequired,
-  value: PropTypes.number,
-  disallowClear: PropTypes.bool,
-  onChange: PropTypes.func.isRequired
 };

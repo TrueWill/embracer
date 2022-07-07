@@ -1,7 +1,16 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import { ReactNode } from 'react';
 
-export default function Section({ header, footer, children }) {
+interface SectionProps {
+  header: ReactNode;
+  footer?: ReactNode;
+  children: ReactNode;
+}
+
+export default function Section({
+  header,
+  footer,
+  children
+}: SectionProps): JSX.Element {
   return (
     <div className="row">
       <div className="col-sm-12">
@@ -16,9 +25,3 @@ export default function Section({ header, footer, children }) {
     </div>
   );
 }
-
-Section.propTypes = {
-  header: PropTypes.node.isRequired,
-  footer: PropTypes.node,
-  children: PropTypes.node.isRequired
-};

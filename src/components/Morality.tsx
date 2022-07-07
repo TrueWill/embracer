@@ -1,11 +1,26 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import { ChangeEvent } from 'react';
 import { humanity } from '../constants/characterOptions';
 import Dots from './Dots';
 import Section from './Section';
 
-const getDescription = option =>
-  `${option.name} (${option.points} point merit)`;
+const getDescription: (option: {
+  name: string;
+  points: number;
+}) => string = option => `${option.name} (${option.points} point merit)`;
+
+interface MoralityProps {
+  optionsMap: Map<
+    string,
+    {
+      points: number;
+    }
+  >;
+  path: string;
+  level: number;
+  maxDots: number;
+  purchaseOrUnpurchaseMoralityDot: () => void;
+  updateMoralityIfPointsAvailable: (newPath: string) => void;
+}
 
 export default function Morality({
   optionsMap,
@@ -14,18 +29,18 @@ export default function Morality({
   maxDots,
   purchaseOrUnpurchaseMoralityDot,
   updateMoralityIfPointsAvailable
-}) {
+}: MoralityProps): JSX.Element {
   const handleOnClick = () => {
     purchaseOrUnpurchaseMoralityDot();
   };
 
-  const handlePathChange = e => {
+  const handlePathChange = (e: ChangeEvent<HTMLSelectElement>) => {
     const newPath = e.target.value;
 
     updateMoralityIfPointsAvailable(newPath);
   };
 
-  const pathOptions = [];
+  const pathOptions: JSX.Element[] = [];
 
   optionsMap.forEach((value, key) => {
     const moralityMerit = {
@@ -50,12 +65,3 @@ export default function Morality({
     </Section>
   );
 }
-
-Morality.propTypes = {
-  optionsMap: PropTypes.instanceOf(Map).isRequired,
-  path: PropTypes.string.isRequired,
-  level: PropTypes.number.isRequired,
-  maxDots: PropTypes.number.isRequired,
-  purchaseOrUnpurchaseMoralityDot: PropTypes.func.isRequired,
-  updateMoralityIfPointsAvailable: PropTypes.func.isRequired
-};

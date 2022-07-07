@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import RankedTrait from './RankedTrait';
 import Focus from './Focus';
 import Section from './Section';
@@ -8,6 +7,16 @@ import {
   attributeMaxDots,
   attributesRankDots
 } from '../constants/characterOptions';
+import { Foci, TraitState } from '../types';
+
+interface AttributesProps {
+  attributes: Record<string, TraitState>;
+  attributeBonus: number;
+  foci: Foci;
+  setRank: (category: string, trait: string, dotsFromRank: number) => void;
+  setFocus: (attribute: string, focus: string) => void;
+  purchaseOrUnpurchaseDot: (category: string, trait: string) => void;
+}
 
 export default function Attributes({
   attributes,
@@ -16,16 +25,16 @@ export default function Attributes({
   setRank,
   setFocus,
   purchaseOrUnpurchaseDot
-}) {
-  const handleRankChange = (trait, dotsFromRank) => {
+}: AttributesProps): JSX.Element {
+  const handleRankChange = (trait: string, dotsFromRank: number) => {
     setRank('attributes', trait, dotsFromRank);
   };
 
-  const handleFocusChange = (attribute, focus) => {
+  const handleFocusChange = (attribute: string, focus: string) => {
     setFocus(attribute, focus);
   };
 
-  const handleOnClick = trait => {
+  const handleOnClick = (trait: string) => {
     purchaseOrUnpurchaseDot('attributes', trait);
   };
 
@@ -41,7 +50,7 @@ export default function Attributes({
       />
       <Focus
         attribute={name}
-        foci={foci[name]}
+        foci={foci[name as 'physical' | 'social' | 'mental']}
         value={attributes[name].focus}
         onChange={handleFocusChange}
       />
@@ -59,12 +68,3 @@ export default function Attributes({
     </Section>
   );
 }
-
-Attributes.propTypes = {
-  attributes: PropTypes.object.isRequired,
-  attributeBonus: PropTypes.number.isRequired,
-  foci: PropTypes.objectOf(PropTypes.arrayOf(PropTypes.string)).isRequired,
-  setRank: PropTypes.func.isRequired,
-  setFocus: PropTypes.func.isRequired,
-  purchaseOrUnpurchaseDot: PropTypes.func.isRequired
-};

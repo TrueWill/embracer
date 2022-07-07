@@ -1,20 +1,26 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { ChangeEvent } from 'react';
 import { mapKeysToArray } from '../utils/mapUtils';
 import { clans } from '../constants/clanOptions';
+import { Bloodline, ClanSetting } from '../types';
 
-export default function Clan({ clan, updateClan }) {
-  const handleClanChange = e => {
+interface ClanProps {
+  clan: ClanSetting;
+  updateClan: (s: string, bloodline?: string, meritPoints?: number) => void;
+}
+
+export default function Clan({ clan, updateClan }: ClanProps): JSX.Element {
+  const handleClanChange = (e: ChangeEvent<HTMLSelectElement>) => {
     updateClan(e.target.value);
   };
 
-  const handleBloodlineChange = e => {
+  const handleBloodlineChange = (e: ChangeEvent<HTMLSelectElement>) => {
     const clanName = clan.name;
     const bloodline = e.target.value;
 
     if (bloodline) {
-      const meritPoints = clans.get(clanName).bloodlines.get(bloodline)
-        .meritPoints;
+      const meritPoints = (clans
+        .get(clanName)!
+        .bloodlines.get(bloodline) as Bloodline).meritPoints;
 
       updateClan(clanName, bloodline, meritPoints);
     } else {
@@ -28,16 +34,18 @@ export default function Clan({ clan, updateClan }) {
     </option>
   ));
 
-  const bloodlineOptions = [];
+  const bloodlineOptions: JSX.Element[] = [];
 
   if (clan.name) {
-    clans.get(clan.name).bloodlines.forEach((value, key) => {
-      bloodlineOptions.push(
-        <option value={key} key={key}>
-          {`${key} (${value.meritPoints} points)`}
-        </option>
-      );
-    });
+    (clans.get(clan.name)!.bloodlines as Map<string, Bloodline>).forEach(
+      (value, key) => {
+        bloodlineOptions.push(
+          <option value={key} key={key}>
+            {`${key} (${value.meritPoints} points)`}
+          </option>
+        );
+      }
+    );
   }
 
   return (
@@ -80,8 +88,3 @@ export default function Clan({ clan, updateClan }) {
     </React.Fragment>
   );
 }
-
-Clan.propTypes = {
-  clan: PropTypes.object.isRequired,
-  updateClan: PropTypes.func.isRequired
-};

@@ -1,11 +1,20 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import { ChangeEvent } from 'react';
 import { mapKeysToArray } from '../utils/mapUtils';
 import { settings } from '../constants/settingOptions';
 import Section from './Section';
 
-export default function Setting({ setting, updateSetting }) {
-  const handleSettingChange = e => {
+interface SettingProps {
+  setting: {
+    name: string;
+  };
+  updateSetting: (value: string) => void;
+}
+
+export default function Setting({
+  setting,
+  updateSetting
+}: SettingProps): JSX.Element {
+  const handleSettingChange = (e: ChangeEvent<HTMLSelectElement>) => {
     updateSetting(e.target.value);
   };
 
@@ -32,8 +41,3 @@ export default function Setting({ setting, updateSetting }) {
     </Section>
   );
 }
-
-Setting.propTypes = {
-  setting: PropTypes.object.isRequired,
-  updateSetting: PropTypes.func.isRequired
-};

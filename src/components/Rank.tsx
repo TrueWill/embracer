@@ -1,5 +1,4 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import { ChangeEventHandler } from 'react';
 
 const descriptions = [
   'Primary',
@@ -12,9 +11,19 @@ const descriptions = [
   'Octonary',
   'Nonary',
   'Denary'
-];
+] as const;
 
-export default function Rank({ dots, dotValue, onChange }) {
+interface RankProps {
+  dots: readonly number[];
+  dotValue?: number;
+  onChange: ChangeEventHandler<HTMLSelectElement>;
+}
+
+export default function Rank({
+  dots,
+  dotValue,
+  onChange
+}: RankProps): JSX.Element {
   const optionElements = dots.map((value, index) => (
     <option key={index} value={value}>
       {descriptions[index]} ({value})
@@ -31,10 +40,4 @@ export default function Rank({ dots, dotValue, onChange }) {
 
 Rank.defaultProps = {
   dotValue: 0
-};
-
-Rank.propTypes = {
-  dots: PropTypes.arrayOf(PropTypes.number).isRequired,
-  dotValue: PropTypes.number,
-  onChange: PropTypes.func.isRequired
 };

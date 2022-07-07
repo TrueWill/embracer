@@ -1,14 +1,32 @@
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
+import { ChangeEvent, useState } from 'react';
 import Section from './Section';
 import DeleteButton from './DeleteButton';
 import { getSelectedMeritDescription } from '../utils/meritFlawUtils';
 import { maxMeritPoints } from '../constants/merits';
+import { StandardMeritFlaw } from '../types';
 
-const getOptionDescription = merit =>
+const getOptionDescription: (merit: StandardMeritFlaw) => string = merit =>
   `${merit.name}${merit.multiple ? '*' : ''} (${merit.points} point${
     merit.points > 1 ? 's' : ''
   })`;
+
+interface MeritsProps {
+  optionsMap: Map<
+    string,
+    {
+      readonly points: number;
+      readonly multiple?: boolean;
+    }
+  >;
+  selected: {
+    name: string;
+    points: number;
+    timesPurchased?: number;
+  }[];
+  availablePoints: number;
+  addMerit: (name: string, points: number) => void;
+  removeMerit: (name: string) => void;
+}
 
 export default function Merits({
   optionsMap,
@@ -16,10 +34,15 @@ export default function Merits({
   availablePoints,
   addMerit,
   removeMerit
-}) {
+}: MeritsProps): JSX.Element {
   const [selectedValue, setSelectedValue] = useState('');
 
-  let selectedMerit;
+  let selectedMerit:
+    | {
+        name?: string;
+        readonly points: number;
+      }
+    | undefined;
 
   if (selectedValue) {
     selectedMerit = optionsMap.get(selectedValue);
@@ -32,16 +55,16 @@ export default function Merits({
     }
   }
 
-  const handleSelectChange = e => {
+  const handleSelectChange = (e: ChangeEvent<HTMLSelectElement>) => {
     setSelectedValue(e.target.value);
   };
 
   const handleAdd = () => {
-    addMerit(selectedMerit.name, selectedMerit.points);
+    addMerit(selectedMerit!.name!, selectedMerit!.points);
     setSelectedValue('');
   };
 
-  const handleRemove = name => {
+  const handleRemove = (name: string) => {
     removeMerit(name);
   };
 
@@ -52,7 +75,7 @@ export default function Merits({
     </li>
   ));
 
-  const optionsList = [];
+  const optionsList: JSX.Element[] = [];
 
   optionsMap.forEach((value, key) => {
     const merit = {
@@ -96,17 +119,3 @@ export default function Merits({
     </Section>
   );
 }
-
-Merits.propTypes = {
-  optionsMap: PropTypes.instanceOf(Map).isRequired,
-  selected: PropTypes.arrayOf(
-    PropTypes.shape({
-      name: PropTypes.string.isRequired,
-      points: PropTypes.number.isRequired,
-      timesPurchased: PropTypes.number
-    })
-  ).isRequired,
-  availablePoints: PropTypes.number.isRequired,
-  addMerit: PropTypes.func.isRequired,
-  removeMerit: PropTypes.func.isRequired
-};

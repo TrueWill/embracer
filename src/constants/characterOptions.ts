@@ -1,4 +1,4 @@
-import type { DotCost, DotsCount, Generation } from '../types';
+import type { DotCost, DotsCount, Foci, Generation } from '../types';
 
 export const archetypes: readonly string[] = [
   'Architect',
@@ -53,7 +53,7 @@ export const bonusAttributeMaxDots = 5;
 
 export const attributesRankDots: readonly number[] = [7, 5, 3];
 
-export const standardFoci = {
+export const standardFoci: Foci = {
   physical: ['Strength', 'Dexterity', 'Stamina'],
   social: ['Charisma', 'Manipulation', 'Appearance'],
   mental: ['Perception', 'Intelligence', 'Wits']

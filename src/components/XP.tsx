@@ -1,10 +1,20 @@
-import React from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import Section from './Section';
 import styles from './XP.module.css';
 
-export default function XP({ spent, gainedFromFlaws, available, bankable }) {
+interface XPProps {
+  spent: number;
+  gainedFromFlaws: number;
+  available: number;
+  bankable: number;
+}
+
+export default function XP({
+  spent,
+  gainedFromFlaws,
+  available,
+  bankable
+}: XPProps): JSX.Element {
   const availableClass = classNames({
     [styles.negative]: available < 0
   });
@@ -20,10 +30,3 @@ export default function XP({ spent, gainedFromFlaws, available, bankable }) {
     </Section>
   );
 }
-
-XP.propTypes = {
-  spent: PropTypes.number.isRequired,
-  gainedFromFlaws: PropTypes.number.isRequired,
-  available: PropTypes.number.isRequired,
-  bankable: PropTypes.number.isRequired
-};

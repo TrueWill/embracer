@@ -1,6 +1,3 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-
 const pencilClass = 'fa fa-pencil';
 const eraserClass = 'fa fa-eraser';
 
@@ -8,7 +5,15 @@ const pencilTooltipPrefix = 'Pencil mode (add dots)';
 const eraserTooltipPrefix = 'Eraser mode (remove dots)';
 const tooltipSuffix = ' (click to toggle)';
 
-export default function PencilEraser({ isEraser, togglePencilEraserMode }) {
+interface PencilEraserProps {
+  isEraser: boolean;
+  togglePencilEraserMode: () => void;
+}
+
+export default function PencilEraser({
+  isEraser,
+  togglePencilEraserMode
+}: PencilEraserProps): JSX.Element {
   const className = isEraser ? eraserClass : pencilClass;
   const tooltip =
     (isEraser ? eraserTooltipPrefix : pencilTooltipPrefix) + tooltipSuffix;
@@ -24,8 +29,3 @@ export default function PencilEraser({ isEraser, togglePencilEraserMode }) {
     </button>
   );
 }
-
-PencilEraser.propTypes = {
-  isEraser: PropTypes.bool.isRequired,
-  togglePencilEraserMode: PropTypes.func.isRequired
-};

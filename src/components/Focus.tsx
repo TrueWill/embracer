@@ -1,8 +1,19 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import { ChangeEvent } from 'react';
 
-export default function Focus({ attribute, foci, value, onChange }) {
-  const handleChange = e => {
+interface FocusProps {
+  attribute: string;
+  foci: readonly string[];
+  value?: string;
+  onChange: (attribute: string, focus: string) => void;
+}
+
+export default function Focus({
+  attribute,
+  foci,
+  value,
+  onChange
+}: FocusProps): JSX.Element {
+  const handleChange = (e: ChangeEvent<HTMLSelectElement>) => {
     const focus = e.target.value;
     onChange(attribute, focus);
   };
@@ -23,11 +34,4 @@ export default function Focus({ attribute, foci, value, onChange }) {
 
 Focus.defaultProps = {
   value: ''
-};
-
-Focus.propTypes = {
-  attribute: PropTypes.string.isRequired,
-  foci: PropTypes.arrayOf(PropTypes.string).isRequired,
-  value: PropTypes.string,
-  onChange: PropTypes.func.isRequired
 };

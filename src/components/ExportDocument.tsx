@@ -1,8 +1,12 @@
-import React from 'react';
-import PropTypes from 'prop-types';
 import exportPdf from '../utils/exportPdf';
 
-export default function ExportDocument({ state }) {
+interface ExportDocumentProps {
+  state: object;
+}
+
+export default function ExportDocument({
+  state
+}: ExportDocumentProps): JSX.Element {
   const handleClick = () => {
     // Could dispatch an action, but this doesn't change state.
     // Could use an async action, but we're not really waiting for anything.
@@ -16,7 +20,3 @@ export default function ExportDocument({ state }) {
     </button>
   );
 }
-
-ExportDocument.propTypes = {
-  state: PropTypes.object.isRequired
-};

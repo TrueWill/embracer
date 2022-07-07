@@ -1,4 +1,3 @@
-import React from 'react';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { noop, getOptionItems } from '../utils/testUtils';
@@ -119,7 +118,7 @@ it('should display selected when merit purchased multiple times', () => {
     />
   );
 
-  const items = screen.getAllByRole('listitem').map(i => i.textContent.trim());
+  const items = screen.getAllByRole('listitem').map(i => i.textContent!.trim());
 
   expect(items).toEqual(['Arcane (1 point)', 'Skill Aptitude (2 points X 3)']);
 });

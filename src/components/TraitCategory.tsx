@@ -1,10 +1,28 @@
-import React from 'react';
-import PropTypes from 'prop-types';
 import { capitalizeFirstLetter } from '../utils/stringUtils';
 import { standardTraitMaxDots } from '../constants/characterOptions';
 import Trait from './Trait';
 import Section from './Section';
 import chunk from 'lodash.chunk';
+import { CategoryTraits, DotsCount, TraitState } from '../types';
+
+interface TraitCategoryProps {
+  categoryName: string;
+  traitNames: string[];
+  specificNames?: string[];
+  traitDisplayNameOverride: Readonly<Record<string, string>>;
+  categoryTraits: CategoryTraits;
+  adjustAvailable: (
+    availableStartingDots: readonly DotsCount[],
+    name?: string,
+    dotsPurchased?: number
+  ) => readonly DotsCount[];
+  setStartingDots: (
+    categoryName: string,
+    trait: string,
+    startingDots: number
+  ) => void;
+  purchaseOrUnpurchaseDot: (categoryName: string, trait: string) => void;
+}
 
 export default function TraitCategory({
   categoryName,
@@ -15,12 +33,12 @@ export default function TraitCategory({
   adjustAvailable,
   setStartingDots,
   purchaseOrUnpurchaseDot
-}) {
-  const handleStartingDotsChange = (trait, startingDots) => {
+}: TraitCategoryProps): JSX.Element {
+  const handleStartingDotsChange = (trait: string, startingDots: number) => {
     setStartingDots(categoryName, trait, startingDots);
   };
 
-  const handleOnClick = trait => {
+  const handleOnClick = (trait: string) => {
     purchaseOrUnpurchaseDot(categoryName, trait);
   };
 
@@ -30,7 +48,7 @@ export default function TraitCategory({
       : traitNames;
 
   const traits = allTraitNames.map(name => {
-    const traitState = categoryTraits[name] || {};
+    const traitState = (categoryTraits[name] as TraitState) || {};
 
     const availableStartingDots = adjustAvailable(
       categoryTraits.availableStartingDots,
@@ -71,14 +89,3 @@ export default function TraitCategory({
     </Section>
   );
 }
-
-TraitCategory.propTypes = {
-  categoryName: PropTypes.string.isRequired,
-  traitNames: PropTypes.arrayOf(PropTypes.string).isRequired,
-  specificNames: PropTypes.arrayOf(PropTypes.string),
-  traitDisplayNameOverride: PropTypes.object.isRequired,
-  categoryTraits: PropTypes.object.isRequired,
-  adjustAvailable: PropTypes.func.isRequired,
-  setStartingDots: PropTypes.func.isRequired,
-  purchaseOrUnpurchaseDot: PropTypes.func.isRequired
-};
