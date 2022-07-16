@@ -6,14 +6,16 @@ import {
   addPurchasedDot,
   removePurchasedDot
 } from '../utils/categoryPurchaser';
+import { Action } from '../types';
 
-const isBackgrounds = category => category === 'backgrounds';
+const isBackgrounds: (category: string) => boolean = category =>
+  category === 'backgrounds';
 
 const backgroundsReducer = (
   state = initialState.character.backgrounds,
-  action
+  action: Action<any>
 ) => {
-  let category, trait, startingDots;
+  let category: string, trait: string, startingDots: number;
 
   switch (action.type) {
     case types.SET_STARTING_DOTS:
