@@ -112,3 +112,36 @@ export interface Bloodline {
   meritPoints: number;
   disciplines: readonly string[];
 }
+
+export type Affinity = 'inClan' | 'outOfClan';
+
+export type State = {
+  mode: {
+    isEraser: boolean;
+  };
+  setting: {
+    name: string;
+  };
+  character: {
+    basicInfo: {
+      archetype: string;
+      clan: ClanSetting;
+    };
+    attributes: Record<'physical' | 'social' | 'mental', TraitState>;
+    skills: CategoryTraits;
+    backgrounds: CategoryTraits;
+    disciplines: Record<Affinity, CategoryTraits> & {
+      rituals: {
+        necromantic: number[];
+        thaumaturgic: number[];
+      };
+    };
+    merits: StandardMeritFlaw[];
+    flaws: StandardMeritFlaw[];
+    morality: {
+      path: string;
+      meritPoints?: number;
+      startingDots: number;
+    };
+  };
+};

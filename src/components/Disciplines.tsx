@@ -1,4 +1,4 @@
-import { CategoryTraits, DotsCount } from '../types';
+import { Affinity, CategoryTraits, DotsCount } from '../types';
 import TraitCategory from './TraitCategory';
 
 const categoryNameByAffinity = {
@@ -7,7 +7,7 @@ const categoryNameByAffinity = {
 };
 
 interface DisciplinesProps {
-  affinity: 'inClan' | 'outOfClan';
+  affinity: Affinity;
   names: string[];
   displayNameOverride: Readonly<Record<string, string>>;
   traits: CategoryTraits;

@@ -10,6 +10,7 @@ import {
   inClanDisciplinesAvailableStartingDots,
   outOfClanDisciplinesAvailableStartingDots
 } from '../constants/clanOptions';
+import { State } from '../types';
 import { setDotsFromStartingDots } from '../utils/categoryStarter';
 
 let backgrounds = {
@@ -23,7 +24,7 @@ backgrounds = setDotsFromStartingDots(
   standardTraitMaxDots
 );
 
-const initialState = {
+const initialState: State = {
   mode: {
     isEraser: false
   },
@@ -38,7 +39,7 @@ const initialState = {
     attributes: attributeTraitNames.reduce(
       (acc, name) => ({ ...acc, [name]: {} }),
       {}
-    ),
+    ) as State['character']['attributes'],
     skills: {
       availableStartingDots: skillsAvailableStartingDots
     },
