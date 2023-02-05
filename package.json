@@ -21,6 +21,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "lint": "eslint \"src/**/*.js\"",
+    "typecheck": "tsc --noEmit",
     "eject": "react-scripts eject",
     "deploy": "yarn build && s3cmd sync build/* s3://truewill-embracer",
     "prettify": "prettier --write src/**/*.js"
