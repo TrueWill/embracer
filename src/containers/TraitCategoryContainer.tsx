@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import type { RootState, AvailableStartingDot } from '../types';
+import type { AvailableStartingDot, BackgroundsState, RootState, SkillsState } from '../types';
 import getSpecificBackgrounds from '../selectors/getSpecificBackgrounds';
 import { getCharacter, getClanName } from '../selectors/simple';
 import {
@@ -40,7 +40,7 @@ const mapStateToProps = (state: RootState, ownProps: OwnProps) => {
     categoryName === 'backgrounds' ? getSpecificBackgrounds(state) : [];
 
   return {
-    categoryTraits: getCharacter(state)[categoryName] as import('../types').SkillsState | import('../types').BackgroundsState,
+    categoryTraits: getCharacter(state)[categoryName] as SkillsState | BackgroundsState,
     adjustAvailable,
     specificNames
   };

@@ -8,7 +8,7 @@ import getDots from '../utils/getDots';
 import { getTraitNames } from '../utils/traitUtils';
 import { mapKeysToArray } from '../utils/mapUtils';
 import { capitalizeFirstLetter } from '../utils/stringUtils';
-import type { DisciplineCategory, RitualsState, RitualTypeInfo } from '../types';
+import type { DisciplineCategory, RitualsState, RitualTypeInfo, TraitState } from '../types';
 
 interface RitualInfo {
   maxLevel: number;
@@ -24,7 +24,7 @@ const getEnhancedRitualInfoForAffinityDisciplines = (affinityDisciplines: Discip
     .filter(info => info.hasRituals)
     .map(info => ({
       ...info,
-      dots: getDots(affinityDisciplines[info.disciplineName] as import('../types').TraitState)
+      dots: getDots(affinityDisciplines[info.disciplineName] as TraitState)
     }));
 
 const getRituals = createSelector(
