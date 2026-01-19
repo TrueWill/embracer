@@ -14,7 +14,7 @@ const moralityReducer = (
 ): MoralityState => {
   switch (action.type) {
     case types.PURCHASE_MORALITY_DOT:
-      if ((state as any).dotsPurchased || state.path !== humanity) {
+      if (state.dotsPurchased || state.path !== humanity) {
         return state;
       }
 
@@ -23,7 +23,7 @@ const moralityReducer = (
         dotsPurchased: 1
       };
     case types.UNPURCHASE_MORALITY_DOT:
-      if (!(state as any).dotsPurchased) {
+      if (!state.dotsPurchased) {
         return state;
       }
 
