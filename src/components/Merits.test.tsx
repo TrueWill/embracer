@@ -119,7 +119,7 @@ it('should display selected when merit purchased multiple times', () => {
     />
   );
 
-  const items = screen.getAllByRole('listitem').map(i => i.textContent.trim());
+  const items = screen.getAllByRole('listitem').map(i => i.textContent?.trim() ?? '');
 
   expect(items).toEqual(['Arcane (1 point)', 'Skill Aptitude (2 points X 3)']);
 });
