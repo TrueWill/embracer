@@ -52,7 +52,7 @@ Currently deployment is manual, so the site may not reflect the latest changes.
 
 Built with [React](https://reactjs.org/) and [Redux](https://redux.js.org/) - thanks so much to Facebook, Dan Abramov, Mark Erikson, and all contributors!
 
-Special thanks to my lovely wife [hellomandie](https://github.com/hellomandie) for styling the app! (Currently broken due to my issue.)
+Special thanks to my lovely wife [hellomandie](https://github.com/hellomandie) for styling the app!
 
 Thanks to Anthony Accomazzo for his article on [deploying a React app to Amazon's S3](https://www.newline.co/fullstack-react/articles/deploying-a-react-app-to-s3/).
 
