@@ -25,12 +25,10 @@ import {
   MeritFlawItem,
   MoralityState,
   GenerationInfo,
-  TraitState,
   SkillsState,
   BackgroundsState,
   DisciplinesState,
-  RitualTypeInfo,
-  AvailableStartingDot
+  RitualTypeInfo
 } from '../types';
 
 // Units are mm
@@ -73,10 +71,6 @@ const getSquaresWidth = (squares: number, width: number): number =>
 
 const getDotsWidth = (maxDots: number): number =>
   dotRadius * 2 * maxDots + dotSpacing * (maxDots - 1);
-
-interface TraitMap {
-  [traitName: string]: TraitState | AvailableStartingDot[];
-}
 
 interface XPInfo {
   spent: number;
@@ -273,7 +267,12 @@ export default class Pdf {
     }
   }
 
-  printTraitLine(displayName: string, dots: number, maxDots: number, x: number): void {
+  printTraitLine(
+    displayName: string,
+    dots: number,
+    maxDots: number,
+    x: number
+  ): void {
     const dotsWidth = getDotsWidth(maxDots);
     const xOffset = columnWidth - dotsWidth;
 
@@ -337,7 +336,9 @@ export default class Pdf {
       }
 
       const displayName =
-        (skillTraitDisplayNameOverride as Record<string, string>)[name] || capitalizeFirstLetter(name) || name;
+        (skillTraitDisplayNameOverride as Record<string, string>)[name] ||
+        capitalizeFirstLetter(name) ||
+        name;
       const column = Math.floor(index / skillsRows) + 1;
 
       if (index % skillsRows === 0) {
@@ -368,7 +369,9 @@ export default class Pdf {
       }
 
       const displayName =
-        (backgroundTraitDisplayNameOverride as Record<string, string>)[name] || capitalizeFirstLetter(name) || name;
+        (backgroundTraitDisplayNameOverride as Record<string, string>)[name] ||
+        capitalizeFirstLetter(name) ||
+        name;
 
       this.printTraitLine(
         displayName,
