@@ -15,38 +15,38 @@ Currently deployment is manual, so the site may not reflect the latest changes.
 
 ## To Do
 
-* Print options (A4 size, etc.)
-* Improve test coverage
-* Techniques (clear if change Generation)
-* Elder Powers (clear if change Generation)
-* Eerie Presence Flaw can be purchased multiple times
-* Anarch Movement Generation merit and Path costs
-* True Brujah cannot purchase Empathy
-* Premascine can learn Necromancy: Mortis Path as out-of-clan
-* Volgirre can learn Vicissitude out-of-clan (up to 2 dots)
-* Carpathians can learn Protean out-of-clan and cannot take the Szlachta merit
-* Koldun additional Thaumaturgy path (odd costs)
-* Angellis Ater choice of in-clan discipline
-* Necromantic Training and similar merits allowing access to disciplines
+- Print options (A4 size, etc.)
+- Improve test coverage
+- Techniques (clear if change Generation)
+- Elder Powers (clear if change Generation)
+- Eerie Presence Flaw can be purchased multiple times
+- Anarch Movement Generation merit and Path costs
+- True Brujah cannot purchase Empathy
+- Premascine can learn Necromancy: Mortis Path as out-of-clan
+- Volgirre can learn Vicissitude out-of-clan (up to 2 dots)
+- Carpathians can learn Protean out-of-clan and cannot take the Szlachta merit
+- Koldun additional Thaumaturgy path (odd costs)
+- Angellis Ater choice of in-clan discipline
+- Necromantic Training and similar merits allowing access to disciplines
 
 ## Contributing
 
 ### Standards
 
-* [Prettier](https://prettier.io/) v1 with single quotes (`yarn prettify`)
-* [EditorConfig](http://editorconfig.org/)
-* [Yarn](https://yarnpkg.com/en/)
-* [prop-types](https://github.com/facebook/prop-types)
-* Prefer function components to class components (OK to use [Hooks](https://reactjs.org/docs/hooks-intro.html))
-* [Flux Standard Actions](https://github.com/acdlite/flux-standard-action)
-* [Strict Mode](https://reactjs.org/docs/strict-mode.html) (except for react-select)
-* [Reselect](https://github.com/reactjs/reselect) selectors
-* Only reducers and selectors should know the exact state structure
-* [CSS Modules](https://facebook.github.io/create-react-app/docs/adding-a-css-modules-stylesheet)
-* Jest/React Testing Library tests (using it() alias for test()) - all passing: [![Build Status](https://travis-ci.com/TrueWill/embracer.svg?branch=master)](https://travis-ci.com/TrueWill/embracer)
-* No ESLint warnings/errors
-* No console warnings/errors
-* Works in modern browsers (does _not_ support Internet Explorer)
+- [Prettier](https://prettier.io/) v1 with single quotes (`yarn prettify`)
+- [EditorConfig](http://editorconfig.org/)
+- [Yarn](https://yarnpkg.com/en/)
+- TypeScript v4.9.5
+- Prefer function components to class components (OK to use [Hooks](https://reactjs.org/docs/hooks-intro.html))
+- [Flux Standard Actions](https://github.com/acdlite/flux-standard-action)
+- [Strict Mode](https://reactjs.org/docs/strict-mode.html) (except for react-select)
+- [Reselect](https://github.com/reactjs/reselect) selectors
+- Only reducers and selectors should know the exact state structure
+- [CSS Modules](https://facebook.github.io/create-react-app/docs/adding-a-css-modules-stylesheet)
+- Jest/React Testing Library tests (using it() alias for test()) - all passing: [![Build Status](https://travis-ci.com/TrueWill/embracer.svg?branch=master)](https://travis-ci.com/TrueWill/embracer)
+- No ESLint warnings/errors
+- No console warnings/errors
+- Works in modern browsers (does _not_ support Internet Explorer)
 
 ## Acknowledgements
 

@@ -1,0 +1,68 @@
+import {
+  attributeTraitNames,
+  skillsAvailableStartingDots,
+  backgroundsAvailableStartingDots,
+  standardTraitMaxDots,
+  humanity,
+  moralityStartingDotsHumanity
+} from '../constants/characterOptions';
+import {
+  inClanDisciplinesAvailableStartingDots,
+  outOfClanDisciplinesAvailableStartingDots
+} from '../constants/clanOptions';
+import { setDotsFromStartingDots } from '../utils/categoryStarter';
+import type { BackgroundsState } from '../types';
+
+let backgrounds: BackgroundsState = {
+  availableStartingDots: backgroundsAvailableStartingDots
+};
+
+backgrounds = setDotsFromStartingDots(
+  backgrounds,
+  'generation',
+  1,
+  standardTraitMaxDots
+);
+
+const initialState = {
+  mode: {
+    isEraser: false
+  },
+  setting: {
+    name: 'Camarilla'
+  },
+  character: {
+    basicInfo: {
+      archetype: '',
+      clan: { name: '' }
+    },
+    attributes: attributeTraitNames.reduce(
+      (acc, name) => ({ ...acc, [name]: {} }),
+      {} as any
+    ),
+    skills: {
+      availableStartingDots: skillsAvailableStartingDots
+    },
+    backgrounds,
+    disciplines: {
+      inClan: {
+        availableStartingDots: inClanDisciplinesAvailableStartingDots
+      },
+      outOfClan: {
+        availableStartingDots: outOfClanDisciplinesAvailableStartingDots
+      },
+      rituals: {
+        necromantic: [],
+        thaumaturgic: []
+      }
+    },
+    merits: [],
+    flaws: [],
+    morality: {
+      path: humanity,
+      startingDots: moralityStartingDotsHumanity
+    }
+  }
+};
+
+export default initialState;

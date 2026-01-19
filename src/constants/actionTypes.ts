@@ -1,0 +1,17 @@
+export const UPDATE_ARCHETYPE = 'UPDATE_ARCHETYPE' as const;
+export const UPDATE_CLAN = 'UPDATE_CLAN' as const;
+export const SET_RANK = 'SET_RANK' as const;
+export const SET_STARTING_DOTS = 'SET_STARTING_DOTS' as const;
+export const SET_FOCUS = 'SET_FOCUS' as const;
+export const ADD_MERIT = 'ADD_MERIT' as const;
+export const REMOVE_MERIT = 'REMOVE_MERIT' as const;
+export const ADD_FLAW = 'ADD_FLAW' as const;
+export const REMOVE_FLAW = 'REMOVE_FLAW' as const;
+export const PURCHASE_DOT = 'PURCHASE_DOT' as const;
+export const UNPURCHASE_DOT = 'UNPURCHASE_DOT' as const;
+export const PURCHASE_MORALITY_DOT = 'PURCHASE_MORALITY_DOT' as const;
+export const UNPURCHASE_MORALITY_DOT = 'UNPURCHASE_MORALITY_DOT' as const;
+export const TOGGLE_PENCIL_ERASER_MODE = 'TOGGLE_PENCIL_ERASER_MODE' as const;
+export const UPDATE_MORALITY = 'UPDATE_MORALITY' as const;
+export const UPDATE_SETTING = 'UPDATE_SETTING' as const;
+export const UPDATE_RITUALS = 'UPDATE_RITUALS' as const;
