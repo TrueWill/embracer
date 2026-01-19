@@ -5,15 +5,15 @@ describe('purchase or unpurchase dot', () => {
   it('should dispatch purchase dot if not in eraser mode', () => {
     const f = actions.purchaseOrUnpurchaseDot('attributes', 'mental');
 
-    const getState = () => ({
+    const getState = (() => ({
       mode: {
         isEraser: false
       }
-    });
+    })) as any;
 
     const dispatch = jest.fn();
 
-    f(dispatch, getState);
+    f(dispatch, getState, undefined);
 
     expect(dispatch.mock.calls.length).toBe(1);
     expect(dispatch.mock.calls[0][0]).toEqual({
@@ -28,15 +28,15 @@ describe('purchase or unpurchase dot', () => {
   it('should dispatch unpurchase dot if in eraser mode', () => {
     const f = actions.purchaseOrUnpurchaseDot('attributes', 'mental');
 
-    const getState = () => ({
+    const getState = (() => ({
       mode: {
         isEraser: true
       }
-    });
+    })) as any;
 
     const dispatch = jest.fn();
 
-    f(dispatch, getState);
+    f(dispatch, getState, undefined);
 
     expect(dispatch.mock.calls.length).toBe(1);
     expect(dispatch.mock.calls[0][0]).toEqual({
@@ -49,7 +49,7 @@ describe('purchase or unpurchase dot', () => {
   });
 
   it('should not dispatch purchase dot when Caitiff and buying Generation over 2', () => {
-    const getState = () => ({
+    const getState = (() => ({
       mode: {
         isEraser: false
       },
@@ -64,13 +64,13 @@ describe('purchase or unpurchase dot', () => {
           }
         }
       }
-    });
+    })) as any;
 
     const f = actions.purchaseOrUnpurchaseDot('backgrounds', 'generation');
 
     const dispatch = jest.fn();
 
-    f(dispatch, getState);
+    f(dispatch, getState, undefined);
 
     expect(dispatch.mock.calls.length).toBe(0);
   });
@@ -80,15 +80,15 @@ describe('purchase or unpurchase morality dot', () => {
   it('should dispatch purchase morality dot if not in eraser mode', () => {
     const f = actions.purchaseOrUnpurchaseMoralityDot();
 
-    const getState = () => ({
+    const getState = (() => ({
       mode: {
         isEraser: false
       }
-    });
+    })) as any;
 
     const dispatch = jest.fn();
 
-    f(dispatch, getState);
+    f(dispatch, getState, undefined);
 
     expect(dispatch.mock.calls.length).toBe(1);
     expect(dispatch.mock.calls[0][0]).toEqual({
@@ -99,15 +99,15 @@ describe('purchase or unpurchase morality dot', () => {
   it('should dispatch unpurchase morality dot if in eraser mode', () => {
     const f = actions.purchaseOrUnpurchaseMoralityDot();
 
-    const getState = () => ({
+    const getState = (() => ({
       mode: {
         isEraser: true
       }
-    });
+    })) as any;
 
     const dispatch = jest.fn();
 
-    f(dispatch, getState);
+    f(dispatch, getState, undefined);
 
     expect(dispatch.mock.calls.length).toBe(1);
     expect(dispatch.mock.calls[0][0]).toEqual({
@@ -120,7 +120,7 @@ describe('update morality', () => {
   it('should calculate merit points when path and clan affinity', () => {
     const f = actions.updateMoralityIfPointsAvailable('Path of Metamorphosis');
 
-    const getState = () => ({
+    const getState = (() => ({
       character: {
         basicInfo: {
           clan: {
@@ -133,11 +133,11 @@ describe('update morality', () => {
           startingDots: 5
         }
       }
-    });
+    })) as any;
 
     const dispatch = jest.fn();
 
-    f(dispatch, getState);
+    f(dispatch, getState, undefined);
 
     expect(dispatch.mock.calls.length).toBe(1);
     expect(dispatch.mock.calls[0][0]).toEqual({
@@ -152,7 +152,7 @@ describe('update morality', () => {
   it('should calculate merit points when humanity', () => {
     const f = actions.updateMoralityIfPointsAvailable('Humanity');
 
-    const getState = () => ({
+    const getState = (() => ({
       character: {
         basicInfo: {
           clan: { name: 'Tzimisce' }
@@ -164,11 +164,11 @@ describe('update morality', () => {
           startingDots: 4
         }
       }
-    });
+    })) as any;
 
     const dispatch = jest.fn();
 
-    f(dispatch, getState);
+    f(dispatch, getState, undefined);
 
     expect(dispatch.mock.calls.length).toBe(1);
     expect(dispatch.mock.calls[0][0]).toEqual({
@@ -185,7 +185,7 @@ describe('update morality', () => {
       'Path of Honorable Accord'
     );
 
-    const getState = () => ({
+    const getState = (() => ({
       character: {
         basicInfo: {
           clan: { name: '' }
@@ -202,11 +202,11 @@ describe('update morality', () => {
           startingDots: 4
         }
       }
-    });
+    })) as any;
 
     const dispatch = jest.fn();
 
-    f(dispatch, getState);
+    f(dispatch, getState, undefined);
 
     expect(dispatch.mock.calls.length).toBe(1);
     expect(dispatch.mock.calls[0][0]).toEqual({
@@ -223,7 +223,7 @@ describe('update morality', () => {
       'Path of Honorable Accord'
     );
 
-    const getState = () => ({
+    const getState = (() => ({
       character: {
         basicInfo: {
           clan: { name: '' }
@@ -239,11 +239,11 @@ describe('update morality', () => {
           startingDots: 5
         }
       }
-    });
+    })) as any;
 
     const dispatch = jest.fn();
 
-    f(dispatch, getState);
+    f(dispatch, getState, undefined);
 
     expect(dispatch.mock.calls.length).toBe(0);
   });

@@ -1,8 +1,9 @@
 import deepFreeze from 'deep-freeze';
 import getDisciplineNames from './getDisciplineNames';
+import { createMockRootState } from '../test-utils/mockState';
 
 it('should return empty for both affinities if no clan selected', () => {
-  const state = {
+  const state = createMockRootState({
     character: {
       basicInfo: {
         clan: { name: '' }
@@ -16,7 +17,7 @@ it('should return empty for both affinities if no clan selected', () => {
         }
       }
     }
-  };
+  });
 
   deepFreeze(state);
 
@@ -29,7 +30,7 @@ it('should return empty for both affinities if no clan selected', () => {
 });
 
 it('should return correct values for Brujah', () => {
-  const state = {
+  const state = createMockRootState({
     character: {
       basicInfo: {
         clan: { name: 'Brujah' }
@@ -43,7 +44,7 @@ it('should return correct values for Brujah', () => {
         }
       }
     }
-  };
+  });
 
   deepFreeze(state);
 
@@ -56,7 +57,7 @@ it('should return correct values for Brujah', () => {
 });
 
 it('should return correct initial values for Caitiff', () => {
-  const state = {
+  const state = createMockRootState({
     character: {
       basicInfo: {
         clan: { name: 'Caitiff' }
@@ -70,7 +71,7 @@ it('should return correct initial values for Caitiff', () => {
         }
       }
     }
-  };
+  });
 
   deepFreeze(state);
 
@@ -92,7 +93,7 @@ it('should return correct initial values for Caitiff', () => {
 });
 
 it('should return correct values for Caitiff after some in-clan selected', () => {
-  const state = {
+  const state = createMockRootState({
     character: {
       basicInfo: {
         clan: { name: 'Caitiff' }
@@ -110,7 +111,7 @@ it('should return correct values for Caitiff after some in-clan selected', () =>
         }
       }
     }
-  };
+  });
 
   deepFreeze(state);
 
@@ -132,7 +133,7 @@ it('should return correct values for Caitiff after some in-clan selected', () =>
 });
 
 it('should return correct values for Caitiff after all in-clan selected', () => {
-  const state = {
+  const state = createMockRootState({
     character: {
       basicInfo: {
         clan: { name: 'Caitiff' }
@@ -156,7 +157,7 @@ it('should return correct values for Caitiff after all in-clan selected', () => 
         }
       }
     }
-  };
+  });
 
   deepFreeze(state);
 
@@ -169,7 +170,7 @@ it('should return correct values for Caitiff after all in-clan selected', () => 
 });
 
 it('should return correct values for bloodline', () => {
-  const state = {
+  const state = createMockRootState({
     character: {
       basicInfo: {
         clan: {
@@ -187,7 +188,7 @@ it('should return correct values for bloodline', () => {
         }
       }
     }
-  };
+  });
 
   deepFreeze(state);
 

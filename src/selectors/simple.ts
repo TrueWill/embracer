@@ -25,7 +25,7 @@ export const getInClanState = (state: RootState): DisciplineCategory => state.ch
 export const getSelectedFlaws = (state: RootState): MeritFlawItem[] => state.character.flaws;
 export const getClanName = (state: RootState): string => state.character.basicInfo.clan.name;
 export const getBloodline = (state: RootState): string | undefined => state.character.basicInfo.clan.bloodline;
-export const getGeneration = (state: RootState): TraitState => state.character.backgrounds.generation;
+export const getGeneration = (state: RootState): TraitState => state.character.backgrounds.generation as TraitState;
 export const getSelectedMerits = (state: RootState): MeritFlawItem[] => state.character.merits;
 export const getMoralityMeritPoints = (state: RootState): number | undefined =>
   state.character.morality.meritPoints;

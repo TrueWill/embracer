@@ -71,7 +71,7 @@ export default function Merits({
     </li>
   ));
 
-  const optionsList: JSX.Element[] = [];
+  const optionsList: React.ReactNode[] = [];
 
   optionsMap.forEach((value, key) => {
     const merit: Merit = {

@@ -11,9 +11,13 @@ const getFlaws = createSelector([getSelectedFlaws], (selectedFlaws): FlawsInfo =
 
   currentPoints += additionalPoints;
 
+  const maxFlawPoints = 7;
+  const availablePoints = maxFlawPoints - currentPoints;
+
   return {
     selected: selectedFlaws,
-    currentPoints
+    currentPoints,
+    availablePoints
   };
 });
 

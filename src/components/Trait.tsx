@@ -18,7 +18,7 @@ interface TraitProps {
 
 export default function Trait({
   name,
-  displayName = capitalizeFirstLetter(name),
+  displayName = capitalizeFirstLetter(name) || name,
   maxDots,
   availableStartingDots,
   traitState,

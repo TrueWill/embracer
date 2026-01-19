@@ -25,7 +25,12 @@ import {
   MeritFlawItem,
   MoralityState,
   GenerationInfo,
-  TraitState
+  TraitState,
+  SkillsState,
+  BackgroundsState,
+  DisciplinesState,
+  RitualTypeInfo,
+  AvailableStartingDot
 } from '../types';
 
 // Units are mm
@@ -70,17 +75,7 @@ const getDotsWidth = (maxDots: number): number =>
   dotRadius * 2 * maxDots + dotSpacing * (maxDots - 1);
 
 interface TraitMap {
-  [traitName: string]: TraitState;
-}
-
-interface DisciplinesByAffinity {
-  inClan: TraitMap;
-  outOfClan: TraitMap;
-}
-
-interface Ritual {
-  displayName: string;
-  selected: number[];
+  [traitName: string]: TraitState | AvailableStartingDot[];
 }
 
 interface XPInfo {
@@ -97,10 +92,10 @@ interface CharacterData {
   settingName: string;
   generationDetails: GenerationInfo;
   attributes: AttributesState;
-  skills: TraitMap;
-  backgrounds: TraitMap;
-  disciplines: DisciplinesByAffinity;
-  rituals: Ritual[];
+  skills: SkillsState;
+  backgrounds: BackgroundsState;
+  disciplines: DisciplinesState;
+  rituals: RitualTypeInfo[];
   merits: MeritFlawItem[];
   flaws: MeritFlawItem[];
   morality: MoralityState;
@@ -308,7 +303,7 @@ export default class Pdf {
       const columnXPosition = this.getColumnXPosition(index + 1);
 
       this.printTraitLine(
-        capitalizeFirstLetter(name),
+        capitalizeFirstLetter(name) || name,
         getDots(attribute),
         attributeMaxDots,
         columnXPosition
@@ -328,7 +323,7 @@ export default class Pdf {
     });
   }
 
-  printSkills(skills: TraitMap): void {
+  printSkills(skills: SkillsState): void {
     const skillNames = getTraitNames(skills);
 
     this.currentYPosition = skillsTopMargin;
@@ -336,8 +331,13 @@ export default class Pdf {
     const skillsColumnTopMargin = this.currentYPosition;
 
     skillNames.forEach((name, index) => {
+      const traitValue = skills[name];
+      if (Array.isArray(traitValue)) {
+        return; // Skip availableStartingDots
+      }
+
       const displayName =
-        skillTraitDisplayNameOverride[name] || capitalizeFirstLetter(name);
+        (skillTraitDisplayNameOverride as Record<string, string>)[name] || capitalizeFirstLetter(name) || name;
       const column = Math.floor(index / skillsRows) + 1;
 
       if (index % skillsRows === 0) {
@@ -346,14 +346,14 @@ export default class Pdf {
 
       this.printTraitLine(
         displayName,
-        getDots(skills[name]),
+        getDots(traitValue),
         standardTraitMaxDots,
         this.getColumnXPosition(column)
       );
     });
   }
 
-  printBackgrounds(backgrounds: TraitMap): void {
+  printBackgrounds(backgrounds: BackgroundsState): void {
     const backgroundNames = getTraitNames(backgrounds);
 
     this.currentYPosition = midsectionTopMargin;
@@ -362,12 +362,17 @@ export default class Pdf {
     this.printColumnHeaderLine('Backgrounds', this.column1XPosition);
 
     backgroundNames.forEach(name => {
+      const traitValue = backgrounds[name];
+      if (Array.isArray(traitValue)) {
+        return; // Skip availableStartingDots
+      }
+
       const displayName =
-        backgroundTraitDisplayNameOverride[name] || capitalizeFirstLetter(name);
+        (backgroundTraitDisplayNameOverride as Record<string, string>)[name] || capitalizeFirstLetter(name) || name;
 
       this.printTraitLine(
         displayName,
-        getDots(backgrounds[name]),
+        getDots(traitValue),
         standardTraitMaxDots,
         this.column1XPosition
       );
@@ -382,24 +387,29 @@ export default class Pdf {
   }
 
   printDisciplinesForAffinity(
-    allDisciplines: DisciplinesByAffinity,
+    allDisciplines: DisciplinesState,
     affinity: 'inClan' | 'outOfClan'
   ): void {
     const disciplines = allDisciplines[affinity];
     const disciplineNames = getTraitNames(disciplines);
 
     disciplineNames.forEach(name => {
+      const traitValue = disciplines[name];
+      if (Array.isArray(traitValue)) {
+        return; // Skip availableStartingDots
+      }
+
       this.printTraitLine(
         this.getShortDisciplineName(name) +
           (affinity === 'outOfClan' ? '*' : ''),
-        getDots(disciplines[name]),
+        getDots(traitValue),
         standardTraitMaxDots,
         this.column2XPosition
       );
     });
   }
 
-  printDisciplines(disciplines: DisciplinesByAffinity): void {
+  printDisciplines(disciplines: DisciplinesState): void {
     this.currentYPosition = midsectionTopMargin;
 
     this.printColumnHeaderLine('Disciplines', this.column2XPosition);
@@ -409,7 +419,7 @@ export default class Pdf {
     this.printLine('* - Out-of-clan', this.column2XPosition);
   }
 
-  printRituals(rituals: Ritual[]): void {
+  printRituals(rituals: RitualTypeInfo[]): void {
     rituals.forEach(({ displayName, selected }) => {
       if (selected.length === 0) {
         return;

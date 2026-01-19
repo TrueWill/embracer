@@ -6,13 +6,13 @@ import {
   addPurchasedDot,
   removePurchasedDot
 } from '../utils/categoryPurchaser';
-import type { BackgroundsState, CharacterAction } from '../types';
+import type { BackgroundsState } from '../types';
 
 const isBackgrounds = (category: string): boolean => category === 'backgrounds';
 
 const backgroundsReducer = (
   state: BackgroundsState = initialState.character.backgrounds,
-  action: CharacterAction
+  action: any
 ): BackgroundsState => {
   let category: string, trait: string, startingDots: number;
 
@@ -25,11 +25,11 @@ const backgroundsReducer = (
       }
 
       return setDotsFromStartingDots(
-        state,
+        state as any,
         trait,
         startingDots,
         standardTraitMaxDots
-      );
+      ) as BackgroundsState;
     case types.PURCHASE_DOT:
       ({ category, trait } = action.payload);
 
@@ -37,7 +37,10 @@ const backgroundsReducer = (
         return state;
       }
 
-      return addPurchasedDot(state, trait, standardTraitMaxDots);
+      return {
+        ...addPurchasedDot(state, trait, standardTraitMaxDots),
+        availableStartingDots: state.availableStartingDots
+      } as BackgroundsState;
     case types.UNPURCHASE_DOT:
       ({ category, trait } = action.payload);
 
@@ -45,7 +48,10 @@ const backgroundsReducer = (
         return state;
       }
 
-      return removePurchasedDot(state, trait);
+      return {
+        ...removePurchasedDot(state, trait),
+        availableStartingDots: state.availableStartingDots
+      } as BackgroundsState;
     case types.UPDATE_SETTING:
       // reset, as there are setting-specific backgrounds
       return initialState.character.backgrounds;

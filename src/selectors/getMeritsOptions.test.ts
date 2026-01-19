@@ -1,8 +1,9 @@
 import deepFreeze from 'deep-freeze';
 import getMeritsOptions from './getMeritsOptions';
+import { createMockRootState } from '../test-utils/mockState';
 
 it('should return correct map for merit options when clan selected', () => {
-  const state = {
+  const state = createMockRootState({
     setting: {
       name: 'Other'
     },
@@ -22,7 +23,7 @@ it('should return correct map for merit options when clan selected', () => {
       ],
       flaws: []
     }
-  };
+  });
 
   deepFreeze(state);
 
@@ -39,7 +40,7 @@ it('should return correct map for merit options when clan selected', () => {
 });
 
 it('should return correct map for merit options when no clan selected', () => {
-  const state = {
+  const state = createMockRootState({
     setting: {
       name: 'Other'
     },
@@ -59,7 +60,7 @@ it('should return correct map for merit options when no clan selected', () => {
       ],
       flaws: []
     }
-  };
+  });
 
   deepFreeze(state);
 
@@ -76,7 +77,7 @@ it('should return correct map for merit options when no clan selected', () => {
 });
 
 it('should return correct map for merit options when setting selected', () => {
-  const state = {
+  const state = createMockRootState({
     setting: {
       name: 'Sabbat'
     },
@@ -92,7 +93,7 @@ it('should return correct map for merit options when setting selected', () => {
       ],
       flaws: []
     }
-  };
+  });
 
   deepFreeze(state);
 
@@ -106,7 +107,7 @@ it('should return correct map for merit options when setting selected', () => {
 });
 
 it('should return correct map for merit options when setting and clan selected', () => {
-  const state = {
+  const state = createMockRootState({
     setting: {
       name: 'Sabbat'
     },
@@ -130,7 +131,7 @@ it('should return correct map for merit options when setting and clan selected',
       ],
       flaws: []
     }
-  };
+  });
 
   deepFreeze(state);
 
@@ -147,7 +148,7 @@ it('should return correct map for merit options when setting and clan selected',
 });
 
 it('should not remove selected merit if multiple permitted', () => {
-  const state = {
+  const state = createMockRootState({
     setting: {
       name: 'Other'
     },
@@ -163,7 +164,7 @@ it('should not remove selected merit if multiple permitted', () => {
       ],
       flaws: []
     }
-  };
+  });
 
   deepFreeze(state);
 

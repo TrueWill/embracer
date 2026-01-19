@@ -20,7 +20,10 @@ const getDisciplineNames = createSelector(
     if (clan.name === 'Caitiff') {
       // Caitiff choose their in-clan disciplines from the common ones.
       const selectedInClan = Object.keys(inClanState).filter(
-        x => inClanState[x].startingDots
+        x => {
+          const trait = inClanState[x];
+          return trait && typeof trait === 'object' && 'startingDots' in trait && trait.startingDots;
+        }
       );
 
       inClan =
@@ -28,11 +31,12 @@ const getDisciplineNames = createSelector(
           ? commonDisciplineNames
           : selectedInClan;
     } else if (clan.name) {
-      if (clan.bloodline) {
-        inClan = clans.get(clan.name).bloodlines.get(clan.bloodline)
-          .disciplines;
+      const clanInfo = clans.get(clan.name);
+      if (clan.bloodline && clanInfo) {
+        const bloodlineInfo = clanInfo.bloodlines?.get(clan.bloodline);
+        inClan = (bloodlineInfo as any)?.disciplines || [];
       } else {
-        inClan = clans.get(clan.name).disciplines;
+        inClan = (clanInfo as any)?.disciplines || [];
       }
     } else {
       inClan = [];

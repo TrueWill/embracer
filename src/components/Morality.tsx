@@ -37,7 +37,7 @@ export default function Morality({
     updateMoralityIfPointsAvailable(newPath);
   };
 
-  const pathOptions: JSX.Element[] = [];
+  const pathOptions: React.ReactNode[] = [];
 
   optionsMap.forEach((value, key) => {
     const moralityMerit = {

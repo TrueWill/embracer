@@ -1,8 +1,9 @@
 import deepFreeze from 'deep-freeze';
 import getFlawsOptions from './getFlawsOptions';
+import { createMockRootState } from '../test-utils/mockState';
 
 it('should return correct map for flaw options', () => {
-  const state = {
+  const state = createMockRootState({
     setting: {
       name: 'Other'
     },
@@ -18,7 +19,7 @@ it('should return correct map for flaw options', () => {
         }
       ]
     }
-  };
+  });
 
   deepFreeze(state);
 
@@ -31,7 +32,7 @@ it('should return correct map for flaw options', () => {
 });
 
 it('should return correct map for flaw options when setting selected', () => {
-  const state = {
+  const state = createMockRootState({
     setting: {
       name: 'Sabbat'
     },
@@ -51,7 +52,7 @@ it('should return correct map for flaw options when setting selected', () => {
         }
       ]
     }
-  };
+  });
 
   deepFreeze(state);
 

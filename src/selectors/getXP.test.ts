@@ -1,6 +1,7 @@
 import deepFreeze from 'deep-freeze';
 import initialState from '../reducers/initialState';
 import getXP from './getXP';
+import { createMockRootState } from '../test-utils/mockState';
 
 deepFreeze(initialState);
 
@@ -16,7 +17,7 @@ it('should return correct initial values', () => {
 });
 
 it('should calculate values', () => {
-  const state = {
+  const state = createMockRootState({
     character: {
       basicInfo: {
         archetype: '',
@@ -160,7 +161,7 @@ it('should calculate values', () => {
         startingDots: 5
       }
     }
-  };
+  });
 
   deepFreeze(state);
 
@@ -175,7 +176,7 @@ it('should calculate values', () => {
 });
 
 it('should calculate generation costs', () => {
-  const state = {
+  const state = createMockRootState({
     character: {
       basicInfo: {
         archetype: '',
@@ -222,7 +223,7 @@ it('should calculate generation costs', () => {
         startingDots: 5
       }
     }
-  };
+  });
 
   deepFreeze(state);
 
@@ -237,7 +238,7 @@ it('should calculate generation costs', () => {
 });
 
 it('should calculate morality costs', () => {
-  const state = {
+  const state = createMockRootState({
     character: {
       basicInfo: {
         archetype: '',
@@ -284,7 +285,7 @@ it('should calculate morality costs', () => {
         dotsPurchased: 1
       }
     }
-  };
+  });
 
   deepFreeze(state);
 
@@ -299,7 +300,7 @@ it('should calculate morality costs', () => {
 });
 
 it('should calculate morality costs when True Brujah', () => {
-  const state = {
+  const state = createMockRootState({
     character: {
       basicInfo: {
         archetype: '',
@@ -346,7 +347,7 @@ it('should calculate morality costs when True Brujah', () => {
         dotsPurchased: 1
       }
     }
-  };
+  });
 
   deepFreeze(state);
 
@@ -361,7 +362,7 @@ it('should calculate morality costs when True Brujah', () => {
 });
 
 it('should calculate bankable when available is less', () => {
-  const state = {
+  const state = createMockRootState({
     mode: {
       isEraser: false
     },
@@ -444,7 +445,7 @@ it('should calculate bankable when available is less', () => {
         startingDots: 5
       }
     }
-  };
+  });
 
   deepFreeze(state);
 
@@ -459,7 +460,7 @@ it('should calculate bankable when available is less', () => {
 });
 
 it('should calculate when merit purchased multiple times', () => {
-  const state = {
+  const state = createMockRootState({
     character: {
       basicInfo: {
         archetype: '',
@@ -511,7 +512,7 @@ it('should calculate when merit purchased multiple times', () => {
         startingDots: 5
       }
     }
-  };
+  });
 
   deepFreeze(state);
 
@@ -526,7 +527,7 @@ it('should calculate when merit purchased multiple times', () => {
 });
 
 it('should cache', () => {
-  const state = {
+  const state = createMockRootState({
     character: {
       basicInfo: {
         archetype: '',
@@ -572,7 +573,7 @@ it('should cache', () => {
         startingDots: 5
       }
     }
-  };
+  });
 
   const previousRecomputations = getXP.recomputations();
 

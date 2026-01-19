@@ -26,7 +26,7 @@ describe('removeProperty', () => {
 
     deepFreeze(obj);
 
-    const result = removeProperty(obj, 'b');
+    const result = removeProperty(obj, 'b' as any);
 
     expect(result).toEqual(obj);
   });
@@ -36,7 +36,7 @@ describe('removeProperty', () => {
 
     deepFreeze(obj);
 
-    const result = removeProperty(obj, 'a');
+    const result = removeProperty(obj as any, 'a');
 
     expect(result).toEqual(obj);
   });

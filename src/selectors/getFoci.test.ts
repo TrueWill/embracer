@@ -1,17 +1,18 @@
 import deepFreeze from 'deep-freeze';
 import { standardFoci } from '../constants/characterOptions';
 import getFoci from './getFoci';
+import { createMockRootState } from '../test-utils/mockState';
 
 deepFreeze(standardFoci);
 
 it('should return correct foci when no clan selected', () => {
-  const state = {
+  const state = createMockRootState({
     character: {
       basicInfo: {
         clan: { name: '' }
       }
     }
-  };
+  });
 
   deepFreeze(state);
 
@@ -21,13 +22,13 @@ it('should return correct foci when no clan selected', () => {
 });
 
 it('should return correct foci when no clan restrictions', () => {
-  const state = {
+  const state = createMockRootState({
     character: {
       basicInfo: {
         clan: { name: 'Assamite' }
       }
     }
-  };
+  });
 
   deepFreeze(state);
 
@@ -37,13 +38,13 @@ it('should return correct foci when no clan restrictions', () => {
 });
 
 it('should return correct foci when clan restrictions', () => {
-  const state = {
+  const state = createMockRootState({
     character: {
       basicInfo: {
         clan: { name: 'Nosferatu' }
       }
     }
-  };
+  });
 
   deepFreeze(state);
 

@@ -92,7 +92,7 @@ it('should set initial focus, preserving properties', () => {
       other: 'stuff'
     },
     mental: {}
-  };
+  } as any;
 
   deepFreeze(state);
 

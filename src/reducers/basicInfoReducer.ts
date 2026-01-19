@@ -1,10 +1,10 @@
 import initialState from './initialState';
 import * as types from '../constants/actionTypes';
-import type { BasicInfo, CharacterAction } from '../types';
+import type { BasicInfo } from '../types';
 
 const basicInfoReducer = (
   state: BasicInfo = initialState.character.basicInfo,
-  action: CharacterAction
+  action: any
 ): BasicInfo => {
   switch (action.type) {
     case types.UPDATE_ARCHETYPE:

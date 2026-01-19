@@ -3,6 +3,11 @@ import type { ClanInfo } from '../types';
 import { mapKeysToArray } from '../utils/mapUtils';
 import { clans } from '../constants/clanOptions';
 
+interface BloodlineData {
+  meritPoints: number;
+  disciplines: string[];
+}
+
 interface ClanProps {
   clan: ClanInfo;
   updateClan: (name: string, bloodline?: string, meritPoints?: number) => void;
@@ -18,10 +23,13 @@ export default function Clan({ clan, updateClan }: ClanProps) {
     const bloodline = e.target.value;
 
     if (bloodline) {
-      const meritPoints = clans.get(clanName).bloodlines.get(bloodline)
-        .meritPoints;
-
-      updateClan(clanName, bloodline, meritPoints);
+      const clanData = clans.get(clanName);
+      if (clanData) {
+        const bloodlineData = clanData.bloodlines.get(bloodline) as BloodlineData | undefined;
+        if (bloodlineData) {
+          updateClan(clanName, bloodline, bloodlineData.meritPoints);
+        }
+      }
     } else {
       updateClan(clanName);
     }
@@ -33,16 +41,21 @@ export default function Clan({ clan, updateClan }: ClanProps) {
     </option>
   ));
 
-  const bloodlineOptions: JSX.Element[] = [];
+  const bloodlineOptions: React.ReactNode[] = [];
 
   if (clan.name) {
-    clans.get(clan.name).bloodlines.forEach((value, key) => {
-      bloodlineOptions.push(
-        <option value={key} key={key}>
-          {`${key} (${value.meritPoints} points)`}
-        </option>
-      );
-    });
+    const clanData = clans.get(clan.name);
+    if (clanData) {
+      for (const [key, value] of clanData.bloodlines.entries()) {
+        const bloodlineName = key as string;
+        const bloodlineData = value as BloodlineData;
+        bloodlineOptions.push(
+          <option value={bloodlineName} key={bloodlineName}>
+            {`${bloodlineName} (${bloodlineData.meritPoints} points)`}
+          </option>
+        );
+      }
+    }
   }
 
   return (

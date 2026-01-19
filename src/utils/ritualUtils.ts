@@ -1,12 +1,7 @@
 import startsWith from 'lodash.startswith';
-import { DotCostInfo } from '../types';
+import { DotCostInfo, RitualPermutation } from '../types';
 
 const numberStrings = ['One', 'Two', 'Three', 'Four', 'Five'];
-
-interface RitualPermutation {
-  description: string;
-  value: number[];
-}
 
 interface RitualInfo {
   hasRituals: boolean;

@@ -224,7 +224,7 @@ export const updateMoralityIfPointsAvailable = (
 
 export const updateRituals = (
   ritualType: string,
-  rituals: string[]
+  rituals: number[]
 ): UpdateRitualsAction => ({
   type: types.UPDATE_RITUALS,
   payload: {

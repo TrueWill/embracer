@@ -11,6 +11,7 @@ const container = document.getElementById('root')!;
 const root = createRoot(container);
 
 root.render(
+  // @ts-ignore - React 18 types incompatibility with react-redux Provider
   <Provider store={store}>
     <App />
   </Provider>

@@ -1,8 +1,9 @@
 import deepFreeze from 'deep-freeze';
 import getSpecificBackgrounds from './getSpecificBackgrounds';
+import { createMockRootState } from '../test-utils/mockState';
 
 it('should return Sabbat-specific backgrounds', () => {
-  const state = {
+  const state = createMockRootState({
     setting: {
       name: 'Sabbat'
     },
@@ -11,7 +12,7 @@ it('should return Sabbat-specific backgrounds', () => {
         clan: { name: '' }
       }
     }
-  };
+  });
 
   deepFreeze(state);
 
@@ -21,7 +22,7 @@ it('should return Sabbat-specific backgrounds', () => {
 });
 
 it('should return empty for Camarilla', () => {
-  const state = {
+  const state = createMockRootState({
     setting: {
       name: 'Camarilla'
     },
@@ -30,7 +31,7 @@ it('should return empty for Camarilla', () => {
         clan: { name: '' }
       }
     }
-  };
+  });
 
   deepFreeze(state);
 
@@ -40,7 +41,7 @@ it('should return empty for Camarilla', () => {
 });
 
 it('should return empty for Anarch Movement', () => {
-  const state = {
+  const state = createMockRootState({
     setting: {
       name: 'Anarch Movement'
     },
@@ -49,7 +50,7 @@ it('should return empty for Anarch Movement', () => {
         clan: { name: '' }
       }
     }
-  };
+  });
 
   deepFreeze(state);
 
@@ -59,7 +60,7 @@ it('should return empty for Anarch Movement', () => {
 });
 
 it('should return empty for Other', () => {
-  const state = {
+  const state = createMockRootState({
     setting: {
       name: 'Other'
     },
@@ -68,7 +69,7 @@ it('should return empty for Other', () => {
         clan: { name: '' }
       }
     }
-  };
+  });
 
   deepFreeze(state);
 

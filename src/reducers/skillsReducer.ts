@@ -6,13 +6,13 @@ import {
   addPurchasedDot,
   removePurchasedDot
 } from '../utils/categoryPurchaser';
-import type { SkillsState, CharacterAction } from '../types';
+import type { SkillsState } from '../types';
 
 const isSkills = (category: string): boolean => category === 'skills';
 
 const skillsReducer = (
   state: SkillsState = initialState.character.skills,
-  action: CharacterAction
+  action: any
 ): SkillsState => {
   let category: string, trait: string, startingDots: number;
 
@@ -25,11 +25,11 @@ const skillsReducer = (
       }
 
       return setDotsFromStartingDots(
-        state,
+        state as any,
         trait,
         startingDots,
         standardTraitMaxDots
-      );
+      ) as SkillsState;
     case types.PURCHASE_DOT:
       ({ category, trait } = action.payload);
 
@@ -37,7 +37,10 @@ const skillsReducer = (
         return state;
       }
 
-      return addPurchasedDot(state, trait, standardTraitMaxDots);
+      return {
+        ...addPurchasedDot(state, trait, standardTraitMaxDots),
+        availableStartingDots: state.availableStartingDots
+      } as SkillsState;
     case types.UNPURCHASE_DOT:
       ({ category, trait } = action.payload);
 
@@ -45,7 +48,10 @@ const skillsReducer = (
         return state;
       }
 
-      return removePurchasedDot(state, trait);
+      return {
+        ...removePurchasedDot(state, trait),
+        availableStartingDots: state.availableStartingDots
+      } as SkillsState;
     default:
       return state;
   }

@@ -1,8 +1,9 @@
 import deepFreeze from 'deep-freeze';
 import getGenerationDetails from './getGenerationDetails';
+import { createMockRootState } from '../test-utils/mockState';
 
 it('should return correct values for Neonate', () => {
-  const state = {
+  const state = createMockRootState({
     character: {
       backgrounds: {
         generation: {
@@ -10,7 +11,7 @@ it('should return correct values for Neonate', () => {
         }
       }
     }
-  };
+  });
 
   deepFreeze(state);
 
@@ -27,7 +28,7 @@ it('should return correct values for Neonate', () => {
 });
 
 it('should return correct values for Luminary Elder', () => {
-  const state = {
+  const state = createMockRootState({
     character: {
       backgrounds: {
         generation: {
@@ -36,7 +37,7 @@ it('should return correct values for Luminary Elder', () => {
         }
       }
     }
-  };
+  });
 
   deepFreeze(state);
 

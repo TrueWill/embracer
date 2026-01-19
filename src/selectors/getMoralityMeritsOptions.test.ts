@@ -1,14 +1,15 @@
 import deepFreeze from 'deep-freeze';
 import getMoralityMeritsOptions from './getMoralityMeritsOptions';
+import { createMockRootState } from '../test-utils/mockState';
 
 it('should return correct map for morality merits options when no clan selected', () => {
-  const state = {
+  const state = createMockRootState({
     character: {
       basicInfo: {
         clan: { name: '' }
       }
     }
-  };
+  });
 
   deepFreeze(state);
 
@@ -20,13 +21,13 @@ it('should return correct map for morality merits options when no clan selected'
 });
 
 it('should return correct map for morality merits options when clan discount', () => {
-  const state = {
+  const state = createMockRootState({
     character: {
       basicInfo: {
         clan: { name: 'Assamite' }
       }
     }
-  };
+  });
 
   deepFreeze(state);
 
@@ -38,13 +39,13 @@ it('should return correct map for morality merits options when clan discount', (
 });
 
 it('should return correct map for morality merits options when no clan discount', () => {
-  const state = {
+  const state = createMockRootState({
     character: {
       basicInfo: {
         clan: { name: 'Giovanni' }
       }
     }
-  };
+  });
 
   deepFreeze(state);
 
@@ -56,7 +57,7 @@ it('should return correct map for morality merits options when no clan discount'
 });
 
 it('should return correct map for morality merits options when bloodline discount', () => {
-  const state = {
+  const state = createMockRootState({
     character: {
       basicInfo: {
         clan: {
@@ -66,7 +67,7 @@ it('should return correct map for morality merits options when bloodline discoun
         }
       }
     }
-  };
+  });
 
   deepFreeze(state);
 

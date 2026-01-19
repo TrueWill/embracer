@@ -1,9 +1,9 @@
 import getDots from './getDots';
 import { removeProperty, isEmpty } from './objectUtils';
-import { TraitState } from '../types';
+import { TraitState, AvailableStartingDot } from '../types';
 
 interface CategoryTraits {
-  [traitName: string]: TraitState;
+  [traitName: string]: TraitState | AvailableStartingDot[];
 }
 
 const removeDotsPurchased = (obj: TraitState): Omit<TraitState, 'dotsPurchased'> =>
@@ -15,6 +15,10 @@ export const addPurchasedDot = (
   maxDots: number
 ): CategoryTraits => {
   const matchingTrait = categoryTraits[trait];
+
+  if (Array.isArray(matchingTrait)) {
+    return categoryTraits; // Skip array properties like availableStartingDots
+  }
 
   if (matchingTrait && getDots(matchingTrait) === maxDots) {
     return categoryTraits;
@@ -37,6 +41,10 @@ export const removePurchasedDot = (
   preserveEmptyTrait: boolean = false
 ): CategoryTraits => {
   const matchingTrait = categoryTraits[trait];
+
+  if (Array.isArray(matchingTrait)) {
+    return categoryTraits; // Skip array properties like availableStartingDots
+  }
 
   if (!matchingTrait || !matchingTrait.dotsPurchased) {
     return categoryTraits;

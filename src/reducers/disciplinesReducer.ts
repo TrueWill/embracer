@@ -8,7 +8,7 @@ import {
   removePurchasedDot
 } from '../utils/categoryPurchaser';
 import { getRitualInfoForDiscipline } from '../utils/ritualUtils';
-import type { DisciplinesState, CharacterAction } from '../types';
+import type { DisciplinesState } from '../types';
 
 const isDisciplines = (category: string): boolean =>
   category.lastIndexOf('disciplines.', 0) === 0;
@@ -47,7 +47,7 @@ const clearRitualTypeIfMagic = (
 
 const disciplinesReducer = (
   state: DisciplinesState = initialState.character.disciplines,
-  action: CharacterAction
+  action: any
 ): DisciplinesState => {
   let category: string,
     trait: string,
@@ -70,7 +70,7 @@ const disciplinesReducer = (
       newState = {
         ...state,
         [affinity]: setDotsFromStartingDots(
-          state[affinity as keyof DisciplinesState],
+          state[affinity as keyof DisciplinesState] as any,
           trait,
           startingDots,
           maxDots
@@ -89,13 +89,13 @@ const disciplinesReducer = (
       affinity = getAffinity(category);
       maxDots = getMaxDots(affinity);
 
+      const disciplineCategory = state[affinity as keyof DisciplinesState];
       return {
         ...state,
-        [affinity]: addPurchasedDot(
-          state[affinity as keyof DisciplinesState],
-          trait,
-          maxDots
-        )
+        [affinity]: {
+          ...(addPurchasedDot(disciplineCategory as any, trait, maxDots) as any),
+          availableStartingDots: (disciplineCategory as any).availableStartingDots
+        }
       };
     case types.UNPURCHASE_DOT:
       ({ category, trait } = action.payload);
@@ -106,12 +106,13 @@ const disciplinesReducer = (
 
       affinity = getAffinity(category);
 
+      const disciplineCategoryForRemove = state[affinity as keyof DisciplinesState];
       newState = {
         ...state,
-        [affinity]: removePurchasedDot(
-          state[affinity as keyof DisciplinesState],
-          trait
-        )
+        [affinity]: {
+          ...(removePurchasedDot(disciplineCategoryForRemove as any, trait) as any),
+          availableStartingDots: (disciplineCategoryForRemove as any).availableStartingDots
+        }
       };
 
       return clearRitualTypeIfMagic(trait, newState);

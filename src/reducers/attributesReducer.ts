@@ -6,13 +6,13 @@ import {
   addPurchasedDot,
   removePurchasedDot
 } from '../utils/categoryPurchaser';
-import type { AttributesState, CharacterAction } from '../types';
+import type { AttributesState } from '../types';
 
 const isAttributes = (category: string): boolean => category === 'attributes';
 
 const attributesReducer = (
   state: AttributesState = initialState.character.attributes,
-  action: CharacterAction
+  action: any
 ): AttributesState => {
   let category: string, trait: string, dotsFromRank: number;
 
@@ -24,7 +24,7 @@ const attributesReducer = (
         return state;
       }
 
-      return setDotsFromRank(state, trait, dotsFromRank, attributeMaxDots);
+      return setDotsFromRank(state, trait, dotsFromRank, attributeMaxDots) as AttributesState;
     case types.SET_FOCUS:
       const { attribute, focus } = action.payload;
 
@@ -36,7 +36,7 @@ const attributesReducer = (
         return state;
       }
 
-      return addPurchasedDot(state, trait, attributeMaxDots);
+      return addPurchasedDot(state, trait, attributeMaxDots) as AttributesState;
     case types.UNPURCHASE_DOT:
       ({ category, trait } = action.payload);
 
@@ -44,7 +44,7 @@ const attributesReducer = (
         return state;
       }
 
-      return removePurchasedDot(state, trait, true);
+      return removePurchasedDot(state, trait, true) as AttributesState;
     case types.UPDATE_CLAN:
       if (
         action.payload.name === 'Nosferatu' &&

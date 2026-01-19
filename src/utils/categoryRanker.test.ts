@@ -8,7 +8,7 @@ it('should set initial rank', () => {
     physical: {},
     social: {},
     mental: {}
-  };
+  } as any;
 
   deepFreeze(attributes);
 
@@ -33,7 +33,7 @@ it('should update rank, preserving properties', () => {
       other: 'etc.'
     },
     mental: {}
-  };
+  } as any;
 
   deepFreeze(attributes);
 
@@ -61,7 +61,7 @@ it('should move rank, preserving properties', () => {
       dotsFromRank: 3,
       other: 'etc.'
     }
-  };
+  } as any;
 
   deepFreeze(attributes);
 
@@ -90,7 +90,7 @@ it('should swap rank', () => {
     mental: {
       dotsFromRank: 5
     }
-  };
+  } as any;
 
   deepFreeze(attributes);
 
@@ -119,7 +119,7 @@ it('should clear rank when setting to 0, preserving properties', () => {
       dotsFromRank: 3
     },
     mental: {}
-  };
+  } as any;
 
   deepFreeze(attributes);
 
@@ -145,7 +145,7 @@ it('should do nothing when setting to 0 if unset', () => {
       dotsFromRank: 3
     },
     mental: {}
-  };
+  } as any;
 
   deepFreeze(attributes);
 
@@ -168,7 +168,7 @@ it('should reduce purchased dots exceeding max if update rank', () => {
       dotsFromRank: 3,
       dotsPurchased: 7
     }
-  };
+  } as any;
 
   deepFreeze(attributes);
 

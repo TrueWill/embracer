@@ -1,8 +1,9 @@
 import deepFreeze from 'deep-freeze';
 import getFlaws from './getFlaws';
+import { createMockRootState } from '../test-utils/mockState';
 
 it('should return correct values for flaws', () => {
-  const state = {
+  const state = createMockRootState({
     character: {
       merits: [
         {
@@ -21,7 +22,7 @@ it('should return correct values for flaws', () => {
         }
       ]
     }
-  };
+  });
 
   deepFreeze(state);
 
@@ -29,6 +30,7 @@ it('should return correct values for flaws', () => {
 
   expect(result).toEqual({
     selected: state.character.flaws,
-    currentPoints: 7
+    currentPoints: 7,
+    availablePoints: 0
   });
 });

@@ -11,7 +11,7 @@ it('should set initial starting dots', () => {
       { dots: 2, count: 3 },
       { dots: 1, count: 4 }
     ]
-  };
+  } as any;
 
   deepFreeze(skills);
 
@@ -41,7 +41,7 @@ it('should set initial starting dots, preserving properties', () => {
     computer: {
       other: 'etc.'
     }
-  };
+  } as any;
 
   deepFreeze(skills);
 
@@ -76,7 +76,7 @@ it('should update starting dots, preserving properties', () => {
       startingDots: 4,
       other: 'etc.'
     }
-  };
+  } as any;
 
   deepFreeze(skills);
 
@@ -114,7 +114,7 @@ it('should clear starting dots when setting to 0, preserving properties', () => 
       startingDots: 3,
       other: 'etc.'
     }
-  };
+  } as any;
 
   deepFreeze(skills);
 
@@ -150,7 +150,7 @@ it('should remove trait when setting to 0 if no other properties', () => {
     dodge: {
       startingDots: 3
     }
-  };
+  } as any;
 
   deepFreeze(skills);
 
@@ -177,7 +177,7 @@ it('should do nothing when setting to 0 if unset', () => {
       { dots: 2, count: 3 },
       { dots: 1, count: 4 }
     ]
-  };
+  } as any;
 
   deepFreeze(skills);
 
@@ -197,7 +197,7 @@ it('should reduce purchased dots exceeding max if set', () => {
     computer: {
       dotsPurchased: 3
     }
-  };
+  } as any;
 
   deepFreeze(skills);
 

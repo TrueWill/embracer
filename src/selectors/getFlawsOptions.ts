@@ -6,7 +6,7 @@ import { getSelectedFlaws, getSettingName } from './simple';
 const getFlawsOptions = createSelector(
   [getSelectedFlaws, getSettingName],
   (selectedFlaws, settingName): Map<string, { points: number }> => {
-    const settingSpecificFlaws = settings.get(settingName).flaws;
+    const settingSpecificFlaws = settings.get(settingName)?.flaws || [];
 
     const options = [...settingSpecificFlaws, ...flaws];
 

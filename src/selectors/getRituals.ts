@@ -8,18 +8,11 @@ import getDots from '../utils/getDots';
 import { getTraitNames } from '../utils/traitUtils';
 import { mapKeysToArray } from '../utils/mapUtils';
 import { capitalizeFirstLetter } from '../utils/stringUtils';
-import type { DisciplineCategory, RitualsState } from '../types';
+import type { DisciplineCategory, RitualsState, RitualTypeInfo } from '../types';
 
 interface RitualInfo {
   maxLevel: number;
   maxRituals: number;
-}
-
-interface RitualTypeInfo {
-  ritualType: string;
-  displayName: string;
-  permutations: string[][];
-  selected: string[];
 }
 
 const getEnhancedRitualInfoForAffinityDisciplines = (affinityDisciplines: DisciplineCategory) =>
@@ -31,7 +24,7 @@ const getEnhancedRitualInfoForAffinityDisciplines = (affinityDisciplines: Discip
     .filter(info => info.hasRituals)
     .map(info => ({
       ...info,
-      dots: getDots(affinityDisciplines[info.disciplineName])
+      dots: getDots(affinityDisciplines[info.disciplineName] as import('../types').TraitState)
     }));
 
 const getRituals = createSelector(
@@ -44,12 +37,13 @@ const getRituals = createSelector(
         getEnhancedRitualInfoForAffinityDisciplines(disciplines.outOfClan)
       )
       .reduce((acc, cur) => {
-        const value = acc.get(cur.ritualType) || {
+        const ritualType = cur.ritualType!;
+        const value = acc.get(ritualType) || {
           maxLevel: 0,
           maxRituals: 0
         };
 
-        acc.set(cur.ritualType, {
+        acc.set(ritualType, {
           maxLevel: Math.max(value.maxLevel, cur.dots),
           maxRituals: value.maxRituals + cur.dots
         });
@@ -66,12 +60,12 @@ const getRituals = createSelector(
 
       return {
         ritualType,
-        displayName: capitalizeFirstLetter(ritualType),
+        displayName: capitalizeFirstLetter(ritualType) || ritualType,
         permutations: getRitualPermutations(
           ritualInfo.maxLevel,
           ritualInfo.maxRituals
         ),
-        selected: selectedRituals[ritualType as keyof RitualsState]
+        selected: selectedRituals[ritualType as keyof RitualsState] || []
       };
     });
   }

@@ -1,11 +1,11 @@
 import initialState from './initialState';
 import * as types from '../constants/actionTypes';
 import { removeProperty } from '../utils/objectUtils';
-import type { MeritFlawItem, CharacterAction } from '../types';
+import type { MeritFlawItem } from '../types';
 
 const meritsReducer = (
   state: MeritFlawItem[] = initialState.character.merits,
-  action: CharacterAction
+  action: any
 ): MeritFlawItem[] => {
   let name: string, newState: MeritFlawItem[];
 

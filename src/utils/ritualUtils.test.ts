@@ -5,6 +5,7 @@ import {
   calculateRitualsXPCost,
   getRitualsDescription
 } from './ritualUtils';
+import { DotCostInfo } from '../types';
 
 describe('getRitualPermutations', () => {
   it('should return expected when one dot in primary path', () => {
@@ -168,9 +169,9 @@ describe('getRitualInfoForDiscipline', () => {
 });
 
 describe('calculateRitualsXPCost', () => {
-  const dotCost = {
+  const dotCost: DotCostInfo = {
     xp: 2,
-    per: 'level'
+    per: 'level' as const
   };
 
   deepFreeze(dotCost);
@@ -215,9 +216,9 @@ describe('calculateRitualsXPCost', () => {
   });
 
   it('should handle variant cost', () => {
-    const variantDotCost = {
+    const variantDotCost: DotCostInfo = {
       xp: 3,
-      per: 'level'
+      per: 'level' as const
     };
 
     const rituals = {
@@ -239,9 +240,9 @@ describe('calculateRitualsXPCost', () => {
       thaumaturgic: []
     };
 
-    const unsupportedDotCost = {
+    const unsupportedDotCost: DotCostInfo = {
       xp: 2,
-      per: 'each'
+      per: 'each' as const
     };
 
     expect(() => {
@@ -252,7 +253,7 @@ describe('calculateRitualsXPCost', () => {
 
 describe('getRitualsDescription', () => {
   it('should return empty string when no rituals', () => {
-    const rituals = [];
+    const rituals: number[] = [];
 
     deepFreeze(rituals);
 

@@ -91,8 +91,21 @@ export interface DisciplineCategory {
 }
 
 export interface RitualsState {
-  necromantic: string[];
-  thaumaturgic: string[];
+  necromantic: number[];
+  thaumaturgic: number[];
+  [key: string]: number[];
+}
+
+export interface RitualPermutation {
+  description: string;
+  value: number[];
+}
+
+export interface RitualTypeInfo {
+  ritualType: string;
+  displayName: string;
+  permutations: RitualPermutation[];
+  selected: number[];
 }
 
 export interface DisciplinesState {
@@ -210,6 +223,7 @@ export interface MeritsInfo {
 export interface FlawsInfo {
   selected: MeritFlawItem[];
   currentPoints: number;
+  availablePoints: number;
 }
 
 export interface ValidationError {
@@ -346,7 +360,7 @@ export interface UpdateRitualsAction {
   type: typeof types.UPDATE_RITUALS;
   payload: {
     ritualType: string;
-    rituals: string[];
+    rituals: number[];
   };
 }
 

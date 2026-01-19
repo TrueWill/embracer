@@ -1,8 +1,9 @@
 import deepFreeze from 'deep-freeze';
 import getMerits from './getMerits';
+import { createMockRootState } from '../test-utils/mockState';
 
 it('should return correct initial values for merits', () => {
-  const state = {
+  const state = createMockRootState({
     character: {
       basicInfo: {
         clan: { name: '' }
@@ -13,7 +14,7 @@ it('should return correct initial values for merits', () => {
         path: 'Humanity'
       }
     }
-  };
+  });
 
   deepFreeze(state);
 
@@ -27,7 +28,7 @@ it('should return correct initial values for merits', () => {
 });
 
 it('should return correct values for merits', () => {
-  const state = {
+  const state = createMockRootState({
     character: {
       basicInfo: {
         clan: { name: '' }
@@ -56,7 +57,7 @@ it('should return correct values for merits', () => {
         path: 'Humanity'
       }
     }
-  };
+  });
 
   deepFreeze(state);
 
@@ -70,7 +71,7 @@ it('should return correct values for merits', () => {
 });
 
 it('should return correct values for merits when purchased multiple times', () => {
-  const state = {
+  const state = createMockRootState({
     character: {
       basicInfo: {
         clan: { name: '' }
@@ -87,7 +88,7 @@ it('should return correct values for merits when purchased multiple times', () =
         path: 'Humanity'
       }
     }
-  };
+  });
 
   deepFreeze(state);
 
@@ -101,7 +102,7 @@ it('should return correct values for merits when purchased multiple times', () =
 });
 
 it('should include morality merits', () => {
-  const state = {
+  const state = createMockRootState({
     character: {
       basicInfo: {
         clan: { name: '' }
@@ -128,7 +129,7 @@ it('should include morality merits', () => {
         startingDots: 4
       }
     }
-  };
+  });
 
   deepFreeze(state);
 
@@ -142,7 +143,7 @@ it('should include morality merits', () => {
 });
 
 it('should include bloodline merits', () => {
-  const state = {
+  const state = createMockRootState({
     character: {
       basicInfo: {
         clan: {
@@ -167,7 +168,7 @@ it('should include bloodline merits', () => {
         path: 'Humanity'
       }
     }
-  };
+  });
 
   deepFreeze(state);
 
@@ -181,7 +182,7 @@ it('should include bloodline merits', () => {
 });
 
 it('should include morality and bloodline merits', () => {
-  const state = {
+  const state = createMockRootState({
     character: {
       basicInfo: {
         clan: {
@@ -198,7 +199,7 @@ it('should include morality and bloodline merits', () => {
         startingDots: 4
       }
     }
-  };
+  });
 
   deepFreeze(state);
 

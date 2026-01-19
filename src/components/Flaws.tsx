@@ -65,7 +65,7 @@ export default function Flaws({
     </li>
   ));
 
-  const optionsList: JSX.Element[] = [];
+  const optionsList: React.ReactNode[] = [];
 
   optionsMap.forEach((value, key) => {
     const flaw: Flaw = {

@@ -3,7 +3,7 @@ import { arrayToMap, mapKeysToArray } from './mapUtils';
 
 describe('arrayToMap', () => {
   it('should create map from 2D array', () => {
-    const a = [
+    const a: [string, string][] = [
       ['key1', 'value1'],
       ['key2', 'value2']
     ];

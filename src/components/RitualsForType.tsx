@@ -1,9 +1,5 @@
 import React from 'react';
-
-interface RitualPermutation {
-  description: string;
-  value: number[];
-}
+import { RitualPermutation } from '../types';
 
 interface RitualsForTypeProps {
   ritualType: string;

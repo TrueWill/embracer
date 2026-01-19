@@ -57,7 +57,7 @@ it('should update starting dots', () => {
     dodge: {
       other: 'stuff'
     }
-  };
+  } as any;
 
   deepFreeze(state);
 

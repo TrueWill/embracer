@@ -245,17 +245,17 @@ it('should validate XP when spent', () => {
   const state = cloneDeep(initialState);
 
   state.character.basicInfo.clan.name = 'Ventrue';
-  state.character.attributes.physical.dotsPurchased = 1;
-  state.character.disciplines.inClan.Dominate = {
+  (state.character.attributes.physical as any).dotsPurchased = 1;
+  (state.character.disciplines.inClan as any).Dominate = {
     dotsPurchased: 2
   };
 
-  state.character.merits.push({
+  (state.character.merits as any).push({
     name: 'Paragon',
     points: 3
   });
 
-  state.character.morality.dotsPurchased = 1;
+  (state.character.morality as any).dotsPurchased = 1;
 
   deepFreeze(state);
 

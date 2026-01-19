@@ -6,6 +6,7 @@ interface FociResult {
   physical: string[];
   social: string[];
   mental: string[];
+  [key: string]: string[];
 }
 
 const getFoci = createSelector([getClanName], (clanName): FociResult => {

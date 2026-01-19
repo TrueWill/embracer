@@ -40,7 +40,7 @@ const mapStateToProps = (state: RootState, ownProps: OwnProps) => {
     categoryName === 'backgrounds' ? getSpecificBackgrounds(state) : [];
 
   return {
-    categoryTraits: getCharacter(state)[categoryName],
+    categoryTraits: getCharacter(state)[categoryName] as import('../types').SkillsState | import('../types').BackgroundsState,
     adjustAvailable,
     specificNames
   };

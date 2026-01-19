@@ -1,9 +1,9 @@
 import { removeProperty } from './objectUtils';
 import getDots from './getDots';
-import { TraitState } from '../types';
+import { TraitState, AvailableStartingDot } from '../types';
 
 interface CategoryTraits {
-  [traitName: string]: TraitState;
+  [traitName: string]: TraitState | AvailableStartingDot[];
 }
 
 const removeDotsFromRank = (obj: TraitState): Omit<TraitState, 'dotsFromRank'> =>
@@ -17,6 +17,10 @@ export const setDotsFromRank = (
 ): CategoryTraits => {
   const matchingTrait = categoryTraits[trait];
 
+  if (Array.isArray(matchingTrait)) {
+    return categoryTraits; // Skip array properties like availableStartingDots
+  }
+
   if (!dotsFromRank) {
     return { ...categoryTraits, [trait]: removeDotsFromRank(matchingTrait) };
   }
@@ -26,9 +30,12 @@ export const setDotsFromRank = (
   return Object.keys(categoryTraits).reduce((acc, key) => {
     const categoryTrait = categoryTraits[key];
 
-    let updatedTrait: TraitState;
+    let updatedTrait: TraitState | AvailableStartingDot[];
 
-    if (key === trait) {
+    if (Array.isArray(categoryTrait)) {
+      // Preserve array properties like availableStartingDots
+      updatedTrait = categoryTrait;
+    } else if (key === trait) {
       updatedTrait = { ...categoryTrait, dotsFromRank };
     } else if (categoryTrait.dotsFromRank === dotsFromRank) {
       if (previousDotsFromRank) {
@@ -41,7 +48,7 @@ export const setDotsFromRank = (
       updatedTrait = categoryTrait;
     }
 
-    if (getDots(updatedTrait) > maxDots) {
+    if (!Array.isArray(updatedTrait) && getDots(updatedTrait) > maxDots) {
       updatedTrait.dotsPurchased = maxDots - updatedTrait.dotsFromRank!;
     }
 

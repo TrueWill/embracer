@@ -1,8 +1,9 @@
 import deepFreeze from 'deep-freeze';
 import getRituals from './getRituals';
+import { createMockRootState } from '../test-utils/mockState';
 
 it('should return correct initial values', () => {
-  const state = {
+  const state = createMockRootState({
     character: {
       disciplines: {
         inClan: {
@@ -26,7 +27,7 @@ it('should return correct initial values', () => {
         }
       }
     }
-  };
+  });
 
   deepFreeze(state);
 
@@ -36,7 +37,7 @@ it('should return correct initial values', () => {
 });
 
 it('should return correct values when no magic', () => {
-  const state = {
+  const state = createMockRootState({
     character: {
       disciplines: {
         inClan: {
@@ -66,7 +67,7 @@ it('should return correct values when no magic', () => {
         }
       }
     }
-  };
+  });
 
   deepFreeze(state);
 
@@ -76,7 +77,7 @@ it('should return correct values when no magic', () => {
 });
 
 it('should return correct values when has Thaumaturgy', () => {
-  const state = {
+  const state = createMockRootState({
     character: {
       disciplines: {
         inClan: {
@@ -104,7 +105,7 @@ it('should return correct values when has Thaumaturgy', () => {
         }
       }
     }
-  };
+  });
 
   deepFreeze(state);
 
@@ -133,7 +134,7 @@ it('should return correct values when has Thaumaturgy', () => {
 });
 
 it('should return correct values when has Necromancy', () => {
-  const state = {
+  const state = createMockRootState({
     character: {
       disciplines: {
         inClan: {
@@ -160,7 +161,7 @@ it('should return correct values when has Necromancy', () => {
         }
       }
     }
-  };
+  });
 
   deepFreeze(state);
 
@@ -182,7 +183,7 @@ it('should return correct values when has Necromancy', () => {
 });
 
 it('should return correct values when has both', () => {
-  const state = {
+  const state = createMockRootState({
     character: {
       disciplines: {
         inClan: {
@@ -215,7 +216,7 @@ it('should return correct values when has both', () => {
         }
       }
     }
-  };
+  });
 
   deepFreeze(state);
 
@@ -246,7 +247,7 @@ it('should return correct values when has both', () => {
 });
 
 it('should return correct values when multiple paths', () => {
-  const state = {
+  const state = createMockRootState({
     character: {
       disciplines: {
         inClan: {
@@ -276,7 +277,7 @@ it('should return correct values when multiple paths', () => {
         }
       }
     }
-  };
+  });
 
   deepFreeze(state);
 

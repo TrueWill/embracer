@@ -4,7 +4,7 @@ import { getSettingName } from './simple';
 
 const getSpecificBackgrounds = createSelector(
   [getSettingName],
-  (settingName): string[] => settings.get(settingName).backgrounds
+  (settingName): string[] => settings.get(settingName)?.backgrounds || []
 );
 
 export default getSpecificBackgrounds;
