@@ -21,7 +21,7 @@
     "test": "react-scripts test",
     "lint": "eslint \"src/**/*.{js,ts,tsx}\"",
     "eject": "react-scripts eject",
-    "deploy": "yarn build && s3cmd sync build/* s3://truewill-embracer",
+    "deploy": "yarn build && s3cmd sync --guess-mime-type build/* s3://truewill-embracer",
     "prettify": "prettier --write \"src/**/*.{js,ts,tsx}\""
   },
   "devDependencies": {
