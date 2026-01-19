@@ -54,7 +54,7 @@ Built with [React](https://reactjs.org/) and [Redux](https://redux.js.org/) - th
 
 Special thanks to my lovely wife [hellomandie](https://github.com/hellomandie) for styling the app!
 
-Thanks to Anthony Accomazzo for his article on [deploying a React app to Amazon's S3](https://www.fullstackreact.com/articles/deploying-a-react-app-to-s3/).
+Thanks to Anthony Accomazzo for his article on [deploying a React app to Amazon's S3](https://www.newline.co/fullstack-react/articles/deploying-a-react-app-to-s3/).
 
 Uses [Font Awesome](http://fontawesome.io) by Dave Gandy (v4, **not** v5).
 
