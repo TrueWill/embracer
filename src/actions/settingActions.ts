@@ -3,5 +3,5 @@ import { UpdateSettingAction } from '../types';
 
 export const updateSetting = (name: string): UpdateSettingAction => ({
   type: types.UPDATE_SETTING,
-  payload: name
+  payload: { name }
 });

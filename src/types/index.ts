@@ -336,7 +336,9 @@ export interface UpdateMoralityAction {
 // Setting Actions
 export interface UpdateSettingAction {
   type: typeof types.UPDATE_SETTING;
-  payload: string;
+  payload: {
+    name: string;
+  };
 }
 
 // Rituals Actions

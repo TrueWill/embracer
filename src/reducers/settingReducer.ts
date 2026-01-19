@@ -8,7 +8,7 @@ const settingReducer = (
 ): SettingState => {
   switch (action.type) {
     case types.UPDATE_SETTING:
-      return { ...state, name: action.payload };
+      return { ...state, name: action.payload.name };
     default:
       return state;
   }
