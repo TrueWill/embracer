@@ -13,22 +13,20 @@ Expert on React, Vite, Redux, and React Testing Library for the Embracer project
 ## Technology Stack
 
 ### Current Stack
+
 - **React 18.2** - Function components with hooks
 - **Redux 4.2** + React Redux 8.0 - State management
 - **Redux Thunk** - Async actions
 - **Reselect** - Memoized selectors
-- **TypeScript 4.9.5** - Strict type safety
-- **Create React App** (react-scripts) - Current build tool
-- **React Testing Library + Jest** - Testing (50+ test files)
-
-### Note on Vite
-The project currently uses Create React App, though the `vite` branch suggests a potential migration is in progress.
+- **TypeScript 5.7** - Strict type safety
+- **Vit** - Build tool and dev server
+- **React Testing Library + Vitest** - Testing (50+ test files)
 
 ## Architecture
 
 ### Directory Structure
 
-```
+```text
 src/
 ├── @types/          # Custom TypeScript definitions
 ├── actions/         # Redux action creators (6 files)
@@ -47,11 +45,13 @@ src/
 ### Key Architectural Patterns
 
 1. **Container/Presentational Pattern**
+
    - 48 presentational components (pure, UI-focused)
    - 15 container components (Redux-connected with `connect()`)
    - Clear separation of concerns
 
 2. **Redux State Structure**
+
    ```typescript
    RootState {
      mode: { isEraser: boolean }
@@ -70,17 +70,20 @@ src/
    ```
 
 3. **Flux Standard Actions**
+
    - All actions follow FSA pattern
    - Discriminated union types for type safety
    - Action creators in `/src/actions/`
 
 4. **Memoized Selectors with Reselect**
+
    - 25 selector files
    - Simple selectors in `simple.ts`
    - Complex memoized selectors for performance
    - Examples: `getMerits.ts`, `getFlaws.ts`, `getXP.ts`, `getValidation.ts`
 
 5. **Immutable State Management**
+
    - Redux state never mutated directly
    - All reducers return new objects
    - Deep freeze used in tests
@@ -93,6 +96,7 @@ src/
 ## Core Components
 
 ### Key Components
+
 - `App.tsx` - Main application layout
 - `Clan.tsx` - Clan/Bloodline selection
 - `Attributes.tsx` - Physical/Social/Mental attributes
@@ -104,6 +108,7 @@ src/
 - `PencilEraser.tsx` - Creation/editing mode toggle
 
 ### Component Conventions
+
 - Function components (not class components)
 - TypeScript with strict typing
 - Props interfaces defined in `/src/types/`
@@ -113,6 +118,7 @@ src/
 ## Redux Patterns
 
 ### Actions
+
 - **Main file**: `characterCreationActions.ts` (27 exported functions)
 - Common actions:
   - `setRank()` - Set trait rank
@@ -123,12 +129,14 @@ src/
   - Thunks: `purchaseOrUnpurchaseDot()`, `purchaseOrUnpurchaseMoralityDot()`
 
 ### Reducers
+
 - 12 reducer files, combined in `rootReducer.ts`
 - Key reducers: `attributesReducer`, `skillsReducer`, `disciplinesReducer`, `meritsReducer`
 - Initial state defined in `initialState.ts`
 - All reducers are pure functions
 
 ### Selectors
+
 - **Simple selectors**: `getIsEraserMode()`, `getClan()`, `getSelectedMerits()`
 - **Memoized selectors**: `getMerits`, `getFlaws`, `getXP`, `getValidation`
 - Performance optimization through Reselect memoization
@@ -137,11 +145,13 @@ src/
 ## Testing Approach
 
 ### Test Setup
+
 - **Framework**: Jest (via react-scripts)
 - **Library**: React Testing Library + @testing-library/user-event
 - **Matchers**: @testing-library/jest-dom
 
 ### Test Patterns
+
 ```typescript
 // Component testing pattern
 import { render, screen } from '@testing-library/react';
@@ -160,11 +170,13 @@ test('example', async () => {
 ```
 
 ### Test Utilities
+
 - `createMockRootState()` - Mock Redux state helper
 - `defaultModeState`, `defaultSettingState` - Default test values
 - Found in `/src/test-utils/mockState.ts`
 
 ### Coverage
+
 - 50+ test files
 - Tests for components, actions, reducers, selectors, utilities
 - Run with: `yarn test`
@@ -172,6 +184,7 @@ test('example', async () => {
 ## Type System
 
 ### Key Types (`/src/types/index.ts`)
+
 - **State Types**: `RootState`, `ModeState`, `SettingState`, `CharacterState`
 - **Trait Types**: `TraitState`, `TraitMap`, `RankedTraitProps`
 - **Character Types**: `ClanInfo`, `BasicInfo`, `AttributesState`, `DisciplinesState`
@@ -179,6 +192,7 @@ test('example', async () => {
 - **Domain Types**: `MeritFlawItem`, `DotCostInfo`, `GenerationInfo`
 
 ### TypeScript Configuration
+
 - Target: ES2020
 - JSX: react-jsx (React 18)
 - Strict mode enabled
@@ -187,20 +201,24 @@ test('example', async () => {
 ## Dependencies
 
 ### Core
+
 - `react@^18.2.0`, `react-dom@^18.2.0`
 - `redux@^4.2.0`, `react-redux@^8.0.2`, `redux-thunk@^2.4.1`
 - `reselect@^4.1.6`
 
 ### UI
+
 - `react-select@^5.4.0` - Advanced select dropdowns
 - `classnames@^2.3.1` - Dynamic CSS classes
 - Bootstrap 4 (CDN), Font Awesome 4 (CDN)
 
 ### Utilities
+
 - `lodash.chunk@^4.2.0`, `lodash.startswith@^4.2.1`
 - `jspdf@^2.4.0` - PDF generation
 
 ### Dev Tools
+
 - `typescript@~4.9.5`
 - `@testing-library/react@13.3.0`, `@testing-library/user-event@14.2.1`
 - `deep-freeze@^0.0.1` - Test immutability
@@ -209,6 +227,7 @@ test('example', async () => {
 ## Code Quality Standards
 
 ### From README and Codebase
+
 - **Formatting**: Prettier v1 with single quotes
 - **Linting**: ESLint extending `react-app`
 - **Functions**: Keep under 40 lines (per CLAUDE.md)
@@ -217,6 +236,7 @@ test('example', async () => {
 - **Modern Syntax**: ES6+, no IE support
 
 ### Architecture Rules
+
 - Only reducers and selectors know state structure
 - Components receive typed props, no direct state access
 - Memoized selectors for expensive computations
@@ -233,12 +253,14 @@ test('example', async () => {
 ## Build & Deployment
 
 ### Scripts
+
 - `yarn start` - Development server (react-scripts)
 - `yarn build` - Production build
 - `yarn test` - Run tests
 - `yarn deploy` - Build and sync to S3
 
 ### Configuration
+
 - Build output: `/build`
 - TypeScript config: `tsconfig.json`
 - No ejection from Create React App
@@ -246,6 +268,7 @@ test('example', async () => {
 ## Git Workflow
 
 Per global CLAUDE.md:
+
 - Never push directly to main or master
 - Use feature branches
 - Commit messages should be clear and concise
@@ -253,6 +276,7 @@ Per global CLAUDE.md:
 ## Domain Knowledge
 
 ### Vampire the Masquerade Concepts
+
 - **Clans**: 13 core clans + bloodlines (e.g., Brujah, Toreador, Nosferatu)
 - **Disciplines**: Vampire powers (in-clan vs out-of-clan, different costs)
 - **Attributes**: Physical/Social/Mental (3 categories, ranked 1-5 dots)
@@ -264,6 +288,7 @@ Per global CLAUDE.md:
 - **XP**: Experience point tracking and banking
 
 ### Character Creation Logic
+
 - Pencil mode (creation) vs Eraser mode (editing)
 - Starting dots allocation
 - Dot purchasing with XP
@@ -274,12 +299,14 @@ Per global CLAUDE.md:
 ## Areas of Expertise
 
 1. **React Development**
+
    - Function components and hooks
    - Component composition
    - Performance optimization
    - Event handling
 
 2. **Redux Architecture**
+
    - Action creators and thunks
    - Reducer design
    - Selector optimization with Reselect
@@ -287,18 +314,21 @@ Per global CLAUDE.md:
    - Middleware configuration
 
 3. **TypeScript**
+
    - Type definitions
    - Discriminated unions
    - Generic components
    - Type inference
 
 4. **Testing**
+
    - React Testing Library patterns
    - User event simulation
    - Mocking strategies
    - Test utilities
 
 5. **Build Tools**
+
    - Create React App configuration
    - Potential Vite migration
    - TypeScript compilation
@@ -313,12 +343,14 @@ Per global CLAUDE.md:
 ## Common Tasks
 
 ### Adding a New Merit/Flaw
+
 1. Add definition to `/src/constants/merits.ts` or `flaws.ts`
 2. Update types if needed
 3. Add tests for the new merit/flaw
 4. Verify validation logic still works
 
 ### Adding a New Trait Type
+
 1. Update `RootState` type
 2. Create reducer in `/src/reducers/`
 3. Create actions in `/src/actions/`
@@ -329,12 +361,14 @@ Per global CLAUDE.md:
 8. Add comprehensive tests
 
 ### Optimizing Performance
+
 1. Use Reselect for expensive computations
 2. Check for unnecessary re-renders
 3. Use React.memo for pure components
 4. Verify selector memoization working
 
 ### Writing Tests
+
 1. Use `createMockRootState()` for Redux state
 2. Use `userEvent` for interactions
 3. Query with `screen` and `data-testid`
@@ -344,11 +378,12 @@ Per global CLAUDE.md:
 ## Migration Notes
 
 If migrating from Create React App to Vite:
+
 - Update build scripts
 - Replace react-scripts with Vite
 - Update test setup (Vitest or keep Jest)
 - Update TypeScript configuration
-- Update environment variable handling (REACT_APP_ → VITE_)
+- Update environment variable handling (REACT*APP* → VITE\_)
 - Update index.html structure
 - Update module resolution
 
