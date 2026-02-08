@@ -11,7 +11,7 @@ describe('purchase or unpurchase dot', () => {
       }
     })) as any;
 
-    const dispatch = jest.fn();
+    const dispatch = vi.fn();
 
     f(dispatch, getState, undefined);
 
@@ -34,7 +34,7 @@ describe('purchase or unpurchase dot', () => {
       }
     })) as any;
 
-    const dispatch = jest.fn();
+    const dispatch = vi.fn();
 
     f(dispatch, getState, undefined);
 
@@ -68,7 +68,7 @@ describe('purchase or unpurchase dot', () => {
 
     const f = actions.purchaseOrUnpurchaseDot('backgrounds', 'generation');
 
-    const dispatch = jest.fn();
+    const dispatch = vi.fn();
 
     f(dispatch, getState, undefined);
 
@@ -86,7 +86,7 @@ describe('purchase or unpurchase morality dot', () => {
       }
     })) as any;
 
-    const dispatch = jest.fn();
+    const dispatch = vi.fn();
 
     f(dispatch, getState, undefined);
 
@@ -105,7 +105,7 @@ describe('purchase or unpurchase morality dot', () => {
       }
     })) as any;
 
-    const dispatch = jest.fn();
+    const dispatch = vi.fn();
 
     f(dispatch, getState, undefined);
 
@@ -135,7 +135,7 @@ describe('update morality', () => {
       }
     })) as any;
 
-    const dispatch = jest.fn();
+    const dispatch = vi.fn();
 
     f(dispatch, getState, undefined);
 
@@ -166,7 +166,7 @@ describe('update morality', () => {
       }
     })) as any;
 
-    const dispatch = jest.fn();
+    const dispatch = vi.fn();
 
     f(dispatch, getState, undefined);
 
@@ -204,7 +204,7 @@ describe('update morality', () => {
       }
     })) as any;
 
-    const dispatch = jest.fn();
+    const dispatch = vi.fn();
 
     f(dispatch, getState, undefined);
 
@@ -241,7 +241,7 @@ describe('update morality', () => {
       }
     })) as any;
 
-    const dispatch = jest.fn();
+    const dispatch = vi.fn();
 
     f(dispatch, getState, undefined);
 

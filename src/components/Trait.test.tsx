@@ -21,8 +21,8 @@ it('should display the trait name capitalized', () => {
       maxDots={5}
       availableStartingDots={defaultAvailable}
       traitState={defaultTraitState}
-      onStartingDotsChange={jest.fn()}
-      onClick={jest.fn()}
+      onStartingDotsChange={vi.fn()}
+      onClick={vi.fn()}
     />
   );
 
@@ -37,8 +37,8 @@ it('should use displayName override when provided', () => {
       maxDots={5}
       availableStartingDots={defaultAvailable}
       traitState={defaultTraitState}
-      onStartingDotsChange={jest.fn()}
-      onClick={jest.fn()}
+      onStartingDotsChange={vi.fn()}
+      onClick={vi.fn()}
     />
   );
 
@@ -47,7 +47,7 @@ it('should use displayName override when provided', () => {
 
 it('should call onClick with trait name when dots clicked', async () => {
   const user = userEvent.setup();
-  const onClick = jest.fn();
+  const onClick = vi.fn();
 
   const { container } = render(
     <Trait
@@ -55,7 +55,7 @@ it('should call onClick with trait name when dots clicked', async () => {
       maxDots={5}
       availableStartingDots={defaultAvailable}
       traitState={defaultTraitState}
-      onStartingDotsChange={jest.fn()}
+      onStartingDotsChange={vi.fn()}
       onClick={onClick}
     />
   );
@@ -75,8 +75,8 @@ it('should not render StartingDots when no available dots', () => {
       maxDots={5}
       availableStartingDots={[]}
       traitState={defaultTraitState}
-      onStartingDotsChange={jest.fn()}
-      onClick={jest.fn()}
+      onStartingDotsChange={vi.fn()}
+      onClick={vi.fn()}
     />
   );
 
@@ -90,8 +90,8 @@ it('should render StartingDots when available dots exist', () => {
       maxDots={5}
       availableStartingDots={defaultAvailable}
       traitState={defaultTraitState}
-      onStartingDotsChange={jest.fn()}
-      onClick={jest.fn()}
+      onStartingDotsChange={vi.fn()}
+      onClick={vi.fn()}
     />
   );
 
@@ -105,8 +105,8 @@ it('should not show clear option for generation trait', () => {
       maxDots={5}
       availableStartingDots={defaultAvailable}
       traitState={{ startingDots: 1 }}
-      onStartingDotsChange={jest.fn()}
-      onClick={jest.fn()}
+      onStartingDotsChange={vi.fn()}
+      onClick={vi.fn()}
     />
   );
 

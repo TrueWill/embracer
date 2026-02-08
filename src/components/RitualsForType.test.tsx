@@ -16,7 +16,7 @@ it('should display the display name', () => {
       displayName="Necromantic Rituals"
       permutations={permutations}
       selected={[]}
-      updateRituals={jest.fn()}
+      updateRituals={vi.fn()}
     />
   );
 
@@ -30,7 +30,7 @@ it('should display permutation options', () => {
       displayName="Necromantic Rituals"
       permutations={permutations}
       selected={[]}
-      updateRituals={jest.fn()}
+      updateRituals={vi.fn()}
     />
   );
 
@@ -41,7 +41,7 @@ it('should display permutation options', () => {
 
 it('should call updateRituals with parsed value on change', async () => {
   const user = userEvent.setup();
-  const updateRituals = jest.fn();
+  const updateRituals = vi.fn();
 
   render(
     <RitualsForType

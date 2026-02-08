@@ -17,8 +17,8 @@ it('should display trait name capitalized', () => {
       maxDots={10}
       rankDots={rankDots}
       traitState={defaultTraitState}
-      onRankChange={jest.fn()}
-      onClick={jest.fn()}
+      onRankChange={vi.fn()}
+      onClick={vi.fn()}
     />
   );
 
@@ -33,8 +33,8 @@ it('should use displayName override when provided', () => {
       maxDots={10}
       rankDots={rankDots}
       traitState={defaultTraitState}
-      onRankChange={jest.fn()}
-      onClick={jest.fn()}
+      onRankChange={vi.fn()}
+      onClick={vi.fn()}
     />
   );
 
@@ -48,8 +48,8 @@ it('should display rank options', () => {
       maxDots={10}
       rankDots={rankDots}
       traitState={defaultTraitState}
-      onRankChange={jest.fn()}
-      onClick={jest.fn()}
+      onRankChange={vi.fn()}
+      onClick={vi.fn()}
     />
   );
 
@@ -60,7 +60,7 @@ it('should display rank options', () => {
 
 it('should call onRankChange with name and dots when rank changes', async () => {
   const user = userEvent.setup();
-  const onRankChange = jest.fn();
+  const onRankChange = vi.fn();
 
   render(
     <RankedTrait
@@ -69,7 +69,7 @@ it('should call onRankChange with name and dots when rank changes', async () => 
       rankDots={rankDots}
       traitState={{ dotsFromRank: 0, dotsPurchased: 0 }}
       onRankChange={onRankChange}
-      onClick={jest.fn()}
+      onClick={vi.fn()}
     />
   );
 
@@ -80,7 +80,7 @@ it('should call onRankChange with name and dots when rank changes', async () => 
 
 it('should call onClick with name when dots clicked', async () => {
   const user = userEvent.setup();
-  const onClick = jest.fn();
+  const onClick = vi.fn();
 
   const { container } = render(
     <RankedTrait
@@ -88,7 +88,7 @@ it('should call onClick with name when dots clicked', async () => {
       maxDots={10}
       rankDots={rankDots}
       traitState={defaultTraitState}
-      onRankChange={jest.fn()}
+      onRankChange={vi.fn()}
       onClick={onClick}
     />
   );

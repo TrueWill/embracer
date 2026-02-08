@@ -32,7 +32,7 @@ it('should select current setting', () => {
 
 it('should update setting', async () => {
   const user = userEvent.setup();
-  const updateSetting = jest.fn();
+  const updateSetting = vi.fn();
 
   render(
     <Setting
