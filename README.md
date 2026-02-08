@@ -33,17 +33,17 @@ Currently deployment is manual, so the site may not reflect the latest changes.
 
 ### Standards
 
+- [Vite](https://vite.dev/)
 - [Prettier](https://prettier.io/) v1 with single quotes (`yarn prettify`)
 - [EditorConfig](http://editorconfig.org/)
 - [Yarn](https://yarnpkg.com/en/)
-- TypeScript v4.9.5
+- TypeScript
 - Prefer function components to class components (OK to use [Hooks](https://reactjs.org/docs/hooks-intro.html))
 - [Flux Standard Actions](https://github.com/acdlite/flux-standard-action)
 - [Strict Mode](https://reactjs.org/docs/strict-mode.html) (except for react-select)
 - [Reselect](https://github.com/reactjs/reselect) selectors
 - Only reducers and selectors should know the exact state structure
-- [CSS Modules](https://facebook.github.io/create-react-app/docs/adding-a-css-modules-stylesheet)
-- Jest/React Testing Library tests (using it() alias for test()) - all passing: [![Build Status](https://travis-ci.com/TrueWill/embracer.svg?branch=master)](https://travis-ci.com/TrueWill/embracer)
+- Vite/React Testing Library tests (using it() alias for test()) - all passing: [![Build Status](https://travis-ci.com/TrueWill/embracer.svg?branch=master)](https://travis-ci.com/TrueWill/embracer)
 - No ESLint warnings/errors
 - No console warnings/errors
 - Works in modern browsers (does _not_ support Internet Explorer)
