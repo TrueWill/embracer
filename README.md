@@ -44,7 +44,7 @@ Currently deployment is manual, so the site may not reflect the latest changes.
 - [Reselect](https://github.com/reactjs/reselect) selectors
 - Only reducers and selectors should know the exact state structure
 - Vite/React Testing Library tests (using it() alias for test()) - all passing: [![Build Status](https://travis-ci.com/TrueWill/embracer.svg?branch=master)](https://travis-ci.com/TrueWill/embracer)
-- No ESLint warnings/errors
+- No ESLint errors (working on warnings)
 - No console warnings/errors
 - Works in modern browsers (does _not_ support Internet Explorer)
 
