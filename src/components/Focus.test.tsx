@@ -50,7 +50,7 @@ it('should default to empty string when no value', () => {
 
 it('should call onChange with attribute and focus', async () => {
   const user = userEvent.setup();
-  const onChange = jest.fn();
+  const onChange = vi.fn();
 
   render(
     <Focus attribute="physical" foci={foci} onChange={onChange} />

@@ -4,7 +4,7 @@ import Rituals from './Rituals';
 
 it('should render nothing when no rituals', () => {
   const { container } = render(
-    <Rituals rituals={[]} updateRituals={jest.fn()} />
+    <Rituals rituals={[]} updateRituals={vi.fn()} />
   );
 
   expect(container.firstChild).toBeNull();
@@ -23,7 +23,7 @@ it('should render Rituals section when rituals exist', () => {
     }
   ];
 
-  render(<Rituals rituals={rituals} updateRituals={jest.fn()} />);
+  render(<Rituals rituals={rituals} updateRituals={vi.fn()} />);
 
   expect(screen.getByText('Rituals')).toBeInTheDocument();
   expect(screen.getByText('Necromantic Rituals')).toBeInTheDocument();
@@ -45,7 +45,7 @@ it('should render multiple ritual types', () => {
     }
   ];
 
-  render(<Rituals rituals={rituals} updateRituals={jest.fn()} />);
+  render(<Rituals rituals={rituals} updateRituals={vi.fn()} />);
 
   expect(screen.getByText('Necromantic Rituals')).toBeInTheDocument();
   expect(screen.getByText('Thaumaturgic Rituals')).toBeInTheDocument();

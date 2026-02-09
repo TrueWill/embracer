@@ -3,5 +3,7 @@
 }
 
 .version {
-  font-size: small;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px;
+  line-height: 28px;
 }

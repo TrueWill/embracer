@@ -6,13 +6,13 @@ import Rank from './Rank';
 const dots = [7, 5, 3];
 
 it('should display not ranked option', () => {
-  render(<Rank dots={dots} onChange={jest.fn()} />);
+  render(<Rank dots={dots} onChange={vi.fn()} />);
 
   expect(screen.getByText('(not ranked)')).toBeInTheDocument();
 });
 
 it('should display rank options with descriptions', () => {
-  render(<Rank dots={dots} onChange={jest.fn()} />);
+  render(<Rank dots={dots} onChange={vi.fn()} />);
 
   expect(screen.getByText('Primary (7)')).toBeInTheDocument();
   expect(screen.getByText('Secondary (5)')).toBeInTheDocument();
@@ -20,20 +20,20 @@ it('should display rank options with descriptions', () => {
 });
 
 it('should default to not ranked when no dotValue', () => {
-  render(<Rank dots={dots} onChange={jest.fn()} />);
+  render(<Rank dots={dots} onChange={vi.fn()} />);
 
   expect(screen.getByRole('combobox')).toHaveValue('0');
 });
 
 it('should select current dotValue', () => {
-  render(<Rank dots={dots} dotValue={5} onChange={jest.fn()} />);
+  render(<Rank dots={dots} dotValue={5} onChange={vi.fn()} />);
 
   expect(screen.getByRole('combobox')).toHaveValue('5');
 });
 
 it('should call onChange when selection changes', async () => {
   const user = userEvent.setup();
-  const onChange = jest.fn();
+  const onChange = vi.fn();
 
   render(<Rank dots={dots} onChange={onChange} />);
 

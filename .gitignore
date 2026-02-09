@@ -67,6 +67,8 @@ typings/
 
 # production
 /build
+/dist
+tsconfig.tsbuildinfo
 
 # misc
 .DS_Store

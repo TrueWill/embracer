@@ -59,7 +59,7 @@ it('should select current bloodline', () => {
 
 it('should update clan', async () => {
   const user = userEvent.setup();
-  const updateClan = jest.fn();
+  const updateClan = vi.fn();
 
   render(<Clan clan={{ name: '' }} updateClan={updateClan} />);
 
@@ -73,7 +73,7 @@ it('should update clan', async () => {
 
 it('should update bloodline', async () => {
   const user = userEvent.setup();
-  const updateClan = jest.fn();
+  const updateClan = vi.fn();
   const currentClan = 'Tzimisce';
 
   render(<Clan clan={{ name: currentClan }} updateClan={updateClan} />);
@@ -93,7 +93,7 @@ it('should update bloodline', async () => {
 
 it('should clear bloodline when update clan', async () => {
   const user = userEvent.setup();
-  const updateClan = jest.fn();
+  const updateClan = vi.fn();
 
   render(
     <Clan

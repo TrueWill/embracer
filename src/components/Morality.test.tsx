@@ -16,8 +16,8 @@ it('should display Humanity option', () => {
       path={humanity}
       level={5}
       maxDots={6}
-      purchaseOrUnpurchaseMoralityDot={jest.fn()}
-      updateMoralityIfPointsAvailable={jest.fn()}
+      purchaseOrUnpurchaseMoralityDot={vi.fn()}
+      updateMoralityIfPointsAvailable={vi.fn()}
     />
   );
 
@@ -31,8 +31,8 @@ it('should display path options with point costs', () => {
       path={humanity}
       level={5}
       maxDots={6}
-      purchaseOrUnpurchaseMoralityDot={jest.fn()}
-      updateMoralityIfPointsAvailable={jest.fn()}
+      purchaseOrUnpurchaseMoralityDot={vi.fn()}
+      updateMoralityIfPointsAvailable={vi.fn()}
     />
   );
 
@@ -51,8 +51,8 @@ it('should select current path', () => {
       path={humanity}
       level={5}
       maxDots={6}
-      purchaseOrUnpurchaseMoralityDot={jest.fn()}
-      updateMoralityIfPointsAvailable={jest.fn()}
+      purchaseOrUnpurchaseMoralityDot={vi.fn()}
+      updateMoralityIfPointsAvailable={vi.fn()}
     />
   );
 
@@ -61,7 +61,7 @@ it('should select current path', () => {
 
 it('should call updateMoralityIfPointsAvailable on path change', async () => {
   const user = userEvent.setup();
-  const updateMorality = jest.fn();
+  const updateMorality = vi.fn();
 
   render(
     <Morality
@@ -69,7 +69,7 @@ it('should call updateMoralityIfPointsAvailable on path change', async () => {
       path={humanity}
       level={5}
       maxDots={6}
-      purchaseOrUnpurchaseMoralityDot={jest.fn()}
+      purchaseOrUnpurchaseMoralityDot={vi.fn()}
       updateMoralityIfPointsAvailable={updateMorality}
     />
   );
@@ -81,7 +81,7 @@ it('should call updateMoralityIfPointsAvailable on path change', async () => {
 
 it('should call purchaseOrUnpurchaseMoralityDot on dots click', async () => {
   const user = userEvent.setup();
-  const purchaseDot = jest.fn();
+  const purchaseDot = vi.fn();
 
   const { container } = render(
     <Morality
@@ -90,7 +90,7 @@ it('should call purchaseOrUnpurchaseMoralityDot on dots click', async () => {
       level={5}
       maxDots={6}
       purchaseOrUnpurchaseMoralityDot={purchaseDot}
-      updateMoralityIfPointsAvailable={jest.fn()}
+      updateMoralityIfPointsAvailable={vi.fn()}
     />
   );
 

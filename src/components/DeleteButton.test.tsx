@@ -5,7 +5,7 @@ import DeleteButton from './DeleteButton';
 
 it('should call onClick with id when clicked', async () => {
   const user = userEvent.setup();
-  const onClick = jest.fn();
+  const onClick = vi.fn();
 
   const { container } = render(
     <DeleteButton id="merit-1" onClick={onClick} />
@@ -18,7 +18,7 @@ it('should call onClick with id when clicked', async () => {
 
 it('should render a trash icon', () => {
   const { container } = render(
-    <DeleteButton id="test" onClick={jest.fn()} />
+    <DeleteButton id="test" onClick={vi.fn()} />
   );
 
   expect(container.querySelector('.fa-trash')).toBeInTheDocument();
