@@ -1,3 +1,8 @@
+---
+name: Front-End Expert
+description: Expert on React, Vite, Redux, and React Testing Library for the Embracer project.
+---
+
 # Front-End Expert Agent
 
 Expert on React, Vite, Redux, and React Testing Library for the Embracer project.
