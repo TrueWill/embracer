@@ -2,7 +2,7 @@
 set -euo pipefail
 
 BUCKET="s3://truewill-embracer"
-SITE_URL="https://www.met-embracer.com"
+: "${CF_DISTRIBUTION_ID:?CF_DISTRIBUTION_ID environment variable is required}"
 
 echo "==> Building..."
 yarn build
@@ -18,10 +18,9 @@ aws s3 sync dist/ "$BUCKET/" \
   --cache-control "max-age=0, must-revalidate" \
   --delete
 
-echo "==> Purging Cloudflare cache..."
-npx wrangler cache purge \
-  --url "$SITE_URL/index.html" \
-  --url "$SITE_URL/manifest.json" \
-  --url "$SITE_URL/favicon.ico"
+echo "==> Invalidating CloudFront cache..."
+aws cloudfront create-invalidation \
+  --distribution-id "$CF_DISTRIBUTION_ID" \
+  --paths "/index.html" "/manifest.json" "/favicon.ico"
 
 echo "==> Deploy complete."
