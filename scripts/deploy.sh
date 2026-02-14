@@ -19,7 +19,7 @@ aws s3 sync dist/ "$BUCKET/" \
   --delete
 
 echo "==> Purging Cloudflare cache..."
-wrangler cache purge \
+npx wrangler cache purge \
   --url "$SITE_URL/index.html" \
   --url "$SITE_URL/manifest.json" \
   --url "$SITE_URL/favicon.ico"
