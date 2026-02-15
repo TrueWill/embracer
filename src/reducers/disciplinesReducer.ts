@@ -8,7 +8,21 @@ import {
   removePurchasedDot
 } from '../utils/categoryPurchaser';
 import { getRitualInfoForDiscipline } from '../utils/ritualUtils';
-import type { DisciplinesState } from '../types';
+import type {
+  DisciplinesState,
+  SetStartingDotsAction,
+  PurchaseDotAction,
+  UnpurchaseDotAction,
+  UpdateRitualsAction,
+  UpdateClanAction
+} from '../types';
+
+type DisciplinesAction =
+  | SetStartingDotsAction
+  | PurchaseDotAction
+  | UnpurchaseDotAction
+  | UpdateRitualsAction
+  | UpdateClanAction;
 
 const isDisciplines = (category: string): boolean =>
   category.lastIndexOf('disciplines.', 0) === 0;
@@ -47,7 +61,7 @@ const clearRitualTypeIfMagic = (
 
 const disciplinesReducer = (
   state: DisciplinesState = initialState.character.disciplines,
-  action: any
+  action: DisciplinesAction
 ): DisciplinesState => {
   let category: string,
     trait: string,

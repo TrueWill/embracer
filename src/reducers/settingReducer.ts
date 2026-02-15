@@ -1,10 +1,12 @@
 import initialState from './initialState';
 import * as types from '../constants/actionTypes';
-import type { SettingState } from '../types';
+import type { SettingState, UpdateSettingAction } from '../types';
+
+type SettingAction = UpdateSettingAction;
 
 const settingReducer = (
   state: SettingState = initialState.setting,
-  action: any
+  action: SettingAction
 ): SettingState => {
   switch (action.type) {
     case types.UPDATE_SETTING:
