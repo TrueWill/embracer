@@ -11,7 +11,7 @@ import {
   outOfClanDisciplinesAvailableStartingDots
 } from '../constants/clanOptions';
 import { setDotsFromStartingDots } from '../utils/categoryStarter';
-import type { BackgroundsState } from '../types';
+import type { AttributesState, BackgroundsState } from '../types';
 
 let backgrounds: BackgroundsState = {
   availableStartingDots: backgroundsAvailableStartingDots
@@ -38,7 +38,7 @@ const initialState = {
     },
     attributes: attributeTraitNames.reduce(
       (acc, name) => ({ ...acc, [name]: {} }),
-      {} as any
+      {} as AttributesState
     ),
     skills: {
       availableStartingDots: skillsAvailableStartingDots

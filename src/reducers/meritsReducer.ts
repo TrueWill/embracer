@@ -1,11 +1,23 @@
 import initialState from './initialState';
 import * as types from '../constants/actionTypes';
 import { removeProperty } from '../utils/objectUtils';
-import type { MeritFlawItem } from '../types';
+import type {
+  MeritFlawItem,
+  AddMeritAction,
+  RemoveMeritAction,
+  UpdateSettingAction,
+  UpdateClanAction
+} from '../types';
+
+type MeritsAction =
+  | AddMeritAction
+  | RemoveMeritAction
+  | UpdateSettingAction
+  | UpdateClanAction;
 
 const meritsReducer = (
   state: MeritFlawItem[] = initialState.character.merits,
-  action: any
+  action: MeritsAction
 ): MeritFlawItem[] => {
   let name: string, newState: MeritFlawItem[];
 

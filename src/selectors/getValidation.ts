@@ -21,7 +21,7 @@ interface XPInfo {
 }
 
 // Higher-order functions
-const validateTruthy = (failureMessage: string) => (value: any): string[] =>
+const validateTruthy = (failureMessage: string) => (value: unknown): string[] =>
   value ? [] : [failureMessage];
 
 const validateStartingDots = (traitCategoryName: string) => (availableStartingDots: AvailableStartingDot[]): string[] =>

@@ -1,10 +1,20 @@
 import initialState from './initialState';
 import * as types from '../constants/actionTypes';
-import type { MeritFlawItem } from '../types';
+import type {
+  MeritFlawItem,
+  AddFlawAction,
+  RemoveFlawAction,
+  UpdateSettingAction
+} from '../types';
+
+type FlawsAction =
+  | AddFlawAction
+  | RemoveFlawAction
+  | UpdateSettingAction;
 
 const flawsReducer = (
   state: MeritFlawItem[] = initialState.character.flaws,
-  action: any
+  action: FlawsAction
 ): MeritFlawItem[] => {
   switch (action.type) {
     case types.ADD_FLAW:

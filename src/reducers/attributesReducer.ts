@@ -6,13 +6,27 @@ import {
   addPurchasedDot,
   removePurchasedDot
 } from '../utils/categoryPurchaser';
-import type { AttributesState } from '../types';
+import type {
+  AttributesState,
+  SetRankAction,
+  SetFocusAction,
+  PurchaseDotAction,
+  UnpurchaseDotAction,
+  UpdateClanAction
+} from '../types';
+
+type AttributesAction =
+  | SetRankAction
+  | SetFocusAction
+  | PurchaseDotAction
+  | UnpurchaseDotAction
+  | UpdateClanAction;
 
 const isAttributes = (category: string): boolean => category === 'attributes';
 
 const attributesReducer = (
   state: AttributesState = initialState.character.attributes,
-  action: any
+  action: AttributesAction
 ): AttributesState => {
   let category: string, trait: string, dotsFromRank: number;
 

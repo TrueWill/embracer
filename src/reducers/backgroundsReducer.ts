@@ -6,13 +6,27 @@ import {
   addPurchasedDot,
   removePurchasedDot
 } from '../utils/categoryPurchaser';
-import type { BackgroundsState } from '../types';
+import type {
+  BackgroundsState,
+  SetStartingDotsAction,
+  PurchaseDotAction,
+  UnpurchaseDotAction,
+  UpdateSettingAction,
+  UpdateClanAction
+} from '../types';
+
+type BackgroundsAction =
+  | SetStartingDotsAction
+  | PurchaseDotAction
+  | UnpurchaseDotAction
+  | UpdateSettingAction
+  | UpdateClanAction;
 
 const isBackgrounds = (category: string): boolean => category === 'backgrounds';
 
 const backgroundsReducer = (
   state: BackgroundsState = initialState.character.backgrounds,
-  action: any
+  action: BackgroundsAction
 ): BackgroundsState => {
   let category: string, trait: string, startingDots: number;
 

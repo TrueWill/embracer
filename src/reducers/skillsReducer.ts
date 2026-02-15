@@ -6,13 +6,23 @@ import {
   addPurchasedDot,
   removePurchasedDot
 } from '../utils/categoryPurchaser';
-import type { SkillsState } from '../types';
+import type {
+  SkillsState,
+  SetStartingDotsAction,
+  PurchaseDotAction,
+  UnpurchaseDotAction
+} from '../types';
+
+type SkillsAction =
+  | SetStartingDotsAction
+  | PurchaseDotAction
+  | UnpurchaseDotAction;
 
 const isSkills = (category: string): boolean => category === 'skills';
 
 const skillsReducer = (
   state: SkillsState = initialState.character.skills,
-  action: any
+  action: SkillsAction
 ): SkillsState => {
   let category: string, trait: string, startingDots: number;
 

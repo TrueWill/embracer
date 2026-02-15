@@ -6,6 +6,10 @@ import {
 } from '../constants/clanOptions';
 import { getClan, getInClanState } from './simple';
 
+interface ClanDisciplineInfo {
+  disciplines?: string[];
+}
+
 interface DisciplineNamesResult {
   inClan: string[];
   outOfClan: string[];
@@ -34,9 +38,9 @@ const getDisciplineNames = createSelector(
       const clanInfo = clans.get(clan.name);
       if (clan.bloodline && clanInfo) {
         const bloodlineInfo = clanInfo.bloodlines?.get(clan.bloodline);
-        inClan = (bloodlineInfo as any)?.disciplines || [];
+        inClan = (bloodlineInfo as ClanDisciplineInfo)?.disciplines || [];
       } else {
-        inClan = (clanInfo as any)?.disciplines || [];
+        inClan = (clanInfo as ClanDisciplineInfo)?.disciplines || [];
       }
     } else {
       inClan = [];

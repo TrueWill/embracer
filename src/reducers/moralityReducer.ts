@@ -6,11 +6,23 @@ import {
   moralityStartingDotsPath
 } from '../constants/characterOptions';
 import { removeProperty } from '../utils/objectUtils';
-import type { MoralityState } from '../types';
+import type {
+  MoralityState,
+  PurchaseMoralityDotAction,
+  UnpurchaseMoralityDotAction,
+  UpdateMoralityAction,
+  UpdateClanAction
+} from '../types';
+
+type MoralityAction =
+  | PurchaseMoralityDotAction
+  | UnpurchaseMoralityDotAction
+  | UpdateMoralityAction
+  | UpdateClanAction;
 
 const moralityReducer = (
   state: MoralityState = initialState.character.morality,
-  action: any
+  action: MoralityAction
 ): MoralityState => {
   switch (action.type) {
     case types.PURCHASE_MORALITY_DOT:

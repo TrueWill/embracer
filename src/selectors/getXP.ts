@@ -46,15 +46,23 @@ const calculateTraitXPCost = (
 };
 
 const calculateCategoryXPCost = (
-  categoryTraits: any,
+  categoryTraits: Record<string, TraitState | unknown>,
   categoryDotCost: DotCostInfo,
   initialLevelProperty: 'dotsFromRank' | 'startingDots'
 ): number =>
   Object.keys(categoryTraits).reduce((acc, key) => {
     const trait = categoryTraits[key];
 
+    if (
+      !trait ||
+      typeof trait !== 'object' ||
+      Array.isArray(trait)
+    ) {
+      return acc;
+    }
+
     const xpCost = calculateTraitXPCost(
-      trait,
+      trait as TraitState,
       categoryDotCost,
       initialLevelProperty
     );
