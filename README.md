@@ -43,7 +43,7 @@ Currently deployment is manual, so the site may not reflect the latest changes.
 - [Strict Mode](https://reactjs.org/docs/strict-mode.html) (except for react-select)
 - [Reselect](https://github.com/reactjs/reselect) selectors
 - Only reducers and selectors should know the exact state structure
-- Vite/React Testing Library tests (using it() alias for test()) - all passing: [![Build Status](https://travis-ci.com/TrueWill/embracer.svg?branch=main)](https://travis-ci.com/TrueWill/embracer)
+- Vite/React Testing Library tests (using it() alias for test()) - all passing
 - No ESLint errors (working on warnings)
 - No console warnings/errors
 - Works in modern browsers (does _not_ support Internet Explorer)
