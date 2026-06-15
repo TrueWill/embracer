@@ -1,10 +1,10 @@
 {
   "name": "embracer",
-  "version": "0.18.1",
+  "version": "0.18.2",
   "private": true,
   "dependencies": {
     "classnames": "^2.3.1",
-    "jspdf": "^2.4.0",
+    "jspdf": "^4.2.1",
     "lodash.chunk": "^4.2.0",
     "lodash.startswith": "^4.2.1",
     "react": "^18.2.0",
