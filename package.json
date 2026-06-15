@@ -1,6 +1,6 @@
 {
   "name": "embracer",
-  "version": "0.18.1",
+  "version": "0.18.2",
   "private": true,
   "dependencies": {
     "classnames": "^2.3.1",
